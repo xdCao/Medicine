@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="xd.medicine.dao.autoMapper.PatientMapper" >
+  <resultMap id="BaseResultMap" type="xd.medicine.entity.bo.Patient" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="doctor_id" property="doctorId" jdbcType="INTEGER" />
+    <result column="phone" property="phone" jdbcType="CHAR" />
+    <result column="registry_date" property="registryDate" jdbcType="DATE" />
+    <result column="trustAttr_id" property="trustattrId" jdbcType="INTEGER" />
+    <result column="sense_aware" property="senseAware" jdbcType="BIT" />
+    <result column="illness_condition" property="illnessCondition" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, name, doctor_id, phone, registry_date, trustAttr_id, sense_aware, illness_condition
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="xd.medicine.entity.bo.PatientExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from patient
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from patient
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from patient
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="xd.medicine.entity.bo.PatientExample" >
+    delete from patient
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="xd.medicine.entity.bo.Patient" >
+    insert into patient (id, name, doctor_id, 
+      phone, registry_date, trustAttr_id, 
+      sense_aware, illness_condition)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{doctorId,jdbcType=INTEGER}, 
+      #{phone,jdbcType=CHAR}, #{registryDate,jdbcType=DATE}, #{trustattrId,jdbcType=INTEGER}, 
+      #{senseAware,jdbcType=BIT}, #{illnessCondition,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="xd.medicine.entity.bo.Patient" >
+    insert into patient
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="doctorId != null" >
+        doctor_id,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="registryDate != null" >
+        registry_date,
+      </if>
+      <if test="trustattrId != null" >
+        trustAttr_id,
+      </if>
+      <if test="senseAware != null" >
+        sense_aware,
+      </if>
+      <if test="illnessCondition != null" >
+        illness_condition,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorId != null" >
+        #{doctorId,jdbcType=INTEGER},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=CHAR},
+      </if>
+      <if test="registryDate != null" >
+        #{registryDate,jdbcType=DATE},
+      </if>
+      <if test="trustattrId != null" >
+        #{trustattrId,jdbcType=INTEGER},
+      </if>
+      <if test="senseAware != null" >
+        #{senseAware,jdbcType=BIT},
+      </if>
+      <if test="illnessCondition != null" >
+        #{illnessCondition,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="xd.medicine.entity.bo.PatientExample" resultType="java.lang.Integer" >
+    select count(*) from patient
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update patient
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.doctorId != null" >
+        doctor_id = #{record.doctorId,jdbcType=INTEGER},
+      </if>
+      <if test="record.phone != null" >
+        phone = #{record.phone,jdbcType=CHAR},
+      </if>
+      <if test="record.registryDate != null" >
+        registry_date = #{record.registryDate,jdbcType=DATE},
+      </if>
+      <if test="record.trustattrId != null" >
+        trustAttr_id = #{record.trustattrId,jdbcType=INTEGER},
+      </if>
+      <if test="record.senseAware != null" >
+        sense_aware = #{record.senseAware,jdbcType=BIT},
+      </if>
+      <if test="record.illnessCondition != null" >
+        illness_condition = #{record.illnessCondition,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update patient
+    set id = #{record.id,jdbcType=INTEGER},
+      name = #{record.name,jdbcType=VARCHAR},
+      doctor_id = #{record.doctorId,jdbcType=INTEGER},
+      phone = #{record.phone,jdbcType=CHAR},
+      registry_date = #{record.registryDate,jdbcType=DATE},
+      trustAttr_id = #{record.trustattrId,jdbcType=INTEGER},
+      sense_aware = #{record.senseAware,jdbcType=BIT},
+      illness_condition = #{record.illnessCondition,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="xd.medicine.entity.bo.Patient" >
+    update patient
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorId != null" >
+        doctor_id = #{doctorId,jdbcType=INTEGER},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=CHAR},
+      </if>
+      <if test="registryDate != null" >
+        registry_date = #{registryDate,jdbcType=DATE},
+      </if>
+      <if test="trustattrId != null" >
+        trustAttr_id = #{trustattrId,jdbcType=INTEGER},
+      </if>
+      <if test="senseAware != null" >
+        sense_aware = #{senseAware,jdbcType=BIT},
+      </if>
+      <if test="illnessCondition != null" >
+        illness_condition = #{illnessCondition,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="xd.medicine.entity.bo.Patient" >
+    update patient
+    set name = #{name,jdbcType=VARCHAR},
+      doctor_id = #{doctorId,jdbcType=INTEGER},
+      phone = #{phone,jdbcType=CHAR},
+      registry_date = #{registryDate,jdbcType=DATE},
+      trustAttr_id = #{trustattrId,jdbcType=INTEGER},
+      sense_aware = #{senseAware,jdbcType=BIT},
+      illness_condition = #{illnessCondition,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="xd.medicine.dao.autoMapper.DoctorMapper" >
+  <resultMap id="BaseResultMap" type="xd.medicine.entity.bo.Doctor" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="position" property="position" jdbcType="TINYINT" />
+    <result column="office_location" property="officeLocation" jdbcType="VARCHAR" />
+    <result column="office_phone" property="officePhone" jdbcType="CHAR" />
+    <result column="registry_date" property="registryDate" jdbcType="DATE" />
+    <result column="department" property="department" jdbcType="TINYINT" />
+    <result column="title" property="title" jdbcType="TINYINT" />
+    <result column="workage" property="workage" jdbcType="TINYINT" />
+    <result column="degree" property="degree" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, name, position, office_location, office_phone, registry_date, department, title, 
+    workage, degree
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="xd.medicine.entity.bo.DoctorExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from doctor
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from doctor
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from doctor
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="xd.medicine.entity.bo.DoctorExample" >
+    delete from doctor
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="xd.medicine.entity.bo.Doctor" >
+    insert into doctor (id, name, position, 
+      office_location, office_phone, registry_date, 
+      department, title, workage, 
+      degree)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{position,jdbcType=TINYINT}, 
+      #{officeLocation,jdbcType=VARCHAR}, #{officePhone,jdbcType=CHAR}, #{registryDate,jdbcType=DATE}, 
+      #{department,jdbcType=TINYINT}, #{title,jdbcType=TINYINT}, #{workage,jdbcType=TINYINT}, 
+      #{degree,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="xd.medicine.entity.bo.Doctor" >
+    insert into doctor
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="position != null" >
+        position,
+      </if>
+      <if test="officeLocation != null" >
+        office_location,
+      </if>
+      <if test="officePhone != null" >
+        office_phone,
+      </if>
+      <if test="registryDate != null" >
+        registry_date,
+      </if>
+      <if test="department != null" >
+        department,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="workage != null" >
+        workage,
+      </if>
+      <if test="degree != null" >
+        degree,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="position != null" >
+        #{position,jdbcType=TINYINT},
+      </if>
+      <if test="officeLocation != null" >
+        #{officeLocation,jdbcType=VARCHAR},
+      </if>
+      <if test="officePhone != null" >
+        #{officePhone,jdbcType=CHAR},
+      </if>
+      <if test="registryDate != null" >
+        #{registryDate,jdbcType=DATE},
+      </if>
+      <if test="department != null" >
+        #{department,jdbcType=TINYINT},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=TINYINT},
+      </if>
+      <if test="workage != null" >
+        #{workage,jdbcType=TINYINT},
+      </if>
+      <if test="degree != null" >
+        #{degree,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="xd.medicine.entity.bo.DoctorExample" resultType="java.lang.Integer" >
+    select count(*) from doctor
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update doctor
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.position != null" >
+        position = #{record.position,jdbcType=TINYINT},
+      </if>
+      <if test="record.officeLocation != null" >
+        office_location = #{record.officeLocation,jdbcType=VARCHAR},
+      </if>
+      <if test="record.officePhone != null" >
+        office_phone = #{record.officePhone,jdbcType=CHAR},
+      </if>
+      <if test="record.registryDate != null" >
+        registry_date = #{record.registryDate,jdbcType=DATE},
+      </if>
+      <if test="record.department != null" >
+        department = #{record.department,jdbcType=TINYINT},
+      </if>
+      <if test="record.title != null" >
+        title = #{record.title,jdbcType=TINYINT},
+      </if>
+      <if test="record.workage != null" >
+        workage = #{record.workage,jdbcType=TINYINT},
+      </if>
+      <if test="record.degree != null" >
+        degree = #{record.degree,jdbcType=TINYINT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update doctor
+    set id = #{record.id,jdbcType=INTEGER},
+      name = #{record.name,jdbcType=VARCHAR},
+      position = #{record.position,jdbcType=TINYINT},
+      office_location = #{record.officeLocation,jdbcType=VARCHAR},
+      office_phone = #{record.officePhone,jdbcType=CHAR},
+      registry_date = #{record.registryDate,jdbcType=DATE},
+      department = #{record.department,jdbcType=TINYINT},
+      title = #{record.title,jdbcType=TINYINT},
+      workage = #{record.workage,jdbcType=TINYINT},
+      degree = #{record.degree,jdbcType=TINYINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="xd.medicine.entity.bo.Doctor" >
+    update doctor
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="position != null" >
+        position = #{position,jdbcType=TINYINT},
+      </if>
+      <if test="officeLocation != null" >
+        office_location = #{officeLocation,jdbcType=VARCHAR},
+      </if>
+      <if test="officePhone != null" >
+        office_phone = #{officePhone,jdbcType=CHAR},
+      </if>
+      <if test="registryDate != null" >
+        registry_date = #{registryDate,jdbcType=DATE},
+      </if>
+      <if test="department != null" >
+        department = #{department,jdbcType=TINYINT},
+      </if>
+      <if test="title != null" >
+        title = #{title,jdbcType=TINYINT},
+      </if>
+      <if test="workage != null" >
+        workage = #{workage,jdbcType=TINYINT},
+      </if>
+      <if test="degree != null" >
+        degree = #{degree,jdbcType=TINYINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="xd.medicine.entity.bo.Doctor" >
+    update doctor
+    set name = #{name,jdbcType=VARCHAR},
+      position = #{position,jdbcType=TINYINT},
+      office_location = #{officeLocation,jdbcType=VARCHAR},
+      office_phone = #{officePhone,jdbcType=CHAR},
+      registry_date = #{registryDate,jdbcType=DATE},
+      department = #{department,jdbcType=TINYINT},
+      title = #{title,jdbcType=TINYINT},
+      workage = #{workage,jdbcType=TINYINT},
+      degree = #{degree,jdbcType=TINYINT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
