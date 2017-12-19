@@ -22,34 +22,6 @@ public class MedicineApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(MedicineApplication.class, args);
-
-
-		bggdg
-	}
-
-	//配置德鲁伊
-	@Bean(initMethod = "init",destroyMethod = "close")
-	@ConfigurationProperties(prefix = "spring.datasource")
-	public DataSource dataSource(){
-		return new DruidDataSource();
-	}
-
-
-	//    配置myBatis
-	@Bean
-	public SqlSessionFactory sqlSessionFactoryBean() throws Exception {
-		PathMatchingResourcePatternResolver resolver=new PathMatchingResourcePatternResolver();
-		SqlSessionFactoryBean sqlSessionFactoryBean=new SqlSessionFactoryBean();
-		sqlSessionFactoryBean.setDataSource(dataSource());
-		sqlSessionFactoryBean.setMapperLocations(resolver.getResources("classpath*:/mapper/*Mapper.xml"));
-		return sqlSessionFactoryBean.getObject();
-	}
-
-
-	//事务管理器
-	@Bean
-	public PlatformTransactionManager transactionManager(){
-		return new DataSourceTransactionManager(dataSource());
 	}
 
 
