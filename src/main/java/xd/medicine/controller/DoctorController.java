@@ -1,6 +1,8 @@
 package xd.medicine.controller;
 
 import com.github.pagehelper.PageInfo;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,8 +22,15 @@ import java.util.List;
 @RestController
 public class DoctorController {
 
+    private static final Logger LOGGER= LoggerFactory.getLogger(DoctorController.class);
+
     @Autowired
     private DoctorService doctorService;
+
+    @RequestMapping(value = "/single",method = RequestMethod.GET)
+    public Doctor getDoctorById(@RequestParam int doctorId){
+        return doctorService.getDoctorById(doctorId);
+    }
 
     @RequestMapping(value = "/all",method = RequestMethod.GET)
     public List<Doctor> getAllDoctors(){

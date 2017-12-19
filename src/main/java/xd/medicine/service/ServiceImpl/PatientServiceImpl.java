@@ -1,0 +1,72 @@
+package xd.medicine.service.ServiceImpl;
+
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import xd.medicine.dao.autoMapper.PatientMapper;
+import xd.medicine.entity.bo.Patient;
+import xd.medicine.entity.bo.PatientExample;
+import xd.medicine.service.PatientService;
+
+import java.util.List;
+
+/**
+ * created by xdCao on 2017/12/19
+ */
+@Service
+public class PatientServiceImpl implements PatientService{
+
+    private static final Logger LOGGER= LoggerFactory.getLogger(PatientServiceImpl.class);
+
+    @Autowired
+    private PatientMapper patientMapper;
+
+    @Transactional(rollbackFor = Exception.class)
+    @Override
+    public Integer insertPatient(Patient patient) {
+        return patientMapper.insert(patient);
+    }
+
+    @Transactional(rollbackFor = Exception.class)
+    @Override
+    public int deletePatient(int id) {
+        return patientMapper.deleteByPrimaryKey(id);
+    }
+
+    @Transactional(rollbackFor = Exception.class)
+    @Override
+    public Integer updatePatient(Patient patient) {
+        return patientMapper.updateByPrimaryKey(patient);
+    }
+
+    @Override
+    public List<Patient> getAllPatients() {
+        return patientMapper.selectByExample(new PatientExample());
+    }
+
+    @Override
+    public Patient getPatientById(int id) {
+        return patientMapper.selectByPrimaryKey(id);
+    }
+
+    @Override
+    public PageInfo<Patient> getPatientByPage(int page, int rows) {
+        PageHelper.startPage(page,rows);
+        List<Patient> patients = patientMapper.selectByExample(new PatientExample());
+        PageInfo<Patient> patientPageInfo=new PageInfo<>(patients);
+        return patientPageInfo;
+    }
+
+    @Override
+    public List<Patient> getPatientsByDoctor(int doctorId) {
+        PatientExample patientExample=new PatientExample();
+        patientExample.createCriteria().andDoctorIdEqualTo(doctorId);
+        return patientMapper.selectByExample(patientExample);
+    }
+
+
+}
