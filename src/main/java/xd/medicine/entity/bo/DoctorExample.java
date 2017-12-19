@@ -761,6 +761,66 @@ public class DoctorExample {
             addCriterion("degree not between", value1, value2, "degree");
             return (Criteria) this;
         }
+
+        public Criteria andIsFreeIsNull() {
+            addCriterion("is_free is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsFreeIsNotNull() {
+            addCriterion("is_free is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsFreeEqualTo(Boolean value) {
+            addCriterion("is_free =", value, "isFree");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsFreeNotEqualTo(Boolean value) {
+            addCriterion("is_free <>", value, "isFree");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsFreeGreaterThan(Boolean value) {
+            addCriterion("is_free >", value, "isFree");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsFreeGreaterThanOrEqualTo(Boolean value) {
+            addCriterion("is_free >=", value, "isFree");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsFreeLessThan(Boolean value) {
+            addCriterion("is_free <", value, "isFree");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsFreeLessThanOrEqualTo(Boolean value) {
+            addCriterion("is_free <=", value, "isFree");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsFreeIn(List<Boolean> values) {
+            addCriterion("is_free in", values, "isFree");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsFreeNotIn(List<Boolean> values) {
+            addCriterion("is_free not in", values, "isFree");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsFreeBetween(Boolean value1, Boolean value2) {
+            addCriterion("is_free between", value1, value2, "isFree");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsFreeNotBetween(Boolean value1, Boolean value2) {
+            addCriterion("is_free not between", value1, value2, "isFree");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

@@ -12,6 +12,7 @@
     <result column="title" property="title" jdbcType="TINYINT" />
     <result column="workage" property="workage" jdbcType="TINYINT" />
     <result column="degree" property="degree" jdbcType="TINYINT" />
+    <result column="is_free" property="isFree" jdbcType="BIT" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -73,7 +74,7 @@
   </sql>
   <sql id="Base_Column_List" >
     id, name, position, office_location, office_phone, registry_date, department, title, 
-    workage, degree
+    workage, degree, is_free
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="xd.medicine.entity.bo.DoctorExample" >
     select
@@ -109,11 +110,11 @@
     insert into doctor (id, name, position, 
       office_location, office_phone, registry_date, 
       department, title, workage, 
-      degree)
+      degree, is_free)
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{position,jdbcType=TINYINT}, 
       #{officeLocation,jdbcType=VARCHAR}, #{officePhone,jdbcType=CHAR}, #{registryDate,jdbcType=DATE}, 
       #{department,jdbcType=TINYINT}, #{title,jdbcType=TINYINT}, #{workage,jdbcType=TINYINT}, 
-      #{degree,jdbcType=TINYINT})
+      #{degree,jdbcType=TINYINT}, #{isFree,jdbcType=BIT})
   </insert>
   <insert id="insertSelective" parameterType="xd.medicine.entity.bo.Doctor" >
     insert into doctor
@@ -148,6 +149,9 @@
       <if test="degree != null" >
         degree,
       </if>
+      <if test="isFree != null" >
+        is_free,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -179,6 +183,9 @@
       </if>
       <if test="degree != null" >
         #{degree,jdbcType=TINYINT},
+      </if>
+      <if test="isFree != null" >
+        #{isFree,jdbcType=BIT},
       </if>
     </trim>
   </insert>
@@ -221,6 +228,9 @@
       <if test="record.degree != null" >
         degree = #{record.degree,jdbcType=TINYINT},
       </if>
+      <if test="record.isFree != null" >
+        is_free = #{record.isFree,jdbcType=BIT},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -237,7 +247,8 @@
       department = #{record.department,jdbcType=TINYINT},
       title = #{record.title,jdbcType=TINYINT},
       workage = #{record.workage,jdbcType=TINYINT},
-      degree = #{record.degree,jdbcType=TINYINT}
+      degree = #{record.degree,jdbcType=TINYINT},
+      is_free = #{record.isFree,jdbcType=BIT}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -272,6 +283,9 @@
       <if test="degree != null" >
         degree = #{degree,jdbcType=TINYINT},
       </if>
+      <if test="isFree != null" >
+        is_free = #{isFree,jdbcType=BIT},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -285,7 +299,8 @@
       department = #{department,jdbcType=TINYINT},
       title = #{title,jdbcType=TINYINT},
       workage = #{workage,jdbcType=TINYINT},
-      degree = #{degree,jdbcType=TINYINT}
+      degree = #{degree,jdbcType=TINYINT},
+      is_free = #{isFree,jdbcType=BIT}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

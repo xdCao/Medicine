@@ -23,6 +23,8 @@ public class Doctor {
 
     private Byte degree;
 
+    private Boolean isFree;
+
     public Integer getId() {
         return id;
     }
@@ -101,5 +103,13 @@ public class Doctor {
 
     public void setDegree(Byte degree) {
         this.degree = degree;
+    }
+
+    public Boolean getIsFree() {
+        return isFree;
+    }
+
+    public void setIsFree(Boolean isFree) {
+        this.isFree = isFree;
     }
 }
