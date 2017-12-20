@@ -29,4 +29,6 @@ public interface DoctorService {
 
     PageInfo<Doctor> getDoctorsByPage(int page,int rows);
 
+    Integer countDoctorsByAccount(String account);
+
 }

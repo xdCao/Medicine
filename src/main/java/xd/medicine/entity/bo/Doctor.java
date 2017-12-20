@@ -25,6 +25,10 @@ public class Doctor {
 
     private Boolean isFree;
 
+    private String password;
+
+    private String account;
+
     public Integer getId() {
         return id;
     }
@@ -111,5 +115,21 @@ public class Doctor {
 
     public void setIsFree(Boolean isFree) {
         this.isFree = isFree;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password == null ? null : password.trim();
+    }
+
+    public String getAccount() {
+        return account;
+    }
+
+    public void setAccount(String account) {
+        this.account = account == null ? null : account.trim();
     }
 }

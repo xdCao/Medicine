@@ -19,10 +19,12 @@ public interface PatientService {
 
     List<Patient> getAllPatients();
 
-    Patient getPatientById(int id);;
+    Patient getPatientById(int id);
 
     PageInfo<Patient> getPatientByPage(int page,int rows);
 
     List<Patient> getPatientsByDoctor(int doctorId);
+
+    Integer countPatientByAccount(String account);
 
 }

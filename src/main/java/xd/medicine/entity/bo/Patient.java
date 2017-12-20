@@ -19,6 +19,10 @@ public class Patient {
 
     private String illnessCondition;
 
+    private String password;
+
+    private String account;
+
     public Integer getId() {
         return id;
     }
@@ -81,5 +85,21 @@ public class Patient {
 
     public void setIllnessCondition(String illnessCondition) {
         this.illnessCondition = illnessCondition == null ? null : illnessCondition.trim();
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password == null ? null : password.trim();
+    }
+
+    public String getAccount() {
+        return account;
+    }
+
+    public void setAccount(String account) {
+        this.account = account == null ? null : account.trim();
     }
 }

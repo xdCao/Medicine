@@ -11,6 +11,8 @@
     <result column="address" property="address" jdbcType="VARCHAR" />
     <result column="phone" property="phone" jdbcType="CHAR" />
     <result column="is_send_request" property="isSendRequest" jdbcType="BIT" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="account" property="account" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -71,7 +73,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, name, gender, age, job, company, address, phone, is_send_request
+    id, name, gender, age, job, company, address, phone, is_send_request, password, account
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="xd.medicine.entity.bo.OthersExample" >
     select
@@ -103,17 +105,17 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="xd.medicine.entity.bo.Others" >
+  <insert id="insert" parameterType="xd.medicine.entity.bo.Others" useGeneratedKeys="true" keyProperty="id">
     insert into others (id, name, gender, 
       age, job, company, 
-      address, phone, is_send_request
-      )
+      address, phone, is_send_request, 
+      password, account)
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{gender,jdbcType=BIT}, 
       #{age,jdbcType=INTEGER}, #{job,jdbcType=TINYINT}, #{company,jdbcType=VARCHAR}, 
-      #{address,jdbcType=VARCHAR}, #{phone,jdbcType=CHAR}, #{isSendRequest,jdbcType=BIT}
-      )
+      #{address,jdbcType=VARCHAR}, #{phone,jdbcType=CHAR}, #{isSendRequest,jdbcType=BIT}, 
+      #{password,jdbcType=VARCHAR}, #{account,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="xd.medicine.entity.bo.Others" >
+  <insert id="insertSelective" parameterType="xd.medicine.entity.bo.Others" useGeneratedKeys="true" keyProperty="id">
     insert into others
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -143,6 +145,12 @@
       <if test="isSendRequest != null" >
         is_send_request,
       </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="account != null" >
+        account,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -171,6 +179,12 @@
       </if>
       <if test="isSendRequest != null" >
         #{isSendRequest,jdbcType=BIT},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="account != null" >
+        #{account,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -210,6 +224,12 @@
       <if test="record.isSendRequest != null" >
         is_send_request = #{record.isSendRequest,jdbcType=BIT},
       </if>
+      <if test="record.password != null" >
+        password = #{record.password,jdbcType=VARCHAR},
+      </if>
+      <if test="record.account != null" >
+        account = #{record.account,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -225,7 +245,9 @@
       company = #{record.company,jdbcType=VARCHAR},
       address = #{record.address,jdbcType=VARCHAR},
       phone = #{record.phone,jdbcType=CHAR},
-      is_send_request = #{record.isSendRequest,jdbcType=BIT}
+      is_send_request = #{record.isSendRequest,jdbcType=BIT},
+      password = #{record.password,jdbcType=VARCHAR},
+      account = #{record.account,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -257,6 +279,12 @@
       <if test="isSendRequest != null" >
         is_send_request = #{isSendRequest,jdbcType=BIT},
       </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="account != null" >
+        account = #{account,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -269,7 +297,9 @@
       company = #{company,jdbcType=VARCHAR},
       address = #{address,jdbcType=VARCHAR},
       phone = #{phone,jdbcType=CHAR},
-      is_send_request = #{isSendRequest,jdbcType=BIT}
+      is_send_request = #{isSendRequest,jdbcType=BIT},
+      password = #{password,jdbcType=VARCHAR},
+      account = #{account,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

@@ -40,7 +40,7 @@ public class PatientServiceImpl implements PatientService{
     @Transactional(rollbackFor = Exception.class)
     @Override
     public Integer updatePatient(Patient patient) {
-        return patientMapper.updateByPrimaryKey(patient);
+        return patientMapper.updateByPrimaryKeySelective(patient);
     }
 
     @Override
@@ -66,6 +66,13 @@ public class PatientServiceImpl implements PatientService{
         PatientExample patientExample=new PatientExample();
         patientExample.createCriteria().andDoctorIdEqualTo(doctorId);
         return patientMapper.selectByExample(patientExample);
+    }
+
+    @Override
+    public Integer countPatientByAccount(String account) {
+        PatientExample example=new PatientExample();
+        example.createCriteria().andAccountEqualTo(account);
+        return patientMapper.countByExample(example);
     }
 
 

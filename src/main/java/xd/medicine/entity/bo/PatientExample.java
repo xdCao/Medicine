@@ -641,6 +641,146 @@ public class PatientExample {
             addCriterion("illness_condition not between", value1, value2, "illnessCondition");
             return (Criteria) this;
         }
+
+        public Criteria andPasswordIsNull() {
+            addCriterion("password is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPasswordIsNotNull() {
+            addCriterion("password is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPasswordEqualTo(String value) {
+            addCriterion("password =", value, "password");
+            return (Criteria) this;
+        }
+
+        public Criteria andPasswordNotEqualTo(String value) {
+            addCriterion("password <>", value, "password");
+            return (Criteria) this;
+        }
+
+        public Criteria andPasswordGreaterThan(String value) {
+            addCriterion("password >", value, "password");
+            return (Criteria) this;
+        }
+
+        public Criteria andPasswordGreaterThanOrEqualTo(String value) {
+            addCriterion("password >=", value, "password");
+            return (Criteria) this;
+        }
+
+        public Criteria andPasswordLessThan(String value) {
+            addCriterion("password <", value, "password");
+            return (Criteria) this;
+        }
+
+        public Criteria andPasswordLessThanOrEqualTo(String value) {
+            addCriterion("password <=", value, "password");
+            return (Criteria) this;
+        }
+
+        public Criteria andPasswordLike(String value) {
+            addCriterion("password like", value, "password");
+            return (Criteria) this;
+        }
+
+        public Criteria andPasswordNotLike(String value) {
+            addCriterion("password not like", value, "password");
+            return (Criteria) this;
+        }
+
+        public Criteria andPasswordIn(List<String> values) {
+            addCriterion("password in", values, "password");
+            return (Criteria) this;
+        }
+
+        public Criteria andPasswordNotIn(List<String> values) {
+            addCriterion("password not in", values, "password");
+            return (Criteria) this;
+        }
+
+        public Criteria andPasswordBetween(String value1, String value2) {
+            addCriterion("password between", value1, value2, "password");
+            return (Criteria) this;
+        }
+
+        public Criteria andPasswordNotBetween(String value1, String value2) {
+            addCriterion("password not between", value1, value2, "password");
+            return (Criteria) this;
+        }
+
+        public Criteria andAccountIsNull() {
+            addCriterion("account is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAccountIsNotNull() {
+            addCriterion("account is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAccountEqualTo(String value) {
+            addCriterion("account =", value, "account");
+            return (Criteria) this;
+        }
+
+        public Criteria andAccountNotEqualTo(String value) {
+            addCriterion("account <>", value, "account");
+            return (Criteria) this;
+        }
+
+        public Criteria andAccountGreaterThan(String value) {
+            addCriterion("account >", value, "account");
+            return (Criteria) this;
+        }
+
+        public Criteria andAccountGreaterThanOrEqualTo(String value) {
+            addCriterion("account >=", value, "account");
+            return (Criteria) this;
+        }
+
+        public Criteria andAccountLessThan(String value) {
+            addCriterion("account <", value, "account");
+            return (Criteria) this;
+        }
+
+        public Criteria andAccountLessThanOrEqualTo(String value) {
+            addCriterion("account <=", value, "account");
+            return (Criteria) this;
+        }
+
+        public Criteria andAccountLike(String value) {
+            addCriterion("account like", value, "account");
+            return (Criteria) this;
+        }
+
+        public Criteria andAccountNotLike(String value) {
+            addCriterion("account not like", value, "account");
+            return (Criteria) this;
+        }
+
+        public Criteria andAccountIn(List<String> values) {
+            addCriterion("account in", values, "account");
+            return (Criteria) this;
+        }
+
+        public Criteria andAccountNotIn(List<String> values) {
+            addCriterion("account not in", values, "account");
+            return (Criteria) this;
+        }
+
+        public Criteria andAccountBetween(String value1, String value2) {
+            addCriterion("account between", value1, value2, "account");
+            return (Criteria) this;
+        }
+
+        public Criteria andAccountNotBetween(String value1, String value2) {
+            addCriterion("account not between", value1, value2, "account");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

@@ -13,6 +13,7 @@ import xd.medicine.entity.bo.Doctor;
 import xd.medicine.entity.bo.DoctorExample;
 import xd.medicine.service.DoctorService;
 
+import javax.print.Doc;
 import java.util.List;
 
 /**
@@ -51,7 +52,7 @@ public class DoctorServiceImpl implements DoctorService{
     @Transactional(rollbackFor = Exception.class)
     @Override
     public Integer updateDoctor(Doctor doctor) {
-        return doctorMapper.updateByPrimaryKey(doctor);
+        return doctorMapper.updateByPrimaryKeySelective(doctor);
     }
 
     @Transactional(rollbackFor = Exception.class)
@@ -76,6 +77,13 @@ public class DoctorServiceImpl implements DoctorService{
         List<Doctor> doctors = doctorMapper.selectByExample(new DoctorExample());
         PageInfo<Doctor> doctorPageInfo=new PageInfo<>(doctors);
         return doctorPageInfo;
+    }
+
+    @Override
+    public Integer countDoctorsByAccount(String account) {
+        DoctorExample example=new DoctorExample();
+        example.createCriteria().andAccountEqualTo(account);
+        return doctorMapper.countByExample(example);
     }
 
 

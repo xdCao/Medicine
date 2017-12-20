@@ -13,6 +13,8 @@
     <result column="workage" property="workage" jdbcType="TINYINT" />
     <result column="degree" property="degree" jdbcType="TINYINT" />
     <result column="is_free" property="isFree" jdbcType="BIT" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="account" property="account" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -74,7 +76,7 @@
   </sql>
   <sql id="Base_Column_List" >
     id, name, position, office_location, office_phone, registry_date, department, title, 
-    workage, degree, is_free
+    workage, degree, is_free, password, account
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="xd.medicine.entity.bo.DoctorExample" >
     select
@@ -106,17 +108,19 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="xd.medicine.entity.bo.Doctor" >
+  <insert id="insert" parameterType="xd.medicine.entity.bo.Doctor" useGeneratedKeys="true" keyProperty="id">
     insert into doctor (id, name, position, 
       office_location, office_phone, registry_date, 
       department, title, workage, 
-      degree, is_free)
+      degree, is_free, password, 
+      account)
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{position,jdbcType=TINYINT}, 
       #{officeLocation,jdbcType=VARCHAR}, #{officePhone,jdbcType=CHAR}, #{registryDate,jdbcType=DATE}, 
       #{department,jdbcType=TINYINT}, #{title,jdbcType=TINYINT}, #{workage,jdbcType=TINYINT}, 
-      #{degree,jdbcType=TINYINT}, #{isFree,jdbcType=BIT})
+      #{degree,jdbcType=TINYINT}, #{isFree,jdbcType=BIT}, #{password,jdbcType=VARCHAR}, 
+      #{account,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="xd.medicine.entity.bo.Doctor" >
+  <insert id="insertSelective" parameterType="xd.medicine.entity.bo.Doctor" useGeneratedKeys="true" keyProperty="id">
     insert into doctor
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -152,6 +156,12 @@
       <if test="isFree != null" >
         is_free,
       </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="account != null" >
+        account,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -186,6 +196,12 @@
       </if>
       <if test="isFree != null" >
         #{isFree,jdbcType=BIT},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="account != null" >
+        #{account,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -231,6 +247,12 @@
       <if test="record.isFree != null" >
         is_free = #{record.isFree,jdbcType=BIT},
       </if>
+      <if test="record.password != null" >
+        password = #{record.password,jdbcType=VARCHAR},
+      </if>
+      <if test="record.account != null" >
+        account = #{record.account,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -248,7 +270,9 @@
       title = #{record.title,jdbcType=TINYINT},
       workage = #{record.workage,jdbcType=TINYINT},
       degree = #{record.degree,jdbcType=TINYINT},
-      is_free = #{record.isFree,jdbcType=BIT}
+      is_free = #{record.isFree,jdbcType=BIT},
+      password = #{record.password,jdbcType=VARCHAR},
+      account = #{record.account,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -286,6 +310,12 @@
       <if test="isFree != null" >
         is_free = #{isFree,jdbcType=BIT},
       </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="account != null" >
+        account = #{account,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -300,7 +330,9 @@
       title = #{title,jdbcType=TINYINT},
       workage = #{workage,jdbcType=TINYINT},
       degree = #{degree,jdbcType=TINYINT},
-      is_free = #{isFree,jdbcType=BIT}
+      is_free = #{isFree,jdbcType=BIT},
+      password = #{password,jdbcType=VARCHAR},
+      account = #{account,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

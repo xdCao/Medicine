@@ -10,6 +10,8 @@
     <result column="trustAttr_id" property="trustattrId" jdbcType="INTEGER" />
     <result column="sense_aware" property="senseAware" jdbcType="BIT" />
     <result column="illness_condition" property="illnessCondition" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="account" property="account" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -70,7 +72,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, name, doctor_id, phone, registry_date, trustAttr_id, sense_aware, illness_condition
+    id, name, doctor_id, phone, registry_date, trustAttr_id, sense_aware, illness_condition, 
+    password, account
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="xd.medicine.entity.bo.PatientExample" >
     select
@@ -102,15 +105,17 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="xd.medicine.entity.bo.Patient" >
+  <insert id="insert" parameterType="xd.medicine.entity.bo.Patient" useGeneratedKeys="true" keyProperty="id">
     insert into patient (id, name, doctor_id, 
       phone, registry_date, trustAttr_id, 
-      sense_aware, illness_condition)
+      sense_aware, illness_condition, password, 
+      account)
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{doctorId,jdbcType=INTEGER}, 
       #{phone,jdbcType=CHAR}, #{registryDate,jdbcType=DATE}, #{trustattrId,jdbcType=INTEGER}, 
-      #{senseAware,jdbcType=BIT}, #{illnessCondition,jdbcType=VARCHAR})
+      #{senseAware,jdbcType=BIT}, #{illnessCondition,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{account,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="xd.medicine.entity.bo.Patient" >
+  <insert id="insertSelective" parameterType="xd.medicine.entity.bo.Patient" useGeneratedKeys="true" keyProperty="id">
     insert into patient
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -137,6 +142,12 @@
       <if test="illnessCondition != null" >
         illness_condition,
       </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="account != null" >
+        account,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -162,6 +173,12 @@
       </if>
       <if test="illnessCondition != null" >
         #{illnessCondition,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="account != null" >
+        #{account,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -198,6 +215,12 @@
       <if test="record.illnessCondition != null" >
         illness_condition = #{record.illnessCondition,jdbcType=VARCHAR},
       </if>
+      <if test="record.password != null" >
+        password = #{record.password,jdbcType=VARCHAR},
+      </if>
+      <if test="record.account != null" >
+        account = #{record.account,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -212,7 +235,9 @@
       registry_date = #{record.registryDate,jdbcType=DATE},
       trustAttr_id = #{record.trustattrId,jdbcType=INTEGER},
       sense_aware = #{record.senseAware,jdbcType=BIT},
-      illness_condition = #{record.illnessCondition,jdbcType=VARCHAR}
+      illness_condition = #{record.illnessCondition,jdbcType=VARCHAR},
+      password = #{record.password,jdbcType=VARCHAR},
+      account = #{record.account,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -241,6 +266,12 @@
       <if test="illnessCondition != null" >
         illness_condition = #{illnessCondition,jdbcType=VARCHAR},
       </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="account != null" >
+        account = #{account,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -252,7 +283,9 @@
       registry_date = #{registryDate,jdbcType=DATE},
       trustAttr_id = #{trustattrId,jdbcType=INTEGER},
       sense_aware = #{senseAware,jdbcType=BIT},
-      illness_condition = #{illnessCondition,jdbcType=VARCHAR}
+      illness_condition = #{illnessCondition,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      account = #{account,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

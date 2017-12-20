@@ -99,13 +99,13 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="xd.medicine.entity.bo.TrustAttr" >
+  <insert id="insert" parameterType="xd.medicine.entity.bo.TrustAttr" useGeneratedKeys="true" keyProperty="id">
     insert into trust_attr (id, department, demand_title, 
       demand_workage, demand_degree)
     values (#{id,jdbcType=INTEGER}, #{department,jdbcType=TINYINT}, #{demandTitle,jdbcType=TINYINT}, 
       #{demandWorkage,jdbcType=TINYINT}, #{demandDegree,jdbcType=TINYINT})
   </insert>
-  <insert id="insertSelective" parameterType="xd.medicine.entity.bo.TrustAttr" >
+  <insert id="insertSelective" parameterType="xd.medicine.entity.bo.TrustAttr" useGeneratedKeys="true" keyProperty="id">
     insert into trust_attr
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >

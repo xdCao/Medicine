@@ -28,22 +28,35 @@ public class DoctorController {
     private DoctorService doctorService;
 
     @RequestMapping(value = "/single",method = RequestMethod.GET)
-    public Doctor getDoctorById(@RequestParam int doctorId){
-        return doctorService.getDoctorById(doctorId);
+    public FrontResult getDoctorById(@RequestParam int doctorId){
+        Doctor doctor = doctorService.getDoctorById(doctorId);
+        if (doctor!=null){
+            return new FrontResult(200,doctor,null);
+        }else {
+            return new FrontResult(500,null,"没有该医生");
+        }
     }
 
     @RequestMapping(value = "/all",method = RequestMethod.GET)
-    public List<Doctor> getAllDoctors(){
-        return doctorService.getAllDoctors();
+    public FrontResult getAllDoctors(){
+        List<Doctor> allDoctors = doctorService.getAllDoctors();
+        if (allDoctors!=null&&allDoctors.size()>0){
+            return new FrontResult(200,allDoctors,null);
+        }else {
+            return new FrontResult(500,null,"医生列表为空");
+        }
     }
 
     @RequestMapping(value = "/page",method = RequestMethod.GET)
-    public PageInfo<Doctor> getDoctorByPage(@RequestParam Integer page,@RequestParam Integer rows){
-        return doctorService.getDoctorsByPage(page,rows);
+    public FrontResult getDoctorByPage(@RequestParam Integer page,@RequestParam Integer rows){
+        PageInfo<Doctor> doctorsByPage = doctorService.getDoctorsByPage(page, rows);
+        return new FrontResult(200,doctorsByPage,null);
     }
 
     @RequestMapping(value = "/add",method = RequestMethod.POST)
-    public Integer addNewDoctor(@RequestParam String name,
+    public FrontResult addNewDoctor(@RequestParam String name,
+                                @RequestParam String account,
+                                @RequestParam String password,
                                 @RequestParam byte position,
                                 @RequestParam String officeLocation,
                                 @RequestParam String officePhone,
@@ -52,8 +65,16 @@ public class DoctorController {
                                 @RequestParam byte workage,
                                 @RequestParam byte degree,
                                 @RequestParam boolean isFree){
+
+        Integer countDoctorsByAccount = doctorService.countDoctorsByAccount(account);
+        if (countDoctorsByAccount>0){
+            return new FrontResult(500,null,"该账户名已存在");
+        }
+
         Doctor doctor=new Doctor();
         doctor.setName(name);
+        doctor.setAccount(account);
+        doctor.setPassword(password);
         doctor.setPosition(position);
         doctor.setOfficeLocation(officeLocation);
         doctor.setOfficePhone(officePhone);
@@ -63,8 +84,10 @@ public class DoctorController {
         doctor.setWorkage(workage);
         doctor.setIsFree(isFree);
         doctor.setRegistryDate(new Date());
-        return doctorService.insertDoctor(doctor);
+        doctorService.insertDoctor(doctor);
+        return new FrontResult(200,doctor,null);
     }
 
+    //todo update doctor
 
 }

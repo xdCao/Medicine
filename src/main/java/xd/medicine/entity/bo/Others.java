@@ -19,6 +19,10 @@ public class Others {
 
     private Boolean isSendRequest;
 
+    private String password;
+
+    private String account;
+
     public Integer getId() {
         return id;
     }
@@ -89,5 +93,21 @@ public class Others {
 
     public void setIsSendRequest(Boolean isSendRequest) {
         this.isSendRequest = isSendRequest;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password == null ? null : password.trim();
+    }
+
+    public String getAccount() {
+        return account;
+    }
+
+    public void setAccount(String account) {
+        this.account = account == null ? null : account.trim();
     }
 }
