@@ -86,5 +86,12 @@ public class DoctorServiceImpl implements DoctorService{
         return doctorMapper.countByExample(example);
     }
 
+    @Override
+    public List<Doctor> getDoctorByAccount(String account) {
+        DoctorExample example=new DoctorExample();
+        example.createCriteria().andAccountEqualTo(account);
+        return doctorMapper.selectByExample(example);
+    }
+
 
 }

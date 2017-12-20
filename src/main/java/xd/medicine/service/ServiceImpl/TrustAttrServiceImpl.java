@@ -33,4 +33,10 @@ public class TrustAttrServiceImpl implements TrustAttrService {
         return trustAttrMapper.selectByPrimaryKey(id);
     }
 
+    @Transactional(rollbackFor = Exception.class)
+    @Override
+    public void deleteById(Integer trustattrId) {
+        trustAttrMapper.deleteByPrimaryKey(trustattrId);
+    }
+
 }

@@ -9,12 +9,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import xd.medicine.dao.autoMapper.TrustAttrMapper;
 import xd.medicine.entity.bo.Patient;
 import xd.medicine.entity.bo.TrustAttr;
+import xd.medicine.entity.dto.FrontResult;
 import xd.medicine.service.PatientService;
 import xd.medicine.service.TrustAttrService;
 
+import javax.jnlp.IntegrationService;
 import java.util.Date;
 import java.util.List;
 
@@ -32,6 +33,20 @@ public class PatientController {
 
     @Autowired
     private TrustAttrService trustAttrService;
+
+    @RequestMapping(value = "/login",method = RequestMethod.GET)
+    public FrontResult login(@RequestParam String account,@RequestParam String password){
+        List<Patient> patientByAccount = patientService.getPatientByAccount(account);
+        if (patientByAccount!=null&&(patientByAccount.size()==1)){
+            if (password.equals(patientByAccount.get(0).getPassword())){
+                return new FrontResult(200,patientByAccount.get(0),null);
+            }else {
+                return new FrontResult(500,null,"密码错误");
+            }
+        }else {
+            return new FrontResult(500,null,"用户名错误");
+        }
+    }
 
     @RequestMapping(value = "/single",method = RequestMethod.GET)
     public FrontResult getSinglePatient(@RequestParam int patientId){
@@ -69,11 +84,13 @@ public class PatientController {
         }
     }
 
+    @Transactional(rollbackFor = Exception.class)
     @RequestMapping(value = "/delete",method = RequestMethod.POST)
     public FrontResult deletePatient(@RequestParam int patientId){
-        int deletePatient = patientService.deletePatient(patientId);
-        return new FrontResult(200,deletePatient,null);
-        //todo 删除病人后要把信任信息条目也删掉
+        Patient patientById = patientService.getPatientById(patientId);
+        trustAttrService.deleteById(patientById.getTrustattrId());
+        patientService.deletePatient(patientId);
+        return new FrontResult(200,null,null);
     }
 
     @RequestMapping(value = "/update",method = RequestMethod.POST)
@@ -81,7 +98,7 @@ public class PatientController {
                                  @RequestParam Integer id,
                                  @RequestParam Integer doctorId,
                                  @RequestParam String phone,
-                                 @RequestParam boolean senseAware,
+                                 @RequestParam Boolean senseAware,
                                  @RequestParam String illnessCondition){
         Patient patient=new Patient();
         patient.setDoctorId(doctorId);
@@ -90,6 +107,21 @@ public class PatientController {
         patient.setIllnessCondition(illnessCondition);
         Integer integer = patientService.updatePatient(patient);
         return new FrontResult(200,integer,null);
+    }
+
+    @RequestMapping(value = "/trust/update",method = RequestMethod.POST)
+    public FrontResult updateTrustAttr(@RequestParam Integer id,
+                                       @RequestParam Byte department,
+                                       @RequestParam Byte demandTitle,
+                                       @RequestParam Byte demandWorkage,
+                                       @RequestParam Byte demandDegree){
+        TrustAttr trustAttr=new TrustAttr();
+        trustAttr.setDepartment(department);
+        trustAttr.setDemandTitle(demandTitle);
+        trustAttr.setDemandWorkage(demandWorkage);
+        trustAttr.setDemandDegree(demandDegree);
+        trustAttrService.insertTrustAttr(trustAttr);
+        return new FrontResult(200,trustAttr,null);
     }
 
     @Transactional(rollbackFor = Exception.class)

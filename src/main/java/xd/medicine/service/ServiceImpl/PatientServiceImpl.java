@@ -75,5 +75,12 @@ public class PatientServiceImpl implements PatientService{
         return patientMapper.countByExample(example);
     }
 
+    @Override
+    public List<Patient> getPatientByAccount(String account) {
+        PatientExample example=new PatientExample();
+        example.createCriteria().andAccountEqualTo(account);
+        return patientMapper.selectByExample(example);
+    }
+
 
 }

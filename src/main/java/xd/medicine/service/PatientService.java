@@ -27,4 +27,6 @@ public interface PatientService {
 
     Integer countPatientByAccount(String account);
 
+    List<Patient> getPatientByAccount(String account);
+
 }

@@ -14,6 +14,5 @@ public interface TrustAttrService {
 
     TrustAttr getTrustAttrById(int id);
 
-
-
+    void deleteById(Integer trustattrId);
 }
