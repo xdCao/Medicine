@@ -17,6 +17,12 @@ public class EmergencyAttr {
         this.bloodPressure = bloodPressure;
     }
 
+    public EmergencyAttr() {
+        this.temperature = Math.random()*3+35.0;
+        this.heartBeat = (int) (Math.random()*150);
+        this.bloodPressure = Math.random()*60+Math.random()*140;
+    }
+
     public double getTemperature() {
         return temperature;
     }

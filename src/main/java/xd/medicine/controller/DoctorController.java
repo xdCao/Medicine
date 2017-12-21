@@ -84,7 +84,6 @@ public class DoctorController {
         if (countDoctorsByAccount>0){
             return new FrontResult(500,null,"该账户名已存在");
         }
-
         Doctor doctor=new Doctor();
         doctor.setName(name);
         doctor.setAccount(account);

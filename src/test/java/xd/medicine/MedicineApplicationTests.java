@@ -13,4 +13,9 @@ public class MedicineApplicationTests {
 	public void contextLoads() {
 	}
 
+	@Test
+	public void test(){
+		System.out.println((int)9.67);
+	}
+
 }

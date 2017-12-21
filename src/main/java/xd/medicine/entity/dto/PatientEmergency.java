@@ -18,6 +18,10 @@ public class PatientEmergency {
         this.emergencyAttr = emergencyAttr;
     }
 
+    public PatientEmergency() {
+
+    }
+
     public Patient getPatient() {
         return patient;
     }
