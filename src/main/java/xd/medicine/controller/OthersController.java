@@ -9,16 +9,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import xd.medicine.entity.bo.Others;
-import xd.medicine.entity.dto.FrontResult;
 import xd.medicine.service.OthersService;
 
 import java.util.List;
 
 /**
- * created by xdCao on 2017/12/20
+ * created by xdCao on 2017/12/21
  */
 @RestController
-@RequestMapping(value = "/others")
+@RequestMapping("/others")
 public class OthersController {
 
     private static final Logger LOGGER= LoggerFactory.getLogger(OthersController.class);
@@ -27,7 +26,7 @@ public class OthersController {
     private OthersService othersService;
 
     @RequestMapping(value = "/login",method = RequestMethod.GET)
-    public FrontResult login(@RequestParam String account,@RequestParam String password){
+    public FrontResult login(@RequestParam String account, @RequestParam String password){
         List<Others> othersByAccount = othersService.getOthersByAccount(account);
         if (othersByAccount!=null&&(othersByAccount.size()==1)){
             if (password.equals(othersByAccount.get(0).getPassword())){
@@ -118,6 +117,4 @@ public class OthersController {
             return new FrontResult(500,null,"分页信息为空");
         }
     }
-
-
 }

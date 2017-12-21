@@ -1,4 +1,4 @@
-package xd.medicine.entity.dto;
+package xd.medicine.controller;
 
 /**
  * created by xdCao on 2017/12/20

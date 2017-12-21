@@ -4,15 +4,14 @@ import com.github.pagehelper.PageInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import xd.medicine.entity.bo.Doctor;
-import xd.medicine.entity.dto.FrontResult;
 import xd.medicine.service.DoctorService;
 
-import javax.jnlp.IntegrationService;
 import java.util.Date;
 import java.util.List;
 
@@ -69,17 +68,17 @@ public class DoctorController {
     }
 
     @RequestMapping(value = "/add",method = RequestMethod.POST)
-    public FrontResult addNewDoctor(@RequestParam String name,
-                                @RequestParam String account,
-                                @RequestParam String password,
-                                @RequestParam byte position,
-                                @RequestParam String officeLocation,
-                                @RequestParam String officePhone,
-                                @RequestParam byte department,
-                                @RequestParam byte title,
-                                @RequestParam byte workage,
-                                @RequestParam byte degree,
-                                @RequestParam boolean isFree){
+    public FrontResult addNewDoctor(String name,
+                                    String account,
+                                    String password,
+                                    String position,
+                                    String officeLocation,
+                                    String officePhone,
+                                    String department,
+                                    String title,
+                                    String workage,
+                                    String degree,
+                                    String isFree){
 
         Integer countDoctorsByAccount = doctorService.countDoctorsByAccount(account);
         if (countDoctorsByAccount>0){
@@ -90,45 +89,45 @@ public class DoctorController {
         doctor.setName(name);
         doctor.setAccount(account);
         doctor.setPassword(password);
-        doctor.setPosition(position);
+        doctor.setPosition(Byte.valueOf(position));
         doctor.setOfficeLocation(officeLocation);
         doctor.setOfficePhone(officePhone);
-        doctor.setDepartment(department);
-        doctor.setDegree(degree);
-        doctor.setTitle(title);
-        doctor.setWorkage(workage);
-        doctor.setIsFree(isFree);
+        doctor.setDepartment(Byte.valueOf(department));
+        doctor.setDegree(Byte.valueOf(degree));
+        doctor.setTitle(Byte.valueOf(title));
+        doctor.setWorkage(Byte.valueOf(workage));
+        doctor.setIsFree(Boolean.valueOf(isFree));
         doctor.setRegistryDate(new Date());
         doctorService.insertDoctor(doctor);
         return new FrontResult(200,doctor,null);
     }
 
-
     @RequestMapping(value = "/update",method = RequestMethod.POST)
-    public FrontResult updateDoctor(@RequestParam Integer id,
-                                    @RequestParam String name,
-                                    @RequestParam String account,
-                                    @RequestParam String password,
-                                    @RequestParam Byte position,
-                                    @RequestParam String officeLocation,
-                                    @RequestParam String officePhone,
-                                    @RequestParam Byte department,
-                                    @RequestParam Byte title,
-                                    @RequestParam Byte workage,
-                                    @RequestParam Byte degree,
-                                    @RequestParam Boolean isFree){
+    public FrontResult updateDoctor(Integer id,
+                                    String name,
+                                    String account,
+                                    String password,
+                                    String position,
+                                    String officeLocation,
+                                    String officePhone,
+                                    String department,
+                                    String title,
+                                    String workage,
+                                    String degree,
+                                    String isFree){
         Doctor doctor=new Doctor();
         doctor.setId(id);
-        doctor.setAccount(account);
         doctor.setName(name);
-        doctor.setPosition(position);
+        doctor.setAccount(account);
+        doctor.setPassword(password);
+        doctor.setPosition(Byte.valueOf(position));
         doctor.setOfficeLocation(officeLocation);
         doctor.setOfficePhone(officePhone);
-        doctor.setDepartment(department);
-        doctor.setDegree(degree);
-        doctor.setTitle(title);
-        doctor.setWorkage(workage);
-        doctor.setIsFree(isFree);
+        doctor.setDepartment(Byte.valueOf(department));
+        doctor.setDegree(Byte.valueOf(degree));
+        doctor.setTitle(Byte.valueOf(title));
+        doctor.setWorkage(Byte.valueOf(workage));
+        doctor.setIsFree(Boolean.valueOf(isFree));
         doctorService.updateDoctor(doctor);
         return new FrontResult(200,doctor,null);
     }

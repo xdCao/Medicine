@@ -1,0 +1,171 @@
+2017-12-19 15:43:39.575 [http-nio-8443-exec-1] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - ==>  Preparing: select id, name, position, office_location, office_phone, registry_date, department, title, workage, degree from doctor 
+2017-12-19 15:43:39.593 [http-nio-8443-exec-1] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - ==> Parameters: 
+2017-12-19 15:44:46.248 [http-nio-8443-exec-1] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - ==>  Preparing: select id, name, position, office_location, office_phone, registry_date, department, title, workage, degree from doctor 
+2017-12-19 15:44:46.265 [http-nio-8443-exec-1] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - ==> Parameters: 
+2017-12-19 15:44:46.274 [http-nio-8443-exec-1] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - <==      Total: 1
+2017-12-19 15:52:21.764 [http-nio-8443-exec-1] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample_COUNT - ==>  Preparing: SELECT count(0) FROM doctor 
+2017-12-19 15:52:21.782 [http-nio-8443-exec-1] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample_COUNT - ==> Parameters: 
+2017-12-19 15:52:21.796 [http-nio-8443-exec-1] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample_COUNT - <==      Total: 1
+2017-12-19 15:52:21.797 [http-nio-8443-exec-1] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - ==>  Preparing: select id, name, position, office_location, office_phone, registry_date, department, title, workage, degree from doctor LIMIT 10 
+2017-12-19 15:52:21.797 [http-nio-8443-exec-1] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - ==> Parameters: 
+2017-12-19 15:52:21.799 [http-nio-8443-exec-1] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - <==      Total: 1
+2017-12-19 15:54:48.014 [http-nio-8443-exec-4] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample_COUNT - ==>  Preparing: SELECT count(0) FROM doctor 
+2017-12-19 15:54:48.014 [http-nio-8443-exec-4] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample_COUNT - ==> Parameters: 
+2017-12-19 15:54:48.015 [http-nio-8443-exec-4] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample_COUNT - <==      Total: 1
+2017-12-19 15:54:48.016 [http-nio-8443-exec-4] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - ==>  Preparing: select id, name, position, office_location, office_phone, registry_date, department, title, workage, degree from doctor LIMIT 10 
+2017-12-19 15:54:48.018 [http-nio-8443-exec-4] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - ==> Parameters: 
+2017-12-19 15:54:48.021 [http-nio-8443-exec-4] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - <==      Total: 4
+2017-12-19 15:54:56.366 [http-nio-8443-exec-5] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - ==>  Preparing: select id, name, position, office_location, office_phone, registry_date, department, title, workage, degree from doctor 
+2017-12-19 15:54:56.366 [http-nio-8443-exec-5] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - ==> Parameters: 
+2017-12-19 15:54:56.368 [http-nio-8443-exec-5] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - <==      Total: 4
+2017-12-19 16:34:52.858 [http-nio-8443-exec-5] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.insert - ==>  Preparing: insert into doctor (id, name, position, office_location, office_phone, registry_date, department, title, workage, degree, is_free) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) 
+2017-12-19 16:34:52.873 [http-nio-8443-exec-5] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.insert - ==> Parameters: null, 曹医生(String), 4(Byte), 西电老科(String), 13336758765(String), 2017-12-19(Date), 3(Byte), 4(Byte), 1(Byte), 3(Byte), true(Boolean)
+2017-12-19 16:34:52.874 [http-nio-8443-exec-5] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.insert - <==    Updates: 1
+2017-12-19 16:35:47.317 [http-nio-8443-exec-6] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample_COUNT - ==>  Preparing: SELECT count(0) FROM doctor 
+2017-12-19 16:35:47.317 [http-nio-8443-exec-6] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample_COUNT - ==> Parameters: 
+2017-12-19 16:35:47.325 [http-nio-8443-exec-6] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample_COUNT - <==      Total: 1
+2017-12-19 16:35:47.326 [http-nio-8443-exec-6] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - ==>  Preparing: select id, name, position, office_location, office_phone, registry_date, department, title, workage, degree, is_free from doctor LIMIT 10 
+2017-12-19 16:35:47.326 [http-nio-8443-exec-6] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - ==> Parameters: 
+2017-12-19 16:35:47.330 [http-nio-8443-exec-6] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - <==      Total: 5
+2017-12-20 11:41:24.619 [http-nio-9090-exec-2] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.insert - ==>  Preparing: insert into trust_attr (id, department, demand_title, demand_workage, demand_degree) values (?, ?, ?, ?, ?) 
+2017-12-20 11:41:24.638 [http-nio-9090-exec-2] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.insert - ==> Parameters: null, 1(Byte), 2(Byte), 3(Byte), 3(Byte)
+2017-12-20 11:41:24.640 [http-nio-9090-exec-2] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.insert - <==    Updates: 1
+2017-12-20 11:41:24.643 [http-nio-9090-exec-2] DEBUG xd.medicine.dao.autoMapper.PatientMapper.insert - ==>  Preparing: insert into patient (id, name, doctor_id, phone, registry_date, trustAttr_id, sense_aware, illness_condition, password ) values (?, ?, ?, ?, ?, ?, ?, ?, ? ) 
+2017-12-20 11:41:24.644 [http-nio-9090-exec-2] DEBUG xd.medicine.dao.autoMapper.PatientMapper.insert - ==> Parameters: null, lalal(String), 1(Integer), 177654789986(String), 2017-12-20(Date), 1(Integer), false(Boolean), nothing(String), 111(String)
+2017-12-20 11:42:16.184 [http-nio-9090-exec-5] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.insert - ==>  Preparing: insert into trust_attr (id, department, demand_title, demand_workage, demand_degree) values (?, ?, ?, ?, ?) 
+2017-12-20 11:42:16.185 [http-nio-9090-exec-5] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.insert - ==> Parameters: null, 1(Byte), 2(Byte), 3(Byte), 3(Byte)
+2017-12-20 11:42:16.186 [http-nio-9090-exec-5] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.insert - <==    Updates: 1
+2017-12-20 11:42:16.186 [http-nio-9090-exec-5] DEBUG xd.medicine.dao.autoMapper.PatientMapper.insert - ==>  Preparing: insert into patient (id, name, doctor_id, phone, registry_date, trustAttr_id, sense_aware, illness_condition, password ) values (?, ?, ?, ?, ?, ?, ?, ?, ? ) 
+2017-12-20 11:42:16.187 [http-nio-9090-exec-5] DEBUG xd.medicine.dao.autoMapper.PatientMapper.insert - ==> Parameters: null, lalal(String), 1(Integer), 17765478998(String), 2017-12-20(Date), 1(Integer), false(Boolean), nothing(String), 111(String)
+2017-12-20 11:45:06.691 [http-nio-9090-exec-2] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.insert - ==>  Preparing: insert into trust_attr (id, department, demand_title, demand_workage, demand_degree) values (?, ?, ?, ?, ?) 
+2017-12-20 11:45:06.707 [http-nio-9090-exec-2] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.insert - ==> Parameters: null, 1(Byte), 2(Byte), 3(Byte), 3(Byte)
+2017-12-20 11:45:06.708 [http-nio-9090-exec-2] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.insert - <==    Updates: 1
+2017-12-20 11:45:06.714 [http-nio-9090-exec-2] DEBUG xd.medicine.dao.autoMapper.PatientMapper.insert - ==>  Preparing: insert into patient (id, name, doctor_id, phone, registry_date, trustAttr_id, sense_aware, illness_condition, password ) values (?, ?, ?, ?, ?, ?, ?, ?, ? ) 
+2017-12-20 11:45:06.716 [http-nio-9090-exec-2] DEBUG xd.medicine.dao.autoMapper.PatientMapper.insert - ==> Parameters: null, lalal(String), 1(Integer), 17765478998(String), 2017-12-20(Date), 1(Integer), false(Boolean), nothing(String), 111(String)
+2017-12-20 11:47:19.299 [http-nio-9090-exec-2] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.insert - ==>  Preparing: insert into trust_attr (id, department, demand_title, demand_workage, demand_degree) values (?, ?, ?, ?, ?) 
+2017-12-20 11:47:19.315 [http-nio-9090-exec-2] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.insert - ==> Parameters: null, 1(Byte), 2(Byte), 3(Byte), 3(Byte)
+2017-12-20 11:47:19.316 [http-nio-9090-exec-2] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.insert - <==    Updates: 1
+2017-12-20 11:47:19.322 [http-nio-9090-exec-2] INFO  xd.medicine.controller.PatientController - TrustAttrId:  1
+2017-12-20 11:47:19.323 [http-nio-9090-exec-2] DEBUG xd.medicine.dao.autoMapper.PatientMapper.insert - ==>  Preparing: insert into patient (id, name, doctor_id, phone, registry_date, trustAttr_id, sense_aware, illness_condition, password ) values (?, ?, ?, ?, ?, ?, ?, ?, ? ) 
+2017-12-20 11:47:19.324 [http-nio-9090-exec-2] DEBUG xd.medicine.dao.autoMapper.PatientMapper.insert - ==> Parameters: null, lalal(String), 1(Integer), 17765478998(String), 2017-12-20(Date), 1(Integer), false(Boolean), nothing(String), 111(String)
+2017-12-20 11:51:15.861 [http-nio-9090-exec-1] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.insert - ==>  Preparing: insert into trust_attr (id, department, demand_title, demand_workage, demand_degree) values (?, ?, ?, ?, ?) 
+2017-12-20 11:51:15.877 [http-nio-9090-exec-1] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.insert - ==> Parameters: null, 1(Byte), 2(Byte), 3(Byte), 3(Byte)
+2017-12-20 11:51:15.879 [http-nio-9090-exec-1] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.insert - <==    Updates: 1
+2017-12-20 11:51:15.883 [http-nio-9090-exec-1] ERROR xd.medicine.controller.PatientController - TrustAttrId:  1
+2017-12-20 11:51:15.883 [http-nio-9090-exec-1] ERROR xd.medicine.controller.PatientController - TrustAttrId:  1
+2017-12-20 11:51:15.883 [http-nio-9090-exec-1] ERROR xd.medicine.controller.PatientController - TrustAttrId:  1
+2017-12-20 11:51:15.884 [http-nio-9090-exec-1] DEBUG xd.medicine.dao.autoMapper.PatientMapper.insert - ==>  Preparing: insert into patient (id, name, doctor_id, phone, registry_date, trustAttr_id, sense_aware, illness_condition, password ) values (?, ?, ?, ?, ?, ?, ?, ?, ? ) 
+2017-12-20 11:51:15.885 [http-nio-9090-exec-1] DEBUG xd.medicine.dao.autoMapper.PatientMapper.insert - ==> Parameters: null, lalal(String), 1(Integer), 17765478998(String), 2017-12-20(Date), 1(Integer), false(Boolean), nothing(String), 111(String)
+2017-12-20 11:53:50.259 [http-nio-9090-exec-2] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.insert - ==>  Preparing: insert into trust_attr (id, department, demand_title, demand_workage, demand_degree) values (?, ?, ?, ?, ?) 
+2017-12-20 11:53:50.272 [http-nio-9090-exec-2] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.insert - ==> Parameters: null, 1(Byte), 2(Byte), 3(Byte), 3(Byte)
+2017-12-20 11:53:50.273 [http-nio-9090-exec-2] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.insert - <==    Updates: 1
+2017-12-20 11:53:50.277 [http-nio-9090-exec-2] ERROR xd.medicine.controller.PatientController - TrustAttrId:  1
+2017-12-20 11:53:50.277 [http-nio-9090-exec-2] ERROR xd.medicine.controller.PatientController - TrustAttrId:  1
+2017-12-20 11:53:50.278 [http-nio-9090-exec-2] ERROR xd.medicine.controller.PatientController - TrustAttrId:  1
+2017-12-20 11:53:50.279 [http-nio-9090-exec-2] DEBUG xd.medicine.dao.autoMapper.PatientMapper.insert - ==>  Preparing: insert into patient (id, name, doctor_id, phone, registry_date, trustAttr_id, sense_aware, illness_condition, password ) values (?, ?, ?, ?, ?, ?, ?, ?, ? ) 
+2017-12-20 11:53:50.280 [http-nio-9090-exec-2] DEBUG xd.medicine.dao.autoMapper.PatientMapper.insert - ==> Parameters: null, lalal(String), 1(Integer), 17765478998(String), 2017-12-20(Date), 1(Integer), false(Boolean), nothing(String), 111(String)
+2017-12-20 11:58:13.969 [http-nio-9090-exec-2] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.insert - ==>  Preparing: insert into trust_attr (id, department, demand_title, demand_workage, demand_degree) values (?, ?, ?, ?, ?) 
+2017-12-20 11:58:13.982 [http-nio-9090-exec-2] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.insert - ==> Parameters: null, 1(Byte), 2(Byte), 3(Byte), 3(Byte)
+2017-12-20 11:58:13.984 [http-nio-9090-exec-2] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.insert - <==    Updates: 1
+2017-12-20 11:58:13.988 [http-nio-9090-exec-2] DEBUG xd.medicine.dao.autoMapper.PatientMapper.insert - ==>  Preparing: insert into patient (id, name, doctor_id, phone, registry_date, trustAttr_id, sense_aware, illness_condition, password ) values (?, ?, ?, ?, ?, ?, ?, ?, ? ) 
+2017-12-20 11:58:13.989 [http-nio-9090-exec-2] DEBUG xd.medicine.dao.autoMapper.PatientMapper.insert - ==> Parameters: null, lalal(String), 1(Integer), 17765478998(String), 2017-12-20(Date), null, false(Boolean), nothing(String), 111(String)
+2017-12-20 12:01:17.411 [http-nio-9090-exec-2] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.insertSelective - ==>  Preparing: insert into trust_attr ( department, demand_title, demand_workage, demand_degree ) values ( ?, ?, ?, ? ) 
+2017-12-20 12:01:17.425 [http-nio-9090-exec-2] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.insertSelective - ==> Parameters: 1(Byte), 2(Byte), 3(Byte), 3(Byte)
+2017-12-20 12:01:17.426 [http-nio-9090-exec-2] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.insertSelective - <==    Updates: 1
+2017-12-20 12:01:17.432 [http-nio-9090-exec-2] DEBUG xd.medicine.dao.autoMapper.PatientMapper.insert - ==>  Preparing: insert into patient (id, name, doctor_id, phone, registry_date, trustAttr_id, sense_aware, illness_condition, password ) values (?, ?, ?, ?, ?, ?, ?, ?, ? ) 
+2017-12-20 12:01:17.433 [http-nio-9090-exec-2] DEBUG xd.medicine.dao.autoMapper.PatientMapper.insert - ==> Parameters: null, lalal(String), 1(Integer), 17765478998(String), 2017-12-20(Date), null, false(Boolean), nothing(String), 111(String)
+2017-12-20 13:02:58.177 [http-nio-9090-exec-2] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.insertSelective - ==>  Preparing: insert into trust_attr ( department, demand_title, demand_workage, demand_degree ) values ( ?, ?, ?, ? ) 
+2017-12-20 13:02:58.191 [http-nio-9090-exec-2] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.insertSelective - ==> Parameters: 1(Byte), 2(Byte), 3(Byte), 3(Byte)
+2017-12-20 13:02:58.194 [http-nio-9090-exec-2] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.insertSelective - <==    Updates: 1
+2017-12-20 13:02:58.199 [http-nio-9090-exec-2] DEBUG xd.medicine.dao.autoMapper.PatientMapper.insert - ==>  Preparing: insert into patient (id, name, doctor_id, phone, registry_date, trustAttr_id, sense_aware, illness_condition, password ) values (?, ?, ?, ?, ?, ?, ?, ?, ? ) 
+2017-12-20 13:02:58.200 [http-nio-9090-exec-2] DEBUG xd.medicine.dao.autoMapper.PatientMapper.insert - ==> Parameters: null, lalal(String), 1(Integer), 17765478998(String), 2017-12-20(Date), 1(Integer), false(Boolean), nothing(String), 111(String)
+2017-12-20 13:09:15.319 [http-nio-9090-exec-2] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.insert - ==>  Preparing: insert into trust_attr (id, department, demand_title, demand_workage, demand_degree) values (?, ?, ?, ?, ?) 
+2017-12-20 13:09:15.332 [http-nio-9090-exec-2] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.insert - ==> Parameters: null, 1(Byte), 2(Byte), 3(Byte), 3(Byte)
+2017-12-20 13:09:15.334 [http-nio-9090-exec-2] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.insert - <==    Updates: 1
+2017-12-20 13:09:15.341 [http-nio-9090-exec-2] DEBUG xd.medicine.dao.autoMapper.PatientMapper.insert - ==>  Preparing: insert into patient (id, name, doctor_id, phone, registry_date, trustAttr_id, sense_aware, illness_condition, password ) values (?, ?, ?, ?, ?, ?, ?, ?, ? ) 
+2017-12-20 13:09:15.341 [http-nio-9090-exec-2] DEBUG xd.medicine.dao.autoMapper.PatientMapper.insert - ==> Parameters: null, lalal(String), 1(Integer), 17765478998(String), 2017-12-20(Date), 10(Integer), false(Boolean), nothing(String), 111(String)
+2017-12-20 13:09:15.342 [http-nio-9090-exec-2] DEBUG xd.medicine.dao.autoMapper.PatientMapper.insert - <==    Updates: 1
+2017-12-20 13:22:40.821 [http-nio-9090-exec-2] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.insert - ==>  Preparing: insert into trust_attr (id, department, demand_title, demand_workage, demand_degree) values (?, ?, ?, ?, ?) 
+2017-12-20 13:22:40.834 [http-nio-9090-exec-2] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.insert - ==> Parameters: null, 1(Byte), 2(Byte), 3(Byte), 3(Byte)
+2017-12-20 13:22:40.835 [http-nio-9090-exec-2] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.insert - <==    Updates: 1
+2017-12-20 13:22:40.837 [http-nio-9090-exec-2] DEBUG xd.medicine.dao.autoMapper.PatientMapper.insert - ==>  Preparing: insert into patient (id, name, doctor_id, phone, registry_date, trustAttr_id, sense_aware, illness_condition, password ) values (?, ?, ?, ?, ?, ?, ?, ?, ? ) 
+2017-12-20 13:22:40.838 [http-nio-9090-exec-2] DEBUG xd.medicine.dao.autoMapper.PatientMapper.insert - ==> Parameters: null, lalal(String), 1(Integer), 17765478998(String), 2017-12-20(Date), 11(Integer), false(Boolean), nothing(String), 111(String)
+2017-12-20 13:22:40.839 [http-nio-9090-exec-2] DEBUG xd.medicine.dao.autoMapper.PatientMapper.insert - <==    Updates: 1
+2017-12-20 14:00:39.278 [http-nio-9090-exec-2] DEBUG xd.medicine.dao.autoMapper.PatientMapper.countByExample - ==>  Preparing: select count(*) from patient WHERE ( account = ? ) 
+2017-12-20 14:00:39.290 [http-nio-9090-exec-2] DEBUG xd.medicine.dao.autoMapper.PatientMapper.countByExample - ==> Parameters: hhh(String)
+2017-12-20 14:00:39.299 [http-nio-9090-exec-2] DEBUG xd.medicine.dao.autoMapper.PatientMapper.countByExample - <==      Total: 1
+2017-12-20 14:00:39.300 [http-nio-9090-exec-2] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.insert - ==>  Preparing: insert into trust_attr (id, department, demand_title, demand_workage, demand_degree) values (?, ?, ?, ?, ?) 
+2017-12-20 14:00:39.300 [http-nio-9090-exec-2] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.insert - ==> Parameters: null, 1(Byte), 2(Byte), 3(Byte), 3(Byte)
+2017-12-20 14:00:39.301 [http-nio-9090-exec-2] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.insert - <==    Updates: 1
+2017-12-20 14:00:39.303 [http-nio-9090-exec-2] DEBUG xd.medicine.dao.autoMapper.PatientMapper.insert - ==>  Preparing: insert into patient (id, name, doctor_id, phone, registry_date, trustAttr_id, sense_aware, illness_condition, password, account) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?) 
+2017-12-20 14:00:39.304 [http-nio-9090-exec-2] DEBUG xd.medicine.dao.autoMapper.PatientMapper.insert - ==> Parameters: null, 哈哈(String), 1(Integer), 17765478996(String), 2017-12-20(Date), 12(Integer), false(Boolean), nothing(String), 111(String), hhh(String)
+2017-12-20 14:00:39.305 [http-nio-9090-exec-2] DEBUG xd.medicine.dao.autoMapper.PatientMapper.insert - <==    Updates: 1
+2017-12-20 18:55:23.663 [http-nio-9090-exec-3] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - ==>  Preparing: select id, name, position, office_location, office_phone, registry_date, department, title, workage, degree, is_free, password, account from doctor WHERE ( account = ? ) 
+2017-12-20 18:55:23.683 [http-nio-9090-exec-3] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - ==> Parameters: 1(String)
+2017-12-20 18:55:23.699 [http-nio-9090-exec-3] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - <==      Total: 0
+2017-12-20 18:55:55.232 [http-nio-9090-exec-5] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - ==>  Preparing: select id, name, position, office_location, office_phone, registry_date, department, title, workage, degree, is_free, password, account from doctor WHERE ( account = ? ) 
+2017-12-20 18:55:55.232 [http-nio-9090-exec-5] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - ==> Parameters: 123(String)
+2017-12-20 18:55:55.235 [http-nio-9090-exec-5] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - <==      Total: 1
+2017-12-20 18:56:40.268 [http-nio-9090-exec-1] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - ==>  Preparing: select id, name, position, office_location, office_phone, registry_date, department, title, workage, degree, is_free, password, account from doctor WHERE ( account = ? ) 
+2017-12-20 18:56:40.282 [http-nio-9090-exec-1] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - ==> Parameters: 123(String)
+2017-12-20 18:56:40.290 [http-nio-9090-exec-1] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - <==      Total: 1
+2017-12-20 18:57:47.562 [http-nio-9090-exec-5] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - ==>  Preparing: select id, name, position, office_location, office_phone, registry_date, department, title, workage, degree, is_free, password, account from doctor WHERE ( account = ? ) 
+2017-12-20 18:57:47.564 [http-nio-9090-exec-5] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - ==> Parameters: 12(String)
+2017-12-20 18:57:47.566 [http-nio-9090-exec-5] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - <==      Total: 0
+2017-12-20 18:58:07.902 [http-nio-9090-exec-6] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - ==>  Preparing: select id, name, position, office_location, office_phone, registry_date, department, title, workage, degree, is_free, password, account from doctor WHERE ( account = ? ) 
+2017-12-20 18:58:07.903 [http-nio-9090-exec-6] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - ==> Parameters: 123(String)
+2017-12-20 18:58:07.904 [http-nio-9090-exec-6] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - <==      Total: 1
+2017-12-20 19:00:39.842 [http-nio-9090-exec-9] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByPrimaryKey - ==>  Preparing: select id, name, position, office_location, office_phone, registry_date, department, title, workage, degree, is_free, password, account from doctor where id = ? 
+2017-12-20 19:00:39.844 [http-nio-9090-exec-9] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByPrimaryKey - ==> Parameters: 1(Integer)
+2017-12-20 19:00:39.845 [http-nio-9090-exec-9] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByPrimaryKey - <==      Total: 1
+2017-12-20 19:00:44.574 [http-nio-9090-exec-10] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByPrimaryKey - ==>  Preparing: select id, name, position, office_location, office_phone, registry_date, department, title, workage, degree, is_free, password, account from doctor where id = ? 
+2017-12-20 19:00:44.575 [http-nio-9090-exec-10] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByPrimaryKey - ==> Parameters: 3(Integer)
+2017-12-20 19:00:44.577 [http-nio-9090-exec-10] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByPrimaryKey - <==      Total: 1
+2017-12-20 19:06:13.843 [http-nio-9090-exec-3] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - ==>  Preparing: select id, name, position, office_location, office_phone, registry_date, department, title, workage, degree, is_free, password, account from doctor 
+2017-12-20 19:06:13.843 [http-nio-9090-exec-3] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - ==> Parameters: 
+2017-12-20 19:06:13.846 [http-nio-9090-exec-3] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - <==      Total: 5
+2017-12-20 19:20:03.616 [http-nio-8080-exec-3] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample_COUNT - ==>  Preparing: SELECT count(0) FROM doctor 
+2017-12-20 19:20:03.630 [http-nio-8080-exec-3] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample_COUNT - ==> Parameters: 
+2017-12-20 19:20:03.639 [http-nio-8080-exec-3] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample_COUNT - <==      Total: 1
+2017-12-20 19:20:03.640 [http-nio-8080-exec-3] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - ==>  Preparing: select id, name, position, office_location, office_phone, registry_date, department, title, workage, degree, is_free, password, account from doctor LIMIT 2 
+2017-12-20 19:20:03.640 [http-nio-8080-exec-3] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - ==> Parameters: 
+2017-12-20 19:20:03.642 [http-nio-8080-exec-3] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - <==      Total: 2
+2017-12-20 19:30:50.192 [http-nio-8080-exec-6] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.countByExample - ==>  Preparing: select count(*) from doctor WHERE ( account = ? ) 
+2017-12-20 19:30:50.192 [http-nio-8080-exec-6] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.countByExample - ==> Parameters: 444(String)
+2017-12-20 19:30:50.193 [http-nio-8080-exec-6] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.countByExample - <==      Total: 1
+2017-12-20 19:30:50.201 [http-nio-8080-exec-6] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.insert - ==>  Preparing: insert into doctor (id, name, position, office_location, office_phone, registry_date, department, title, workage, degree, is_free, password, account) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) 
+2017-12-20 19:30:50.202 [http-nio-8080-exec-6] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.insert - ==> Parameters: null, caohao(String), 1(Byte), xian(String), 13337865544(String), 2017-12-20(Date), 1(Byte), 1(Byte), 1(Byte), 1(Byte), true(Boolean), 123(String), 444(String)
+2017-12-20 19:30:50.206 [http-nio-8080-exec-6] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.insert - <==    Updates: 1
+2017-12-20 19:31:16.799 [http-nio-8080-exec-7] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.countByExample - ==>  Preparing: select count(*) from doctor WHERE ( account = ? ) 
+2017-12-20 19:31:16.799 [http-nio-8080-exec-7] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.countByExample - ==> Parameters: 444(String)
+2017-12-20 19:31:16.800 [http-nio-8080-exec-7] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.countByExample - <==      Total: 1
+2017-12-20 23:18:35.969 [http-nio-9090-exec-5] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.countByExample - ==>  Preparing: select count(*) from doctor WHERE ( account = ? ) 
+2017-12-20 23:18:35.995 [http-nio-9090-exec-5] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.countByExample - ==> Parameters: 444(String)
+2017-12-20 23:18:36.020 [http-nio-9090-exec-5] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.countByExample - <==      Total: 1
+2017-12-20 23:36:39.804 [http-nio-9090-exec-7] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.countByExample - ==>  Preparing: select count(*) from doctor WHERE ( account = ? ) 
+2017-12-20 23:36:39.819 [http-nio-9090-exec-7] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.countByExample - ==> Parameters: 444(String)
+2017-12-20 23:36:39.828 [http-nio-9090-exec-7] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.countByExample - <==      Total: 1
+2017-12-20 23:36:41.663 [http-nio-9090-exec-10] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.countByExample - ==>  Preparing: select count(*) from doctor WHERE ( account = ? ) 
+2017-12-20 23:36:41.663 [http-nio-9090-exec-10] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.countByExample - ==> Parameters: 444(String)
+2017-12-20 23:36:41.664 [http-nio-9090-exec-10] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.countByExample - <==      Total: 1
+2017-12-20 23:40:37.807 [http-nio-9090-exec-1] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.countByExample - ==>  Preparing: select count(*) from doctor WHERE ( account = ? ) 
+2017-12-20 23:40:37.821 [http-nio-9090-exec-1] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.countByExample - ==> Parameters: 231(String)
+2017-12-20 23:40:37.831 [http-nio-9090-exec-1] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.countByExample - <==      Total: 1
+2017-12-20 23:40:37.841 [http-nio-9090-exec-1] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.insert - ==>  Preparing: insert into doctor (id, name, position, office_location, office_phone, registry_date, department, title, workage, degree, is_free, password, account) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) 
+2017-12-20 23:40:37.842 [http-nio-9090-exec-1] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.insert - ==> Parameters: null, 323(String), null, 212(String), 212(String), 2017-12-20(Date), 0(Byte), null, 4(Byte), 1(Byte), true(Boolean), 11(String), 231(String)
+2017-12-20 23:41:37.552 [http-nio-9090-exec-5] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.countByExample - ==>  Preparing: select count(*) from doctor WHERE ( account = ? ) 
+2017-12-20 23:41:37.552 [http-nio-9090-exec-5] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.countByExample - ==> Parameters: 121(String)
+2017-12-20 23:41:37.553 [http-nio-9090-exec-5] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.countByExample - <==      Total: 1
+2017-12-20 23:41:37.554 [http-nio-9090-exec-5] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.insert - ==>  Preparing: insert into doctor (id, name, position, office_location, office_phone, registry_date, department, title, workage, degree, is_free, password, account) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) 
+2017-12-20 23:41:37.555 [http-nio-9090-exec-5] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.insert - ==> Parameters: null, 23(String), null, 苏倩薇(String), 212(String), 2017-12-20(Date), 0(Byte), null, 4(Byte), 1(Byte), true(Boolean), 11(String), 121(String)
+2017-12-21 11:38:48.451 [http-nio-9090-exec-1] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.insert - ==>  Preparing: insert into doctor (id, name, position, office_location, office_phone, registry_date, department, title, workage, degree, is_free, password, account) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) 
+2017-12-21 11:38:48.470 [http-nio-9090-exec-1] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.insert - ==> Parameters: null, 撒大声地(String), 5(Byte), 21(String), 21(String), 2017-12-21(Date), 0(Byte), null, 4(Byte), 0(Byte), true(Boolean), 11(String), 123(String)
+2017-12-21 14:11:02.494 [http-nio-9090-exec-1] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.countByExample - ==>  Preparing: select count(*) from doctor WHERE ( account = ? ) 
+2017-12-21 14:11:02.516 [http-nio-9090-exec-1] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.countByExample - ==> Parameters: 1(String)
+2017-12-21 14:11:02.529 [http-nio-9090-exec-1] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.countByExample - <==      Total: 1
+2017-12-21 14:12:11.636 [http-nio-9090-exec-3] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.countByExample - ==>  Preparing: select count(*) from doctor WHERE ( account = ? ) 
+2017-12-21 14:12:11.636 [http-nio-9090-exec-3] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.countByExample - ==> Parameters: 1(String)
+2017-12-21 14:12:11.637 [http-nio-9090-exec-3] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.countByExample - <==      Total: 1
+2017-12-21 14:25:05.194 [http-nio-9090-exec-1] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.countByExample - ==>  Preparing: select count(*) from doctor WHERE ( account = ? ) 
+2017-12-21 14:25:05.242 [http-nio-9090-exec-1] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.countByExample - ==> Parameters: 1(String)
+2017-12-21 14:25:05.262 [http-nio-9090-exec-1] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.countByExample - <==      Total: 1

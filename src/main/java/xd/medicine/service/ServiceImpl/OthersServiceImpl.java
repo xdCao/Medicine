@@ -64,3 +64,4 @@ public class OthersServiceImpl implements OthersService {
         return othersMapper.selectByExample(example);
     }
 }
+
