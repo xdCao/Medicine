@@ -961,6 +961,66 @@ public class DoctorExample {
             addCriterion("account not between", value1, value2, "account");
             return (Criteria) this;
         }
+
+        public Criteria andIsinIsNull() {
+            addCriterion("isIn is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsinIsNotNull() {
+            addCriterion("isIn is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsinEqualTo(Boolean value) {
+            addCriterion("isIn =", value, "isin");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsinNotEqualTo(Boolean value) {
+            addCriterion("isIn <>", value, "isin");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsinGreaterThan(Boolean value) {
+            addCriterion("isIn >", value, "isin");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsinGreaterThanOrEqualTo(Boolean value) {
+            addCriterion("isIn >=", value, "isin");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsinLessThan(Boolean value) {
+            addCriterion("isIn <", value, "isin");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsinLessThanOrEqualTo(Boolean value) {
+            addCriterion("isIn <=", value, "isin");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsinIn(List<Boolean> values) {
+            addCriterion("isIn in", values, "isin");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsinNotIn(List<Boolean> values) {
+            addCriterion("isIn not in", values, "isin");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsinBetween(Boolean value1, Boolean value2) {
+            addCriterion("isIn between", value1, value2, "isin");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsinNotBetween(Boolean value1, Boolean value2) {
+            addCriterion("isIn not between", value1, value2, "isin");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

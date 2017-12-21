@@ -15,6 +15,7 @@
     <result column="is_free" property="isFree" jdbcType="BIT" />
     <result column="password" property="password" jdbcType="VARCHAR" />
     <result column="account" property="account" jdbcType="VARCHAR" />
+    <result column="isIn" property="isin" jdbcType="BIT" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -76,7 +77,7 @@
   </sql>
   <sql id="Base_Column_List" >
     id, name, position, office_location, office_phone, registry_date, department, title, 
-    workage, degree, is_free, password, account
+    workage, degree, is_free, password, account, isIn
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="xd.medicine.entity.bo.DoctorExample" >
     select
@@ -113,12 +114,12 @@
       office_location, office_phone, registry_date, 
       department, title, workage, 
       degree, is_free, password, 
-      account)
+      account, isIn)
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{position,jdbcType=TINYINT}, 
       #{officeLocation,jdbcType=VARCHAR}, #{officePhone,jdbcType=CHAR}, #{registryDate,jdbcType=DATE}, 
       #{department,jdbcType=TINYINT}, #{title,jdbcType=TINYINT}, #{workage,jdbcType=TINYINT}, 
       #{degree,jdbcType=TINYINT}, #{isFree,jdbcType=BIT}, #{password,jdbcType=VARCHAR}, 
-      #{account,jdbcType=VARCHAR})
+      #{account,jdbcType=VARCHAR}, #{isin,jdbcType=BIT})
   </insert>
   <insert id="insertSelective" parameterType="xd.medicine.entity.bo.Doctor" useGeneratedKeys="true" keyProperty="id">
     insert into doctor
@@ -162,6 +163,9 @@
       <if test="account != null" >
         account,
       </if>
+      <if test="isin != null" >
+        isIn,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -202,6 +206,9 @@
       </if>
       <if test="account != null" >
         #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="isin != null" >
+        #{isin,jdbcType=BIT},
       </if>
     </trim>
   </insert>
@@ -253,6 +260,9 @@
       <if test="record.account != null" >
         account = #{record.account,jdbcType=VARCHAR},
       </if>
+      <if test="record.isin != null" >
+        isIn = #{record.isin,jdbcType=BIT},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -272,7 +282,8 @@
       degree = #{record.degree,jdbcType=TINYINT},
       is_free = #{record.isFree,jdbcType=BIT},
       password = #{record.password,jdbcType=VARCHAR},
-      account = #{record.account,jdbcType=VARCHAR}
+      account = #{record.account,jdbcType=VARCHAR},
+      isIn = #{record.isin,jdbcType=BIT}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -316,6 +327,9 @@
       <if test="account != null" >
         account = #{account,jdbcType=VARCHAR},
       </if>
+      <if test="isin != null" >
+        isIn = #{isin,jdbcType=BIT},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -332,7 +346,8 @@
       degree = #{degree,jdbcType=TINYINT},
       is_free = #{isFree,jdbcType=BIT},
       password = #{password,jdbcType=VARCHAR},
-      account = #{account,jdbcType=VARCHAR}
+      account = #{account,jdbcType=VARCHAR},
+      isIn = #{isin,jdbcType=BIT}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

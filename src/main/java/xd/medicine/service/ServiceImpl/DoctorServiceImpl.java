@@ -2,7 +2,6 @@ package xd.medicine.service.ServiceImpl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.sun.org.apache.bcel.internal.ExceptionConstants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,9 +10,10 @@ import org.springframework.transaction.annotation.Transactional;
 import xd.medicine.dao.autoMapper.DoctorMapper;
 import xd.medicine.entity.bo.Doctor;
 import xd.medicine.entity.bo.DoctorExample;
+import xd.medicine.entity.dto.AvaDoctor;
 import xd.medicine.service.DoctorService;
 
-import javax.print.Doc;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -72,10 +72,15 @@ public class DoctorServiceImpl implements DoctorService{
     }
 
     @Override
-    public PageInfo<Doctor> getDoctorsByPage(int page, int rows) {
+    public PageInfo<AvaDoctor> getDoctorsByPage(int page, int rows) {
         PageHelper.startPage(page,rows);
         List<Doctor> doctors = doctorMapper.selectByExample(new DoctorExample());
-        PageInfo<Doctor> doctorPageInfo=new PageInfo<>(doctors);
+        List<AvaDoctor> avaDoctors=new ArrayList<>();
+        for (Doctor doctor:doctors){
+            AvaDoctor avaDoctor=new AvaDoctor(doctor,doctor.getIsFree()&&doctor.getIsin());
+            avaDoctors.add(avaDoctor);
+        }
+        PageInfo<AvaDoctor> doctorPageInfo=new PageInfo<>(avaDoctors);
         return doctorPageInfo;
     }
 

@@ -1,23 +1,26 @@
 package xd.medicine.controller;
 
 import com.github.pagehelper.PageInfo;
+import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import xd.medicine.entity.bo.Doctor;
+import xd.medicine.entity.dto.AvaDoctor;
 import xd.medicine.service.DoctorService;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 /**
  * created by xdCao on 2017/12/19
  */
+@CrossOrigin(origins = "*",maxAge = 3600)
 @RequestMapping("/doctor")
 @RestController
 public class DoctorController {
@@ -28,10 +31,12 @@ public class DoctorController {
     private DoctorService doctorService;
 
     @RequestMapping(value = "/login",method = RequestMethod.GET)
-    public FrontResult login(@RequestParam String account,@RequestParam String password){
+    public FrontResult login(String account, String password, HttpServletRequest request, HttpServletResponse response){
         List<Doctor> doctorByAccount = doctorService.getDoctorByAccount(account);
         if (doctorByAccount!=null&&(doctorByAccount.size()==1)){
             if (password.equals(doctorByAccount.get(0).getPassword())){
+                request.getSession().setAttribute("currentUser",doctorByAccount.get(0));
+                response.addCookie(new Cookie("id",doctorByAccount.get(0).getId().toString()));
                 return new FrontResult(200,doctorByAccount.get(0),null);
             }else {
                 return new FrontResult(500,0,"密码错误");
@@ -42,10 +47,11 @@ public class DoctorController {
     }
 
     @RequestMapping(value = "/single",method = RequestMethod.GET)
-    public FrontResult getDoctorById(@RequestParam int doctorId){
+    public FrontResult getDoctorById(Integer doctorId){
         Doctor doctor = doctorService.getDoctorById(doctorId);
         if (doctor!=null){
-            return new FrontResult(200,doctor,null);
+            AvaDoctor avaDoctor=new AvaDoctor(doctor,doctor.getIsFree()&&doctor.getIsin());
+            return new FrontResult(200,avaDoctor,null);
         }else {
             return new FrontResult(500,null,"没有该医生");
         }
@@ -54,16 +60,22 @@ public class DoctorController {
     @RequestMapping(value = "/all",method = RequestMethod.GET)
     public FrontResult getAllDoctors(){
         List<Doctor> allDoctors = doctorService.getAllDoctors();
+
         if (allDoctors!=null&&allDoctors.size()>0){
-            return new FrontResult(200,allDoctors,null);
+            List<AvaDoctor> avaDoctors=new ArrayList<>();
+            for (Doctor doctor:allDoctors){
+                AvaDoctor avaDoctor=new AvaDoctor(doctor,doctor.getIsFree()&&doctor.getIsin());
+                avaDoctors.add(avaDoctor);
+            }
+            return new FrontResult(200,avaDoctors,null);
         }else {
             return new FrontResult(500,null,"医生列表为空");
         }
     }
 
     @RequestMapping(value = "/page",method = RequestMethod.GET)
-    public FrontResult getDoctorByPage(@RequestParam Integer page,@RequestParam Integer rows){
-        PageInfo<Doctor> doctorsByPage = doctorService.getDoctorsByPage(page, rows);
+    public FrontResult getDoctorByPage(Integer page,Integer rows){
+        PageInfo<AvaDoctor> doctorsByPage = doctorService.getDoctorsByPage(page, rows);
         return new FrontResult(200,doctorsByPage,null);
     }
 
@@ -97,12 +109,14 @@ public class DoctorController {
         doctor.setWorkage(Byte.valueOf(workage));
         doctor.setIsFree(Boolean.valueOf(isFree));
         doctor.setRegistryDate(new Date());
+        doctor.setIsin(false);
         doctorService.insertDoctor(doctor);
         return new FrontResult(200,doctor,null);
     }
 
     @RequestMapping(value = "/update",method = RequestMethod.POST)
     public FrontResult updateDoctor(Integer id,
+                                    String registryDate,
                                     String name,
                                     String account,
                                     String password,
@@ -113,7 +127,8 @@ public class DoctorController {
                                     String title,
                                     String workage,
                                     String degree,
-                                    String isFree){
+                                    String isFree,
+                                    String isIn){
         Doctor doctor=new Doctor();
         doctor.setId(id);
         doctor.setName(name);
@@ -127,8 +142,17 @@ public class DoctorController {
         doctor.setTitle(Byte.valueOf(title));
         doctor.setWorkage(Byte.valueOf(workage));
         doctor.setIsFree(Boolean.valueOf(isFree));
+        doctor.setIsin(Boolean.valueOf(isIn));
         doctorService.updateDoctor(doctor);
         return new FrontResult(200,doctor,null);
     }
+
+    @RequestMapping(value = "/delete",method = RequestMethod.POST)
+    public FrontResult deleteDoctor(Integer id){
+        doctorService.deleteDoctorById(id);
+        return new FrontResult(200,null,null);
+    }
+
+
 
 }

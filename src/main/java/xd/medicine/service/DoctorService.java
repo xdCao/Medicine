@@ -1,14 +1,10 @@
 package xd.medicine.service;
 
 import com.github.pagehelper.PageInfo;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import xd.medicine.entity.bo.Doctor;
 
-import javax.jnlp.IntegrationService;
-import javax.print.Doc;
+import xd.medicine.entity.bo.Doctor;
+import xd.medicine.entity.dto.AvaDoctor;
+
 import java.util.List;
 
 
@@ -27,7 +23,7 @@ public interface DoctorService {
 
     List<Doctor> getAllDoctors();
 
-    PageInfo<Doctor> getDoctorsByPage(int page,int rows);
+    PageInfo<AvaDoctor> getDoctorsByPage(int page, int rows);
 
     Integer countDoctorsByAccount(String account);
 

@@ -29,6 +29,8 @@ public class Doctor {
 
     private String account;
 
+    private Boolean isin;
+
     public Integer getId() {
         return id;
     }
@@ -131,5 +133,13 @@ public class Doctor {
 
     public void setAccount(String account) {
         this.account = account == null ? null : account.trim();
+    }
+
+    public Boolean getIsin() {
+        return isin;
+    }
+
+    public void setIsin(Boolean isin) {
+        this.isin = isin;
     }
 }
