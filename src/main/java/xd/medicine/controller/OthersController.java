@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import xd.medicine.entity.bo.Others;
+import xd.medicine.entity.dto.FrontResult;
 import xd.medicine.service.OthersService;
 
 import java.util.List;

@@ -6,9 +6,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
-import xd.medicine.dao.autoMapper.TrustAttrMapper;
 import xd.medicine.entity.bo.Patient;
 import xd.medicine.entity.bo.TrustAttr;
+import xd.medicine.entity.dto.FrontResult;
 import xd.medicine.service.PatientService;
 import xd.medicine.service.TrustAttrService;
 
@@ -83,12 +83,22 @@ public class PatientController {
                                  @RequestParam boolean senseAware,
                                  @RequestParam String illnessCondition){
         Patient patient=new Patient();
+        patient.setId(id);
         patient.setDoctorId(doctorId);
         patient.setPhone(phone);
         patient.setSenseAware(senseAware);
         patient.setIllnessCondition(illnessCondition);
         Integer integer = patientService.updatePatient(patient);
         return new FrontResult(200,integer,null);
+    }
+
+    @RequestMapping(value = "/updateEmerg",method = RequestMethod.POST)
+    public FrontResult updateEmergency(Integer patientId,
+                                       Double temperature,
+                                       Integer heartBeat,
+                                       Double bloodPressure){
+        patientService.updateEmergency(patientId,temperature,heartBeat,bloodPressure);
+        return new FrontResult(200,null,null);
     }
 
     @Transactional(rollbackFor = Exception.class)
@@ -132,8 +142,14 @@ public class PatientController {
         patient.setSenseAware(senseAware);
         patient.setIllnessCondition(illnessCondition);
         patient.setRegistryDate(new Date());
+        patient.setTemperature(0.0);
+        patient.setBloodPressure(0.0);
+        patient.setHeartBeat(0);
+        patient.setIsInEmergency(false);
         patientService.insertPatient(patient);
         return new FrontResult(200,patient,null);
     }
+
+
 
 }

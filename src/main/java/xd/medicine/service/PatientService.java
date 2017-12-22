@@ -11,6 +11,13 @@ import java.util.List;
 
 public interface PatientService {
 
+    double TEMPERATURE_LIMIT_HIGH=37.5;
+    double TEMPERATURE_LIMIT_LOW=36.0;
+    int HEARTBEAT_LIMIT_HIGH=100;
+    int HEARTBEAT_LIMIT_LOW=60;
+    double BLOOD_PPRESSURE_LIMIT_HIGH=140.0;
+    double BLOOD_PRESSURE_LIMIT_LOW=60.0;
+
     Integer insertPatient(Patient patient);
 
     int deletePatient(int id);
@@ -29,4 +36,5 @@ public interface PatientService {
 
     List<Patient> getPatientByAccount(String account);
 
+    void updateEmergency(Integer patientId, Double temperature, Integer heartBeat, Double bloodPressure);
 }

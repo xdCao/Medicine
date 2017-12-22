@@ -5,10 +5,10 @@ import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import xd.medicine.entity.bo.Doctor;
 import xd.medicine.entity.dto.AvaDoctor;
+import xd.medicine.entity.dto.FrontResult;
 import xd.medicine.service.DoctorService;
 
 import javax.servlet.http.Cookie;
@@ -29,6 +29,11 @@ public class DoctorController {
 
     @Autowired
     private DoctorService doctorService;
+
+    @RequestMapping(value = "/count",method = RequestMethod.GET)
+    public FrontResult count(){
+        return new FrontResult(200,doctorService.count(),null);
+    }
 
     @RequestMapping(value = "/login",method = RequestMethod.GET)
     public FrontResult login(String account, String password, HttpServletRequest request, HttpServletResponse response){

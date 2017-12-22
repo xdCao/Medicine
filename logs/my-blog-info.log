@@ -196,3 +196,21 @@
 2017-12-21 22:52:08.941 [http-nio-9090-exec-7] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - ==>  Preparing: select id, name, position, office_location, office_phone, registry_date, department, title, workage, degree, is_free, password, account, isIn from doctor LIMIT 2 
 2017-12-21 22:52:08.941 [http-nio-9090-exec-7] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - ==> Parameters: 
 2017-12-21 22:52:08.943 [http-nio-9090-exec-7] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - <==      Total: 2
+2017-12-22 21:11:54.945 [http-nio-9090-exec-2] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample_COUNT - ==>  Preparing: SELECT count(0) FROM doctor 
+2017-12-22 21:11:54.959 [http-nio-9090-exec-2] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample_COUNT - ==> Parameters: 
+2017-12-22 21:11:54.972 [http-nio-9090-exec-2] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample_COUNT - <==      Total: 1
+2017-12-22 21:11:54.973 [http-nio-9090-exec-2] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - ==>  Preparing: select id, name, position, office_location, office_phone, registry_date, department, title, workage, degree, is_free, password, account, isIn from doctor LIMIT 10 
+2017-12-22 21:11:54.973 [http-nio-9090-exec-2] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - ==> Parameters: 
+2017-12-22 21:11:54.977 [http-nio-9090-exec-2] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - <==      Total: 8
+2017-12-22 21:12:02.168 [http-nio-9090-exec-4] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.countByExample - ==>  Preparing: select count(*) from doctor 
+2017-12-22 21:12:02.169 [http-nio-9090-exec-4] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.countByExample - ==> Parameters: 
+2017-12-22 21:12:02.171 [http-nio-9090-exec-4] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.countByExample - <==      Total: 1
+2017-12-22 23:41:17.081 [http-nio-9090-exec-2] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==>  Preparing: select id, name, doctor_id, phone, registry_date, trustAttr_id, sense_aware, illness_condition, password, account, temperature, blood_pressure, heart_beat, is_in_emergency from patient where id = ? 
+2017-12-22 23:41:17.094 [http-nio-9090-exec-2] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==> Parameters: 10(Integer)
+2017-12-22 23:41:17.105 [http-nio-9090-exec-2] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - <==      Total: 1
+2017-12-22 23:41:17.113 [http-nio-9090-exec-2] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.deleteByPrimaryKey - ==>  Preparing: delete from trust_attr where id = ? 
+2017-12-22 23:41:17.113 [http-nio-9090-exec-2] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.deleteByPrimaryKey - ==> Parameters: 11(Integer)
+2017-12-22 23:41:17.114 [http-nio-9090-exec-2] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.deleteByPrimaryKey - <==    Updates: 1
+2017-12-22 23:41:17.119 [http-nio-9090-exec-2] DEBUG xd.medicine.dao.autoMapper.PatientMapper.deleteByPrimaryKey - ==>  Preparing: delete from patient where id = ? 
+2017-12-22 23:41:17.120 [http-nio-9090-exec-2] DEBUG xd.medicine.dao.autoMapper.PatientMapper.deleteByPrimaryKey - ==> Parameters: 10(Integer)
+2017-12-22 23:41:17.120 [http-nio-9090-exec-2] DEBUG xd.medicine.dao.autoMapper.PatientMapper.deleteByPrimaryKey - <==    Updates: 0

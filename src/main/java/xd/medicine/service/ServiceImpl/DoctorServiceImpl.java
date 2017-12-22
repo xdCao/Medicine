@@ -98,5 +98,10 @@ public class DoctorServiceImpl implements DoctorService{
         return doctorMapper.selectByExample(example);
     }
 
+    @Override
+    public Integer count() {
+        return doctorMapper.countByExample(new DoctorExample());
+    }
+
 
 }

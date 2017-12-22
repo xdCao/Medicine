@@ -781,6 +781,246 @@ public class PatientExample {
             addCriterion("account not between", value1, value2, "account");
             return (Criteria) this;
         }
+
+        public Criteria andTemperatureIsNull() {
+            addCriterion("temperature is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTemperatureIsNotNull() {
+            addCriterion("temperature is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTemperatureEqualTo(Double value) {
+            addCriterion("temperature =", value, "temperature");
+            return (Criteria) this;
+        }
+
+        public Criteria andTemperatureNotEqualTo(Double value) {
+            addCriterion("temperature <>", value, "temperature");
+            return (Criteria) this;
+        }
+
+        public Criteria andTemperatureGreaterThan(Double value) {
+            addCriterion("temperature >", value, "temperature");
+            return (Criteria) this;
+        }
+
+        public Criteria andTemperatureGreaterThanOrEqualTo(Double value) {
+            addCriterion("temperature >=", value, "temperature");
+            return (Criteria) this;
+        }
+
+        public Criteria andTemperatureLessThan(Double value) {
+            addCriterion("temperature <", value, "temperature");
+            return (Criteria) this;
+        }
+
+        public Criteria andTemperatureLessThanOrEqualTo(Double value) {
+            addCriterion("temperature <=", value, "temperature");
+            return (Criteria) this;
+        }
+
+        public Criteria andTemperatureIn(List<Double> values) {
+            addCriterion("temperature in", values, "temperature");
+            return (Criteria) this;
+        }
+
+        public Criteria andTemperatureNotIn(List<Double> values) {
+            addCriterion("temperature not in", values, "temperature");
+            return (Criteria) this;
+        }
+
+        public Criteria andTemperatureBetween(Double value1, Double value2) {
+            addCriterion("temperature between", value1, value2, "temperature");
+            return (Criteria) this;
+        }
+
+        public Criteria andTemperatureNotBetween(Double value1, Double value2) {
+            addCriterion("temperature not between", value1, value2, "temperature");
+            return (Criteria) this;
+        }
+
+        public Criteria andBloodPressureIsNull() {
+            addCriterion("blood_pressure is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andBloodPressureIsNotNull() {
+            addCriterion("blood_pressure is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andBloodPressureEqualTo(Double value) {
+            addCriterion("blood_pressure =", value, "bloodPressure");
+            return (Criteria) this;
+        }
+
+        public Criteria andBloodPressureNotEqualTo(Double value) {
+            addCriterion("blood_pressure <>", value, "bloodPressure");
+            return (Criteria) this;
+        }
+
+        public Criteria andBloodPressureGreaterThan(Double value) {
+            addCriterion("blood_pressure >", value, "bloodPressure");
+            return (Criteria) this;
+        }
+
+        public Criteria andBloodPressureGreaterThanOrEqualTo(Double value) {
+            addCriterion("blood_pressure >=", value, "bloodPressure");
+            return (Criteria) this;
+        }
+
+        public Criteria andBloodPressureLessThan(Double value) {
+            addCriterion("blood_pressure <", value, "bloodPressure");
+            return (Criteria) this;
+        }
+
+        public Criteria andBloodPressureLessThanOrEqualTo(Double value) {
+            addCriterion("blood_pressure <=", value, "bloodPressure");
+            return (Criteria) this;
+        }
+
+        public Criteria andBloodPressureIn(List<Double> values) {
+            addCriterion("blood_pressure in", values, "bloodPressure");
+            return (Criteria) this;
+        }
+
+        public Criteria andBloodPressureNotIn(List<Double> values) {
+            addCriterion("blood_pressure not in", values, "bloodPressure");
+            return (Criteria) this;
+        }
+
+        public Criteria andBloodPressureBetween(Double value1, Double value2) {
+            addCriterion("blood_pressure between", value1, value2, "bloodPressure");
+            return (Criteria) this;
+        }
+
+        public Criteria andBloodPressureNotBetween(Double value1, Double value2) {
+            addCriterion("blood_pressure not between", value1, value2, "bloodPressure");
+            return (Criteria) this;
+        }
+
+        public Criteria andHeartBeatIsNull() {
+            addCriterion("heart_beat is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andHeartBeatIsNotNull() {
+            addCriterion("heart_beat is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andHeartBeatEqualTo(Integer value) {
+            addCriterion("heart_beat =", value, "heartBeat");
+            return (Criteria) this;
+        }
+
+        public Criteria andHeartBeatNotEqualTo(Integer value) {
+            addCriterion("heart_beat <>", value, "heartBeat");
+            return (Criteria) this;
+        }
+
+        public Criteria andHeartBeatGreaterThan(Integer value) {
+            addCriterion("heart_beat >", value, "heartBeat");
+            return (Criteria) this;
+        }
+
+        public Criteria andHeartBeatGreaterThanOrEqualTo(Integer value) {
+            addCriterion("heart_beat >=", value, "heartBeat");
+            return (Criteria) this;
+        }
+
+        public Criteria andHeartBeatLessThan(Integer value) {
+            addCriterion("heart_beat <", value, "heartBeat");
+            return (Criteria) this;
+        }
+
+        public Criteria andHeartBeatLessThanOrEqualTo(Integer value) {
+            addCriterion("heart_beat <=", value, "heartBeat");
+            return (Criteria) this;
+        }
+
+        public Criteria andHeartBeatIn(List<Integer> values) {
+            addCriterion("heart_beat in", values, "heartBeat");
+            return (Criteria) this;
+        }
+
+        public Criteria andHeartBeatNotIn(List<Integer> values) {
+            addCriterion("heart_beat not in", values, "heartBeat");
+            return (Criteria) this;
+        }
+
+        public Criteria andHeartBeatBetween(Integer value1, Integer value2) {
+            addCriterion("heart_beat between", value1, value2, "heartBeat");
+            return (Criteria) this;
+        }
+
+        public Criteria andHeartBeatNotBetween(Integer value1, Integer value2) {
+            addCriterion("heart_beat not between", value1, value2, "heartBeat");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsInEmergencyIsNull() {
+            addCriterion("is_in_emergency is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsInEmergencyIsNotNull() {
+            addCriterion("is_in_emergency is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsInEmergencyEqualTo(Boolean value) {
+            addCriterion("is_in_emergency =", value, "isInEmergency");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsInEmergencyNotEqualTo(Boolean value) {
+            addCriterion("is_in_emergency <>", value, "isInEmergency");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsInEmergencyGreaterThan(Boolean value) {
+            addCriterion("is_in_emergency >", value, "isInEmergency");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsInEmergencyGreaterThanOrEqualTo(Boolean value) {
+            addCriterion("is_in_emergency >=", value, "isInEmergency");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsInEmergencyLessThan(Boolean value) {
+            addCriterion("is_in_emergency <", value, "isInEmergency");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsInEmergencyLessThanOrEqualTo(Boolean value) {
+            addCriterion("is_in_emergency <=", value, "isInEmergency");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsInEmergencyIn(List<Boolean> values) {
+            addCriterion("is_in_emergency in", values, "isInEmergency");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsInEmergencyNotIn(List<Boolean> values) {
+            addCriterion("is_in_emergency not in", values, "isInEmergency");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsInEmergencyBetween(Boolean value1, Boolean value2) {
+            addCriterion("is_in_emergency between", value1, value2, "isInEmergency");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsInEmergencyNotBetween(Boolean value1, Boolean value2) {
+            addCriterion("is_in_emergency not between", value1, value2, "isInEmergency");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

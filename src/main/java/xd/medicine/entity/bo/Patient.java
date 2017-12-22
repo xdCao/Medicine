@@ -23,6 +23,14 @@ public class Patient {
 
     private String account;
 
+    private Double temperature;
+
+    private Double bloodPressure;
+
+    private Integer heartBeat;
+
+    private Boolean isInEmergency;
+
     public Integer getId() {
         return id;
     }
@@ -101,5 +109,37 @@ public class Patient {
 
     public void setAccount(String account) {
         this.account = account == null ? null : account.trim();
+    }
+
+    public Double getTemperature() {
+        return temperature;
+    }
+
+    public void setTemperature(Double temperature) {
+        this.temperature = temperature;
+    }
+
+    public Double getBloodPressure() {
+        return bloodPressure;
+    }
+
+    public void setBloodPressure(Double bloodPressure) {
+        this.bloodPressure = bloodPressure;
+    }
+
+    public Integer getHeartBeat() {
+        return heartBeat;
+    }
+
+    public void setHeartBeat(Integer heartBeat) {
+        this.heartBeat = heartBeat;
+    }
+
+    public Boolean getIsInEmergency() {
+        return isInEmergency;
+    }
+
+    public void setIsInEmergency(Boolean isInEmergency) {
+        this.isInEmergency = isInEmergency;
     }
 }

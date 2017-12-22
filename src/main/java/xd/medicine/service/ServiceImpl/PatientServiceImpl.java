@@ -82,5 +82,28 @@ public class PatientServiceImpl implements PatientService{
         return patientMapper.selectByExample(example);
     }
 
+    @Transactional(rollbackFor = Exception.class)
+    @Override
+    public void updateEmergency(Integer patientId, Double temperature, Integer heartBeat, Double bloodPressure) {
+        Patient patient=new Patient();
+        patient.setId(patientId);
+        patient.setTemperature(temperature);
+        patient.setBloodPressure(bloodPressure);
+        patient.setHeartBeat(heartBeat);
+        patient.setIsInEmergency(judgeEmergency(temperature,heartBeat,bloodPressure));
+    }
+
+    private Boolean judgeEmergency(Double temperature, Integer heartBeat, Double bloodPressure) {
+        if (temperature<=TEMPERATURE_LIMIT_HIGH&&temperature>=TEMPERATURE_LIMIT_LOW){
+            if (heartBeat<=HEARTBEAT_LIMIT_HIGH&&heartBeat>=HEARTBEAT_LIMIT_LOW){
+                if (bloodPressure<=BLOOD_PPRESSURE_LIMIT_HIGH&&bloodPressure>=BLOOD_PRESSURE_LIMIT_LOW){
+                    return false;
+                }
+            }
+        }else {
+            return true;
+        }
+    }
+
 
 }
