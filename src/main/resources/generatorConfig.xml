@@ -47,7 +47,7 @@
         <!--<table tableName="trust_attr" domainObjectName="TrustAttr"></table>-->
         <!--<table tableName="sys_log" domainObjectName="SysLog"></table>-->
         <!--<table tableName="user_log" domainObjectName="UserLog"></table>-->
-        <table tableName="admin_user" domainObjectName="AdminUser"></table>
+        <!--<table tableName="admin_user" domainObjectName="AdminUser"></table>-->
 
 
     </context>

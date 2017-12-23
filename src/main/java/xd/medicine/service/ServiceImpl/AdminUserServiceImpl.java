@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import xd.medicine.dao.autoMapper.AdminUserMapper;
 import xd.medicine.entity.bo.AdminUser;
+import xd.medicine.entity.bo.AdminUserExample;
 import xd.medicine.service.AdminService;
 
 import java.util.List;
@@ -19,6 +20,8 @@ public class AdminUserServiceImpl implements AdminService {
 
     @Override
     public List<AdminUser> getAdminUserByAccount(String account) {
-        return adminUserMapper.selectByExample();
+        AdminUserExample example=new AdminUserExample();
+        example.createCriteria().andAccountEqualTo(account);
+        return adminUserMapper.selectByExample(example);
     }
 }

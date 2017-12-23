@@ -19,6 +19,15 @@ import java.util.List;
 
 /**
  * created by xdCao on 2017/12/19
+ * 目前完成接口：
+ * 1.查询医生总数
+ * 2.医生登录
+ * 3.注册/添加医生
+ * 4.根据Id查询医生
+ * 5.查询所有医生
+ * 6.分页查询医生
+ * 7.更新医生信息
+ * 8.删除医生
  */
 @CrossOrigin(origins = "*",maxAge = 3600)
 @RequestMapping("/doctor")

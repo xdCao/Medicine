@@ -36,5 +36,7 @@ public interface PatientService {
 
     List<Patient> getPatientByAccount(String account);
 
-    void updateEmergency(Integer patientId, Double temperature, Integer heartBeat, Double bloodPressure);
+    Patient updateEmergency(Integer patientId, Double temperature, Integer heartBeat, Double bloodPressure);
+
+    Integer count();
 }
