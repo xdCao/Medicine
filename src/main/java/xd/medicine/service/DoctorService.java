@@ -28,4 +28,6 @@ public interface DoctorService {
     Integer countDoctorsByAccount(String account);
 
     List<Doctor> getDoctorByAccount(String account);
+
+    List<Doctor> getDoctorByDepartment(Byte department);
 }

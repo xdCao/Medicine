@@ -1,10 +1,15 @@
-package xd.medicine.controller;
+package xd.medicine.calculator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
 import xd.medicine.entity.bo.Doctor;
 import xd.medicine.entity.bo.Patient;
 import xd.medicine.entity.bo.TrustAttr;
+import xd.medicine.service.DoctorService;
+import xd.medicine.service.PatientService;
 import xd.medicine.service.TrustAttrService;
+
+import java.util.List;
 
 import static xd.medicine.calculator.Constants.*;
 
@@ -14,51 +19,52 @@ import static xd.medicine.calculator.Constants.*;
 
 @Component
 public class TrustCalculator {
-    private static TrustCalculator instance = null;
 
     @Autowired
     private TrustAttrService trustAttrService;
-
-    private TrustCalculator() {
-    }
-
-    public static TrustCalculator getInstance() {
-
-        if(instance==null) {
-            synchronized (TrustCalculator.class) {
-                if (instance == null) {
-                    instance = new TrustCalculator();
-                }
-            }
-        }
-        return instance;
-
-    }
-
-    public int test(int a , int b){
-        return a+b+ TEST;
-    }
+    @Autowired
+    private PatientService patientService;
+    @Autowired
+    private DoctorService doctorService;
 
     /*
     计算匹配可信度MT
-
+    输入一个病人id，输出匹配到的主体集，暂时仅打印出来
      */
-    public int calMt(Patient patient , Doctor doctor){
-        float mt=0;
-        //TrustAttr trustAttr = trustAttrService.getTrustAttrById(patient.getTrustattrId());
+    public void calMt( int patientId ){
+        float mt ;
+        Patient patient = patientService.getPatientById(patientId);
+        TrustAttr trustAttr = trustAttrService.getTrustAttrById(patient.getTrustattrId());
+        List<Doctor> doctorList = doctorService.getDoctorByDepartment(trustAttr.getDepartment());  //获得满足科室要求的所有医生，即候选主体集合SIS
+        for(Doctor doctor : doctorList) {
+            mt=0;
+            System.out.print(doctor.getId()+"---");
+            System.out.print(doctor.getName()+"---");
+            if(patient.getDoctorId()==doctor.getId()){
+                /* 如果是主治医生，匹配可信度直接为1 */
+                mt=1;
+            }else {
+                /* 根据职称、工龄、学位计算MT，权值暂时设为定值 */
 
-        //if(trustAttr.getDepartment() == patientTrustAttr.getDepartment()) mt+=1; //判断科室是否匹配
+                mt += 1 ; //科室已经匹配，科室的匹配值恒为1
+                mt += 0.25 * (doctor.getTitle() & 0xFF);//计算职称的匹配值
+                mt += 0.25 * (doctor.getWorkage() & 0xFF);//计算工作年龄的匹配值
+                mt += (float)1/2 * (doctor.getDegree() & 0xFF);//计算学历信息的匹配值
+                mt/=4;
+            }
+            System.out.println("mt:"+mt);
+
+        }
 
 
-        return 0;
     }
 
-    public int test2(int id){
+    public int myTest(int id){
         if(trustAttrService == null){
             return -187;
         }
         TrustAttr trustAttr = trustAttrService.getTrustAttrById(id);
-        return  trustAttr.getDepartment();
+        return  trustAttr.getDemandTitle();
     }
 
 

@@ -98,5 +98,12 @@ public class DoctorServiceImpl implements DoctorService{
         return doctorMapper.selectByExample(example);
     }
 
+    @Override
+    public List<Doctor> getDoctorByDepartment(Byte department) {
+        DoctorExample example=new DoctorExample();
+        example.createCriteria().andDepartmentEqualTo(department);
+        return doctorMapper.selectByExample(example);
+    }
+
 
 }
