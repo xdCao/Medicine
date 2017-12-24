@@ -20,7 +20,7 @@ public class TrustCalculatorTest {
     private TrustCalculator trustCalculator;
 
     @Test
-    public void dbTest(){
+    public void trustCalculatorTest(){
         //TrustCalculator trustCalculator = new TrustCalculator();
         //int m= trustCalculator.myTest(11);
         //System.out.println(m);

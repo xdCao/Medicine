@@ -1,17 +1,14 @@
 package xd.medicine.calculator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Controller;
 import xd.medicine.entity.bo.Doctor;
 import xd.medicine.entity.bo.Patient;
-import xd.medicine.entity.bo.TrustAttr;
 import xd.medicine.service.DoctorService;
 import xd.medicine.service.PatientService;
-import xd.medicine.service.TrustAttrService;
 
 import java.util.List;
 
-import static xd.medicine.calculator.Constants.*;
+//import static xd.medicine.calculator.Constants.*;
 
 /**
  * created by liubotao
@@ -52,11 +49,4 @@ public class TrustCalculator {
             System.out.println("MT:"+mt);
         }
     }
-
-
-
-
-
-
-
 }
