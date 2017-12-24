@@ -82,6 +82,16 @@ public class PatientServiceImpl implements PatientService{
         return patientMapper.selectByExample(example);
     }
 
+    @Override
+    public Integer count() {
+        return patientMapper.countByExample(new PatientExample());
+    }
+
+
+    /*
+     *上下文服务模块相关
+     *论文中说当感知到病人的isInEmergency为true的时候应该通知病人的可信主体集？
+     */
     @Transactional(rollbackFor = Exception.class)
     @Override
     public Patient updateEmergency(Integer patientId, Double temperature, Integer heartBeat, Double bloodPressure) {
@@ -93,11 +103,6 @@ public class PatientServiceImpl implements PatientService{
         patient.setIsInEmergency(judgeEmergency(temperature,heartBeat,bloodPressure));
         patientMapper.updateByPrimaryKeySelective(patient);
         return patient;
-    }
-
-    @Override
-    public Integer count() {
-        return patientMapper.countByExample(new PatientExample());
     }
 
     private Boolean judgeEmergency(Double temperature, Integer heartBeat, Double bloodPressure) {
