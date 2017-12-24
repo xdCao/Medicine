@@ -5,10 +5,10 @@ import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import xd.medicine.entity.bo.Doctor;
 import xd.medicine.entity.dto.AvaDoctor;
+import xd.medicine.entity.dto.FrontResult;
 import xd.medicine.service.DoctorService;
 
 import javax.servlet.http.Cookie;
@@ -19,6 +19,15 @@ import java.util.List;
 
 /**
  * created by xdCao on 2017/12/19
+ * 目前完成接口：
+ * 1.查询医生总数
+ * 2.医生登录
+ * 3.注册/添加医生
+ * 4.根据Id查询医生
+ * 5.查询所有医生
+ * 6.分页查询医生
+ * 7.更新医生信息
+ * 8.删除医生
  */
 @CrossOrigin(origins = "*",maxAge = 3600)
 @RequestMapping("/doctor")
@@ -29,6 +38,11 @@ public class DoctorController {
 
     @Autowired
     private DoctorService doctorService;
+
+    @RequestMapping(value = "/count",method = RequestMethod.GET)
+    public FrontResult count(){
+        return new FrontResult(200,doctorService.count(),null);
+    }
 
     @RequestMapping(value = "/login",method = RequestMethod.GET)
     public FrontResult login(String account, String password, HttpServletRequest request, HttpServletResponse response){

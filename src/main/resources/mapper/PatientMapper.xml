@@ -12,6 +12,10 @@
     <result column="illness_condition" property="illnessCondition" jdbcType="VARCHAR" />
     <result column="password" property="password" jdbcType="VARCHAR" />
     <result column="account" property="account" jdbcType="VARCHAR" />
+    <result column="temperature" property="temperature" jdbcType="DOUBLE" />
+    <result column="blood_pressure" property="bloodPressure" jdbcType="DOUBLE" />
+    <result column="heart_beat" property="heartBeat" jdbcType="INTEGER" />
+    <result column="is_in_emergency" property="isInEmergency" jdbcType="BIT" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -73,7 +77,7 @@
   </sql>
   <sql id="Base_Column_List" >
     id, name, doctor_id, phone, registry_date, trustAttr_id, sense_aware, illness_condition, 
-    password, account
+    password, account, temperature, blood_pressure, heart_beat, is_in_emergency
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="xd.medicine.entity.bo.PatientExample" >
     select
@@ -109,11 +113,13 @@
     insert into patient (id, name, doctor_id, 
       phone, registry_date, trustAttr_id, 
       sense_aware, illness_condition, password, 
-      account)
+      account, temperature, blood_pressure, 
+      heart_beat, is_in_emergency)
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{doctorId,jdbcType=INTEGER}, 
       #{phone,jdbcType=CHAR}, #{registryDate,jdbcType=DATE}, #{trustattrId,jdbcType=INTEGER}, 
       #{senseAware,jdbcType=BIT}, #{illnessCondition,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
-      #{account,jdbcType=VARCHAR})
+      #{account,jdbcType=VARCHAR}, #{temperature,jdbcType=DOUBLE}, #{bloodPressure,jdbcType=DOUBLE}, 
+      #{heartBeat,jdbcType=INTEGER}, #{isInEmergency,jdbcType=BIT})
   </insert>
   <insert id="insertSelective" parameterType="xd.medicine.entity.bo.Patient" useGeneratedKeys="true" keyProperty="id">
     insert into patient
@@ -148,6 +154,18 @@
       <if test="account != null" >
         account,
       </if>
+      <if test="temperature != null" >
+        temperature,
+      </if>
+      <if test="bloodPressure != null" >
+        blood_pressure,
+      </if>
+      <if test="heartBeat != null" >
+        heart_beat,
+      </if>
+      <if test="isInEmergency != null" >
+        is_in_emergency,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -179,6 +197,18 @@
       </if>
       <if test="account != null" >
         #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="temperature != null" >
+        #{temperature,jdbcType=DOUBLE},
+      </if>
+      <if test="bloodPressure != null" >
+        #{bloodPressure,jdbcType=DOUBLE},
+      </if>
+      <if test="heartBeat != null" >
+        #{heartBeat,jdbcType=INTEGER},
+      </if>
+      <if test="isInEmergency != null" >
+        #{isInEmergency,jdbcType=BIT},
       </if>
     </trim>
   </insert>
@@ -221,6 +251,18 @@
       <if test="record.account != null" >
         account = #{record.account,jdbcType=VARCHAR},
       </if>
+      <if test="record.temperature != null" >
+        temperature = #{record.temperature,jdbcType=DOUBLE},
+      </if>
+      <if test="record.bloodPressure != null" >
+        blood_pressure = #{record.bloodPressure,jdbcType=DOUBLE},
+      </if>
+      <if test="record.heartBeat != null" >
+        heart_beat = #{record.heartBeat,jdbcType=INTEGER},
+      </if>
+      <if test="record.isInEmergency != null" >
+        is_in_emergency = #{record.isInEmergency,jdbcType=BIT},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -237,7 +279,11 @@
       sense_aware = #{record.senseAware,jdbcType=BIT},
       illness_condition = #{record.illnessCondition,jdbcType=VARCHAR},
       password = #{record.password,jdbcType=VARCHAR},
-      account = #{record.account,jdbcType=VARCHAR}
+      account = #{record.account,jdbcType=VARCHAR},
+      temperature = #{record.temperature,jdbcType=DOUBLE},
+      blood_pressure = #{record.bloodPressure,jdbcType=DOUBLE},
+      heart_beat = #{record.heartBeat,jdbcType=INTEGER},
+      is_in_emergency = #{record.isInEmergency,jdbcType=BIT}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -272,6 +318,18 @@
       <if test="account != null" >
         account = #{account,jdbcType=VARCHAR},
       </if>
+      <if test="temperature != null" >
+        temperature = #{temperature,jdbcType=DOUBLE},
+      </if>
+      <if test="bloodPressure != null" >
+        blood_pressure = #{bloodPressure,jdbcType=DOUBLE},
+      </if>
+      <if test="heartBeat != null" >
+        heart_beat = #{heartBeat,jdbcType=INTEGER},
+      </if>
+      <if test="isInEmergency != null" >
+        is_in_emergency = #{isInEmergency,jdbcType=BIT},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -285,7 +343,11 @@
       sense_aware = #{senseAware,jdbcType=BIT},
       illness_condition = #{illnessCondition,jdbcType=VARCHAR},
       password = #{password,jdbcType=VARCHAR},
-      account = #{account,jdbcType=VARCHAR}
+      account = #{account,jdbcType=VARCHAR},
+      temperature = #{temperature,jdbcType=DOUBLE},
+      blood_pressure = #{bloodPressure,jdbcType=DOUBLE},
+      heart_beat = #{heartBeat,jdbcType=INTEGER},
+      is_in_emergency = #{isInEmergency,jdbcType=BIT}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

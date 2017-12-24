@@ -1,9 +1,11 @@
 package xd.medicine.controller;
 
 import org.apache.catalina.servlet4preview.http.HttpServletRequest;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import xd.medicine.entity.dto.FrontResult;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
@@ -11,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * created by xdCao on 2017/12/21
  */
+@CrossOrigin(origins = "*",maxAge = 3600)
 @RestController
 public class CommonController {
 

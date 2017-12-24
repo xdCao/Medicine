@@ -196,201 +196,104 @@
 2017-12-21 22:52:08.941 [http-nio-9090-exec-7] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - ==>  Preparing: select id, name, position, office_location, office_phone, registry_date, department, title, workage, degree, is_free, password, account, isIn from doctor LIMIT 2 
 2017-12-21 22:52:08.941 [http-nio-9090-exec-7] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - ==> Parameters: 
 2017-12-21 22:52:08.943 [http-nio-9090-exec-7] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - <==      Total: 2
-2017-12-23 16:14:23.883 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==>  Preparing: select id, department, demand_title, demand_workage, demand_degree from trust_attr where id = ? 
-2017-12-23 16:14:23.924 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==> Parameters: 11(Integer)
-2017-12-23 16:14:24.455 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - <==      Total: 1
-2017-12-23 16:18:02.130 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==>  Preparing: select id, department, demand_title, demand_workage, demand_degree from trust_attr where id = ? 
-2017-12-23 16:18:02.149 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==> Parameters: 11(Integer)
-2017-12-23 16:18:02.160 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - <==      Total: 1
-2017-12-23 16:18:49.471 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==>  Preparing: select id, department, demand_title, demand_workage, demand_degree from trust_attr where id = ? 
-2017-12-23 16:18:49.491 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==> Parameters: 11(Integer)
-2017-12-23 16:18:49.501 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - <==      Total: 1
-2017-12-23 16:21:02.142 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==>  Preparing: select id, department, demand_title, demand_workage, demand_degree from trust_attr where id = ? 
-2017-12-23 16:21:02.162 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==> Parameters: 11(Integer)
-2017-12-23 16:21:02.174 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - <==      Total: 1
-2017-12-23 16:21:42.096 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==>  Preparing: select id, department, demand_title, demand_workage, demand_degree from trust_attr where id = ? 
-2017-12-23 16:21:42.120 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==> Parameters: 11(Integer)
-2017-12-23 16:21:42.143 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - <==      Total: 1
-2017-12-23 16:21:42.154 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==>  Preparing: select id, department, demand_title, demand_workage, demand_degree from trust_attr where id = ? 
-2017-12-23 16:21:42.154 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==> Parameters: 11(Integer)
-2017-12-23 16:21:42.170 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - <==      Total: 1
-2017-12-23 16:22:14.992 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==>  Preparing: select id, department, demand_title, demand_workage, demand_degree from trust_attr where id = ? 
-2017-12-23 16:22:15.016 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==> Parameters: 11(Integer)
-2017-12-23 16:22:15.025 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - <==      Total: 1
-2017-12-23 16:22:15.037 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==>  Preparing: select id, department, demand_title, demand_workage, demand_degree from trust_attr where id = ? 
-2017-12-23 16:22:15.038 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==> Parameters: 11(Integer)
-2017-12-23 16:22:15.045 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - <==      Total: 1
-2017-12-23 16:25:47.659 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==>  Preparing: select id, department, demand_title, demand_workage, demand_degree from trust_attr where id = ? 
-2017-12-23 16:25:47.680 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==> Parameters: 11(Integer)
-2017-12-23 16:25:47.690 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - <==      Total: 1
-2017-12-23 17:41:15.627 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==>  Preparing: select id, name, doctor_id, phone, registry_date, trustAttr_id, sense_aware, illness_condition, password, account from patient where id = ? 
-2017-12-23 17:41:15.699 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==> Parameters: 10(Integer)
-2017-12-23 17:41:15.711 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - <==      Total: 1
-2017-12-23 17:41:15.715 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==>  Preparing: select id, department, demand_title, demand_workage, demand_degree from trust_attr where id = ? 
-2017-12-23 17:41:15.715 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==> Parameters: 13(Integer)
-2017-12-23 17:41:15.722 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - <==      Total: 1
-2017-12-23 17:41:15.955 [main] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - ==>  Preparing: select id, name, position, office_location, office_phone, registry_date, department, title, workage, degree, is_free, password, account, isIn from doctor WHERE ( department = ? ) 
-2017-12-23 17:41:15.956 [main] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - ==> Parameters: 3(Byte)
-2017-12-23 17:41:15.974 [main] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - <==      Total: 5
-2017-12-23 17:42:17.581 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==>  Preparing: select id, name, doctor_id, phone, registry_date, trustAttr_id, sense_aware, illness_condition, password, account from patient where id = ? 
-2017-12-23 17:42:17.604 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==> Parameters: 10(Integer)
-2017-12-23 17:42:17.617 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - <==      Total: 1
-2017-12-23 17:42:17.622 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==>  Preparing: select id, department, demand_title, demand_workage, demand_degree from trust_attr where id = ? 
-2017-12-23 17:42:17.622 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==> Parameters: 13(Integer)
-2017-12-23 17:42:17.628 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - <==      Total: 1
-2017-12-23 17:42:17.663 [main] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - ==>  Preparing: select id, name, position, office_location, office_phone, registry_date, department, title, workage, degree, is_free, password, account, isIn from doctor WHERE ( department = ? ) 
-2017-12-23 17:42:17.664 [main] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - ==> Parameters: 3(Byte)
-2017-12-23 17:42:17.670 [main] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - <==      Total: 5
-2017-12-23 17:43:46.019 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==>  Preparing: select id, name, doctor_id, phone, registry_date, trustAttr_id, sense_aware, illness_condition, password, account from patient where id = ? 
-2017-12-23 17:43:46.040 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==> Parameters: 10(Integer)
-2017-12-23 17:43:46.059 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - <==      Total: 1
-2017-12-23 17:43:46.070 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==>  Preparing: select id, department, demand_title, demand_workage, demand_degree from trust_attr where id = ? 
-2017-12-23 17:43:46.070 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==> Parameters: 13(Integer)
-2017-12-23 17:43:46.072 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - <==      Total: 1
-2017-12-23 17:43:46.111 [main] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - ==>  Preparing: select id, name, position, office_location, office_phone, registry_date, department, title, workage, degree, is_free, password, account, isIn from doctor WHERE ( department = ? ) 
-2017-12-23 17:43:46.111 [main] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - ==> Parameters: 3(Byte)
-2017-12-23 17:43:46.114 [main] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - <==      Total: 5
-2017-12-23 17:45:39.563 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==>  Preparing: select id, name, doctor_id, phone, registry_date, trustAttr_id, sense_aware, illness_condition, password, account from patient where id = ? 
-2017-12-23 17:45:39.592 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==> Parameters: 10(Integer)
-2017-12-23 17:45:39.604 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - <==      Total: 1
-2017-12-23 17:45:39.608 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==>  Preparing: select id, department, demand_title, demand_workage, demand_degree from trust_attr where id = ? 
-2017-12-23 17:45:39.608 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==> Parameters: 13(Integer)
-2017-12-23 17:45:39.612 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - <==      Total: 1
-2017-12-23 17:45:39.655 [main] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - ==>  Preparing: select id, name, position, office_location, office_phone, registry_date, department, title, workage, degree, is_free, password, account, isIn from doctor WHERE ( department = ? ) 
-2017-12-23 17:45:39.655 [main] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - ==> Parameters: 3(Byte)
-2017-12-23 17:45:39.661 [main] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - <==      Total: 5
-2017-12-23 17:46:23.925 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==>  Preparing: select id, name, doctor_id, phone, registry_date, trustAttr_id, sense_aware, illness_condition, password, account from patient where id = ? 
-2017-12-23 17:46:23.948 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==> Parameters: 10(Integer)
-2017-12-23 17:46:23.963 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - <==      Total: 1
-2017-12-23 17:46:23.967 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==>  Preparing: select id, department, demand_title, demand_workage, demand_degree from trust_attr where id = ? 
-2017-12-23 17:46:23.967 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==> Parameters: 13(Integer)
-2017-12-23 17:46:23.968 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - <==      Total: 1
-2017-12-23 17:46:24.008 [main] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - ==>  Preparing: select id, name, position, office_location, office_phone, registry_date, department, title, workage, degree, is_free, password, account, isIn from doctor WHERE ( department = ? ) 
-2017-12-23 17:46:24.010 [main] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - ==> Parameters: 3(Byte)
-2017-12-23 17:46:24.015 [main] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - <==      Total: 5
-2017-12-23 17:46:53.437 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==>  Preparing: select id, name, doctor_id, phone, registry_date, trustAttr_id, sense_aware, illness_condition, password, account from patient where id = ? 
-2017-12-23 17:46:53.457 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==> Parameters: 10(Integer)
-2017-12-23 17:46:53.473 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - <==      Total: 1
-2017-12-23 17:46:53.477 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==>  Preparing: select id, department, demand_title, demand_workage, demand_degree from trust_attr where id = ? 
-2017-12-23 17:46:53.477 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==> Parameters: 13(Integer)
-2017-12-23 17:46:53.480 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - <==      Total: 1
-2017-12-23 17:46:53.513 [main] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - ==>  Preparing: select id, name, position, office_location, office_phone, registry_date, department, title, workage, degree, is_free, password, account, isIn from doctor WHERE ( department = ? ) 
-2017-12-23 17:46:53.513 [main] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - ==> Parameters: 3(Byte)
-2017-12-23 17:46:53.517 [main] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - <==      Total: 5
-2017-12-23 17:47:12.079 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==>  Preparing: select id, name, doctor_id, phone, registry_date, trustAttr_id, sense_aware, illness_condition, password, account from patient where id = ? 
-2017-12-23 17:47:12.100 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==> Parameters: 10(Integer)
-2017-12-23 17:47:12.132 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - <==      Total: 1
-2017-12-23 17:47:12.134 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==>  Preparing: select id, department, demand_title, demand_workage, demand_degree from trust_attr where id = ? 
-2017-12-23 17:47:12.135 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==> Parameters: 13(Integer)
-2017-12-23 17:47:12.140 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - <==      Total: 1
-2017-12-23 17:47:12.178 [main] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - ==>  Preparing: select id, name, position, office_location, office_phone, registry_date, department, title, workage, degree, is_free, password, account, isIn from doctor WHERE ( department = ? ) 
-2017-12-23 17:47:12.178 [main] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - ==> Parameters: 3(Byte)
-2017-12-23 17:47:12.192 [main] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - <==      Total: 5
-2017-12-23 20:37:16.324 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==>  Preparing: select id, name, doctor_id, phone, registry_date, trustAttr_id, sense_aware, illness_condition, password, account from patient where id = ? 
-2017-12-23 20:37:16.388 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==> Parameters: 10(Integer)
-2017-12-23 20:37:16.622 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - <==      Total: 1
-2017-12-23 20:37:16.627 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==>  Preparing: select id, department, demand_title, demand_workage, demand_degree from trust_attr where id = ? 
-2017-12-23 20:37:16.627 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==> Parameters: 13(Integer)
-2017-12-23 20:37:16.649 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - <==      Total: 1
-2017-12-23 20:37:16.739 [main] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - ==>  Preparing: select id, name, position, office_location, office_phone, registry_date, department, title, workage, degree, is_free, password, account, isIn from doctor WHERE ( department = ? ) 
-2017-12-23 20:37:16.739 [main] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - ==> Parameters: 3(Byte)
-2017-12-23 20:37:16.765 [main] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - <==      Total: 5
-2017-12-23 20:39:42.239 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==>  Preparing: select id, name, doctor_id, phone, registry_date, trustAttr_id, sense_aware, illness_condition, password, account from patient where id = ? 
-2017-12-23 20:39:42.261 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==> Parameters: 10(Integer)
-2017-12-23 20:39:42.271 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - <==      Total: 1
-2017-12-23 20:39:42.275 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==>  Preparing: select id, department, demand_title, demand_workage, demand_degree from trust_attr where id = ? 
-2017-12-23 20:39:42.275 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==> Parameters: 13(Integer)
-2017-12-23 20:39:42.278 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - <==      Total: 1
-2017-12-23 20:39:42.323 [main] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - ==>  Preparing: select id, name, position, office_location, office_phone, registry_date, department, title, workage, degree, is_free, password, account, isIn from doctor WHERE ( department = ? ) 
-2017-12-23 20:39:42.323 [main] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - ==> Parameters: 3(Byte)
-2017-12-23 20:39:42.327 [main] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - <==      Total: 5
-2017-12-23 21:21:11.410 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==>  Preparing: select id, name, doctor_id, phone, registry_date, trustAttr_id, sense_aware, illness_condition, password, account from patient where id = ? 
-2017-12-23 21:21:11.461 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==> Parameters: 10(Integer)
-2017-12-23 21:21:11.491 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - <==      Total: 1
-2017-12-23 21:21:11.495 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==>  Preparing: select id, department, demand_title, demand_workage, demand_degree from trust_attr where id = ? 
-2017-12-23 21:21:11.495 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==> Parameters: 13(Integer)
-2017-12-23 21:21:11.498 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - <==      Total: 1
-2017-12-23 21:21:11.532 [main] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - ==>  Preparing: select id, name, position, office_location, office_phone, registry_date, department, title, workage, degree, is_free, password, account, isIn from doctor WHERE ( department = ? ) 
-2017-12-23 21:21:11.532 [main] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - ==> Parameters: 3(Byte)
-2017-12-23 21:21:11.542 [main] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - <==      Total: 5
-2017-12-23 21:22:21.172 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==>  Preparing: select id, name, doctor_id, phone, registry_date, trustAttr_id, sense_aware, illness_condition, password, account from patient where id = ? 
-2017-12-23 21:22:21.193 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==> Parameters: 10(Integer)
-2017-12-23 21:22:21.210 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - <==      Total: 1
-2017-12-23 21:22:21.215 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==>  Preparing: select id, department, demand_title, demand_workage, demand_degree from trust_attr where id = ? 
-2017-12-23 21:22:21.215 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==> Parameters: 13(Integer)
-2017-12-23 21:22:21.219 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - <==      Total: 1
-2017-12-23 21:22:21.249 [main] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - ==>  Preparing: select id, name, position, office_location, office_phone, registry_date, department, title, workage, degree, is_free, password, account, isIn from doctor WHERE ( department = ? ) 
-2017-12-23 21:22:21.250 [main] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - ==> Parameters: 3(Byte)
-2017-12-23 21:22:21.255 [main] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - <==      Total: 5
-2017-12-23 21:24:18.165 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==>  Preparing: select id, name, doctor_id, phone, registry_date, trustAttr_id, sense_aware, illness_condition, password, account from patient where id = ? 
-2017-12-23 21:24:18.201 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==> Parameters: 10(Integer)
-2017-12-23 21:24:18.211 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - <==      Total: 1
-2017-12-23 21:24:18.214 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==>  Preparing: select id, department, demand_title, demand_workage, demand_degree from trust_attr where id = ? 
-2017-12-23 21:24:18.214 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==> Parameters: 13(Integer)
-2017-12-23 21:24:18.215 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - <==      Total: 1
-2017-12-23 21:24:18.251 [main] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - ==>  Preparing: select id, name, position, office_location, office_phone, registry_date, department, title, workage, degree, is_free, password, account, isIn from doctor WHERE ( department = ? ) 
-2017-12-23 21:24:18.251 [main] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - ==> Parameters: 3(Byte)
-2017-12-23 21:24:18.316 [main] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - <==      Total: 5
-2017-12-23 21:24:41.436 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==>  Preparing: select id, name, doctor_id, phone, registry_date, trustAttr_id, sense_aware, illness_condition, password, account from patient where id = ? 
-2017-12-23 21:24:41.458 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==> Parameters: 10(Integer)
-2017-12-23 21:24:41.470 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - <==      Total: 1
-2017-12-23 21:24:41.474 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==>  Preparing: select id, department, demand_title, demand_workage, demand_degree from trust_attr where id = ? 
-2017-12-23 21:24:41.474 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==> Parameters: 13(Integer)
-2017-12-23 21:24:41.476 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - <==      Total: 1
-2017-12-23 21:24:41.512 [main] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - ==>  Preparing: select id, name, position, office_location, office_phone, registry_date, department, title, workage, degree, is_free, password, account, isIn from doctor WHERE ( department = ? ) 
-2017-12-23 21:24:41.513 [main] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - ==> Parameters: 3(Byte)
-2017-12-23 21:24:41.519 [main] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - <==      Total: 5
-2017-12-23 21:26:31.967 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==>  Preparing: select id, name, doctor_id, phone, registry_date, trustAttr_id, sense_aware, illness_condition, password, account from patient where id = ? 
-2017-12-23 21:26:31.989 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==> Parameters: 10(Integer)
-2017-12-23 21:26:32.003 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - <==      Total: 1
-2017-12-23 21:26:32.010 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==>  Preparing: select id, department, demand_title, demand_workage, demand_degree from trust_attr where id = ? 
-2017-12-23 21:26:32.010 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==> Parameters: 13(Integer)
-2017-12-23 21:26:32.013 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - <==      Total: 1
-2017-12-23 21:26:32.050 [main] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - ==>  Preparing: select id, name, position, office_location, office_phone, registry_date, department, title, workage, degree, is_free, password, account, isIn from doctor WHERE ( department = ? ) 
-2017-12-23 21:26:32.051 [main] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - ==> Parameters: 3(Byte)
-2017-12-23 21:26:32.056 [main] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - <==      Total: 5
-2017-12-23 21:33:09.858 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==>  Preparing: select id, name, doctor_id, phone, registry_date, trustAttr_id, sense_aware, illness_condition, password, account from patient where id = ? 
-2017-12-23 21:33:09.879 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==> Parameters: 10(Integer)
-2017-12-23 21:33:09.891 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - <==      Total: 1
-2017-12-23 21:33:09.895 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==>  Preparing: select id, department, demand_title, demand_workage, demand_degree from trust_attr where id = ? 
-2017-12-23 21:33:09.895 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==> Parameters: 13(Integer)
-2017-12-23 21:33:09.897 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - <==      Total: 1
-2017-12-23 21:33:09.934 [main] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - ==>  Preparing: select id, name, position, office_location, office_phone, registry_date, department, title, workage, degree, is_free, password, account, isIn from doctor WHERE ( department = ? ) 
-2017-12-23 21:33:09.935 [main] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - ==> Parameters: 3(Byte)
-2017-12-23 21:33:09.940 [main] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - <==      Total: 5
-2017-12-23 21:34:16.491 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==>  Preparing: select id, name, doctor_id, phone, registry_date, trustAttr_id, sense_aware, illness_condition, password, account from patient where id = ? 
-2017-12-23 21:34:16.512 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==> Parameters: 10(Integer)
-2017-12-23 21:34:16.523 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - <==      Total: 1
-2017-12-23 21:34:16.525 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==>  Preparing: select id, department, demand_title, demand_workage, demand_degree from trust_attr where id = ? 
-2017-12-23 21:34:16.526 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==> Parameters: 13(Integer)
-2017-12-23 21:34:16.527 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - <==      Total: 1
-2017-12-23 21:34:16.563 [main] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - ==>  Preparing: select id, name, position, office_location, office_phone, registry_date, department, title, workage, degree, is_free, password, account, isIn from doctor WHERE ( department = ? ) 
-2017-12-23 21:34:16.565 [main] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - ==> Parameters: 3(Byte)
-2017-12-23 21:34:16.571 [main] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - <==      Total: 5
-2017-12-23 21:36:24.575 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==>  Preparing: select id, name, doctor_id, phone, registry_date, trustAttr_id, sense_aware, illness_condition, password, account from patient where id = ? 
-2017-12-23 21:36:24.595 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==> Parameters: 10(Integer)
-2017-12-23 21:36:24.631 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - <==      Total: 1
-2017-12-23 21:36:24.634 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==>  Preparing: select id, department, demand_title, demand_workage, demand_degree from trust_attr where id = ? 
-2017-12-23 21:36:24.635 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==> Parameters: 13(Integer)
-2017-12-23 21:36:24.636 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - <==      Total: 1
-2017-12-23 21:36:24.672 [main] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - ==>  Preparing: select id, name, position, office_location, office_phone, registry_date, department, title, workage, degree, is_free, password, account, isIn from doctor WHERE ( department = ? ) 
-2017-12-23 21:36:24.674 [main] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - ==> Parameters: 3(Byte)
-2017-12-23 21:36:24.680 [main] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - <==      Total: 5
-2017-12-23 21:36:52.269 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==>  Preparing: select id, name, doctor_id, phone, registry_date, trustAttr_id, sense_aware, illness_condition, password, account from patient where id = ? 
-2017-12-23 21:36:52.295 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==> Parameters: 10(Integer)
-2017-12-23 21:36:52.308 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - <==      Total: 1
-2017-12-23 21:36:52.315 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==>  Preparing: select id, department, demand_title, demand_workage, demand_degree from trust_attr where id = ? 
-2017-12-23 21:36:52.316 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==> Parameters: 13(Integer)
-2017-12-23 21:36:52.317 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - <==      Total: 1
-2017-12-23 21:36:52.356 [main] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - ==>  Preparing: select id, name, position, office_location, office_phone, registry_date, department, title, workage, degree, is_free, password, account, isIn from doctor WHERE ( department = ? ) 
-2017-12-23 21:36:52.356 [main] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - ==> Parameters: 3(Byte)
-2017-12-23 21:36:52.361 [main] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - <==      Total: 5
-2017-12-23 21:47:09.583 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==>  Preparing: select id, name, doctor_id, phone, registry_date, trustAttr_id, sense_aware, illness_condition, password, account from patient where id = ? 
-2017-12-23 21:47:09.603 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==> Parameters: 10(Integer)
-2017-12-23 21:47:09.615 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - <==      Total: 1
-2017-12-23 21:47:09.619 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==>  Preparing: select id, department, demand_title, demand_workage, demand_degree from trust_attr where id = ? 
-2017-12-23 21:47:09.619 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==> Parameters: 13(Integer)
-2017-12-23 21:47:09.620 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - <==      Total: 1
-2017-12-23 21:47:09.656 [main] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - ==>  Preparing: select id, name, position, office_location, office_phone, registry_date, department, title, workage, degree, is_free, password, account, isIn from doctor WHERE ( department = ? ) 
-2017-12-23 21:47:09.657 [main] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - ==> Parameters: 3(Byte)
-2017-12-23 21:47:09.661 [main] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - <==      Total: 5
+2017-12-22 21:11:54.945 [http-nio-9090-exec-2] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample_COUNT - ==>  Preparing: SELECT count(0) FROM doctor 
+2017-12-22 21:11:54.959 [http-nio-9090-exec-2] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample_COUNT - ==> Parameters: 
+2017-12-22 21:11:54.972 [http-nio-9090-exec-2] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample_COUNT - <==      Total: 1
+2017-12-22 21:11:54.973 [http-nio-9090-exec-2] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - ==>  Preparing: select id, name, position, office_location, office_phone, registry_date, department, title, workage, degree, is_free, password, account, isIn from doctor LIMIT 10 
+2017-12-22 21:11:54.973 [http-nio-9090-exec-2] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - ==> Parameters: 
+2017-12-22 21:11:54.977 [http-nio-9090-exec-2] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - <==      Total: 8
+2017-12-22 21:12:02.168 [http-nio-9090-exec-4] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.countByExample - ==>  Preparing: select count(*) from doctor 
+2017-12-22 21:12:02.169 [http-nio-9090-exec-4] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.countByExample - ==> Parameters: 
+2017-12-22 21:12:02.171 [http-nio-9090-exec-4] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.countByExample - <==      Total: 1
+2017-12-22 23:41:17.081 [http-nio-9090-exec-2] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==>  Preparing: select id, name, doctor_id, phone, registry_date, trustAttr_id, sense_aware, illness_condition, password, account, temperature, blood_pressure, heart_beat, is_in_emergency from patient where id = ? 
+2017-12-22 23:41:17.094 [http-nio-9090-exec-2] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==> Parameters: 10(Integer)
+2017-12-22 23:41:17.105 [http-nio-9090-exec-2] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - <==      Total: 1
+2017-12-22 23:41:17.113 [http-nio-9090-exec-2] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.deleteByPrimaryKey - ==>  Preparing: delete from trust_attr where id = ? 
+2017-12-22 23:41:17.113 [http-nio-9090-exec-2] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.deleteByPrimaryKey - ==> Parameters: 11(Integer)
+2017-12-22 23:41:17.114 [http-nio-9090-exec-2] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.deleteByPrimaryKey - <==    Updates: 1
+2017-12-22 23:41:17.119 [http-nio-9090-exec-2] DEBUG xd.medicine.dao.autoMapper.PatientMapper.deleteByPrimaryKey - ==>  Preparing: delete from patient where id = ? 
+2017-12-22 23:41:17.120 [http-nio-9090-exec-2] DEBUG xd.medicine.dao.autoMapper.PatientMapper.deleteByPrimaryKey - ==> Parameters: 10(Integer)
+2017-12-22 23:41:17.120 [http-nio-9090-exec-2] DEBUG xd.medicine.dao.autoMapper.PatientMapper.deleteByPrimaryKey - <==    Updates: 0
+2017-12-23 16:50:40.613 [http-nio-9090-exec-4] DEBUG xd.medicine.dao.autoMapper.PatientMapper.countByExample - ==>  Preparing: select count(*) from patient WHERE ( account = ? ) 
+2017-12-23 16:50:40.628 [http-nio-9090-exec-4] DEBUG xd.medicine.dao.autoMapper.PatientMapper.countByExample - ==> Parameters: 111(String)
+2017-12-23 16:50:40.639 [http-nio-9090-exec-4] DEBUG xd.medicine.dao.autoMapper.PatientMapper.countByExample - <==      Total: 1
+2017-12-23 16:50:40.641 [http-nio-9090-exec-4] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.insert - ==>  Preparing: insert into trust_attr (id, department, demand_title, demand_workage, demand_degree) values (?, ?, ?, ?, ?) 
+2017-12-23 16:50:40.641 [http-nio-9090-exec-4] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.insert - ==> Parameters: null, 1(Byte), 2(Byte), 3(Byte), 3(Byte)
+2017-12-23 16:50:40.643 [http-nio-9090-exec-4] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.insert - <==    Updates: 1
+2017-12-23 16:50:40.645 [http-nio-9090-exec-4] DEBUG xd.medicine.dao.autoMapper.PatientMapper.insert - ==>  Preparing: insert into patient (id, name, doctor_id, phone, registry_date, trustAttr_id, sense_aware, illness_condition, password, account, temperature, blood_pressure, heart_beat, is_in_emergency) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) 
+2017-12-23 16:50:40.646 [http-nio-9090-exec-4] DEBUG xd.medicine.dao.autoMapper.PatientMapper.insert - ==> Parameters: null, lalal(String), 1(Integer), 177654789986(String), 2017-12-23(Date), 13(Integer), false(Boolean), nothing(String), 111(String), 111(String), 0.0(Double), 0.0(Double), 0(Integer), false(Boolean)
+2017-12-23 16:51:00.378 [http-nio-9090-exec-6] DEBUG xd.medicine.dao.autoMapper.PatientMapper.countByExample - ==>  Preparing: select count(*) from patient WHERE ( account = ? ) 
+2017-12-23 16:51:00.379 [http-nio-9090-exec-6] DEBUG xd.medicine.dao.autoMapper.PatientMapper.countByExample - ==> Parameters: 111(String)
+2017-12-23 16:51:00.380 [http-nio-9090-exec-6] DEBUG xd.medicine.dao.autoMapper.PatientMapper.countByExample - <==      Total: 1
+2017-12-23 16:51:00.380 [http-nio-9090-exec-6] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.insert - ==>  Preparing: insert into trust_attr (id, department, demand_title, demand_workage, demand_degree) values (?, ?, ?, ?, ?) 
+2017-12-23 16:51:00.381 [http-nio-9090-exec-6] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.insert - ==> Parameters: null, 1(Byte), 2(Byte), 3(Byte), 3(Byte)
+2017-12-23 16:51:00.383 [http-nio-9090-exec-6] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.insert - <==    Updates: 1
+2017-12-23 16:51:00.385 [http-nio-9090-exec-6] DEBUG xd.medicine.dao.autoMapper.PatientMapper.insert - ==>  Preparing: insert into patient (id, name, doctor_id, phone, registry_date, trustAttr_id, sense_aware, illness_condition, password, account, temperature, blood_pressure, heart_beat, is_in_emergency) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) 
+2017-12-23 16:51:00.385 [http-nio-9090-exec-6] DEBUG xd.medicine.dao.autoMapper.PatientMapper.insert - ==> Parameters: null, lalal(String), 1(Integer), 17765478998(String), 2017-12-23(Date), 14(Integer), false(Boolean), nothing(String), 111(String), 111(String), 0.0(Double), 0.0(Double), 0(Integer), false(Boolean)
+2017-12-23 16:51:00.386 [http-nio-9090-exec-6] DEBUG xd.medicine.dao.autoMapper.PatientMapper.insert - <==    Updates: 1
+2017-12-23 16:51:44.750 [http-nio-9090-exec-7] DEBUG xd.medicine.dao.autoMapper.PatientMapper.countByExample - ==>  Preparing: select count(*) from patient WHERE ( account = ? ) 
+2017-12-23 16:51:44.751 [http-nio-9090-exec-7] DEBUG xd.medicine.dao.autoMapper.PatientMapper.countByExample - ==> Parameters: 111(String)
+2017-12-23 16:51:44.752 [http-nio-9090-exec-7] DEBUG xd.medicine.dao.autoMapper.PatientMapper.countByExample - <==      Total: 1
+2017-12-23 16:59:18.083 [http-nio-9090-exec-2] DEBUG xd.medicine.dao.autoMapper.PatientMapper.updateByPrimaryKeySelective - ==>  Preparing: update patient SET doctor_id = ?, phone = ?, sense_aware = ?, illness_condition = ? where id = ? 
+2017-12-23 16:59:18.098 [http-nio-9090-exec-2] DEBUG xd.medicine.dao.autoMapper.PatientMapper.updateByPrimaryKeySelective - ==> Parameters: 2(Integer), 13338926199(String), false(Boolean), 没有特殊病例(String), 11(Integer)
+2017-12-23 16:59:18.102 [http-nio-9090-exec-2] DEBUG xd.medicine.dao.autoMapper.PatientMapper.updateByPrimaryKeySelective - <==    Updates: 1
+2017-12-23 17:04:30.375 [http-nio-9090-exec-2] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.updateByPrimaryKeySelective - ==>  Preparing: update trust_attr SET department = ?, demand_title = ?, demand_workage = ?, demand_degree = ? where id = ? 
+2017-12-23 17:04:30.391 [http-nio-9090-exec-2] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.updateByPrimaryKeySelective - ==> Parameters: 4(Byte), 3(Byte), 2(Byte), 1(Byte), 14(Integer)
+2017-12-23 17:04:30.392 [http-nio-9090-exec-2] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.updateByPrimaryKeySelective - <==    Updates: 1
+2017-12-23 17:11:18.643 [http-nio-9090-exec-2] DEBUG xd.medicine.dao.autoMapper.PatientMapper.updateByPrimaryKeySelective - ==>  Preparing: update patient SET temperature = ?, blood_pressure = ?, heart_beat = ?, is_in_emergency = ? where id = ? 
+2017-12-23 17:11:18.670 [http-nio-9090-exec-2] DEBUG xd.medicine.dao.autoMapper.PatientMapper.updateByPrimaryKeySelective - ==> Parameters: 37.5(Double), 100.0(Double), 80(Integer), false(Boolean), 11(Integer)
+2017-12-23 17:11:18.671 [http-nio-9090-exec-2] DEBUG xd.medicine.dao.autoMapper.PatientMapper.updateByPrimaryKeySelective - <==    Updates: 1
+2017-12-23 17:14:40.753 [http-nio-9090-exec-5] DEBUG xd.medicine.dao.autoMapper.PatientMapper.updateByPrimaryKeySelective - ==>  Preparing: update patient SET doctor_id = ?, phone = ?, sense_aware = ?, illness_condition = ? where id = ? 
+2017-12-23 17:14:40.754 [http-nio-9090-exec-5] DEBUG xd.medicine.dao.autoMapper.PatientMapper.updateByPrimaryKeySelective - ==> Parameters: 2(Integer), 13338926199(String), false(Boolean), 没有特殊病例(String), 11(Integer)
+2017-12-23 17:14:40.755 [http-nio-9090-exec-5] DEBUG xd.medicine.dao.autoMapper.PatientMapper.updateByPrimaryKeySelective - <==    Updates: 1
+2017-12-23 17:16:06.662 [http-nio-9090-exec-8] DEBUG xd.medicine.dao.autoMapper.PatientMapper.updateByPrimaryKeySelective - ==>  Preparing: update patient SET doctor_id = ?, phone = ?, sense_aware = ?, illness_condition = ? where id = ? 
+2017-12-23 17:16:06.662 [http-nio-9090-exec-8] DEBUG xd.medicine.dao.autoMapper.PatientMapper.updateByPrimaryKeySelective - ==> Parameters: 2(Integer), 13338926199(String), false(Boolean), 没有特殊病例(String), 11(Integer)
+2017-12-23 17:16:06.663 [http-nio-9090-exec-8] DEBUG xd.medicine.dao.autoMapper.PatientMapper.updateByPrimaryKeySelective - <==    Updates: 1
+2017-12-23 17:17:44.332 [http-nio-9090-exec-1] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==>  Preparing: select id, name, doctor_id, phone, registry_date, trustAttr_id, sense_aware, illness_condition, password, account, temperature, blood_pressure, heart_beat, is_in_emergency from patient where id = ? 
+2017-12-23 17:17:44.332 [http-nio-9090-exec-1] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==> Parameters: 12(Integer)
+2017-12-23 17:17:44.347 [http-nio-9090-exec-1] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - <==      Total: 1
+2017-12-23 17:17:44.349 [http-nio-9090-exec-1] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.deleteByPrimaryKey - ==>  Preparing: delete from trust_attr where id = ? 
+2017-12-23 17:17:44.349 [http-nio-9090-exec-1] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.deleteByPrimaryKey - ==> Parameters: 12(Integer)
+2017-12-23 17:17:44.350 [http-nio-9090-exec-1] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.deleteByPrimaryKey - <==    Updates: 1
+2017-12-23 17:17:44.350 [http-nio-9090-exec-1] DEBUG xd.medicine.dao.autoMapper.PatientMapper.deleteByPrimaryKey - ==>  Preparing: delete from patient where id = ? 
+2017-12-23 17:17:44.351 [http-nio-9090-exec-1] DEBUG xd.medicine.dao.autoMapper.PatientMapper.deleteByPrimaryKey - ==> Parameters: 12(Integer)
+2017-12-23 17:17:44.351 [http-nio-9090-exec-1] DEBUG xd.medicine.dao.autoMapper.PatientMapper.deleteByPrimaryKey - <==    Updates: 0
+2017-12-23 17:20:01.121 [http-nio-9090-exec-4] DEBUG xd.medicine.dao.autoMapper.PatientMapper.countByExample - ==>  Preparing: select count(*) from patient 
+2017-12-23 17:20:01.121 [http-nio-9090-exec-4] DEBUG xd.medicine.dao.autoMapper.PatientMapper.countByExample - ==> Parameters: 
+2017-12-23 17:20:01.122 [http-nio-9090-exec-4] DEBUG xd.medicine.dao.autoMapper.PatientMapper.countByExample - <==      Total: 1
+2017-12-23 17:21:47.205 [http-nio-9090-exec-6] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByExample - ==>  Preparing: select id, name, doctor_id, phone, registry_date, trustAttr_id, sense_aware, illness_condition, password, account, temperature, blood_pressure, heart_beat, is_in_emergency from patient WHERE ( account = ? ) 
+2017-12-23 17:21:47.205 [http-nio-9090-exec-6] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByExample - ==> Parameters: 111(String)
+2017-12-23 17:21:47.207 [http-nio-9090-exec-6] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByExample - <==      Total: 1
+2017-12-23 17:22:42.662 [http-nio-9090-exec-10] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByExample - ==>  Preparing: select id, name, doctor_id, phone, registry_date, trustAttr_id, sense_aware, illness_condition, password, account, temperature, blood_pressure, heart_beat, is_in_emergency from patient WHERE ( account = ? ) 
+2017-12-23 17:22:42.662 [http-nio-9090-exec-10] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByExample - ==> Parameters: 11(String)
+2017-12-23 17:22:42.663 [http-nio-9090-exec-10] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByExample - <==      Total: 0
+2017-12-23 17:22:58.203 [http-nio-9090-exec-1] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByExample - ==>  Preparing: select id, name, doctor_id, phone, registry_date, trustAttr_id, sense_aware, illness_condition, password, account, temperature, blood_pressure, heart_beat, is_in_emergency from patient WHERE ( account = ? ) 
+2017-12-23 17:22:58.203 [http-nio-9090-exec-1] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByExample - ==> Parameters: 111(String)
+2017-12-23 17:22:58.204 [http-nio-9090-exec-1] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByExample - <==      Total: 1
+2017-12-23 17:25:01.656 [http-nio-9090-exec-4] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==>  Preparing: select id, name, doctor_id, phone, registry_date, trustAttr_id, sense_aware, illness_condition, password, account, temperature, blood_pressure, heart_beat, is_in_emergency from patient where id = ? 
+2017-12-23 17:25:01.656 [http-nio-9090-exec-4] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==> Parameters: 11(Integer)
+2017-12-23 17:25:01.658 [http-nio-9090-exec-4] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - <==      Total: 1
+2017-12-23 17:27:09.381 [http-nio-9090-exec-9] DEBUG xd.medicine.dao.autoMapper.PatientMapper.countByExample - ==>  Preparing: select count(*) from patient WHERE ( account = ? ) 
+2017-12-23 17:27:09.381 [http-nio-9090-exec-9] DEBUG xd.medicine.dao.autoMapper.PatientMapper.countByExample - ==> Parameters: 112(String)
+2017-12-23 17:27:09.382 [http-nio-9090-exec-9] DEBUG xd.medicine.dao.autoMapper.PatientMapper.countByExample - <==      Total: 1
+2017-12-23 17:27:09.383 [http-nio-9090-exec-9] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.insert - ==>  Preparing: insert into trust_attr (id, department, demand_title, demand_workage, demand_degree) values (?, ?, ?, ?, ?) 
+2017-12-23 17:27:09.383 [http-nio-9090-exec-9] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.insert - ==> Parameters: null, 1(Byte), 2(Byte), 3(Byte), 3(Byte)
+2017-12-23 17:27:09.384 [http-nio-9090-exec-9] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.insert - <==    Updates: 1
+2017-12-23 17:27:09.385 [http-nio-9090-exec-9] DEBUG xd.medicine.dao.autoMapper.PatientMapper.insert - ==>  Preparing: insert into patient (id, name, doctor_id, phone, registry_date, trustAttr_id, sense_aware, illness_condition, password, account, temperature, blood_pressure, heart_beat, is_in_emergency) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) 
+2017-12-23 17:27:09.386 [http-nio-9090-exec-9] DEBUG xd.medicine.dao.autoMapper.PatientMapper.insert - ==> Parameters: null, 赵四(String), 5(Integer), 17765478998(String), 2017-12-23(Date), 15(Integer), false(Boolean), nothing(String), 111(String), 112(String), 0.0(Double), 0.0(Double), 0(Integer), false(Boolean)
+2017-12-23 17:27:09.387 [http-nio-9090-exec-9] DEBUG xd.medicine.dao.autoMapper.PatientMapper.insert - <==    Updates: 1
+2017-12-23 17:27:26.229 [http-nio-9090-exec-8] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByExample - ==>  Preparing: select id, name, doctor_id, phone, registry_date, trustAttr_id, sense_aware, illness_condition, password, account, temperature, blood_pressure, heart_beat, is_in_emergency from patient 
+2017-12-23 17:27:26.229 [http-nio-9090-exec-8] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByExample - ==> Parameters: 
+2017-12-23 17:27:26.231 [http-nio-9090-exec-8] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByExample - <==      Total: 2
+2017-12-23 17:30:58.813 [http-nio-9090-exec-1] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByExample_COUNT - ==>  Preparing: SELECT count(0) FROM patient 
+2017-12-23 17:30:58.813 [http-nio-9090-exec-1] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByExample_COUNT - ==> Parameters: 
+2017-12-23 17:30:58.815 [http-nio-9090-exec-1] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByExample_COUNT - <==      Total: 1
+2017-12-23 17:30:58.816 [http-nio-9090-exec-1] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByExample - ==>  Preparing: select id, name, doctor_id, phone, registry_date, trustAttr_id, sense_aware, illness_condition, password, account, temperature, blood_pressure, heart_beat, is_in_emergency from patient LIMIT 3 
+2017-12-23 17:30:58.816 [http-nio-9090-exec-1] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByExample - ==> Parameters: 
+2017-12-23 17:30:58.818 [http-nio-9090-exec-1] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByExample - <==      Total: 2
+2017-12-23 17:33:17.621 [http-nio-9090-exec-4] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByExample - ==>  Preparing: select id, name, doctor_id, phone, registry_date, trustAttr_id, sense_aware, illness_condition, password, account, temperature, blood_pressure, heart_beat, is_in_emergency from patient WHERE ( doctor_id = ? ) 
+2017-12-23 17:33:17.624 [http-nio-9090-exec-4] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByExample - ==> Parameters: 5(Integer)
+2017-12-23 17:33:17.626 [http-nio-9090-exec-4] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByExample - <==      Total: 1
+2017-12-23 17:34:26.256 [http-nio-9090-exec-9] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByExample - ==>  Preparing: select id, name, doctor_id, phone, registry_date, trustAttr_id, sense_aware, illness_condition, password, account, temperature, blood_pressure, heart_beat, is_in_emergency from patient WHERE ( doctor_id = ? ) 
+2017-12-23 17:34:26.256 [http-nio-9090-exec-9] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByExample - ==> Parameters: 2(Integer)
+2017-12-23 17:34:26.257 [http-nio-9090-exec-9] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByExample - <==      Total: 2

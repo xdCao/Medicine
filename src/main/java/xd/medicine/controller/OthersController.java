@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import xd.medicine.entity.bo.Others;
+import xd.medicine.entity.dto.FrontResult;
 import xd.medicine.service.OthersService;
 
 import java.util.List;
@@ -24,7 +25,7 @@ public class OthersController {
     private OthersService othersService;
 
     @RequestMapping(value = "/login",method = RequestMethod.GET)
-    public FrontResult login(@RequestParam String account, @RequestParam String password){
+    public FrontResult login(String account, String password){
         List<Others> othersByAccount = othersService.getOthersByAccount(account);
         if (othersByAccount!=null&&(othersByAccount.size()==1)){
             if (password.equals(othersByAccount.get(0).getPassword())){
@@ -38,22 +39,22 @@ public class OthersController {
     }
 
     @RequestMapping(value = "/add",method = RequestMethod.POST)
-    public FrontResult addNewOthers(@RequestParam String account,
-                                    @RequestParam String password,
-                                    @RequestParam String name,
-                                    @RequestParam Boolean gender,
-                                    @RequestParam Integer age,
-                                    @RequestParam Byte job,
-                                    @RequestParam String company,
-                                    @RequestParam String address,
-                                    @RequestParam String phone,
-                                    @RequestParam Boolean isSendRequest){
+    public FrontResult addNewOthers(String account,
+                                    String password,
+                                    String name,
+                                    Boolean gender,
+                                    Integer age,
+                                    String job,
+                                    String company,
+                                    String address,
+                                    String phone,
+                                    Boolean isSendRequest){
         Others others=new Others();
         others.setAccount(account);
         others.setPassword(password);
         others.setName(name);
         others.setPhone(phone);
-        others.setJob(job);
+        others.setJob(Byte.valueOf(job));
         others.setGender(gender);
         others.setCompany(company);
         others.setAddress(address);
@@ -64,19 +65,20 @@ public class OthersController {
     }
 
     @RequestMapping(value = "/update",method = RequestMethod.POST)
-    public FrontResult updateOthers(@RequestParam Integer id,
-                                    @RequestParam String name,
-                                    @RequestParam Boolean gender,
-                                    @RequestParam Integer age,
-                                    @RequestParam Byte job,
-                                    @RequestParam String company,
-                                    @RequestParam String address,
-                                    @RequestParam String phone,
-                                    @RequestParam Boolean isSendRequest){
+    public FrontResult updateOthers(Integer id,
+                                    String name,
+                                    Boolean gender,
+                                    Integer age,
+                                    String job,
+                                    String company,
+                                    String address,
+                                    String phone,
+                                    Boolean isSendRequest){
         Others others=new Others();
+        others.setId(id);
         others.setName(name);
         others.setPhone(phone);
-        others.setJob(job);
+        others.setJob(Byte.valueOf(job));
         others.setGender(gender);
         others.setCompany(company);
         others.setAddress(address);
@@ -87,7 +89,7 @@ public class OthersController {
     }
 
     @RequestMapping(value = "/single",method = RequestMethod.GET)
-    public FrontResult getOthers(@RequestParam Integer id){
+    public FrontResult getOthers(Integer id){
         Others othersById = othersService.getOthersById(id);
         if (othersById!=null){
             return new FrontResult(200,othersById,null);
@@ -107,7 +109,7 @@ public class OthersController {
     }
 
     @RequestMapping(value = "/page",method = RequestMethod.GET)
-    public FrontResult getOthersByPage(@RequestParam Integer page,@RequestParam Integer rows){
+    public FrontResult getOthersByPage(Integer page,Integer rows){
         PageInfo<Others> othersByPage = othersService.getOthersByPage(page, rows);
         if (othersByPage!=null){
             return new FrontResult(200,othersByPage,null);

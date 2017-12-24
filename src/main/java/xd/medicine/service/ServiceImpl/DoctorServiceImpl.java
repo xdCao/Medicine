@@ -99,6 +99,11 @@ public class DoctorServiceImpl implements DoctorService{
     }
 
     @Override
+    public Integer count() {
+        return doctorMapper.countByExample(new DoctorExample());
+    }
+
+    @Override
     public List<Doctor> getDoctorByDepartment(Byte department) {
         DoctorExample example=new DoctorExample();
         example.createCriteria().andDepartmentEqualTo(department);

@@ -41,10 +41,13 @@
         </javaClientGenerator>
 
         <!-- table表生成对应的DoaminObject -->
-        <table tableName="doctor" domainObjectName="Doctor"></table>
-        <table tableName="others" domainObjectName="Others"></table>
-        <table tableName="patient" domainObjectName="Patient"></table>
-        <table tableName="trust_attr" domainObjectName="TrustAttr"></table>
+        <!--<table tableName="doctor" domainObjectName="Doctor"></table>-->
+        <!--<table tableName="others" domainObjectName="Others"></table>-->
+        <!--<table tableName="patient" domainObjectName="Patient"></table>-->
+        <!--<table tableName="trust_attr" domainObjectName="TrustAttr"></table>-->
+        <!--<table tableName="sys_log" domainObjectName="SysLog"></table>-->
+        <!--<table tableName="user_log" domainObjectName="UserLog"></table>-->
+        <!--<table tableName="admin_user" domainObjectName="AdminUser"></table>-->
 
 
     </context>
