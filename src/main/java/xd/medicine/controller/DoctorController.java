@@ -28,6 +28,7 @@ import java.util.List;
  * 6.分页查询医生
  * 7.更新医生信息
  * 8.删除医生
+ * todo     可行主体集
  */
 @CrossOrigin(origins = "*",maxAge = 3600)
 @RequestMapping("/doctor")
