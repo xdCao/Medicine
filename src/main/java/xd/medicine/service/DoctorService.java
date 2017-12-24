@@ -3,6 +3,8 @@ package xd.medicine.service;
 import com.github.pagehelper.PageInfo;
 
 import xd.medicine.entity.bo.Doctor;
+import xd.medicine.entity.bo.Patient;
+import xd.medicine.entity.bo.TrustAttr;
 import xd.medicine.entity.dto.AvaDoctor;
 
 import java.util.List;
@@ -32,4 +34,6 @@ public interface DoctorService {
     List<Doctor> getDoctorByDepartment(Byte department);
 
     Integer count();
+
+    public List<Doctor> getSisDoctorsByPatientId(int patientId);
 }

@@ -10,8 +10,12 @@ import org.springframework.transaction.annotation.Transactional;
 import xd.medicine.dao.autoMapper.DoctorMapper;
 import xd.medicine.entity.bo.Doctor;
 import xd.medicine.entity.bo.DoctorExample;
+import xd.medicine.entity.bo.Patient;
+import xd.medicine.entity.bo.TrustAttr;
 import xd.medicine.entity.dto.AvaDoctor;
 import xd.medicine.service.DoctorService;
+import xd.medicine.service.PatientService;
+import xd.medicine.service.TrustAttrService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,6 +46,10 @@ public class DoctorServiceImpl implements DoctorService{
 
     @Autowired
     private DoctorMapper doctorMapper;
+    @Autowired
+    private TrustAttrService trustAttrService;
+    @Autowired
+    private PatientService patientService;
 
     @Transactional(rollbackFor = Exception.class)
     @Override
@@ -108,6 +116,13 @@ public class DoctorServiceImpl implements DoctorService{
         DoctorExample example=new DoctorExample();
         example.createCriteria().andDepartmentEqualTo(department);
         return doctorMapper.selectByExample(example);
+    }
+
+    public List<Doctor> getSisDoctorsByPatientId(int patientId){
+        Patient patient = patientService.getPatientById(patientId);
+        TrustAttr trustAttr = trustAttrService.getTrustAttrById(patient.getTrustattrId());
+        List<Doctor> doctorList = getDoctorByDepartment(trustAttr.getDepartment());  //获得满足科室要求的所有医生，即候选主体集合SIS
+        return  doctorList;
     }
 
 

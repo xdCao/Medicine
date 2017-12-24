@@ -21,8 +21,6 @@ import static xd.medicine.calculator.Constants.*;
 public class TrustCalculator {
 
     @Autowired
-    private TrustAttrService trustAttrService;
-    @Autowired
     private PatientService patientService;
     @Autowired
     private DoctorService doctorService;
@@ -34,8 +32,7 @@ public class TrustCalculator {
     public void calMt( int patientId ){
         float mt ;
         Patient patient = patientService.getPatientById(patientId);
-        TrustAttr trustAttr = trustAttrService.getTrustAttrById(patient.getTrustattrId());
-        List<Doctor> doctorList = doctorService.getDoctorByDepartment(trustAttr.getDepartment());  //获得满足科室要求的所有医生，即候选主体集合SIS
+        List<Doctor> doctorList = doctorService.getSisDoctorsByPatientId(patientId);  //获得满足科室要求的所有医生，即候选主体集合SIS
         for(Doctor doctor : doctorList) {
             mt=0;
             System.out.print(doctor.getId()+"---");
@@ -52,20 +49,12 @@ public class TrustCalculator {
                 mt += (float)1/2 * (doctor.getDegree() & 0xFF);//计算学历信息的匹配值
                 mt/=4;
             }
-            System.out.println("mt:"+mt);
-
+            System.out.println("MT:"+mt);
         }
-
-
     }
 
-    public int myTest(int id){
-        if(trustAttrService == null){
-            return -187;
-        }
-        TrustAttr trustAttr = trustAttrService.getTrustAttrById(id);
-        return  trustAttr.getDemandTitle();
-    }
+
+
 
 
 
