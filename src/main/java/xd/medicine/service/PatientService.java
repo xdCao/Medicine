@@ -1,6 +1,7 @@
 package xd.medicine.service;
 
 import com.github.pagehelper.PageInfo;
+import xd.medicine.entity.bo.Doctor;
 import xd.medicine.entity.bo.Patient;
 
 import java.util.List;
@@ -39,4 +40,6 @@ public interface PatientService {
     Patient updateEmergency(Integer patientId, Double temperature, Integer heartBeat, Double bloodPressure);
 
     Integer count();
+
+    List<Doctor> getSisDoctorsByPatientId(int patientId);
 }

@@ -19,8 +19,7 @@ public class TrustCalculator {
 
     @Autowired
     private PatientService patientService;
-    @Autowired
-    private DoctorService doctorService;
+
 
     /*
     计算匹配可信度MT
@@ -29,7 +28,7 @@ public class TrustCalculator {
     public void calMt( int patientId ){
         float mt ;
         Patient patient = patientService.getPatientById(patientId);
-        List<Doctor> doctorList = doctorService.getSisDoctorsByPatientId(patientId);  //获得满足科室要求的所有医生，即候选主体集合SIS
+        List<Doctor> doctorList = patientService.getSisDoctorsByPatientId(patientId);  //获得满足科室要求的所有医生，即候选主体集合SIS
         for(Doctor doctor : doctorList) {
             mt=0;
             System.out.print(doctor.getId()+"---");

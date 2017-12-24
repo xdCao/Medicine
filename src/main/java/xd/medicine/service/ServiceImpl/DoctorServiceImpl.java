@@ -46,10 +46,7 @@ public class DoctorServiceImpl implements DoctorService{
 
     @Autowired
     private DoctorMapper doctorMapper;
-    @Autowired
-    private TrustAttrService trustAttrService;
-    @Autowired
-    private PatientService patientService;
+
 
     @Transactional(rollbackFor = Exception.class)
     @Override
@@ -118,12 +115,7 @@ public class DoctorServiceImpl implements DoctorService{
         return doctorMapper.selectByExample(example);
     }
 
-    public List<Doctor> getSisDoctorsByPatientId(int patientId){
-        Patient patient = patientService.getPatientById(patientId);
-        TrustAttr trustAttr = trustAttrService.getTrustAttrById(patient.getTrustattrId());
-        List<Doctor> doctorList = getDoctorByDepartment(trustAttr.getDepartment());  //获得满足科室要求的所有医生，即候选主体集合SIS
-        return  doctorList;
-    }
+
 
 
 }

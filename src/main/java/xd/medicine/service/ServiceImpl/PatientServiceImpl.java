@@ -8,9 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import xd.medicine.dao.autoMapper.PatientMapper;
+import xd.medicine.entity.bo.Doctor;
 import xd.medicine.entity.bo.Patient;
 import xd.medicine.entity.bo.PatientExample;
+import xd.medicine.entity.bo.TrustAttr;
+import xd.medicine.service.DoctorService;
 import xd.medicine.service.PatientService;
+import xd.medicine.service.TrustAttrService;
 
 import java.util.List;
 
@@ -24,6 +28,10 @@ public class PatientServiceImpl implements PatientService{
 
     @Autowired
     private PatientMapper patientMapper;
+    @Autowired
+    private DoctorService doctorService;
+    @Autowired
+    private TrustAttrService trustAttrService;
 
     @Transactional(rollbackFor = Exception.class)
     @Override
@@ -105,12 +113,23 @@ public class PatientServiceImpl implements PatientService{
         return patient;
     }
 
+
     private Boolean judgeEmergency(Double temperature, Integer heartBeat, Double bloodPressure) {
         if (temperature<=TEMPERATURE_LIMIT_HIGH&&temperature>=TEMPERATURE_LIMIT_LOW)
             if (heartBeat<=HEARTBEAT_LIMIT_HIGH&&heartBeat>=HEARTBEAT_LIMIT_LOW)
                 if (bloodPressure<=BLOOD_PPRESSURE_LIMIT_HIGH&&bloodPressure>=BLOOD_PRESSURE_LIMIT_LOW)
                     return false;
         return true;
+    }
+
+    /*
+    *获得满足科室要求的所有医生，即对于病人的候选主体集合SIS
+     */
+    public List<Doctor> getSisDoctorsByPatientId(int patientId){
+        Patient patient = getPatientById(patientId);
+        TrustAttr trustAttr = trustAttrService.getTrustAttrById(patient.getTrustattrId());
+        List<Doctor> doctorList = doctorService.getDoctorByDepartment(trustAttr.getDepartment());
+        return doctorList;
     }
 
 
