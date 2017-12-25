@@ -10,10 +10,15 @@ Target Server Type    : MYSQL
 Target Server Version : 50624
 File Encoding         : 65001
 
-Date: 2017-12-25 14:20:28
+Date: 2017-12-24 17:43:27
 */
 
+SET character_set_client =utf8;
+SET character_set_results = utf8;
+SET character_set_connection = utf8;
 SET FOREIGN_KEY_CHECKS=0;
+
+
 
 -- ----------------------------
 -- Table structure for admin_user
@@ -51,7 +56,7 @@ CREATE TABLE `doctor` (
   `account` varchar(30) NOT NULL,
   `isIn` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of doctor
@@ -64,6 +69,10 @@ INSERT INTO `doctor` VALUES ('5', '曹医生', '4', '西电老科', '13336758765
 INSERT INTO `doctor` VALUES ('6', 'caohao', '1', 'xian', '13337865544', '2017-12-20', '1', '1', '1', '1', '1', '123', '444', '0');
 INSERT INTO `doctor` VALUES ('7', '12', '4', '12', '12', '2017-12-21', '2', '0', '4', '2', '1', '12', '21', '0');
 INSERT INTO `doctor` VALUES ('8', '12', '4', '12', '12', '2017-12-21', '2', '0', '4', '2', '1', '12', '244', '0');
+INSERT INTO `doctor` VALUES ('9', 'Alice', '1', '西安电子科技大学', '13476859976', '2017-12-05', '3', '5', '3', '1', '0', '111', '123', '0');
+INSERT INTO `doctor` VALUES ('10', 'Bob', '2', '太白南路', '18747657765', '2017-12-18', '3', '3', '2', '3', '0', '111', '233', '0');
+INSERT INTO `doctor` VALUES ('11', 'Cindy', '3', '科技路', '13390874532', '2017-11-13', '3', '2', '1', '3', '0', '111', '333', '0');
+INSERT INTO `doctor` VALUES ('12', 'Danny', '4', '吉祥路', '14378650098', '2017-01-17', '4', '5', '4', '4', '0', '111', '433', '0');
 
 -- ----------------------------
 -- Table structure for others
@@ -120,6 +129,7 @@ CREATE TABLE `patient` (
 INSERT INTO `patient` VALUES ('11', '张三', '2', '13338926199', '2017-12-23', '14', '0', '没有特殊病例', '111', '111', '37.5', '100', '80', '0');
 INSERT INTO `patient` VALUES ('13', '赵四', '2', '17765478998', '2017-12-23', '15', '0', 'nothing', '111', '112', '0', '0', '0', '0');
 INSERT INTO `patient` VALUES ('14', '王五', '5', '17765478998', '2017-12-25', '16', '0', 'nothing', '111', '113', '0', '0', '0', '0');
+INSERT INTO `patient` VALUES ('10', '测试MT的病人', '9', '17765478996', '2017-12-20', '13', '0', 'nothing', '111', 'hhh','0', '0', '0', '0');
 
 -- ----------------------------
 -- Table structure for sys_log
@@ -162,6 +172,9 @@ CREATE TABLE `trust_attr` (
 INSERT INTO `trust_attr` VALUES ('14', '4', '3', '2', '1');
 INSERT INTO `trust_attr` VALUES ('15', '1', '2', '3', '3');
 INSERT INTO `trust_attr` VALUES ('16', '1', '2', '3', '3');
+INSERT INTO `trust_attr` VALUES ('11', '1', '2', '3', '3');
+INSERT INTO `trust_attr` VALUES ('12', '1', '2', '3', '3');
+INSERT INTO `trust_attr` VALUES ('13', '3', '2', '3', '3');
 
 -- ----------------------------
 -- Table structure for user_log
