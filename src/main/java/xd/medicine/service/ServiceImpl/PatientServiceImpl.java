@@ -7,13 +7,14 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import xd.medicine.dao.autoMapper.DoctorMapper;
 import xd.medicine.dao.autoMapper.PatientMapper;
 import xd.medicine.entity.bo.*;
+import xd.medicine.entity.dto.PatientWithTrust;
 import xd.medicine.service.DoctorService;
 import xd.medicine.service.PatientService;
 import xd.medicine.service.TrustAttrService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -51,28 +52,52 @@ public class PatientServiceImpl implements PatientService{
     }
 
     @Override
-    public List<Patient> getAllPatients() {
-        return patientMapper.selectByExample(new PatientExample());
+    public List<PatientWithTrust> getAllPatients() {
+        List<Patient> patients = patientMapper.selectByExample(new PatientExample());
+        List<PatientWithTrust> patientWithTrusts=new ArrayList<>();
+        for (Patient patient:patients){
+            TrustAttr attr = trustAttrService.getTrustAttrById(patient.getTrustattrId());
+            PatientWithTrust patientWithTrust=new PatientWithTrust(patient,attr);
+            patientWithTrusts.add(patientWithTrust);
+        }
+        return patientWithTrusts;
     }
 
     @Override
-    public Patient getPatientById(int id) {
-        return patientMapper.selectByPrimaryKey(id);
+    public PatientWithTrust getPatientById(int id) {
+        Patient patient = patientMapper.selectByPrimaryKey(id);
+        TrustAttr trustAttr=trustAttrService.getTrustAttrById(patient.getTrustattrId());
+        PatientWithTrust patientWithTrust=new PatientWithTrust(patient,trustAttr);
+        return patientWithTrust;
+
     }
 
     @Override
-    public PageInfo<Patient> getPatientByPage(int page, int rows) {
+    public PageInfo<PatientWithTrust> getPatientByPage(int page, int rows) {
         PageHelper.startPage(page,rows);
         List<Patient> patients = patientMapper.selectByExample(new PatientExample());
-        PageInfo<Patient> patientPageInfo=new PageInfo<>(patients);
+        List<PatientWithTrust> patientWithTrusts=new ArrayList<>();
+        for (Patient patient:patients){
+            TrustAttr attr = trustAttrService.getTrustAttrById(patient.getTrustattrId());
+            PatientWithTrust patientWithTrust=new PatientWithTrust(patient,attr);
+            patientWithTrusts.add(patientWithTrust);
+        }
+        PageInfo<PatientWithTrust> patientPageInfo=new PageInfo<>(patientWithTrusts);
         return patientPageInfo;
     }
 
     @Override
-    public List<Patient> getPatientsByDoctor(int doctorId) {
+    public List<PatientWithTrust> getPatientsByDoctor(int doctorId) {
         PatientExample patientExample=new PatientExample();
         patientExample.createCriteria().andDoctorIdEqualTo(doctorId);
-        return patientMapper.selectByExample(patientExample);
+        List<Patient> patients = patientMapper.selectByExample(patientExample);
+        List<PatientWithTrust> patientWithTrusts=new ArrayList<>();
+        for (Patient patient:patients){
+            TrustAttr attr = trustAttrService.getTrustAttrById(patient.getTrustattrId());
+            PatientWithTrust patientWithTrust=new PatientWithTrust(patient,attr);
+            patientWithTrusts.add(patientWithTrust);
+        }
+        return patientWithTrusts;
     }
 
     @Override
@@ -83,10 +108,17 @@ public class PatientServiceImpl implements PatientService{
     }
 
     @Override
-    public List<Patient> getPatientByAccount(String account) {
+    public List<PatientWithTrust> getPatientByAccount(String account) {
         PatientExample example=new PatientExample();
         example.createCriteria().andAccountEqualTo(account);
-        return patientMapper.selectByExample(example);
+        List<Patient> patients = patientMapper.selectByExample(example);
+        List<PatientWithTrust> patientWithTrusts=new ArrayList<>();
+        for (Patient patient:patients){
+            TrustAttr attr = trustAttrService.getTrustAttrById(patient.getTrustattrId());
+            PatientWithTrust patientWithTrust=new PatientWithTrust(patient,attr);
+            patientWithTrusts.add(patientWithTrust);
+        }
+        return patientWithTrusts;
     }
 
     @Override
@@ -123,8 +155,8 @@ public class PatientServiceImpl implements PatientService{
 
     @Override
     public List<Doctor> getSisDoctorsByPatientId(int patientId){
-        Patient patient = getPatientById(patientId);
-        TrustAttr trustAttr = trustAttrService.getTrustAttrById(patient.getTrustattrId());
+        PatientWithTrust patient = getPatientById(patientId);
+        TrustAttr trustAttr = patient.getTrustAttr();
         List<Doctor> doctorList = doctorService.getDoctorByDepartment(trustAttr.getDepartment());  //获得满足科室要求的所有医生，即候选主体集合SIS
         return  doctorList;
     }

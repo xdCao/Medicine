@@ -3,6 +3,7 @@ package xd.medicine.service;
 import com.github.pagehelper.PageInfo;
 import xd.medicine.entity.bo.Doctor;
 import xd.medicine.entity.bo.Patient;
+import xd.medicine.entity.dto.PatientWithTrust;
 
 import java.util.List;
 
@@ -25,17 +26,17 @@ public interface PatientService {
 
     Integer updatePatient(Patient patient);
 
-    List<Patient> getAllPatients();
+    List<PatientWithTrust> getAllPatients();
 
-    Patient getPatientById(int id);
+    PatientWithTrust getPatientById(int id);
 
-    PageInfo<Patient> getPatientByPage(int page,int rows);
+    PageInfo<PatientWithTrust> getPatientByPage(int page, int rows);
 
-    List<Patient> getPatientsByDoctor(int doctorId);
+    List<PatientWithTrust> getPatientsByDoctor(int doctorId);
 
     Integer countPatientByAccount(String account);
 
-    List<Patient> getPatientByAccount(String account);
+    List<PatientWithTrust> getPatientByAccount(String account);
 
     Patient updateEmergency(Integer patientId, Double temperature, Integer heartBeat, Double bloodPressure);
 

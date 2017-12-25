@@ -13,6 +13,7 @@ import xd.medicine.entity.bo.DoctorExample;
 import xd.medicine.entity.bo.Patient;
 import xd.medicine.entity.bo.TrustAttr;
 import xd.medicine.entity.dto.AvaDoctor;
+import xd.medicine.entity.dto.PatientWithTrust;
 import xd.medicine.service.DoctorService;
 import xd.medicine.service.PatientService;
 import xd.medicine.service.TrustAttrService;
@@ -130,8 +131,8 @@ public class DoctorServiceImpl implements DoctorService{
 
     @Override
     public List<Doctor> getSisDoctorsByPatientId(int patientId){
-        Patient patient = patientService.getPatientById(patientId);
-        TrustAttr trustAttr = trustAttrService.getTrustAttrById(patient.getTrustattrId());
+        PatientWithTrust patient = patientService.getPatientById(patientId);
+        TrustAttr trustAttr = patient.getTrustAttr();
         List<Doctor> doctorList = getDoctorByDepartment(trustAttr.getDepartment());  //获得满足科室要求的所有医生，即候选主体集合SIS
         return  doctorList;
     }

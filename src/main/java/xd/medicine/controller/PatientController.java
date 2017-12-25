@@ -11,6 +11,7 @@ import xd.medicine.entity.bo.Doctor;
 import xd.medicine.entity.bo.Patient;
 import xd.medicine.entity.bo.TrustAttr;
 import xd.medicine.entity.dto.FrontResult;
+import xd.medicine.entity.dto.PatientWithTrust;
 import xd.medicine.service.PatientService;
 import xd.medicine.service.TrustAttrService;
 
@@ -54,11 +55,11 @@ public class PatientController {
 
     @RequestMapping(value = "/login",method = RequestMethod.GET)
     public FrontResult login(String account, String password, HttpServletRequest request, HttpServletResponse response){
-        List<Patient> patientByAccount = patientService.getPatientByAccount(account);
+        List<PatientWithTrust> patientByAccount = patientService.getPatientByAccount(account);
         if (patientByAccount!=null&&(patientByAccount.size()==1)){
-            if (password.equals(patientByAccount.get(0).getPassword())){
+            if (password.equals(patientByAccount.get(0).getPatient().getPassword())){
                 request.getSession().setAttribute("currentUser",patientByAccount.get(0));
-                response.addCookie(new Cookie("id",patientByAccount.get(0).getId().toString()));
+                response.addCookie(new Cookie("id",patientByAccount.get(0).getPatient().getId().toString()));
                 return new FrontResult(200,patientByAccount.get(0),null);
             }else {
                 return new FrontResult(500,0,"密码错误");
@@ -71,7 +72,7 @@ public class PatientController {
 
     @RequestMapping(value = "/single",method = RequestMethod.GET)
     public FrontResult getSinglePatient(@RequestParam int patientId){
-        Patient patient = patientService.getPatientById(patientId);
+        PatientWithTrust patient = patientService.getPatientById(patientId);
         if (patient!=null){
             return new FrontResult(200,patient,null);
         }else {
@@ -81,7 +82,7 @@ public class PatientController {
 
     @RequestMapping(value = "/all",method = RequestMethod.GET)
     public FrontResult getAllPatients(){
-        List<Patient> allPatients = patientService.getAllPatients();
+        List<PatientWithTrust> allPatients = patientService.getAllPatients();
         if (allPatients!=null&&allPatients.size()>0){
             return new FrontResult(200,allPatients,null);
         }else {
@@ -91,13 +92,13 @@ public class PatientController {
 
     @RequestMapping(value = "/page",method = RequestMethod.GET)
     public FrontResult getPatientsByPage(@RequestParam int page,@RequestParam int rows){
-        PageInfo<Patient> patientByPage = patientService.getPatientByPage(page, rows);
+        PageInfo<PatientWithTrust> patientByPage = patientService.getPatientByPage(page, rows);
         return new FrontResult(200,patientByPage,null);
     }
 
     @RequestMapping(value = "/doctor",method = RequestMethod.GET)
     public FrontResult getPatientByDoctor(@RequestParam int doctorId){
-        List<Patient> patientsByDoctor = patientService.getPatientsByDoctor(doctorId);
+        List<PatientWithTrust> patientsByDoctor = patientService.getPatientsByDoctor(doctorId);
         if (patientsByDoctor!=null&&patientsByDoctor.size()>0){
             return new FrontResult(200,patientsByDoctor,null);
         }else {
@@ -108,8 +109,8 @@ public class PatientController {
     @Transactional(rollbackFor = Exception.class)
     @RequestMapping(value = "/delete",method = RequestMethod.POST)
     public FrontResult deletePatient(@RequestParam int patientId){
-        Patient patientById = patientService.getPatientById(patientId);
-        trustAttrService.deleteById(patientById.getTrustattrId());
+        PatientWithTrust patientById = patientService.getPatientById(patientId);
+        trustAttrService.deleteById(patientById.getPatient().getTrustattrId());
         patientService.deletePatient(patientId);
         return new FrontResult(200,null,null);
     }
@@ -203,7 +204,7 @@ public class PatientController {
         patient.setHeartBeat(0);
         patient.setIsInEmergency(false);
         patientService.insertPatient(patient);
-        return new FrontResult(200,patient,null);
+        return new FrontResult(200,new PatientWithTrust(patient,trustAttr),null);
     }
 
 
