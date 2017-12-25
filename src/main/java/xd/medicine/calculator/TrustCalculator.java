@@ -4,6 +4,7 @@ import org.springframework.stereotype.Component;
 import xd.medicine.entity.bo.Doctor;
 import xd.medicine.entity.bo.Patient;
 import xd.medicine.entity.bo.UserLog;
+import xd.medicine.entity.dto.PatientWithTrust;
 import xd.medicine.service.CommentService;
 import xd.medicine.service.DoctorService;
 import xd.medicine.service.PatientService;
@@ -35,12 +36,12 @@ public class TrustCalculator {
      */
     public void calMts( int patientId ) {
         float mt;
-        Patient patient = patientService.getPatientById(patientId);
+        PatientWithTrust patient = patientService.getPatientById(patientId);
         List<Doctor> doctorList = patientService.getSisDoctorsByPatientId(patientId);  //获得满足科室要求的所有医生，即候选主体集合SIS
         for (Doctor doctor : doctorList) {
             System.out.print(doctor.getId() + "---");
             System.out.print(doctor.getName() + "---");
-            if (patient.getDoctorId() == doctor.getId()) {
+            if (patient.getPatient().getDoctorId() == doctor.getId()) {
                 /* 如果是主治医生，匹配可信度直接为1 */
                 mt = 1;
             } else {
