@@ -867,3 +867,939 @@
 2017-12-25 20:24:45.424 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, operation_content, patient_id, evaluate_date from sys_log WHERE ( doctor_id = ? ) 
 2017-12-25 20:24:45.424 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==> Parameters: 11(Integer)
 2017-12-25 20:24:45.425 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - <==      Total: 0
+2017-12-25 20:55:10.103 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==>  Preparing: select id, name, doctor_id, phone, registry_date, trustAttr_id, sense_aware, illness_condition, password, account, temperature, blood_pressure, heart_beat, is_in_emergency from patient where id = ? 
+2017-12-25 20:55:10.143 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==> Parameters: 10(Integer)
+2017-12-25 20:55:10.160 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - <==      Total: 1
+2017-12-25 20:55:10.166 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==>  Preparing: select id, department, demand_title, demand_workage, demand_degree from trust_attr where id = ? 
+2017-12-25 20:55:10.166 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==> Parameters: 13(Integer)
+2017-12-25 20:55:10.168 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - <==      Total: 1
+2017-12-25 20:55:10.176 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==>  Preparing: select id, name, doctor_id, phone, registry_date, trustAttr_id, sense_aware, illness_condition, password, account, temperature, blood_pressure, heart_beat, is_in_emergency from patient where id = ? 
+2017-12-25 20:55:10.178 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==> Parameters: 10(Integer)
+2017-12-25 20:55:10.179 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - <==      Total: 1
+2017-12-25 20:55:10.180 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==>  Preparing: select id, department, demand_title, demand_workage, demand_degree from trust_attr where id = ? 
+2017-12-25 20:55:10.180 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==> Parameters: 13(Integer)
+2017-12-25 20:55:10.181 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - <==      Total: 1
+2017-12-25 20:55:10.217 [main] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - ==>  Preparing: select id, name, position, office_location, office_phone, registry_date, department, title, workage, degree, is_free, password, account, isIn from doctor WHERE ( department = ? ) 
+2017-12-25 20:55:10.217 [main] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - ==> Parameters: 3(Byte)
+2017-12-25 20:55:10.243 [main] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - <==      Total: 5
+2017-12-25 20:55:10.248 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, evaluate_content, evaluate_date, user_type, user_name from user_log WHERE ( doctor_id = ? ) 
+2017-12-25 20:55:10.248 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==> Parameters: 3(Integer)
+2017-12-25 20:55:10.253 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - <==      Total: 1
+2017-12-25 20:55:10.259 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, operation_content, patient_id, evaluate_date from sys_log WHERE ( doctor_id = ? ) 
+2017-12-25 20:55:10.260 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==> Parameters: 3(Integer)
+2017-12-25 20:55:10.262 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - <==      Total: 1
+2017-12-25 20:55:10.264 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, evaluate_content, evaluate_date, user_type, user_name from user_log WHERE ( doctor_id = ? ) 
+2017-12-25 20:55:10.264 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==> Parameters: 5(Integer)
+2017-12-25 20:55:10.265 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - <==      Total: 0
+2017-12-25 20:55:10.267 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, operation_content, patient_id, evaluate_date from sys_log WHERE ( doctor_id = ? ) 
+2017-12-25 20:55:10.267 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==> Parameters: 5(Integer)
+2017-12-25 20:55:10.268 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - <==      Total: 0
+2017-12-25 20:55:10.270 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, evaluate_content, evaluate_date, user_type, user_name from user_log WHERE ( doctor_id = ? ) 
+2017-12-25 20:55:10.270 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==> Parameters: 10(Integer)
+2017-12-25 20:55:10.275 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - <==      Total: 5
+2017-12-25 20:55:10.279 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, operation_content, patient_id, evaluate_date from sys_log WHERE ( doctor_id = ? ) 
+2017-12-25 20:55:10.280 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==> Parameters: 10(Integer)
+2017-12-25 20:55:10.282 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - <==      Total: 6
+2017-12-25 20:55:10.285 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, evaluate_content, evaluate_date, user_type, user_name from user_log WHERE ( doctor_id = ? ) 
+2017-12-25 20:55:10.286 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==> Parameters: 11(Integer)
+2017-12-25 20:55:10.287 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - <==      Total: 0
+2017-12-25 20:55:10.289 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, operation_content, patient_id, evaluate_date from sys_log WHERE ( doctor_id = ? ) 
+2017-12-25 20:55:10.289 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==> Parameters: 11(Integer)
+2017-12-25 20:55:10.290 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - <==      Total: 0
+2017-12-25 20:55:41.876 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==>  Preparing: select id, name, doctor_id, phone, registry_date, trustAttr_id, sense_aware, illness_condition, password, account, temperature, blood_pressure, heart_beat, is_in_emergency from patient where id = ? 
+2017-12-25 20:55:41.903 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==> Parameters: 10(Integer)
+2017-12-25 20:55:41.918 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - <==      Total: 1
+2017-12-25 20:55:41.921 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==>  Preparing: select id, department, demand_title, demand_workage, demand_degree from trust_attr where id = ? 
+2017-12-25 20:55:41.921 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==> Parameters: 13(Integer)
+2017-12-25 20:55:41.923 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - <==      Total: 1
+2017-12-25 20:55:41.933 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==>  Preparing: select id, name, doctor_id, phone, registry_date, trustAttr_id, sense_aware, illness_condition, password, account, temperature, blood_pressure, heart_beat, is_in_emergency from patient where id = ? 
+2017-12-25 20:55:41.933 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==> Parameters: 10(Integer)
+2017-12-25 20:55:41.935 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - <==      Total: 1
+2017-12-25 20:55:41.936 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==>  Preparing: select id, department, demand_title, demand_workage, demand_degree from trust_attr where id = ? 
+2017-12-25 20:55:41.937 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==> Parameters: 13(Integer)
+2017-12-25 20:55:41.938 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - <==      Total: 1
+2017-12-25 20:55:41.984 [main] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - ==>  Preparing: select id, name, position, office_location, office_phone, registry_date, department, title, workage, degree, is_free, password, account, isIn from doctor WHERE ( department = ? ) 
+2017-12-25 20:55:41.984 [main] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - ==> Parameters: 3(Byte)
+2017-12-25 20:55:41.991 [main] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - <==      Total: 5
+2017-12-25 20:55:41.996 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, evaluate_content, evaluate_date, user_type, user_name from user_log WHERE ( doctor_id = ? ) 
+2017-12-25 20:55:41.997 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==> Parameters: 3(Integer)
+2017-12-25 20:55:42.000 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - <==      Total: 1
+2017-12-25 20:55:42.011 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, operation_content, patient_id, evaluate_date from sys_log WHERE ( doctor_id = ? ) 
+2017-12-25 20:55:42.012 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==> Parameters: 3(Integer)
+2017-12-25 20:55:42.013 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - <==      Total: 1
+2017-12-25 20:55:42.015 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, evaluate_content, evaluate_date, user_type, user_name from user_log WHERE ( doctor_id = ? ) 
+2017-12-25 20:55:42.015 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==> Parameters: 5(Integer)
+2017-12-25 20:55:42.016 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - <==      Total: 0
+2017-12-25 20:55:42.021 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, operation_content, patient_id, evaluate_date from sys_log WHERE ( doctor_id = ? ) 
+2017-12-25 20:55:42.022 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==> Parameters: 5(Integer)
+2017-12-25 20:55:42.022 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - <==      Total: 0
+2017-12-25 20:55:42.025 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, evaluate_content, evaluate_date, user_type, user_name from user_log WHERE ( doctor_id = ? ) 
+2017-12-25 20:55:42.025 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==> Parameters: 10(Integer)
+2017-12-25 20:55:42.031 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - <==      Total: 5
+2017-12-25 20:55:42.037 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, operation_content, patient_id, evaluate_date from sys_log WHERE ( doctor_id = ? ) 
+2017-12-25 20:55:42.037 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==> Parameters: 10(Integer)
+2017-12-25 20:55:42.040 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - <==      Total: 6
+2017-12-25 20:55:42.043 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, evaluate_content, evaluate_date, user_type, user_name from user_log WHERE ( doctor_id = ? ) 
+2017-12-25 20:55:42.045 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==> Parameters: 11(Integer)
+2017-12-25 20:55:42.046 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - <==      Total: 0
+2017-12-25 20:55:42.052 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, operation_content, patient_id, evaluate_date from sys_log WHERE ( doctor_id = ? ) 
+2017-12-25 20:55:42.055 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==> Parameters: 11(Integer)
+2017-12-25 20:55:42.056 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - <==      Total: 0
+2017-12-25 20:56:14.572 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==>  Preparing: select id, name, doctor_id, phone, registry_date, trustAttr_id, sense_aware, illness_condition, password, account, temperature, blood_pressure, heart_beat, is_in_emergency from patient where id = ? 
+2017-12-25 20:56:14.592 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==> Parameters: 10(Integer)
+2017-12-25 20:56:14.605 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - <==      Total: 1
+2017-12-25 20:56:14.608 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==>  Preparing: select id, department, demand_title, demand_workage, demand_degree from trust_attr where id = ? 
+2017-12-25 20:56:14.608 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==> Parameters: 13(Integer)
+2017-12-25 20:56:14.609 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - <==      Total: 1
+2017-12-25 20:56:14.615 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==>  Preparing: select id, name, doctor_id, phone, registry_date, trustAttr_id, sense_aware, illness_condition, password, account, temperature, blood_pressure, heart_beat, is_in_emergency from patient where id = ? 
+2017-12-25 20:56:14.616 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==> Parameters: 10(Integer)
+2017-12-25 20:56:14.617 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - <==      Total: 1
+2017-12-25 20:56:14.620 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==>  Preparing: select id, department, demand_title, demand_workage, demand_degree from trust_attr where id = ? 
+2017-12-25 20:56:14.620 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==> Parameters: 13(Integer)
+2017-12-25 20:56:14.621 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - <==      Total: 1
+2017-12-25 20:56:14.654 [main] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - ==>  Preparing: select id, name, position, office_location, office_phone, registry_date, department, title, workage, degree, is_free, password, account, isIn from doctor WHERE ( department = ? ) 
+2017-12-25 20:56:14.655 [main] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - ==> Parameters: 3(Byte)
+2017-12-25 20:56:14.658 [main] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - <==      Total: 5
+2017-12-25 20:56:14.663 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, evaluate_content, evaluate_date, user_type, user_name from user_log WHERE ( doctor_id = ? ) 
+2017-12-25 20:56:14.664 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==> Parameters: 3(Integer)
+2017-12-25 20:56:14.666 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - <==      Total: 1
+2017-12-25 20:56:14.671 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, operation_content, patient_id, evaluate_date from sys_log WHERE ( doctor_id = ? ) 
+2017-12-25 20:56:14.672 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==> Parameters: 3(Integer)
+2017-12-25 20:56:14.673 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - <==      Total: 1
+2017-12-25 20:56:14.675 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, evaluate_content, evaluate_date, user_type, user_name from user_log WHERE ( doctor_id = ? ) 
+2017-12-25 20:56:14.682 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==> Parameters: 5(Integer)
+2017-12-25 20:56:14.683 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - <==      Total: 0
+2017-12-25 20:56:14.685 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, operation_content, patient_id, evaluate_date from sys_log WHERE ( doctor_id = ? ) 
+2017-12-25 20:56:14.685 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==> Parameters: 5(Integer)
+2017-12-25 20:56:14.685 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - <==      Total: 0
+2017-12-25 20:56:14.688 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, evaluate_content, evaluate_date, user_type, user_name from user_log WHERE ( doctor_id = ? ) 
+2017-12-25 20:56:14.688 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==> Parameters: 10(Integer)
+2017-12-25 20:56:14.692 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - <==      Total: 5
+2017-12-25 20:56:14.696 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, operation_content, patient_id, evaluate_date from sys_log WHERE ( doctor_id = ? ) 
+2017-12-25 20:56:14.696 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==> Parameters: 10(Integer)
+2017-12-25 20:56:14.699 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - <==      Total: 6
+2017-12-25 20:56:14.705 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, evaluate_content, evaluate_date, user_type, user_name from user_log WHERE ( doctor_id = ? ) 
+2017-12-25 20:56:14.706 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==> Parameters: 11(Integer)
+2017-12-25 20:56:14.706 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - <==      Total: 0
+2017-12-25 20:56:14.708 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, operation_content, patient_id, evaluate_date from sys_log WHERE ( doctor_id = ? ) 
+2017-12-25 20:56:14.708 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==> Parameters: 11(Integer)
+2017-12-25 20:56:14.709 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - <==      Total: 0
+2017-12-25 20:56:45.556 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==>  Preparing: select id, name, doctor_id, phone, registry_date, trustAttr_id, sense_aware, illness_condition, password, account, temperature, blood_pressure, heart_beat, is_in_emergency from patient where id = ? 
+2017-12-25 20:56:45.577 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==> Parameters: 10(Integer)
+2017-12-25 20:56:45.590 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - <==      Total: 1
+2017-12-25 20:56:45.593 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==>  Preparing: select id, department, demand_title, demand_workage, demand_degree from trust_attr where id = ? 
+2017-12-25 20:56:45.594 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==> Parameters: 13(Integer)
+2017-12-25 20:56:45.595 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - <==      Total: 1
+2017-12-25 20:56:45.601 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==>  Preparing: select id, name, doctor_id, phone, registry_date, trustAttr_id, sense_aware, illness_condition, password, account, temperature, blood_pressure, heart_beat, is_in_emergency from patient where id = ? 
+2017-12-25 20:56:45.602 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==> Parameters: 10(Integer)
+2017-12-25 20:56:45.603 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - <==      Total: 1
+2017-12-25 20:56:45.605 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==>  Preparing: select id, department, demand_title, demand_workage, demand_degree from trust_attr where id = ? 
+2017-12-25 20:56:45.605 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==> Parameters: 13(Integer)
+2017-12-25 20:56:45.606 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - <==      Total: 1
+2017-12-25 20:56:45.639 [main] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - ==>  Preparing: select id, name, position, office_location, office_phone, registry_date, department, title, workage, degree, is_free, password, account, isIn from doctor WHERE ( department = ? ) 
+2017-12-25 20:56:45.640 [main] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - ==> Parameters: 3(Byte)
+2017-12-25 20:56:45.643 [main] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - <==      Total: 5
+2017-12-25 20:56:45.648 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, evaluate_content, evaluate_date, user_type, user_name from user_log WHERE ( doctor_id = ? ) 
+2017-12-25 20:56:45.648 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==> Parameters: 3(Integer)
+2017-12-25 20:56:45.652 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - <==      Total: 1
+2017-12-25 20:56:45.658 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, operation_content, patient_id, evaluate_date from sys_log WHERE ( doctor_id = ? ) 
+2017-12-25 20:56:45.659 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==> Parameters: 3(Integer)
+2017-12-25 20:56:45.660 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - <==      Total: 1
+2017-12-25 20:56:45.662 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, evaluate_content, evaluate_date, user_type, user_name from user_log WHERE ( doctor_id = ? ) 
+2017-12-25 20:56:45.662 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==> Parameters: 5(Integer)
+2017-12-25 20:56:45.663 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - <==      Total: 0
+2017-12-25 20:56:45.665 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, operation_content, patient_id, evaluate_date from sys_log WHERE ( doctor_id = ? ) 
+2017-12-25 20:56:45.665 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==> Parameters: 5(Integer)
+2017-12-25 20:56:45.666 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - <==      Total: 0
+2017-12-25 20:56:45.668 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, evaluate_content, evaluate_date, user_type, user_name from user_log WHERE ( doctor_id = ? ) 
+2017-12-25 20:56:45.668 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==> Parameters: 10(Integer)
+2017-12-25 20:56:45.675 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - <==      Total: 5
+2017-12-25 20:56:45.679 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, operation_content, patient_id, evaluate_date from sys_log WHERE ( doctor_id = ? ) 
+2017-12-25 20:56:45.680 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==> Parameters: 10(Integer)
+2017-12-25 20:56:45.682 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - <==      Total: 6
+2017-12-25 20:56:45.686 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, evaluate_content, evaluate_date, user_type, user_name from user_log WHERE ( doctor_id = ? ) 
+2017-12-25 20:56:45.687 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==> Parameters: 11(Integer)
+2017-12-25 20:56:45.687 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - <==      Total: 0
+2017-12-25 20:56:45.689 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, operation_content, patient_id, evaluate_date from sys_log WHERE ( doctor_id = ? ) 
+2017-12-25 20:56:45.689 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==> Parameters: 11(Integer)
+2017-12-25 20:56:45.690 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - <==      Total: 0
+2017-12-25 20:57:04.233 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==>  Preparing: select id, name, doctor_id, phone, registry_date, trustAttr_id, sense_aware, illness_condition, password, account, temperature, blood_pressure, heart_beat, is_in_emergency from patient where id = ? 
+2017-12-25 20:57:04.253 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==> Parameters: 10(Integer)
+2017-12-25 20:57:04.266 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - <==      Total: 1
+2017-12-25 20:57:04.268 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==>  Preparing: select id, department, demand_title, demand_workage, demand_degree from trust_attr where id = ? 
+2017-12-25 20:57:04.268 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==> Parameters: 13(Integer)
+2017-12-25 20:57:04.270 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - <==      Total: 1
+2017-12-25 20:57:04.275 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==>  Preparing: select id, name, doctor_id, phone, registry_date, trustAttr_id, sense_aware, illness_condition, password, account, temperature, blood_pressure, heart_beat, is_in_emergency from patient where id = ? 
+2017-12-25 20:57:04.276 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==> Parameters: 10(Integer)
+2017-12-25 20:57:04.278 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - <==      Total: 1
+2017-12-25 20:57:04.280 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==>  Preparing: select id, department, demand_title, demand_workage, demand_degree from trust_attr where id = ? 
+2017-12-25 20:57:04.280 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==> Parameters: 13(Integer)
+2017-12-25 20:57:04.283 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - <==      Total: 1
+2017-12-25 20:57:04.319 [main] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - ==>  Preparing: select id, name, position, office_location, office_phone, registry_date, department, title, workage, degree, is_free, password, account, isIn from doctor WHERE ( department = ? ) 
+2017-12-25 20:57:04.319 [main] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - ==> Parameters: 3(Byte)
+2017-12-25 20:57:04.322 [main] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - <==      Total: 5
+2017-12-25 20:57:04.330 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, evaluate_content, evaluate_date, user_type, user_name from user_log WHERE ( doctor_id = ? ) 
+2017-12-25 20:57:04.330 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==> Parameters: 3(Integer)
+2017-12-25 20:57:04.334 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - <==      Total: 1
+2017-12-25 20:57:04.341 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, operation_content, patient_id, evaluate_date from sys_log WHERE ( doctor_id = ? ) 
+2017-12-25 20:57:04.342 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==> Parameters: 3(Integer)
+2017-12-25 20:57:04.343 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - <==      Total: 1
+2017-12-25 20:57:04.345 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, evaluate_content, evaluate_date, user_type, user_name from user_log WHERE ( doctor_id = ? ) 
+2017-12-25 20:57:04.345 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==> Parameters: 5(Integer)
+2017-12-25 20:57:04.346 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - <==      Total: 0
+2017-12-25 20:57:04.348 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, operation_content, patient_id, evaluate_date from sys_log WHERE ( doctor_id = ? ) 
+2017-12-25 20:57:04.348 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==> Parameters: 5(Integer)
+2017-12-25 20:57:04.349 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - <==      Total: 0
+2017-12-25 20:57:04.351 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, evaluate_content, evaluate_date, user_type, user_name from user_log WHERE ( doctor_id = ? ) 
+2017-12-25 20:57:04.351 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==> Parameters: 10(Integer)
+2017-12-25 20:57:04.357 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - <==      Total: 5
+2017-12-25 20:57:04.362 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, operation_content, patient_id, evaluate_date from sys_log WHERE ( doctor_id = ? ) 
+2017-12-25 20:57:04.362 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==> Parameters: 10(Integer)
+2017-12-25 20:57:04.365 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - <==      Total: 6
+2017-12-25 20:57:04.369 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, evaluate_content, evaluate_date, user_type, user_name from user_log WHERE ( doctor_id = ? ) 
+2017-12-25 20:57:04.370 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==> Parameters: 11(Integer)
+2017-12-25 20:57:04.371 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - <==      Total: 0
+2017-12-25 20:57:04.372 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, operation_content, patient_id, evaluate_date from sys_log WHERE ( doctor_id = ? ) 
+2017-12-25 20:57:04.373 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==> Parameters: 11(Integer)
+2017-12-25 20:57:04.373 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - <==      Total: 0
+2017-12-25 20:57:27.369 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==>  Preparing: select id, name, doctor_id, phone, registry_date, trustAttr_id, sense_aware, illness_condition, password, account, temperature, blood_pressure, heart_beat, is_in_emergency from patient where id = ? 
+2017-12-25 20:57:27.388 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==> Parameters: 10(Integer)
+2017-12-25 20:57:27.403 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - <==      Total: 1
+2017-12-25 20:57:27.407 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==>  Preparing: select id, department, demand_title, demand_workage, demand_degree from trust_attr where id = ? 
+2017-12-25 20:57:27.411 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==> Parameters: 13(Integer)
+2017-12-25 20:57:27.412 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - <==      Total: 1
+2017-12-25 20:57:27.420 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==>  Preparing: select id, name, doctor_id, phone, registry_date, trustAttr_id, sense_aware, illness_condition, password, account, temperature, blood_pressure, heart_beat, is_in_emergency from patient where id = ? 
+2017-12-25 20:57:27.420 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==> Parameters: 10(Integer)
+2017-12-25 20:57:27.421 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - <==      Total: 1
+2017-12-25 20:57:27.423 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==>  Preparing: select id, department, demand_title, demand_workage, demand_degree from trust_attr where id = ? 
+2017-12-25 20:57:27.423 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==> Parameters: 13(Integer)
+2017-12-25 20:57:27.426 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - <==      Total: 1
+2017-12-25 20:57:27.462 [main] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - ==>  Preparing: select id, name, position, office_location, office_phone, registry_date, department, title, workage, degree, is_free, password, account, isIn from doctor WHERE ( department = ? ) 
+2017-12-25 20:57:27.462 [main] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - ==> Parameters: 3(Byte)
+2017-12-25 20:57:27.465 [main] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - <==      Total: 5
+2017-12-25 20:57:27.470 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, evaluate_content, evaluate_date, user_type, user_name from user_log WHERE ( doctor_id = ? ) 
+2017-12-25 20:57:27.470 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==> Parameters: 3(Integer)
+2017-12-25 20:57:27.480 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - <==      Total: 1
+2017-12-25 20:57:27.484 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, operation_content, patient_id, evaluate_date from sys_log WHERE ( doctor_id = ? ) 
+2017-12-25 20:57:27.484 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==> Parameters: 3(Integer)
+2017-12-25 20:57:27.485 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - <==      Total: 1
+2017-12-25 20:57:27.489 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, evaluate_content, evaluate_date, user_type, user_name from user_log WHERE ( doctor_id = ? ) 
+2017-12-25 20:57:27.489 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==> Parameters: 5(Integer)
+2017-12-25 20:57:27.491 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - <==      Total: 0
+2017-12-25 20:57:27.494 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, operation_content, patient_id, evaluate_date from sys_log WHERE ( doctor_id = ? ) 
+2017-12-25 20:57:27.495 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==> Parameters: 5(Integer)
+2017-12-25 20:57:27.495 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - <==      Total: 0
+2017-12-25 20:57:27.518 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, evaluate_content, evaluate_date, user_type, user_name from user_log WHERE ( doctor_id = ? ) 
+2017-12-25 20:57:27.519 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==> Parameters: 10(Integer)
+2017-12-25 20:57:27.525 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - <==      Total: 5
+2017-12-25 20:57:27.527 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, operation_content, patient_id, evaluate_date from sys_log WHERE ( doctor_id = ? ) 
+2017-12-25 20:57:27.527 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==> Parameters: 10(Integer)
+2017-12-25 20:57:27.528 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - <==      Total: 6
+2017-12-25 20:57:27.538 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, evaluate_content, evaluate_date, user_type, user_name from user_log WHERE ( doctor_id = ? ) 
+2017-12-25 20:57:27.539 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==> Parameters: 11(Integer)
+2017-12-25 20:57:27.540 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - <==      Total: 0
+2017-12-25 20:57:27.542 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, operation_content, patient_id, evaluate_date from sys_log WHERE ( doctor_id = ? ) 
+2017-12-25 20:57:27.542 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==> Parameters: 11(Integer)
+2017-12-25 20:57:27.543 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - <==      Total: 0
+2017-12-25 20:58:47.170 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==>  Preparing: select id, name, doctor_id, phone, registry_date, trustAttr_id, sense_aware, illness_condition, password, account, temperature, blood_pressure, heart_beat, is_in_emergency from patient where id = ? 
+2017-12-25 20:58:47.188 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==> Parameters: 10(Integer)
+2017-12-25 20:58:47.210 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - <==      Total: 1
+2017-12-25 20:58:47.212 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==>  Preparing: select id, department, demand_title, demand_workage, demand_degree from trust_attr where id = ? 
+2017-12-25 20:58:47.213 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==> Parameters: 13(Integer)
+2017-12-25 20:58:47.214 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - <==      Total: 1
+2017-12-25 20:58:47.220 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==>  Preparing: select id, name, doctor_id, phone, registry_date, trustAttr_id, sense_aware, illness_condition, password, account, temperature, blood_pressure, heart_beat, is_in_emergency from patient where id = ? 
+2017-12-25 20:58:47.221 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==> Parameters: 10(Integer)
+2017-12-25 20:58:47.222 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - <==      Total: 1
+2017-12-25 20:58:47.223 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==>  Preparing: select id, department, demand_title, demand_workage, demand_degree from trust_attr where id = ? 
+2017-12-25 20:58:47.224 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==> Parameters: 13(Integer)
+2017-12-25 20:58:47.226 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - <==      Total: 1
+2017-12-25 20:58:47.260 [main] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - ==>  Preparing: select id, name, position, office_location, office_phone, registry_date, department, title, workage, degree, is_free, password, account, isIn from doctor WHERE ( department = ? ) 
+2017-12-25 20:58:47.261 [main] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - ==> Parameters: 3(Byte)
+2017-12-25 20:58:47.264 [main] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - <==      Total: 5
+2017-12-25 20:58:47.269 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, evaluate_content, evaluate_date, user_type, user_name from user_log WHERE ( doctor_id = ? ) 
+2017-12-25 20:58:47.269 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==> Parameters: 3(Integer)
+2017-12-25 20:58:47.273 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - <==      Total: 1
+2017-12-25 20:58:47.279 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, operation_content, patient_id, evaluate_date from sys_log WHERE ( doctor_id = ? ) 
+2017-12-25 20:58:47.279 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==> Parameters: 3(Integer)
+2017-12-25 20:58:47.281 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - <==      Total: 1
+2017-12-25 20:58:47.283 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, evaluate_content, evaluate_date, user_type, user_name from user_log WHERE ( doctor_id = ? ) 
+2017-12-25 20:58:47.283 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==> Parameters: 5(Integer)
+2017-12-25 20:58:47.284 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - <==      Total: 0
+2017-12-25 20:58:47.286 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, operation_content, patient_id, evaluate_date from sys_log WHERE ( doctor_id = ? ) 
+2017-12-25 20:58:47.286 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==> Parameters: 5(Integer)
+2017-12-25 20:58:47.287 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - <==      Total: 0
+2017-12-25 20:58:47.289 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, evaluate_content, evaluate_date, user_type, user_name from user_log WHERE ( doctor_id = ? ) 
+2017-12-25 20:58:47.289 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==> Parameters: 10(Integer)
+2017-12-25 20:58:47.295 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - <==      Total: 5
+2017-12-25 20:58:47.301 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, operation_content, patient_id, evaluate_date from sys_log WHERE ( doctor_id = ? ) 
+2017-12-25 20:58:47.302 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==> Parameters: 10(Integer)
+2017-12-25 20:58:47.305 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - <==      Total: 6
+2017-12-25 20:58:47.308 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, evaluate_content, evaluate_date, user_type, user_name from user_log WHERE ( doctor_id = ? ) 
+2017-12-25 20:58:47.308 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==> Parameters: 11(Integer)
+2017-12-25 20:58:47.311 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - <==      Total: 0
+2017-12-25 20:58:47.313 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, operation_content, patient_id, evaluate_date from sys_log WHERE ( doctor_id = ? ) 
+2017-12-25 20:58:47.314 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==> Parameters: 11(Integer)
+2017-12-25 20:58:47.316 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - <==      Total: 0
+2017-12-25 20:59:27.095 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==>  Preparing: select id, name, doctor_id, phone, registry_date, trustAttr_id, sense_aware, illness_condition, password, account, temperature, blood_pressure, heart_beat, is_in_emergency from patient where id = ? 
+2017-12-25 20:59:27.113 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==> Parameters: 10(Integer)
+2017-12-25 20:59:27.127 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - <==      Total: 1
+2017-12-25 20:59:27.131 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==>  Preparing: select id, department, demand_title, demand_workage, demand_degree from trust_attr where id = ? 
+2017-12-25 20:59:27.131 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==> Parameters: 13(Integer)
+2017-12-25 20:59:27.133 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - <==      Total: 1
+2017-12-25 20:59:27.139 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==>  Preparing: select id, name, doctor_id, phone, registry_date, trustAttr_id, sense_aware, illness_condition, password, account, temperature, blood_pressure, heart_beat, is_in_emergency from patient where id = ? 
+2017-12-25 20:59:27.140 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==> Parameters: 10(Integer)
+2017-12-25 20:59:27.141 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - <==      Total: 1
+2017-12-25 20:59:27.143 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==>  Preparing: select id, department, demand_title, demand_workage, demand_degree from trust_attr where id = ? 
+2017-12-25 20:59:27.143 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==> Parameters: 13(Integer)
+2017-12-25 20:59:27.144 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - <==      Total: 1
+2017-12-25 20:59:27.175 [main] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - ==>  Preparing: select id, name, position, office_location, office_phone, registry_date, department, title, workage, degree, is_free, password, account, isIn from doctor WHERE ( department = ? ) 
+2017-12-25 20:59:27.175 [main] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - ==> Parameters: 3(Byte)
+2017-12-25 20:59:27.179 [main] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - <==      Total: 5
+2017-12-25 20:59:27.184 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, evaluate_content, evaluate_date, user_type, user_name from user_log WHERE ( doctor_id = ? ) 
+2017-12-25 20:59:27.184 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==> Parameters: 3(Integer)
+2017-12-25 20:59:27.187 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - <==      Total: 1
+2017-12-25 20:59:27.197 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, operation_content, patient_id, evaluate_date from sys_log WHERE ( doctor_id = ? ) 
+2017-12-25 20:59:27.197 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==> Parameters: 3(Integer)
+2017-12-25 20:59:27.198 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - <==      Total: 1
+2017-12-25 20:59:27.200 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, evaluate_content, evaluate_date, user_type, user_name from user_log WHERE ( doctor_id = ? ) 
+2017-12-25 20:59:27.200 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==> Parameters: 5(Integer)
+2017-12-25 20:59:27.200 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - <==      Total: 0
+2017-12-25 20:59:27.201 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, operation_content, patient_id, evaluate_date from sys_log WHERE ( doctor_id = ? ) 
+2017-12-25 20:59:27.202 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==> Parameters: 5(Integer)
+2017-12-25 20:59:27.202 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - <==      Total: 0
+2017-12-25 20:59:27.204 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, evaluate_content, evaluate_date, user_type, user_name from user_log WHERE ( doctor_id = ? ) 
+2017-12-25 20:59:27.204 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==> Parameters: 10(Integer)
+2017-12-25 20:59:27.206 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - <==      Total: 5
+2017-12-25 20:59:27.207 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, operation_content, patient_id, evaluate_date from sys_log WHERE ( doctor_id = ? ) 
+2017-12-25 20:59:27.207 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==> Parameters: 10(Integer)
+2017-12-25 20:59:27.209 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - <==      Total: 6
+2017-12-25 20:59:27.210 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, evaluate_content, evaluate_date, user_type, user_name from user_log WHERE ( doctor_id = ? ) 
+2017-12-25 20:59:27.210 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==> Parameters: 11(Integer)
+2017-12-25 20:59:27.211 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - <==      Total: 0
+2017-12-25 20:59:27.213 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, operation_content, patient_id, evaluate_date from sys_log WHERE ( doctor_id = ? ) 
+2017-12-25 20:59:27.213 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==> Parameters: 11(Integer)
+2017-12-25 20:59:27.214 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - <==      Total: 0
+2017-12-25 21:18:34.136 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==>  Preparing: select id, name, doctor_id, phone, registry_date, trustAttr_id, sense_aware, illness_condition, password, account, temperature, blood_pressure, heart_beat, is_in_emergency from patient where id = ? 
+2017-12-25 21:18:34.154 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==> Parameters: 10(Integer)
+2017-12-25 21:18:34.167 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - <==      Total: 1
+2017-12-25 21:18:34.169 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==>  Preparing: select id, department, demand_title, demand_workage, demand_degree from trust_attr where id = ? 
+2017-12-25 21:18:34.169 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==> Parameters: 13(Integer)
+2017-12-25 21:18:34.171 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - <==      Total: 1
+2017-12-25 21:18:34.177 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==>  Preparing: select id, name, doctor_id, phone, registry_date, trustAttr_id, sense_aware, illness_condition, password, account, temperature, blood_pressure, heart_beat, is_in_emergency from patient where id = ? 
+2017-12-25 21:18:34.177 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==> Parameters: 10(Integer)
+2017-12-25 21:18:34.180 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - <==      Total: 1
+2017-12-25 21:18:34.181 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==>  Preparing: select id, department, demand_title, demand_workage, demand_degree from trust_attr where id = ? 
+2017-12-25 21:18:34.181 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==> Parameters: 13(Integer)
+2017-12-25 21:18:34.183 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - <==      Total: 1
+2017-12-25 21:18:34.214 [main] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - ==>  Preparing: select id, name, position, office_location, office_phone, registry_date, department, title, workage, degree, is_free, password, account, isIn from doctor WHERE ( department = ? ) 
+2017-12-25 21:18:34.214 [main] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - ==> Parameters: 3(Byte)
+2017-12-25 21:18:34.219 [main] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - <==      Total: 5
+2017-12-25 21:18:34.224 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, evaluate_content, evaluate_date, user_type, user_name from user_log WHERE ( doctor_id = ? ) 
+2017-12-25 21:18:34.224 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==> Parameters: 3(Integer)
+2017-12-25 21:18:34.227 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - <==      Total: 1
+2017-12-25 21:18:34.233 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, operation_content, patient_id, evaluate_date from sys_log WHERE ( doctor_id = ? ) 
+2017-12-25 21:18:34.233 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==> Parameters: 3(Integer)
+2017-12-25 21:18:34.234 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - <==      Total: 1
+2017-12-25 21:18:34.236 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, evaluate_content, evaluate_date, user_type, user_name from user_log WHERE ( doctor_id = ? ) 
+2017-12-25 21:18:34.236 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==> Parameters: 5(Integer)
+2017-12-25 21:18:34.237 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - <==      Total: 0
+2017-12-25 21:18:34.238 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, operation_content, patient_id, evaluate_date from sys_log WHERE ( doctor_id = ? ) 
+2017-12-25 21:18:34.238 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==> Parameters: 5(Integer)
+2017-12-25 21:18:34.239 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - <==      Total: 0
+2017-12-25 21:18:34.241 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, evaluate_content, evaluate_date, user_type, user_name from user_log WHERE ( doctor_id = ? ) 
+2017-12-25 21:18:34.241 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==> Parameters: 10(Integer)
+2017-12-25 21:18:34.246 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - <==      Total: 5
+2017-12-25 21:18:34.250 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, operation_content, patient_id, evaluate_date from sys_log WHERE ( doctor_id = ? ) 
+2017-12-25 21:18:34.250 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==> Parameters: 10(Integer)
+2017-12-25 21:18:34.253 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - <==      Total: 6
+2017-12-25 21:18:34.255 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, evaluate_content, evaluate_date, user_type, user_name from user_log WHERE ( doctor_id = ? ) 
+2017-12-25 21:18:34.267 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==> Parameters: 11(Integer)
+2017-12-25 21:18:34.267 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - <==      Total: 0
+2017-12-25 21:18:34.269 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, operation_content, patient_id, evaluate_date from sys_log WHERE ( doctor_id = ? ) 
+2017-12-25 21:18:34.269 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==> Parameters: 11(Integer)
+2017-12-25 21:18:34.270 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - <==      Total: 0
+2017-12-25 21:18:54.297 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==>  Preparing: select id, name, doctor_id, phone, registry_date, trustAttr_id, sense_aware, illness_condition, password, account, temperature, blood_pressure, heart_beat, is_in_emergency from patient where id = ? 
+2017-12-25 21:18:54.318 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==> Parameters: 10(Integer)
+2017-12-25 21:18:54.339 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - <==      Total: 1
+2017-12-25 21:18:54.342 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==>  Preparing: select id, department, demand_title, demand_workage, demand_degree from trust_attr where id = ? 
+2017-12-25 21:18:54.342 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==> Parameters: 13(Integer)
+2017-12-25 21:18:54.381 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - <==      Total: 1
+2017-12-25 21:18:54.388 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==>  Preparing: select id, name, doctor_id, phone, registry_date, trustAttr_id, sense_aware, illness_condition, password, account, temperature, blood_pressure, heart_beat, is_in_emergency from patient where id = ? 
+2017-12-25 21:18:54.389 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==> Parameters: 10(Integer)
+2017-12-25 21:18:54.422 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - <==      Total: 1
+2017-12-25 21:18:54.424 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==>  Preparing: select id, department, demand_title, demand_workage, demand_degree from trust_attr where id = ? 
+2017-12-25 21:18:54.424 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==> Parameters: 13(Integer)
+2017-12-25 21:18:54.458 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - <==      Total: 1
+2017-12-25 21:18:54.515 [main] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - ==>  Preparing: select id, name, position, office_location, office_phone, registry_date, department, title, workage, degree, is_free, password, account, isIn from doctor WHERE ( department = ? ) 
+2017-12-25 21:18:54.516 [main] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - ==> Parameters: 3(Byte)
+2017-12-25 21:18:54.521 [main] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - <==      Total: 5
+2017-12-25 21:18:54.526 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, evaluate_content, evaluate_date, user_type, user_name from user_log WHERE ( doctor_id = ? ) 
+2017-12-25 21:18:54.526 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==> Parameters: 3(Integer)
+2017-12-25 21:18:54.531 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - <==      Total: 1
+2017-12-25 21:18:54.538 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, operation_content, patient_id, evaluate_date from sys_log WHERE ( doctor_id = ? ) 
+2017-12-25 21:18:54.538 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==> Parameters: 3(Integer)
+2017-12-25 21:18:54.551 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - <==      Total: 1
+2017-12-25 21:18:54.553 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, evaluate_content, evaluate_date, user_type, user_name from user_log WHERE ( doctor_id = ? ) 
+2017-12-25 21:18:54.554 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==> Parameters: 5(Integer)
+2017-12-25 21:18:54.587 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - <==      Total: 0
+2017-12-25 21:18:54.589 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, operation_content, patient_id, evaluate_date from sys_log WHERE ( doctor_id = ? ) 
+2017-12-25 21:18:54.589 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==> Parameters: 5(Integer)
+2017-12-25 21:18:54.615 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - <==      Total: 0
+2017-12-25 21:18:54.618 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, evaluate_content, evaluate_date, user_type, user_name from user_log WHERE ( doctor_id = ? ) 
+2017-12-25 21:18:54.618 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==> Parameters: 10(Integer)
+2017-12-25 21:18:54.623 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - <==      Total: 5
+2017-12-25 21:18:54.624 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, operation_content, patient_id, evaluate_date from sys_log WHERE ( doctor_id = ? ) 
+2017-12-25 21:18:54.624 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==> Parameters: 10(Integer)
+2017-12-25 21:18:54.631 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - <==      Total: 6
+2017-12-25 21:18:54.634 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, evaluate_content, evaluate_date, user_type, user_name from user_log WHERE ( doctor_id = ? ) 
+2017-12-25 21:18:54.634 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==> Parameters: 11(Integer)
+2017-12-25 21:18:54.636 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - <==      Total: 0
+2017-12-25 21:18:54.637 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, operation_content, patient_id, evaluate_date from sys_log WHERE ( doctor_id = ? ) 
+2017-12-25 21:18:54.638 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==> Parameters: 11(Integer)
+2017-12-25 21:18:54.639 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - <==      Total: 0
+2017-12-25 21:19:14.638 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==>  Preparing: select id, name, doctor_id, phone, registry_date, trustAttr_id, sense_aware, illness_condition, password, account, temperature, blood_pressure, heart_beat, is_in_emergency from patient where id = ? 
+2017-12-25 21:19:14.660 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==> Parameters: 10(Integer)
+2017-12-25 21:19:14.670 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - <==      Total: 1
+2017-12-25 21:19:14.672 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==>  Preparing: select id, department, demand_title, demand_workage, demand_degree from trust_attr where id = ? 
+2017-12-25 21:19:14.672 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==> Parameters: 13(Integer)
+2017-12-25 21:19:14.674 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - <==      Total: 1
+2017-12-25 21:19:14.681 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==>  Preparing: select id, name, doctor_id, phone, registry_date, trustAttr_id, sense_aware, illness_condition, password, account, temperature, blood_pressure, heart_beat, is_in_emergency from patient where id = ? 
+2017-12-25 21:19:14.682 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==> Parameters: 10(Integer)
+2017-12-25 21:19:14.704 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - <==      Total: 1
+2017-12-25 21:19:14.705 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==>  Preparing: select id, department, demand_title, demand_workage, demand_degree from trust_attr where id = ? 
+2017-12-25 21:19:14.705 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==> Parameters: 13(Integer)
+2017-12-25 21:19:14.706 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - <==      Total: 1
+2017-12-25 21:19:14.739 [main] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - ==>  Preparing: select id, name, position, office_location, office_phone, registry_date, department, title, workage, degree, is_free, password, account, isIn from doctor WHERE ( department = ? ) 
+2017-12-25 21:19:14.740 [main] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - ==> Parameters: 3(Byte)
+2017-12-25 21:19:14.743 [main] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - <==      Total: 5
+2017-12-25 21:19:14.748 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, evaluate_content, evaluate_date, user_type, user_name from user_log WHERE ( doctor_id = ? ) 
+2017-12-25 21:19:14.749 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==> Parameters: 3(Integer)
+2017-12-25 21:19:14.752 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - <==      Total: 1
+2017-12-25 21:19:14.758 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, operation_content, patient_id, evaluate_date from sys_log WHERE ( doctor_id = ? ) 
+2017-12-25 21:19:14.758 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==> Parameters: 3(Integer)
+2017-12-25 21:19:14.759 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - <==      Total: 1
+2017-12-25 21:19:14.761 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, evaluate_content, evaluate_date, user_type, user_name from user_log WHERE ( doctor_id = ? ) 
+2017-12-25 21:19:14.761 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==> Parameters: 5(Integer)
+2017-12-25 21:19:14.763 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - <==      Total: 0
+2017-12-25 21:19:14.764 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, operation_content, patient_id, evaluate_date from sys_log WHERE ( doctor_id = ? ) 
+2017-12-25 21:19:14.765 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==> Parameters: 5(Integer)
+2017-12-25 21:19:14.765 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - <==      Total: 0
+2017-12-25 21:19:14.773 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, evaluate_content, evaluate_date, user_type, user_name from user_log WHERE ( doctor_id = ? ) 
+2017-12-25 21:19:14.773 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==> Parameters: 10(Integer)
+2017-12-25 21:19:14.779 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - <==      Total: 5
+2017-12-25 21:19:14.784 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, operation_content, patient_id, evaluate_date from sys_log WHERE ( doctor_id = ? ) 
+2017-12-25 21:19:14.785 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==> Parameters: 10(Integer)
+2017-12-25 21:19:14.787 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - <==      Total: 6
+2017-12-25 21:19:14.789 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, evaluate_content, evaluate_date, user_type, user_name from user_log WHERE ( doctor_id = ? ) 
+2017-12-25 21:19:14.789 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==> Parameters: 11(Integer)
+2017-12-25 21:19:14.791 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - <==      Total: 0
+2017-12-25 21:19:14.792 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, operation_content, patient_id, evaluate_date from sys_log WHERE ( doctor_id = ? ) 
+2017-12-25 21:19:14.793 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==> Parameters: 11(Integer)
+2017-12-25 21:19:14.793 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - <==      Total: 0
+2017-12-25 21:21:04.141 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==>  Preparing: select id, name, doctor_id, phone, registry_date, trustAttr_id, sense_aware, illness_condition, password, account, temperature, blood_pressure, heart_beat, is_in_emergency from patient where id = ? 
+2017-12-25 21:21:04.163 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==> Parameters: 10(Integer)
+2017-12-25 21:21:04.179 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - <==      Total: 1
+2017-12-25 21:21:04.183 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==>  Preparing: select id, department, demand_title, demand_workage, demand_degree from trust_attr where id = ? 
+2017-12-25 21:21:04.183 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==> Parameters: 13(Integer)
+2017-12-25 21:21:04.184 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - <==      Total: 1
+2017-12-25 21:21:04.192 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==>  Preparing: select id, name, doctor_id, phone, registry_date, trustAttr_id, sense_aware, illness_condition, password, account, temperature, blood_pressure, heart_beat, is_in_emergency from patient where id = ? 
+2017-12-25 21:21:04.193 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==> Parameters: 10(Integer)
+2017-12-25 21:21:04.195 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - <==      Total: 1
+2017-12-25 21:21:04.196 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==>  Preparing: select id, department, demand_title, demand_workage, demand_degree from trust_attr where id = ? 
+2017-12-25 21:21:04.196 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==> Parameters: 13(Integer)
+2017-12-25 21:21:04.197 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - <==      Total: 1
+2017-12-25 21:21:04.233 [main] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - ==>  Preparing: select id, name, position, office_location, office_phone, registry_date, department, title, workage, degree, is_free, password, account, isIn from doctor WHERE ( department = ? ) 
+2017-12-25 21:21:04.233 [main] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - ==> Parameters: 3(Byte)
+2017-12-25 21:21:04.236 [main] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - <==      Total: 5
+2017-12-25 21:21:04.242 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, evaluate_content, evaluate_date, user_type, user_name from user_log WHERE ( doctor_id = ? ) 
+2017-12-25 21:21:04.242 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==> Parameters: 3(Integer)
+2017-12-25 21:21:04.245 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - <==      Total: 1
+2017-12-25 21:21:04.252 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, operation_content, patient_id, evaluate_date from sys_log WHERE ( doctor_id = ? ) 
+2017-12-25 21:21:04.252 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==> Parameters: 3(Integer)
+2017-12-25 21:21:04.254 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - <==      Total: 1
+2017-12-25 21:21:04.256 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, evaluate_content, evaluate_date, user_type, user_name from user_log WHERE ( doctor_id = ? ) 
+2017-12-25 21:21:04.256 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==> Parameters: 5(Integer)
+2017-12-25 21:21:04.260 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - <==      Total: 0
+2017-12-25 21:21:04.261 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, operation_content, patient_id, evaluate_date from sys_log WHERE ( doctor_id = ? ) 
+2017-12-25 21:21:04.261 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==> Parameters: 5(Integer)
+2017-12-25 21:21:04.262 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - <==      Total: 0
+2017-12-25 21:21:04.265 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, evaluate_content, evaluate_date, user_type, user_name from user_log WHERE ( doctor_id = ? ) 
+2017-12-25 21:21:04.265 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==> Parameters: 10(Integer)
+2017-12-25 21:21:04.270 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - <==      Total: 5
+2017-12-25 21:21:04.275 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, operation_content, patient_id, evaluate_date from sys_log WHERE ( doctor_id = ? ) 
+2017-12-25 21:21:04.275 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==> Parameters: 10(Integer)
+2017-12-25 21:21:04.278 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - <==      Total: 6
+2017-12-25 21:21:04.280 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, evaluate_content, evaluate_date, user_type, user_name from user_log WHERE ( doctor_id = ? ) 
+2017-12-25 21:21:04.282 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==> Parameters: 11(Integer)
+2017-12-25 21:21:04.283 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - <==      Total: 0
+2017-12-25 21:21:04.285 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, operation_content, patient_id, evaluate_date from sys_log WHERE ( doctor_id = ? ) 
+2017-12-25 21:21:04.285 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==> Parameters: 11(Integer)
+2017-12-25 21:21:04.286 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - <==      Total: 0
+2017-12-25 21:21:38.163 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==>  Preparing: select id, name, doctor_id, phone, registry_date, trustAttr_id, sense_aware, illness_condition, password, account, temperature, blood_pressure, heart_beat, is_in_emergency from patient where id = ? 
+2017-12-25 21:21:38.184 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==> Parameters: 10(Integer)
+2017-12-25 21:21:38.199 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - <==      Total: 1
+2017-12-25 21:21:38.202 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==>  Preparing: select id, department, demand_title, demand_workage, demand_degree from trust_attr where id = ? 
+2017-12-25 21:21:38.202 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==> Parameters: 13(Integer)
+2017-12-25 21:21:38.205 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - <==      Total: 1
+2017-12-25 21:21:38.211 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==>  Preparing: select id, name, doctor_id, phone, registry_date, trustAttr_id, sense_aware, illness_condition, password, account, temperature, blood_pressure, heart_beat, is_in_emergency from patient where id = ? 
+2017-12-25 21:21:38.212 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==> Parameters: 10(Integer)
+2017-12-25 21:21:38.215 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - <==      Total: 1
+2017-12-25 21:21:38.216 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==>  Preparing: select id, department, demand_title, demand_workage, demand_degree from trust_attr where id = ? 
+2017-12-25 21:21:38.216 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==> Parameters: 13(Integer)
+2017-12-25 21:21:38.217 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - <==      Total: 1
+2017-12-25 21:21:38.250 [main] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - ==>  Preparing: select id, name, position, office_location, office_phone, registry_date, department, title, workage, degree, is_free, password, account, isIn from doctor WHERE ( department = ? ) 
+2017-12-25 21:21:38.250 [main] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - ==> Parameters: 3(Byte)
+2017-12-25 21:21:38.254 [main] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - <==      Total: 5
+2017-12-25 21:21:38.258 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, evaluate_content, evaluate_date, user_type, user_name from user_log WHERE ( doctor_id = ? ) 
+2017-12-25 21:21:38.259 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==> Parameters: 3(Integer)
+2017-12-25 21:21:38.261 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - <==      Total: 1
+2017-12-25 21:21:38.266 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, operation_content, patient_id, evaluate_date from sys_log WHERE ( doctor_id = ? ) 
+2017-12-25 21:21:38.267 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==> Parameters: 3(Integer)
+2017-12-25 21:21:38.268 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - <==      Total: 1
+2017-12-25 21:21:38.270 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, evaluate_content, evaluate_date, user_type, user_name from user_log WHERE ( doctor_id = ? ) 
+2017-12-25 21:21:38.270 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==> Parameters: 5(Integer)
+2017-12-25 21:21:38.271 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - <==      Total: 0
+2017-12-25 21:21:38.273 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, operation_content, patient_id, evaluate_date from sys_log WHERE ( doctor_id = ? ) 
+2017-12-25 21:21:38.273 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==> Parameters: 5(Integer)
+2017-12-25 21:21:38.274 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - <==      Total: 0
+2017-12-25 21:21:38.276 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, evaluate_content, evaluate_date, user_type, user_name from user_log WHERE ( doctor_id = ? ) 
+2017-12-25 21:21:38.276 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==> Parameters: 10(Integer)
+2017-12-25 21:21:38.280 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - <==      Total: 5
+2017-12-25 21:21:38.284 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, operation_content, patient_id, evaluate_date from sys_log WHERE ( doctor_id = ? ) 
+2017-12-25 21:21:38.284 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==> Parameters: 10(Integer)
+2017-12-25 21:21:38.287 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - <==      Total: 6
+2017-12-25 21:21:38.289 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, evaluate_content, evaluate_date, user_type, user_name from user_log WHERE ( doctor_id = ? ) 
+2017-12-25 21:21:38.290 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==> Parameters: 11(Integer)
+2017-12-25 21:21:38.291 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - <==      Total: 0
+2017-12-25 21:21:38.292 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, operation_content, patient_id, evaluate_date from sys_log WHERE ( doctor_id = ? ) 
+2017-12-25 21:21:38.293 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==> Parameters: 11(Integer)
+2017-12-25 21:21:38.294 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - <==      Total: 0
+2017-12-25 21:21:56.735 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==>  Preparing: select id, name, doctor_id, phone, registry_date, trustAttr_id, sense_aware, illness_condition, password, account, temperature, blood_pressure, heart_beat, is_in_emergency from patient where id = ? 
+2017-12-25 21:21:56.754 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==> Parameters: 10(Integer)
+2017-12-25 21:21:56.769 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - <==      Total: 1
+2017-12-25 21:21:56.772 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==>  Preparing: select id, department, demand_title, demand_workage, demand_degree from trust_attr where id = ? 
+2017-12-25 21:21:56.772 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==> Parameters: 13(Integer)
+2017-12-25 21:21:56.773 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - <==      Total: 1
+2017-12-25 21:21:56.779 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==>  Preparing: select id, name, doctor_id, phone, registry_date, trustAttr_id, sense_aware, illness_condition, password, account, temperature, blood_pressure, heart_beat, is_in_emergency from patient where id = ? 
+2017-12-25 21:21:56.780 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==> Parameters: 10(Integer)
+2017-12-25 21:21:56.781 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - <==      Total: 1
+2017-12-25 21:21:56.794 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==>  Preparing: select id, department, demand_title, demand_workage, demand_degree from trust_attr where id = ? 
+2017-12-25 21:21:56.794 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==> Parameters: 13(Integer)
+2017-12-25 21:21:56.795 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - <==      Total: 1
+2017-12-25 21:21:56.831 [main] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - ==>  Preparing: select id, name, position, office_location, office_phone, registry_date, department, title, workage, degree, is_free, password, account, isIn from doctor WHERE ( department = ? ) 
+2017-12-25 21:21:56.832 [main] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - ==> Parameters: 3(Byte)
+2017-12-25 21:21:56.835 [main] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - <==      Total: 5
+2017-12-25 21:21:56.839 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, evaluate_content, evaluate_date, user_type, user_name from user_log WHERE ( doctor_id = ? ) 
+2017-12-25 21:21:56.839 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==> Parameters: 3(Integer)
+2017-12-25 21:21:56.843 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - <==      Total: 1
+2017-12-25 21:21:56.850 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, operation_content, patient_id, evaluate_date from sys_log WHERE ( doctor_id = ? ) 
+2017-12-25 21:21:56.850 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==> Parameters: 3(Integer)
+2017-12-25 21:21:56.851 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - <==      Total: 1
+2017-12-25 21:21:56.852 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, evaluate_content, evaluate_date, user_type, user_name from user_log WHERE ( doctor_id = ? ) 
+2017-12-25 21:21:56.854 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==> Parameters: 5(Integer)
+2017-12-25 21:21:56.855 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - <==      Total: 0
+2017-12-25 21:21:56.856 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, operation_content, patient_id, evaluate_date from sys_log WHERE ( doctor_id = ? ) 
+2017-12-25 21:21:56.856 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==> Parameters: 5(Integer)
+2017-12-25 21:21:56.857 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - <==      Total: 0
+2017-12-25 21:21:56.859 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, evaluate_content, evaluate_date, user_type, user_name from user_log WHERE ( doctor_id = ? ) 
+2017-12-25 21:21:56.859 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==> Parameters: 10(Integer)
+2017-12-25 21:21:56.864 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - <==      Total: 5
+2017-12-25 21:21:56.868 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, operation_content, patient_id, evaluate_date from sys_log WHERE ( doctor_id = ? ) 
+2017-12-25 21:21:56.869 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==> Parameters: 10(Integer)
+2017-12-25 21:21:56.871 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - <==      Total: 6
+2017-12-25 21:21:56.874 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, evaluate_content, evaluate_date, user_type, user_name from user_log WHERE ( doctor_id = ? ) 
+2017-12-25 21:21:56.875 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==> Parameters: 11(Integer)
+2017-12-25 21:21:56.876 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - <==      Total: 0
+2017-12-25 21:21:56.878 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, operation_content, patient_id, evaluate_date from sys_log WHERE ( doctor_id = ? ) 
+2017-12-25 21:21:56.878 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==> Parameters: 11(Integer)
+2017-12-25 21:21:56.879 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - <==      Total: 0
+2017-12-25 21:22:16.605 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==>  Preparing: select id, name, doctor_id, phone, registry_date, trustAttr_id, sense_aware, illness_condition, password, account, temperature, blood_pressure, heart_beat, is_in_emergency from patient where id = ? 
+2017-12-25 21:22:16.626 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==> Parameters: 10(Integer)
+2017-12-25 21:22:16.643 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - <==      Total: 1
+2017-12-25 21:22:16.647 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==>  Preparing: select id, department, demand_title, demand_workage, demand_degree from trust_attr where id = ? 
+2017-12-25 21:22:16.648 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==> Parameters: 13(Integer)
+2017-12-25 21:22:16.656 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - <==      Total: 1
+2017-12-25 21:22:16.664 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==>  Preparing: select id, name, doctor_id, phone, registry_date, trustAttr_id, sense_aware, illness_condition, password, account, temperature, blood_pressure, heart_beat, is_in_emergency from patient where id = ? 
+2017-12-25 21:22:16.664 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==> Parameters: 10(Integer)
+2017-12-25 21:22:16.666 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - <==      Total: 1
+2017-12-25 21:22:16.668 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==>  Preparing: select id, department, demand_title, demand_workage, demand_degree from trust_attr where id = ? 
+2017-12-25 21:22:16.669 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==> Parameters: 13(Integer)
+2017-12-25 21:22:16.670 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - <==      Total: 1
+2017-12-25 21:22:16.709 [main] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - ==>  Preparing: select id, name, position, office_location, office_phone, registry_date, department, title, workage, degree, is_free, password, account, isIn from doctor WHERE ( department = ? ) 
+2017-12-25 21:22:16.710 [main] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - ==> Parameters: 3(Byte)
+2017-12-25 21:22:16.717 [main] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - <==      Total: 5
+2017-12-25 21:22:16.722 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, evaluate_content, evaluate_date, user_type, user_name from user_log WHERE ( doctor_id = ? ) 
+2017-12-25 21:22:16.722 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==> Parameters: 3(Integer)
+2017-12-25 21:22:16.724 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - <==      Total: 1
+2017-12-25 21:22:16.728 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, operation_content, patient_id, evaluate_date from sys_log WHERE ( doctor_id = ? ) 
+2017-12-25 21:22:16.728 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==> Parameters: 3(Integer)
+2017-12-25 21:22:16.729 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - <==      Total: 1
+2017-12-25 21:22:16.730 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, evaluate_content, evaluate_date, user_type, user_name from user_log WHERE ( doctor_id = ? ) 
+2017-12-25 21:22:16.730 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==> Parameters: 5(Integer)
+2017-12-25 21:22:16.731 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - <==      Total: 0
+2017-12-25 21:22:16.733 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, operation_content, patient_id, evaluate_date from sys_log WHERE ( doctor_id = ? ) 
+2017-12-25 21:22:16.735 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==> Parameters: 5(Integer)
+2017-12-25 21:22:16.736 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - <==      Total: 0
+2017-12-25 21:22:16.738 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, evaluate_content, evaluate_date, user_type, user_name from user_log WHERE ( doctor_id = ? ) 
+2017-12-25 21:22:16.738 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==> Parameters: 10(Integer)
+2017-12-25 21:22:16.742 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - <==      Total: 5
+2017-12-25 21:22:16.744 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, operation_content, patient_id, evaluate_date from sys_log WHERE ( doctor_id = ? ) 
+2017-12-25 21:22:16.744 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==> Parameters: 10(Integer)
+2017-12-25 21:22:16.746 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - <==      Total: 6
+2017-12-25 21:22:16.748 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, evaluate_content, evaluate_date, user_type, user_name from user_log WHERE ( doctor_id = ? ) 
+2017-12-25 21:22:16.748 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==> Parameters: 11(Integer)
+2017-12-25 21:22:16.749 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - <==      Total: 0
+2017-12-25 21:22:16.751 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, operation_content, patient_id, evaluate_date from sys_log WHERE ( doctor_id = ? ) 
+2017-12-25 21:22:16.751 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==> Parameters: 11(Integer)
+2017-12-25 21:22:16.752 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - <==      Total: 0
+2017-12-25 21:22:35.853 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==>  Preparing: select id, name, doctor_id, phone, registry_date, trustAttr_id, sense_aware, illness_condition, password, account, temperature, blood_pressure, heart_beat, is_in_emergency from patient where id = ? 
+2017-12-25 21:22:35.873 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==> Parameters: 10(Integer)
+2017-12-25 21:22:35.887 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - <==      Total: 1
+2017-12-25 21:22:35.890 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==>  Preparing: select id, department, demand_title, demand_workage, demand_degree from trust_attr where id = ? 
+2017-12-25 21:22:35.890 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==> Parameters: 13(Integer)
+2017-12-25 21:22:35.892 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - <==      Total: 1
+2017-12-25 21:22:35.900 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==>  Preparing: select id, name, doctor_id, phone, registry_date, trustAttr_id, sense_aware, illness_condition, password, account, temperature, blood_pressure, heart_beat, is_in_emergency from patient where id = ? 
+2017-12-25 21:22:35.901 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==> Parameters: 10(Integer)
+2017-12-25 21:22:35.903 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - <==      Total: 1
+2017-12-25 21:22:35.904 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==>  Preparing: select id, department, demand_title, demand_workage, demand_degree from trust_attr where id = ? 
+2017-12-25 21:22:35.904 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==> Parameters: 13(Integer)
+2017-12-25 21:22:35.905 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - <==      Total: 1
+2017-12-25 21:22:35.939 [main] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - ==>  Preparing: select id, name, position, office_location, office_phone, registry_date, department, title, workage, degree, is_free, password, account, isIn from doctor WHERE ( department = ? ) 
+2017-12-25 21:22:35.940 [main] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - ==> Parameters: 3(Byte)
+2017-12-25 21:22:35.943 [main] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - <==      Total: 5
+2017-12-25 21:22:35.947 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, evaluate_content, evaluate_date, user_type, user_name from user_log WHERE ( doctor_id = ? ) 
+2017-12-25 21:22:35.948 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==> Parameters: 3(Integer)
+2017-12-25 21:22:35.951 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - <==      Total: 1
+2017-12-25 21:22:35.956 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, operation_content, patient_id, evaluate_date from sys_log WHERE ( doctor_id = ? ) 
+2017-12-25 21:22:35.957 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==> Parameters: 3(Integer)
+2017-12-25 21:22:35.958 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - <==      Total: 1
+2017-12-25 21:22:35.959 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, evaluate_content, evaluate_date, user_type, user_name from user_log WHERE ( doctor_id = ? ) 
+2017-12-25 21:22:35.960 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==> Parameters: 5(Integer)
+2017-12-25 21:22:35.961 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - <==      Total: 0
+2017-12-25 21:22:35.962 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, operation_content, patient_id, evaluate_date from sys_log WHERE ( doctor_id = ? ) 
+2017-12-25 21:22:35.963 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==> Parameters: 5(Integer)
+2017-12-25 21:22:35.963 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - <==      Total: 0
+2017-12-25 21:22:35.966 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, evaluate_content, evaluate_date, user_type, user_name from user_log WHERE ( doctor_id = ? ) 
+2017-12-25 21:22:35.966 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==> Parameters: 10(Integer)
+2017-12-25 21:22:35.971 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - <==      Total: 5
+2017-12-25 21:22:35.975 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, operation_content, patient_id, evaluate_date from sys_log WHERE ( doctor_id = ? ) 
+2017-12-25 21:22:35.976 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==> Parameters: 10(Integer)
+2017-12-25 21:22:35.978 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - <==      Total: 6
+2017-12-25 21:22:35.982 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, evaluate_content, evaluate_date, user_type, user_name from user_log WHERE ( doctor_id = ? ) 
+2017-12-25 21:22:35.983 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==> Parameters: 11(Integer)
+2017-12-25 21:22:35.984 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - <==      Total: 0
+2017-12-25 21:22:35.986 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, operation_content, patient_id, evaluate_date from sys_log WHERE ( doctor_id = ? ) 
+2017-12-25 21:22:35.986 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==> Parameters: 11(Integer)
+2017-12-25 21:22:35.987 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - <==      Total: 0
+2017-12-25 21:22:52.137 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==>  Preparing: select id, name, doctor_id, phone, registry_date, trustAttr_id, sense_aware, illness_condition, password, account, temperature, blood_pressure, heart_beat, is_in_emergency from patient where id = ? 
+2017-12-25 21:22:52.156 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==> Parameters: 10(Integer)
+2017-12-25 21:22:52.170 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - <==      Total: 1
+2017-12-25 21:22:52.172 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==>  Preparing: select id, department, demand_title, demand_workage, demand_degree from trust_attr where id = ? 
+2017-12-25 21:22:52.172 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==> Parameters: 13(Integer)
+2017-12-25 21:22:52.173 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - <==      Total: 1
+2017-12-25 21:22:52.182 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==>  Preparing: select id, name, doctor_id, phone, registry_date, trustAttr_id, sense_aware, illness_condition, password, account, temperature, blood_pressure, heart_beat, is_in_emergency from patient where id = ? 
+2017-12-25 21:22:52.183 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==> Parameters: 10(Integer)
+2017-12-25 21:22:52.185 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - <==      Total: 1
+2017-12-25 21:22:52.189 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==>  Preparing: select id, department, demand_title, demand_workage, demand_degree from trust_attr where id = ? 
+2017-12-25 21:22:52.190 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==> Parameters: 13(Integer)
+2017-12-25 21:22:52.191 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - <==      Total: 1
+2017-12-25 21:22:52.223 [main] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - ==>  Preparing: select id, name, position, office_location, office_phone, registry_date, department, title, workage, degree, is_free, password, account, isIn from doctor WHERE ( department = ? ) 
+2017-12-25 21:22:52.224 [main] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - ==> Parameters: 3(Byte)
+2017-12-25 21:22:52.226 [main] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - <==      Total: 5
+2017-12-25 21:22:52.231 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, evaluate_content, evaluate_date, user_type, user_name from user_log WHERE ( doctor_id = ? ) 
+2017-12-25 21:22:52.231 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==> Parameters: 3(Integer)
+2017-12-25 21:22:52.234 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - <==      Total: 1
+2017-12-25 21:22:52.240 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, operation_content, patient_id, evaluate_date from sys_log WHERE ( doctor_id = ? ) 
+2017-12-25 21:22:52.240 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==> Parameters: 3(Integer)
+2017-12-25 21:22:52.248 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - <==      Total: 1
+2017-12-25 21:22:52.250 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, evaluate_content, evaluate_date, user_type, user_name from user_log WHERE ( doctor_id = ? ) 
+2017-12-25 21:22:52.250 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==> Parameters: 5(Integer)
+2017-12-25 21:22:52.252 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - <==      Total: 0
+2017-12-25 21:22:52.254 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, operation_content, patient_id, evaluate_date from sys_log WHERE ( doctor_id = ? ) 
+2017-12-25 21:22:52.254 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==> Parameters: 5(Integer)
+2017-12-25 21:22:52.255 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - <==      Total: 0
+2017-12-25 21:22:52.257 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, evaluate_content, evaluate_date, user_type, user_name from user_log WHERE ( doctor_id = ? ) 
+2017-12-25 21:22:52.258 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==> Parameters: 10(Integer)
+2017-12-25 21:22:52.263 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - <==      Total: 5
+2017-12-25 21:22:52.268 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, operation_content, patient_id, evaluate_date from sys_log WHERE ( doctor_id = ? ) 
+2017-12-25 21:22:52.268 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==> Parameters: 10(Integer)
+2017-12-25 21:22:52.271 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - <==      Total: 6
+2017-12-25 21:22:52.274 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, evaluate_content, evaluate_date, user_type, user_name from user_log WHERE ( doctor_id = ? ) 
+2017-12-25 21:22:52.275 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==> Parameters: 11(Integer)
+2017-12-25 21:22:52.276 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - <==      Total: 0
+2017-12-25 21:22:52.278 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, operation_content, patient_id, evaluate_date from sys_log WHERE ( doctor_id = ? ) 
+2017-12-25 21:22:52.278 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==> Parameters: 11(Integer)
+2017-12-25 21:22:52.279 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - <==      Total: 0
+2017-12-25 21:23:12.044 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==>  Preparing: select id, name, doctor_id, phone, registry_date, trustAttr_id, sense_aware, illness_condition, password, account, temperature, blood_pressure, heart_beat, is_in_emergency from patient where id = ? 
+2017-12-25 21:23:12.065 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==> Parameters: 10(Integer)
+2017-12-25 21:23:12.084 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - <==      Total: 1
+2017-12-25 21:23:12.087 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==>  Preparing: select id, department, demand_title, demand_workage, demand_degree from trust_attr where id = ? 
+2017-12-25 21:23:12.087 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==> Parameters: 13(Integer)
+2017-12-25 21:23:12.089 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - <==      Total: 1
+2017-12-25 21:23:12.096 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==>  Preparing: select id, name, doctor_id, phone, registry_date, trustAttr_id, sense_aware, illness_condition, password, account, temperature, blood_pressure, heart_beat, is_in_emergency from patient where id = ? 
+2017-12-25 21:23:12.097 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==> Parameters: 10(Integer)
+2017-12-25 21:23:12.098 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - <==      Total: 1
+2017-12-25 21:23:12.099 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==>  Preparing: select id, department, demand_title, demand_workage, demand_degree from trust_attr where id = ? 
+2017-12-25 21:23:12.100 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==> Parameters: 13(Integer)
+2017-12-25 21:23:12.101 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - <==      Total: 1
+2017-12-25 21:23:12.133 [main] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - ==>  Preparing: select id, name, position, office_location, office_phone, registry_date, department, title, workage, degree, is_free, password, account, isIn from doctor WHERE ( department = ? ) 
+2017-12-25 21:23:12.133 [main] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - ==> Parameters: 3(Byte)
+2017-12-25 21:23:12.136 [main] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - <==      Total: 5
+2017-12-25 21:23:12.142 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, evaluate_content, evaluate_date, user_type, user_name from user_log WHERE ( doctor_id = ? ) 
+2017-12-25 21:23:12.142 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==> Parameters: 3(Integer)
+2017-12-25 21:23:12.145 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - <==      Total: 1
+2017-12-25 21:23:12.150 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, operation_content, patient_id, evaluate_date from sys_log WHERE ( doctor_id = ? ) 
+2017-12-25 21:23:12.151 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==> Parameters: 3(Integer)
+2017-12-25 21:23:12.153 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - <==      Total: 1
+2017-12-25 21:23:12.154 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, evaluate_content, evaluate_date, user_type, user_name from user_log WHERE ( doctor_id = ? ) 
+2017-12-25 21:23:12.155 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==> Parameters: 5(Integer)
+2017-12-25 21:23:12.156 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - <==      Total: 0
+2017-12-25 21:23:12.157 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, operation_content, patient_id, evaluate_date from sys_log WHERE ( doctor_id = ? ) 
+2017-12-25 21:23:12.157 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==> Parameters: 5(Integer)
+2017-12-25 21:23:12.158 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - <==      Total: 0
+2017-12-25 21:23:12.160 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, evaluate_content, evaluate_date, user_type, user_name from user_log WHERE ( doctor_id = ? ) 
+2017-12-25 21:23:12.160 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==> Parameters: 10(Integer)
+2017-12-25 21:23:12.165 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - <==      Total: 5
+2017-12-25 21:23:12.169 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, operation_content, patient_id, evaluate_date from sys_log WHERE ( doctor_id = ? ) 
+2017-12-25 21:23:12.170 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==> Parameters: 10(Integer)
+2017-12-25 21:23:12.172 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - <==      Total: 6
+2017-12-25 21:23:12.176 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, evaluate_content, evaluate_date, user_type, user_name from user_log WHERE ( doctor_id = ? ) 
+2017-12-25 21:23:12.177 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==> Parameters: 11(Integer)
+2017-12-25 21:23:12.177 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - <==      Total: 0
+2017-12-25 21:23:12.179 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, operation_content, patient_id, evaluate_date from sys_log WHERE ( doctor_id = ? ) 
+2017-12-25 21:23:12.180 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==> Parameters: 11(Integer)
+2017-12-25 21:23:12.181 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - <==      Total: 0
+2017-12-25 21:23:28.860 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==>  Preparing: select id, name, doctor_id, phone, registry_date, trustAttr_id, sense_aware, illness_condition, password, account, temperature, blood_pressure, heart_beat, is_in_emergency from patient where id = ? 
+2017-12-25 21:23:28.878 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==> Parameters: 10(Integer)
+2017-12-25 21:23:28.891 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - <==      Total: 1
+2017-12-25 21:23:28.893 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==>  Preparing: select id, department, demand_title, demand_workage, demand_degree from trust_attr where id = ? 
+2017-12-25 21:23:28.893 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==> Parameters: 13(Integer)
+2017-12-25 21:23:28.895 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - <==      Total: 1
+2017-12-25 21:23:28.901 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==>  Preparing: select id, name, doctor_id, phone, registry_date, trustAttr_id, sense_aware, illness_condition, password, account, temperature, blood_pressure, heart_beat, is_in_emergency from patient where id = ? 
+2017-12-25 21:23:28.901 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==> Parameters: 10(Integer)
+2017-12-25 21:23:28.902 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - <==      Total: 1
+2017-12-25 21:23:28.913 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==>  Preparing: select id, department, demand_title, demand_workage, demand_degree from trust_attr where id = ? 
+2017-12-25 21:23:28.914 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==> Parameters: 13(Integer)
+2017-12-25 21:23:28.915 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - <==      Total: 1
+2017-12-25 21:23:28.946 [main] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - ==>  Preparing: select id, name, position, office_location, office_phone, registry_date, department, title, workage, degree, is_free, password, account, isIn from doctor WHERE ( department = ? ) 
+2017-12-25 21:23:28.947 [main] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - ==> Parameters: 3(Byte)
+2017-12-25 21:23:28.949 [main] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - <==      Total: 5
+2017-12-25 21:23:28.954 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, evaluate_content, evaluate_date, user_type, user_name from user_log WHERE ( doctor_id = ? ) 
+2017-12-25 21:23:28.954 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==> Parameters: 3(Integer)
+2017-12-25 21:23:28.957 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - <==      Total: 1
+2017-12-25 21:23:28.962 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, operation_content, patient_id, evaluate_date from sys_log WHERE ( doctor_id = ? ) 
+2017-12-25 21:23:28.962 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==> Parameters: 3(Integer)
+2017-12-25 21:23:28.963 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - <==      Total: 1
+2017-12-25 21:23:28.965 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, evaluate_content, evaluate_date, user_type, user_name from user_log WHERE ( doctor_id = ? ) 
+2017-12-25 21:23:28.979 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==> Parameters: 5(Integer)
+2017-12-25 21:23:28.984 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - <==      Total: 0
+2017-12-25 21:23:28.985 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, operation_content, patient_id, evaluate_date from sys_log WHERE ( doctor_id = ? ) 
+2017-12-25 21:23:28.985 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==> Parameters: 5(Integer)
+2017-12-25 21:23:28.988 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - <==      Total: 0
+2017-12-25 21:23:28.991 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, evaluate_content, evaluate_date, user_type, user_name from user_log WHERE ( doctor_id = ? ) 
+2017-12-25 21:23:28.991 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==> Parameters: 10(Integer)
+2017-12-25 21:23:28.996 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - <==      Total: 5
+2017-12-25 21:23:29.001 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, operation_content, patient_id, evaluate_date from sys_log WHERE ( doctor_id = ? ) 
+2017-12-25 21:23:29.001 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==> Parameters: 10(Integer)
+2017-12-25 21:23:29.004 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - <==      Total: 6
+2017-12-25 21:23:29.007 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, evaluate_content, evaluate_date, user_type, user_name from user_log WHERE ( doctor_id = ? ) 
+2017-12-25 21:23:29.008 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==> Parameters: 11(Integer)
+2017-12-25 21:23:29.008 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - <==      Total: 0
+2017-12-25 21:23:29.012 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, operation_content, patient_id, evaluate_date from sys_log WHERE ( doctor_id = ? ) 
+2017-12-25 21:23:29.013 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==> Parameters: 11(Integer)
+2017-12-25 21:23:29.014 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - <==      Total: 0
+2017-12-25 21:23:49.294 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==>  Preparing: select id, name, doctor_id, phone, registry_date, trustAttr_id, sense_aware, illness_condition, password, account, temperature, blood_pressure, heart_beat, is_in_emergency from patient where id = ? 
+2017-12-25 21:23:49.320 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==> Parameters: 10(Integer)
+2017-12-25 21:23:49.333 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - <==      Total: 1
+2017-12-25 21:23:49.335 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==>  Preparing: select id, department, demand_title, demand_workage, demand_degree from trust_attr where id = ? 
+2017-12-25 21:23:49.335 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==> Parameters: 13(Integer)
+2017-12-25 21:23:49.337 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - <==      Total: 1
+2017-12-25 21:23:49.343 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==>  Preparing: select id, name, doctor_id, phone, registry_date, trustAttr_id, sense_aware, illness_condition, password, account, temperature, blood_pressure, heart_beat, is_in_emergency from patient where id = ? 
+2017-12-25 21:23:49.344 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==> Parameters: 10(Integer)
+2017-12-25 21:23:49.345 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - <==      Total: 1
+2017-12-25 21:23:49.347 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==>  Preparing: select id, department, demand_title, demand_workage, demand_degree from trust_attr where id = ? 
+2017-12-25 21:23:49.348 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==> Parameters: 13(Integer)
+2017-12-25 21:23:49.349 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - <==      Total: 1
+2017-12-25 21:23:49.382 [main] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - ==>  Preparing: select id, name, position, office_location, office_phone, registry_date, department, title, workage, degree, is_free, password, account, isIn from doctor WHERE ( department = ? ) 
+2017-12-25 21:23:49.382 [main] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - ==> Parameters: 3(Byte)
+2017-12-25 21:23:49.387 [main] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - <==      Total: 5
+2017-12-25 21:23:49.393 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, evaluate_content, evaluate_date, user_type, user_name from user_log WHERE ( doctor_id = ? ) 
+2017-12-25 21:23:49.393 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==> Parameters: 3(Integer)
+2017-12-25 21:23:49.396 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - <==      Total: 1
+2017-12-25 21:23:49.402 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, operation_content, patient_id, evaluate_date from sys_log WHERE ( doctor_id = ? ) 
+2017-12-25 21:23:49.403 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==> Parameters: 3(Integer)
+2017-12-25 21:23:49.404 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - <==      Total: 1
+2017-12-25 21:23:49.410 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, evaluate_content, evaluate_date, user_type, user_name from user_log WHERE ( doctor_id = ? ) 
+2017-12-25 21:23:49.410 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==> Parameters: 5(Integer)
+2017-12-25 21:23:49.411 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - <==      Total: 0
+2017-12-25 21:23:49.412 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, operation_content, patient_id, evaluate_date from sys_log WHERE ( doctor_id = ? ) 
+2017-12-25 21:23:49.413 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==> Parameters: 5(Integer)
+2017-12-25 21:23:49.413 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - <==      Total: 0
+2017-12-25 21:23:49.416 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, evaluate_content, evaluate_date, user_type, user_name from user_log WHERE ( doctor_id = ? ) 
+2017-12-25 21:23:49.416 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==> Parameters: 10(Integer)
+2017-12-25 21:23:49.422 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - <==      Total: 5
+2017-12-25 21:23:49.426 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, operation_content, patient_id, evaluate_date from sys_log WHERE ( doctor_id = ? ) 
+2017-12-25 21:23:49.427 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==> Parameters: 10(Integer)
+2017-12-25 21:23:49.430 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - <==      Total: 6
+2017-12-25 21:23:49.433 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, evaluate_content, evaluate_date, user_type, user_name from user_log WHERE ( doctor_id = ? ) 
+2017-12-25 21:23:49.434 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==> Parameters: 11(Integer)
+2017-12-25 21:23:49.435 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - <==      Total: 0
+2017-12-25 21:23:49.437 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, operation_content, patient_id, evaluate_date from sys_log WHERE ( doctor_id = ? ) 
+2017-12-25 21:23:49.437 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==> Parameters: 11(Integer)
+2017-12-25 21:23:49.438 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - <==      Total: 0
+2017-12-25 21:30:24.729 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==>  Preparing: select id, name, doctor_id, phone, registry_date, trustAttr_id, sense_aware, illness_condition, password, account, temperature, blood_pressure, heart_beat, is_in_emergency from patient where id = ? 
+2017-12-25 21:30:24.749 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==> Parameters: 10(Integer)
+2017-12-25 21:30:24.764 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - <==      Total: 1
+2017-12-25 21:30:24.766 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==>  Preparing: select id, department, demand_title, demand_workage, demand_degree from trust_attr where id = ? 
+2017-12-25 21:30:24.766 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==> Parameters: 13(Integer)
+2017-12-25 21:30:24.768 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - <==      Total: 1
+2017-12-25 21:30:24.774 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==>  Preparing: select id, name, doctor_id, phone, registry_date, trustAttr_id, sense_aware, illness_condition, password, account, temperature, blood_pressure, heart_beat, is_in_emergency from patient where id = ? 
+2017-12-25 21:30:24.775 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==> Parameters: 10(Integer)
+2017-12-25 21:30:24.777 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - <==      Total: 1
+2017-12-25 21:30:24.778 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==>  Preparing: select id, department, demand_title, demand_workage, demand_degree from trust_attr where id = ? 
+2017-12-25 21:30:24.779 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==> Parameters: 13(Integer)
+2017-12-25 21:30:24.780 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - <==      Total: 1
+2017-12-25 21:30:24.813 [main] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - ==>  Preparing: select id, name, position, office_location, office_phone, registry_date, department, title, workage, degree, is_free, password, account, isIn from doctor WHERE ( department = ? ) 
+2017-12-25 21:30:24.813 [main] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - ==> Parameters: 3(Byte)
+2017-12-25 21:30:24.817 [main] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - <==      Total: 5
+2017-12-25 21:30:24.822 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, evaluate_content, evaluate_date, user_type, user_name from user_log WHERE ( doctor_id = ? ) 
+2017-12-25 21:30:24.822 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==> Parameters: 3(Integer)
+2017-12-25 21:30:24.826 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - <==      Total: 1
+2017-12-25 21:30:24.832 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, operation_content, patient_id, evaluate_date from sys_log WHERE ( doctor_id = ? ) 
+2017-12-25 21:30:24.832 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==> Parameters: 3(Integer)
+2017-12-25 21:30:24.834 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - <==      Total: 1
+2017-12-25 21:30:24.835 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, evaluate_content, evaluate_date, user_type, user_name from user_log WHERE ( doctor_id = ? ) 
+2017-12-25 21:30:24.836 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==> Parameters: 5(Integer)
+2017-12-25 21:30:24.837 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - <==      Total: 0
+2017-12-25 21:30:24.838 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, operation_content, patient_id, evaluate_date from sys_log WHERE ( doctor_id = ? ) 
+2017-12-25 21:30:24.838 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==> Parameters: 5(Integer)
+2017-12-25 21:30:24.839 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - <==      Total: 0
+2017-12-25 21:30:24.841 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, evaluate_content, evaluate_date, user_type, user_name from user_log WHERE ( doctor_id = ? ) 
+2017-12-25 21:30:24.842 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==> Parameters: 10(Integer)
+2017-12-25 21:30:24.847 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - <==      Total: 5
+2017-12-25 21:30:24.852 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, operation_content, patient_id, evaluate_date from sys_log WHERE ( doctor_id = ? ) 
+2017-12-25 21:30:24.852 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==> Parameters: 10(Integer)
+2017-12-25 21:30:24.855 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - <==      Total: 6
+2017-12-25 21:30:24.858 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, evaluate_content, evaluate_date, user_type, user_name from user_log WHERE ( doctor_id = ? ) 
+2017-12-25 21:30:24.859 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==> Parameters: 11(Integer)
+2017-12-25 21:30:24.860 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - <==      Total: 0
+2017-12-25 21:30:24.861 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, operation_content, patient_id, evaluate_date from sys_log WHERE ( doctor_id = ? ) 
+2017-12-25 21:30:24.862 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==> Parameters: 11(Integer)
+2017-12-25 21:30:24.863 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - <==      Total: 0
+2017-12-25 21:30:44.754 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==>  Preparing: select id, name, doctor_id, phone, registry_date, trustAttr_id, sense_aware, illness_condition, password, account, temperature, blood_pressure, heart_beat, is_in_emergency from patient where id = ? 
+2017-12-25 21:30:44.774 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==> Parameters: 10(Integer)
+2017-12-25 21:30:44.791 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - <==      Total: 1
+2017-12-25 21:30:44.794 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==>  Preparing: select id, department, demand_title, demand_workage, demand_degree from trust_attr where id = ? 
+2017-12-25 21:30:44.794 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==> Parameters: 13(Integer)
+2017-12-25 21:30:44.795 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - <==      Total: 1
+2017-12-25 21:30:44.801 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==>  Preparing: select id, name, doctor_id, phone, registry_date, trustAttr_id, sense_aware, illness_condition, password, account, temperature, blood_pressure, heart_beat, is_in_emergency from patient where id = ? 
+2017-12-25 21:30:44.802 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==> Parameters: 10(Integer)
+2017-12-25 21:30:44.803 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - <==      Total: 1
+2017-12-25 21:30:44.805 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==>  Preparing: select id, department, demand_title, demand_workage, demand_degree from trust_attr where id = ? 
+2017-12-25 21:30:44.805 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==> Parameters: 13(Integer)
+2017-12-25 21:30:44.806 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - <==      Total: 1
+2017-12-25 21:30:44.841 [main] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - ==>  Preparing: select id, name, position, office_location, office_phone, registry_date, department, title, workage, degree, is_free, password, account, isIn from doctor WHERE ( department = ? ) 
+2017-12-25 21:30:44.841 [main] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - ==> Parameters: 3(Byte)
+2017-12-25 21:30:44.844 [main] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - <==      Total: 5
+2017-12-25 21:30:44.850 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, evaluate_content, evaluate_date, user_type, user_name from user_log WHERE ( doctor_id = ? ) 
+2017-12-25 21:30:44.850 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==> Parameters: 3(Integer)
+2017-12-25 21:30:44.853 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - <==      Total: 1
+2017-12-25 21:30:44.859 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, operation_content, patient_id, evaluate_date from sys_log WHERE ( doctor_id = ? ) 
+2017-12-25 21:30:44.859 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==> Parameters: 3(Integer)
+2017-12-25 21:30:44.860 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - <==      Total: 1
+2017-12-25 21:30:44.862 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, evaluate_content, evaluate_date, user_type, user_name from user_log WHERE ( doctor_id = ? ) 
+2017-12-25 21:30:44.862 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==> Parameters: 5(Integer)
+2017-12-25 21:30:44.863 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - <==      Total: 0
+2017-12-25 21:30:44.864 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, operation_content, patient_id, evaluate_date from sys_log WHERE ( doctor_id = ? ) 
+2017-12-25 21:30:44.865 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==> Parameters: 5(Integer)
+2017-12-25 21:30:44.865 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - <==      Total: 0
+2017-12-25 21:30:44.868 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, evaluate_content, evaluate_date, user_type, user_name from user_log WHERE ( doctor_id = ? ) 
+2017-12-25 21:30:44.868 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==> Parameters: 10(Integer)
+2017-12-25 21:30:44.870 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - <==      Total: 5
+2017-12-25 21:30:44.873 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, operation_content, patient_id, evaluate_date from sys_log WHERE ( doctor_id = ? ) 
+2017-12-25 21:30:44.875 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==> Parameters: 10(Integer)
+2017-12-25 21:30:44.878 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - <==      Total: 6
+2017-12-25 21:30:44.882 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, evaluate_content, evaluate_date, user_type, user_name from user_log WHERE ( doctor_id = ? ) 
+2017-12-25 21:30:44.882 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==> Parameters: 11(Integer)
+2017-12-25 21:30:44.883 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - <==      Total: 0
+2017-12-25 21:30:44.884 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, operation_content, patient_id, evaluate_date from sys_log WHERE ( doctor_id = ? ) 
+2017-12-25 21:30:44.884 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==> Parameters: 11(Integer)
+2017-12-25 21:30:44.885 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - <==      Total: 0
+2017-12-25 21:31:00.796 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==>  Preparing: select id, name, doctor_id, phone, registry_date, trustAttr_id, sense_aware, illness_condition, password, account, temperature, blood_pressure, heart_beat, is_in_emergency from patient where id = ? 
+2017-12-25 21:31:00.815 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==> Parameters: 10(Integer)
+2017-12-25 21:31:00.831 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - <==      Total: 1
+2017-12-25 21:31:00.834 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==>  Preparing: select id, department, demand_title, demand_workage, demand_degree from trust_attr where id = ? 
+2017-12-25 21:31:00.835 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==> Parameters: 13(Integer)
+2017-12-25 21:31:00.836 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - <==      Total: 1
+2017-12-25 21:31:00.843 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==>  Preparing: select id, name, doctor_id, phone, registry_date, trustAttr_id, sense_aware, illness_condition, password, account, temperature, blood_pressure, heart_beat, is_in_emergency from patient where id = ? 
+2017-12-25 21:31:00.843 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==> Parameters: 10(Integer)
+2017-12-25 21:31:00.844 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - <==      Total: 1
+2017-12-25 21:31:00.845 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==>  Preparing: select id, department, demand_title, demand_workage, demand_degree from trust_attr where id = ? 
+2017-12-25 21:31:00.845 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==> Parameters: 13(Integer)
+2017-12-25 21:31:00.847 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - <==      Total: 1
+2017-12-25 21:31:00.878 [main] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - ==>  Preparing: select id, name, position, office_location, office_phone, registry_date, department, title, workage, degree, is_free, password, account, isIn from doctor WHERE ( department = ? ) 
+2017-12-25 21:31:00.879 [main] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - ==> Parameters: 3(Byte)
+2017-12-25 21:31:00.882 [main] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - <==      Total: 5
+2017-12-25 21:31:00.887 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, evaluate_content, evaluate_date, user_type, user_name from user_log WHERE ( doctor_id = ? ) 
+2017-12-25 21:31:00.887 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==> Parameters: 3(Integer)
+2017-12-25 21:31:00.890 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - <==      Total: 1
+2017-12-25 21:31:00.896 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, operation_content, patient_id, evaluate_date from sys_log WHERE ( doctor_id = ? ) 
+2017-12-25 21:31:00.896 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==> Parameters: 3(Integer)
+2017-12-25 21:31:00.898 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - <==      Total: 1
+2017-12-25 21:31:00.899 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, evaluate_content, evaluate_date, user_type, user_name from user_log WHERE ( doctor_id = ? ) 
+2017-12-25 21:31:00.900 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==> Parameters: 5(Integer)
+2017-12-25 21:31:00.901 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - <==      Total: 0
+2017-12-25 21:31:00.902 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, operation_content, patient_id, evaluate_date from sys_log WHERE ( doctor_id = ? ) 
+2017-12-25 21:31:00.902 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==> Parameters: 5(Integer)
+2017-12-25 21:31:00.903 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - <==      Total: 0
+2017-12-25 21:31:00.905 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, evaluate_content, evaluate_date, user_type, user_name from user_log WHERE ( doctor_id = ? ) 
+2017-12-25 21:31:00.905 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==> Parameters: 10(Integer)
+2017-12-25 21:31:00.909 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - <==      Total: 5
+2017-12-25 21:31:00.913 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, operation_content, patient_id, evaluate_date from sys_log WHERE ( doctor_id = ? ) 
+2017-12-25 21:31:00.914 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==> Parameters: 10(Integer)
+2017-12-25 21:31:00.916 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - <==      Total: 6
+2017-12-25 21:31:00.919 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, evaluate_content, evaluate_date, user_type, user_name from user_log WHERE ( doctor_id = ? ) 
+2017-12-25 21:31:00.919 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==> Parameters: 11(Integer)
+2017-12-25 21:31:00.920 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - <==      Total: 0
+2017-12-25 21:31:00.922 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, operation_content, patient_id, evaluate_date from sys_log WHERE ( doctor_id = ? ) 
+2017-12-25 21:31:00.922 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==> Parameters: 11(Integer)
+2017-12-25 21:31:00.923 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - <==      Total: 0
+2017-12-25 21:38:09.331 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==>  Preparing: select id, name, doctor_id, phone, registry_date, trustAttr_id, sense_aware, illness_condition, password, account, temperature, blood_pressure, heart_beat, is_in_emergency from patient where id = ? 
+2017-12-25 21:38:09.351 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==> Parameters: 10(Integer)
+2017-12-25 21:38:09.368 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - <==      Total: 1
+2017-12-25 21:38:09.372 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==>  Preparing: select id, department, demand_title, demand_workage, demand_degree from trust_attr where id = ? 
+2017-12-25 21:38:09.372 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==> Parameters: 13(Integer)
+2017-12-25 21:38:09.373 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - <==      Total: 1
+2017-12-25 21:38:09.380 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==>  Preparing: select id, name, doctor_id, phone, registry_date, trustAttr_id, sense_aware, illness_condition, password, account, temperature, blood_pressure, heart_beat, is_in_emergency from patient where id = ? 
+2017-12-25 21:38:09.381 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - ==> Parameters: 10(Integer)
+2017-12-25 21:38:09.382 [main] DEBUG xd.medicine.dao.autoMapper.PatientMapper.selectByPrimaryKey - <==      Total: 1
+2017-12-25 21:38:09.384 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==>  Preparing: select id, department, demand_title, demand_workage, demand_degree from trust_attr where id = ? 
+2017-12-25 21:38:09.384 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - ==> Parameters: 13(Integer)
+2017-12-25 21:38:09.385 [main] DEBUG xd.medicine.dao.autoMapper.TrustAttrMapper.selectByPrimaryKey - <==      Total: 1
+2017-12-25 21:38:09.420 [main] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - ==>  Preparing: select id, name, position, office_location, office_phone, registry_date, department, title, workage, degree, is_free, password, account, isIn from doctor WHERE ( department = ? ) 
+2017-12-25 21:38:09.420 [main] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - ==> Parameters: 3(Byte)
+2017-12-25 21:38:09.423 [main] DEBUG xd.medicine.dao.autoMapper.DoctorMapper.selectByExample - <==      Total: 5
+2017-12-25 21:38:09.429 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, evaluate_content, evaluate_date, user_type, user_name from user_log WHERE ( doctor_id = ? ) 
+2017-12-25 21:38:09.429 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==> Parameters: 3(Integer)
+2017-12-25 21:38:09.434 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - <==      Total: 1
+2017-12-25 21:38:09.442 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, operation_content, patient_id, evaluate_date from sys_log WHERE ( doctor_id = ? ) 
+2017-12-25 21:38:09.442 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==> Parameters: 3(Integer)
+2017-12-25 21:38:09.443 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - <==      Total: 1
+2017-12-25 21:38:09.447 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, evaluate_content, evaluate_date, user_type, user_name from user_log WHERE ( doctor_id = ? ) 
+2017-12-25 21:38:09.447 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==> Parameters: 5(Integer)
+2017-12-25 21:38:09.451 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - <==      Total: 0
+2017-12-25 21:38:09.453 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, operation_content, patient_id, evaluate_date from sys_log WHERE ( doctor_id = ? ) 
+2017-12-25 21:38:09.453 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==> Parameters: 5(Integer)
+2017-12-25 21:38:09.453 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - <==      Total: 0
+2017-12-25 21:38:09.456 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, evaluate_content, evaluate_date, user_type, user_name from user_log WHERE ( doctor_id = ? ) 
+2017-12-25 21:38:09.456 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==> Parameters: 10(Integer)
+2017-12-25 21:38:09.460 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - <==      Total: 5
+2017-12-25 21:38:09.464 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, operation_content, patient_id, evaluate_date from sys_log WHERE ( doctor_id = ? ) 
+2017-12-25 21:38:09.466 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==> Parameters: 10(Integer)
+2017-12-25 21:38:09.469 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - <==      Total: 6
+2017-12-25 21:38:09.472 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, evaluate_content, evaluate_date, user_type, user_name from user_log WHERE ( doctor_id = ? ) 
+2017-12-25 21:38:09.472 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - ==> Parameters: 11(Integer)
+2017-12-25 21:38:09.473 [main] DEBUG xd.medicine.dao.autoMapper.UserLogMapper.selectByExample - <==      Total: 0
+2017-12-25 21:38:09.475 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==>  Preparing: select id, doctor_id, doctor_name, evaluate_value, operation_content, patient_id, evaluate_date from sys_log WHERE ( doctor_id = ? ) 
+2017-12-25 21:38:09.476 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - ==> Parameters: 11(Integer)
+2017-12-25 21:38:09.477 [main] DEBUG xd.medicine.dao.autoMapper.SysLogMapper.selectByExample - <==      Total: 0

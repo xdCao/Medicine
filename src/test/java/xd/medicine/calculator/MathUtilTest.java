@@ -36,10 +36,6 @@ public class MathUtilTest {
     @Test
     public void test3(){
         List<Integer> list = sampling(100, 10);
-
         System.out.println(getMiddle(list));
     }
-
-
-
 }
