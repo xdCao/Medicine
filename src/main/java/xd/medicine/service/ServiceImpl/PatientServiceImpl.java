@@ -54,12 +54,7 @@ public class PatientServiceImpl implements PatientService{
     @Override
     public List<PatientWithTrust> getAllPatients() {
         List<Patient> patients = patientMapper.selectByExample(new PatientExample());
-        List<PatientWithTrust> patientWithTrusts=new ArrayList<>();
-        for (Patient patient:patients){
-            TrustAttr attr = trustAttrService.getTrustAttrById(patient.getTrustattrId());
-            PatientWithTrust patientWithTrust=new PatientWithTrust(patient,attr);
-            patientWithTrusts.add(patientWithTrust);
-        }
+        List<PatientWithTrust> patientWithTrusts = getPatientWithTrusts(patients);
         return patientWithTrusts;
     }
 
@@ -76,12 +71,7 @@ public class PatientServiceImpl implements PatientService{
     public PageInfo<PatientWithTrust> getPatientByPage(int page, int rows) {
         PageHelper.startPage(page,rows);
         List<Patient> patients = patientMapper.selectByExample(new PatientExample());
-        List<PatientWithTrust> patientWithTrusts=new ArrayList<>();
-        for (Patient patient:patients){
-            TrustAttr attr = trustAttrService.getTrustAttrById(patient.getTrustattrId());
-            PatientWithTrust patientWithTrust=new PatientWithTrust(patient,attr);
-            patientWithTrusts.add(patientWithTrust);
-        }
+        List<PatientWithTrust> patientWithTrusts = getPatientWithTrusts(patients);
         PageInfo<PatientWithTrust> patientPageInfo=new PageInfo<>(patientWithTrusts);
         return patientPageInfo;
     }
@@ -91,12 +81,7 @@ public class PatientServiceImpl implements PatientService{
         PatientExample patientExample=new PatientExample();
         patientExample.createCriteria().andDoctorIdEqualTo(doctorId);
         List<Patient> patients = patientMapper.selectByExample(patientExample);
-        List<PatientWithTrust> patientWithTrusts=new ArrayList<>();
-        for (Patient patient:patients){
-            TrustAttr attr = trustAttrService.getTrustAttrById(patient.getTrustattrId());
-            PatientWithTrust patientWithTrust=new PatientWithTrust(patient,attr);
-            patientWithTrusts.add(patientWithTrust);
-        }
+        List<PatientWithTrust> patientWithTrusts = getPatientWithTrusts(patients);
         return patientWithTrusts;
     }
 
@@ -112,6 +97,11 @@ public class PatientServiceImpl implements PatientService{
         PatientExample example=new PatientExample();
         example.createCriteria().andAccountEqualTo(account);
         List<Patient> patients = patientMapper.selectByExample(example);
+        List<PatientWithTrust> patientWithTrusts = getPatientWithTrusts(patients);
+        return patientWithTrusts;
+    }
+
+    private List<PatientWithTrust> getPatientWithTrusts(List<Patient> patients) {
         List<PatientWithTrust> patientWithTrusts=new ArrayList<>();
         for (Patient patient:patients){
             TrustAttr attr = trustAttrService.getTrustAttrById(patient.getTrustattrId());
@@ -127,10 +117,7 @@ public class PatientServiceImpl implements PatientService{
     }
 
 
-    /*
-     *上下文服务模块相关
-     *论文中说当感知到病人的isInEmergency为true的时候应该通知病人的可信主体集？
-     */
+
     @Transactional(rollbackFor = Exception.class)
     @Override
     public Patient updateEmergency(Integer patientId, Double temperature, Integer heartBeat, Double bloodPressure) {
@@ -162,7 +149,13 @@ public class PatientServiceImpl implements PatientService{
         return  doctorList;
     }
 
-
+    @Override
+    public List<PatientWithTrust> sensePatientInEmergency() {
+        PatientExample example=new PatientExample();
+        example.createCriteria().andSenseAwareEqualTo(true).andIsInEmergencyEqualTo(true);
+        List<Patient> patients = patientMapper.selectByExample(example);
+        return getPatientWithTrusts(patients);
+    }
 
 
 }

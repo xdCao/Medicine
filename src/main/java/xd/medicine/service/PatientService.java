@@ -44,5 +44,6 @@ public interface PatientService {
 
     List<Doctor> getSisDoctorsByPatientId(int patientId);
 
+    List<PatientWithTrust> sensePatientInEmergency();
 
 }

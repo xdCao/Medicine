@@ -55,8 +55,9 @@ public class PatientController {
 
     @RequestMapping(value = "/login",method = RequestMethod.GET)
     public FrontResult login(String account, String password, HttpServletRequest request, HttpServletResponse response){
-        List<PatientWithTrust> patientByAccount = patientService.getPatientByAccount(account);
-        if (patientByAccount!=null&&(patientByAccount.size()==1)){
+        List<PatientWithTrust> patientByAccount = null;
+        try {
+            patientByAccount = patientService.getPatientByAccount(account);
             if (password.equals(patientByAccount.get(0).getPatient().getPassword())){
                 request.getSession().setAttribute("currentUser",patientByAccount.get(0));
                 response.addCookie(new Cookie("id",patientByAccount.get(0).getPatient().getId().toString()));
@@ -64,7 +65,7 @@ public class PatientController {
             }else {
                 return new FrontResult(500,0,"密码错误");
             }
-        }else {
+        } catch (Exception e) {
             return new FrontResult(500,null,"用户名错误");
         }
     }
@@ -72,20 +73,21 @@ public class PatientController {
 
     @RequestMapping(value = "/single",method = RequestMethod.GET)
     public FrontResult getSinglePatient(@RequestParam int patientId){
-        PatientWithTrust patient = patientService.getPatientById(patientId);
-        if (patient!=null){
+        try{
+            PatientWithTrust patient = patientService.getPatientById(patientId);
             return new FrontResult(200,patient,null);
-        }else {
+        }catch (Exception e){
             return new FrontResult(500,null,"找不到该患者");
         }
     }
 
     @RequestMapping(value = "/all",method = RequestMethod.GET)
     public FrontResult getAllPatients(){
-        List<PatientWithTrust> allPatients = patientService.getAllPatients();
-        if (allPatients!=null&&allPatients.size()>0){
+        List<PatientWithTrust> allPatients = null;
+        try {
+            allPatients = patientService.getAllPatients();
             return new FrontResult(200,allPatients,null);
-        }else {
+        } catch (Exception e) {
             return new FrontResult(500,null,"患者列表为空");
         }
     }
@@ -98,10 +100,11 @@ public class PatientController {
 
     @RequestMapping(value = "/doctor",method = RequestMethod.GET)
     public FrontResult getPatientByDoctor(@RequestParam int doctorId){
-        List<PatientWithTrust> patientsByDoctor = patientService.getPatientsByDoctor(doctorId);
-        if (patientsByDoctor!=null&&patientsByDoctor.size()>0){
+        List<PatientWithTrust> patientsByDoctor = null;
+        try {
+            patientsByDoctor = patientService.getPatientsByDoctor(doctorId);
             return new FrontResult(200,patientsByDoctor,null);
-        }else {
+        } catch (Exception e) {
             return new FrontResult(500,null,"该医生没有病患");
         }
     }
@@ -109,10 +112,16 @@ public class PatientController {
     @Transactional(rollbackFor = Exception.class)
     @RequestMapping(value = "/delete",method = RequestMethod.POST)
     public FrontResult deletePatient(@RequestParam int patientId){
-        PatientWithTrust patientById = patientService.getPatientById(patientId);
-        trustAttrService.deleteById(patientById.getPatient().getTrustattrId());
-        patientService.deletePatient(patientId);
-        return new FrontResult(200,null,null);
+        PatientWithTrust patientById = null;
+        try {
+            patientById = patientService.getPatientById(patientId);
+            trustAttrService.deleteById(patientById.getPatient().getTrustattrId());
+            patientService.deletePatient(patientId);
+            return new FrontResult(200,null,null);
+        } catch (Exception e) {
+            return new FrontResult(500,null,"删除病人出错");
+        }
+
     }
 
     @RequestMapping(value = "/update",method = RequestMethod.POST)
@@ -122,14 +131,20 @@ public class PatientController {
                                  @RequestParam String phone,
                                  @RequestParam boolean senseAware,
                                  @RequestParam String illnessCondition){
-        Patient patient=new Patient();
-        patient.setId(id);
-        patient.setDoctorId(doctorId);
-        patient.setPhone(phone);
-        patient.setSenseAware(senseAware);
-        patient.setIllnessCondition(illnessCondition);
-        Integer integer = patientService.updatePatient(patient);
-        return new FrontResult(200,patient,null);
+        Patient patient= null;
+        try {
+            patient = new Patient();
+            patient.setId(id);
+            patient.setDoctorId(doctorId);
+            patient.setPhone(phone);
+            patient.setSenseAware(senseAware);
+            patient.setIllnessCondition(illnessCondition);
+            patientService.updatePatient(patient);
+            return new FrontResult(200,patient,null);
+        } catch (Exception e) {
+            return new FrontResult(500,null,"更新病人失败");
+        }
+
     }
 
     @RequestMapping(value = "/updateEmerg",method = RequestMethod.POST)
@@ -176,35 +191,41 @@ public class PatientController {
         if (countPatientByAccount>0){
             return new FrontResult(500,null,"该账户名已存在");
         }
+        TrustAttr trustAttr= null;
+        Patient patient= null;
 
+        try {
         /*
         病人注册时将其信任信息与个人信息分两部分插入
         因此在注册时先提交信任信息并将trustAttrId返回给前端，再作为参数进行病人注册
          */
-        TrustAttr trustAttr=new TrustAttr();
-        trustAttr.setDepartment(Byte.valueOf(department));
-        trustAttr.setDemandTitle(Byte.valueOf(demandTitle));
-        trustAttr.setDemandWorkage(Byte.valueOf(demandWorkage));
-        trustAttr.setDemandDegree(Byte.valueOf(demandDegree));
-        trustAttrService.insertTrustAttr(trustAttr);
+            trustAttr = new TrustAttr();
+            trustAttr.setDepartment(Byte.valueOf(department));
+            trustAttr.setDemandTitle(Byte.valueOf(demandTitle));
+            trustAttr.setDemandWorkage(Byte.valueOf(demandWorkage));
+            trustAttr.setDemandDegree(Byte.valueOf(demandDegree));
+            trustAttrService.insertTrustAttr(trustAttr);
 
 
-        Patient patient=new Patient();
-        patient.setName(name);
-        patient.setAccount(account);
-        patient.setPassword(password);
-        patient.setTrustattrId(trustAttr.getId());
-        patient.setDoctorId(doctorId);
-        patient.setPhone(phone);
-        patient.setSenseAware(senseAware);
-        patient.setIllnessCondition(illnessCondition);
-        patient.setRegistryDate(new Date());
-        patient.setTemperature(0.0);
-        patient.setBloodPressure(0.0);
-        patient.setHeartBeat(0);
-        patient.setIsInEmergency(false);
-        patientService.insertPatient(patient);
-        return new FrontResult(200,new PatientWithTrust(patient,trustAttr),null);
+            patient = new Patient();
+            patient.setName(name);
+            patient.setAccount(account);
+            patient.setPassword(password);
+            patient.setTrustattrId(trustAttr.getId());
+            patient.setDoctorId(doctorId);
+            patient.setPhone(phone);
+            patient.setSenseAware(senseAware);
+            patient.setIllnessCondition(illnessCondition);
+            patient.setRegistryDate(new Date());
+            patient.setTemperature(0.0);
+            patient.setBloodPressure(0.0);
+            patient.setHeartBeat(0);
+            patient.setIsInEmergency(false);
+            patientService.insertPatient(patient);
+            return new FrontResult(200,new PatientWithTrust(patient,trustAttr),null);
+        } catch (Exception e) {
+            return new FrontResult(500,null,"注册失败");
+        }
     }
 
 
