@@ -8,6 +8,7 @@ import xd.medicine.service.CommentService;
 import xd.medicine.service.DoctorService;
 import xd.medicine.service.PatientService;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -75,9 +76,16 @@ public class TrustCalculator {
         if(userLogList.size()< HBTN){
             System.out.println("error!");
         }
+        List<Float> samplingAveValue = new ArrayList<Float>(); //用来存放每次抽样后计算出来的平均值
         for(int i=0; i<HBTM; i++){
-
+            float ave = 0;
+            List<Integer> list = sampling(userLogList.size(),HBTN); //进行抽样
+            for(int j=0 ; j< HBTN; j++){
+                ave += (float)((userLogList.get(list.get(j)).getEvaluateValue())&0xFF)/100; //评价值为0-100，计算时以1为最大值进行量化
+            }
+            samplingAveValue.add(ave/HBTN);
         }
+        
 
 
     }
