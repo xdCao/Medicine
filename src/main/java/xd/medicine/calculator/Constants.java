@@ -1,0 +1,14 @@
+package xd.medicine.calculator;
+
+/**
+ * created by liubotao
+ */
+public final class Constants {
+    private Constants(){
+    }
+
+    static final float MTALPHA = (float) 1/12; //计算MT时，权值的随机波动参数
+    static final float HBTM = 5; //计算HBT时，抽样的次数
+    static final int HBTN = 5; //计算HBT时，每次抽样的样本个数
+    static final float DIFFERJ = (float) 1/2; //计算HBT时，抽样样本值和抽样平均值的最大平均差值
+}
