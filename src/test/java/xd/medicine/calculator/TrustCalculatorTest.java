@@ -26,9 +26,10 @@ public class TrustCalculatorTest {
         //TrustCalculator trustCalculator = new TrustCalculator();
         //int m= trustCalculator.myTest(11);
         //System.out.println(m);
-        trustCalculator.calMts(10);
+        trustCalculator.calTrust(10);
 
     }
+
 
 
 }

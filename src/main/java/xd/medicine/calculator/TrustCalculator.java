@@ -3,6 +3,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import xd.medicine.entity.bo.Doctor;
 import xd.medicine.entity.bo.Patient;
+import xd.medicine.entity.bo.SysLog;
 import xd.medicine.entity.bo.UserLog;
 import xd.medicine.entity.dto.PatientWithTrust;
 import xd.medicine.service.CommentService;
@@ -32,26 +33,35 @@ public class TrustCalculator {
 
     /*
     计算匹配可信度MT
-    输入一个病人id，输出匹配到的主体集及其匹配可信度，暂时仅打印出来
+    输入一个病人id，输出匹配到的主体集及其匹配可信度、历史行为可信度、总体可信度，暂时仅打印出来
      */
-    public void calMts( int patientId ) {
-        float mt;
+    public void calTrust( int patientId ) {
+        float mt,hbt,trust;
         PatientWithTrust patient = patientService.getPatientById(patientId);
         List<Doctor> doctorList = patientService.getSisDoctorsByPatientId(patientId);  //获得满足科室要求的所有医生，即候选主体集合SIS
         for (Doctor doctor : doctorList) {
             System.out.print(doctor.getId() + "---");
             System.out.print(doctor.getName() + "---");
             if (patient.getPatient().getDoctorId() == doctor.getId()) {
-                /* 如果是主治医生，匹配可信度直接为1 */
+                /* 如果是主治医生，所有可信度直接为1 */
                 mt = 1;
+                hbt = 1;
+                trust = 1;
             } else {
                 mt = calDocMt(doctor);
+                hbt = calDocHbt(doctor);
+                trust = mt*TRUSTU + hbt*(1-TRUSTU);
             }
             System.out.print("MT:" + mt + "--");
+            System.out.println("HBT:"+hbt+"--");
+            System.out.println("TRUST:"+trust+"--");
             System.out.println("free?:" + (doctor.getIsFree() ? "yes" : "no"));
         }
     }
 
+    /*
+    *给定一个医生，计算MT
+     */
     public float calDocMt(Doctor doctor){
         float mt = 0;
         float[] wi = new float[4];
@@ -72,22 +82,62 @@ public class TrustCalculator {
         return mt;
     }
 
-    public void calDocHbt(Doctor doctor){
+    /*
+    *给定一个医生，通过用户日志计算其RCM
+    */
+    public float calDocRCM(Doctor doctor){
         List<UserLog> userLogList = commentService.getAllUserLogsByDoctor(doctor.getId());
         if(userLogList.size()< HBTN){
-            System.out.println("error!");
+            System.out.println("ERROR！！样本数量不足！！!");
+            return -1;
         }
+
         List<Float> samplingAveValue = new ArrayList<Float>(); //用来存放每次抽样后计算出来的平均值
         for(int i=0; i<HBTM; i++){
-            float ave = 0;
+            int sum = 0;
             List<Integer> list = sampling(userLogList.size(),HBTN); //进行抽样
             for(int j=0 ; j< HBTN; j++){
-                ave += (float)((userLogList.get(list.get(j)).getEvaluateValue())&0xFF)/100; //评价值为0-100，计算时以1为最大值进行量化
+                sum += (userLogList.get(list.get(j)).getEvaluateValue())&0xFF;
             }
-            samplingAveValue.add(ave/HBTN);
+            samplingAveValue.add((float)sum/HBTN/100); //评价值为0-100，计算时以1为最大值进行量化
         }
-        
 
-
+        /* 已经获得所有抽样值，下面计算HBT */
+        float deno = 0; float rcm = 0;
+        /* 先计算公式中的分母 */
+        for(float i : samplingAveValue){
+            deno += 1-i;
+        }
+        for(float i : samplingAveValue){
+            rcm += i* (1-i) / deno;
+        }
+        return rcm;
     }
+
+
+    /*
+    *给定一个医生，通过系统日志计算其REP
+    */
+    public float calDocREP(Doctor doctor){
+        List<SysLog> sysLogList = commentService.getAllSysLogsByDoctor(doctor.getId());
+        List<Integer> list = new ArrayList<>(sysLogList.size());
+        for(SysLog sysLog : sysLogList){
+            list.add(sysLog.getEvaluateValue()&0xFF);
+        }
+        return getMiddle(list)/100;
+    }
+
+    /*
+    *给定一个医生，计算其HBT
+     */
+    public float calDocHbt(Doctor doctor){
+        float rcm = calDocRCM(doctor);
+        float rep = calDocREP(doctor);
+        if(rcm<0||rcm>1||rep<0||rep>1){
+            System.out.println("ERROR RCM OR REP");
+            return -1;
+        }
+        return rcm<rep?rcm:rep;     //HBT = min(RCM,REP)
+    }
+
 }

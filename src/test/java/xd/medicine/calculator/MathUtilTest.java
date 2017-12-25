@@ -2,6 +2,7 @@ package xd.medicine.calculator;
 
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import static xd.medicine.utils.MathUtils.*;
@@ -24,11 +25,21 @@ public class MathUtilTest {
     @Test
     public void test2(){
         for(int i = 0; i<10; i++) {
-            List<Integer> lists = sampling(10000, 5);
-            for (int num : lists) {
+            List<Integer> list = sampling(10000, 5);
+            for (int num : list) {
                 System.out.print(num + " ");
             }
             System.out.println();
         }
     }
+
+    @Test
+    public void test3(){
+        List<Integer> list = sampling(100, 10);
+
+        System.out.println(getMiddle(list));
+    }
+
+
+
 }

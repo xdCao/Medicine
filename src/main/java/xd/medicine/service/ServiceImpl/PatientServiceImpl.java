@@ -153,11 +153,12 @@ public class PatientServiceImpl implements PatientService{
         return true;
     }
 
+    /* 获得满足科室要求的所有医生，即候选主体集合SIS */
     @Override
     public List<Doctor> getSisDoctorsByPatientId(int patientId){
         PatientWithTrust patient = getPatientById(patientId);
         TrustAttr trustAttr = patient.getTrustAttr();
-        List<Doctor> doctorList = doctorService.getDoctorByDepartment(trustAttr.getDepartment());  //获得满足科室要求的所有医生，即候选主体集合SIS
+        List<Doctor> doctorList = doctorService.getDoctorByDepartment(trustAttr.getDepartment());
         return  doctorList;
     }
 

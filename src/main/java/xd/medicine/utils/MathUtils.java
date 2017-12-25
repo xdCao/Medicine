@@ -1,9 +1,7 @@
 package xd.medicine.utils;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
+import java.lang.reflect.Array;
+import java.util.*;
 
 /**
  * created by liubotao
@@ -33,5 +31,15 @@ public class MathUtils {
         Arrays.sort(results);
         List<Integer> list = new ArrayList<Integer>(Arrays.asList(results));
         return list;
+    }
+
+    /* 获得中位数 */
+    public static float getMiddle(List<Integer> arr){
+        Collections.sort(arr);
+        if(arr.size()%2==0){
+            return (float) (arr.get(arr.size()/2)+arr.get(arr.size()/2-1))/2;
+        }else{
+            return (float) arr.get(arr.size()/2);
+        }
     }
 }
