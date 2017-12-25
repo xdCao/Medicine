@@ -27,10 +27,14 @@ public class CommentController {
 
     @RequestMapping(value = "/user/add",method = RequestMethod.POST)
     public FrontResult commentDoctor(Integer doctorId,
+                                     Integer userType,
+                                     String userName,
                                      String doctorName,
                                      String evaluateValue,
                                      String evaluateContent){
         UserLog userLog=new UserLog();
+        userLog.setUserType(userType);
+        userLog.setUserName(userName);
         userLog.setDoctorId(doctorId);
         userLog.setDoctorName(doctorName);
         userLog.setEvaluateValue(Byte.valueOf(evaluateValue));
@@ -43,6 +47,7 @@ public class CommentController {
             return new FrontResult(500,null,e.getMessage());
         }
     }
+
 
 
     @RequestMapping(value = "/user/delete",method = RequestMethod.POST)
@@ -64,6 +69,16 @@ public class CommentController {
             return new FrontResult(200,userLogs,null);
         }else {
             return new FrontResult(500,null,"该医生暂时还没有评价");
+        }
+    }
+
+    @RequestMapping(value = "/user/type",method = RequestMethod.GET)
+    public FrontResult getCommentsByType(Integer doctorId,Integer userType){
+        List<UserLog> userLogsByType = commentService.getUserLogsByType(doctorId, userType);
+        if (userLogsByType!=null&&userLogsByType.size()>0){
+            return new FrontResult(200,userLogsByType,null);
+        }else {
+            return new FrontResult(500,null,"暂无该类评价");
         }
     }
 

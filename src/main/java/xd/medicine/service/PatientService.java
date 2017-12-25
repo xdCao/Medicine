@@ -42,4 +42,6 @@ public interface PatientService {
     Integer count();
 
     List<Doctor> getSisDoctorsByPatientId(int patientId);
+
+
 }

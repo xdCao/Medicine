@@ -24,4 +24,5 @@ public interface CommentService {
     void deleteSysLog(int sysLogId);
 
 
+    List<UserLog> getUserLogsByType(Integer doctorId, Integer userType);
 }

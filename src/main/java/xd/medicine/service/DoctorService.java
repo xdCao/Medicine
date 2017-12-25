@@ -35,5 +35,8 @@ public interface DoctorService {
 
     Integer count();
 
+    List<Doctor> getDoctorsByDepartment(Byte department);
+
+    List<Doctor> getSisDoctorsByPatientId(int patientId);
 
 }

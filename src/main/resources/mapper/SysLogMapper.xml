@@ -101,20 +101,23 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="xd.medicine.entity.bo.SysLog" useGeneratedKeys="true" keyProperty="id">
-    insert into sys_log (id, doctor_id, doctor_name, 
-      evaluate_value, operation_content, patient_id, 
-      evaluate_date)
-    values (#{id,jdbcType=INTEGER}, #{doctorId,jdbcType=INTEGER}, #{doctorName,jdbcType=VARCHAR}, 
-      #{evaluateValue,jdbcType=TINYINT}, #{operationContent,jdbcType=VARCHAR}, #{patientId,jdbcType=INTEGER}, 
-      #{evaluateDate,jdbcType=DATE})
+  <insert id="insert" parameterType="xd.medicine.entity.bo.SysLog" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sys_log (doctor_id, doctor_name, evaluate_value, 
+      operation_content, patient_id, evaluate_date
+      )
+    values (#{doctorId,jdbcType=INTEGER}, #{doctorName,jdbcType=VARCHAR}, #{evaluateValue,jdbcType=TINYINT}, 
+      #{operationContent,jdbcType=VARCHAR}, #{patientId,jdbcType=INTEGER}, #{evaluateDate,jdbcType=DATE}
+      )
   </insert>
-  <insert id="insertSelective" parameterType="xd.medicine.entity.bo.SysLog" useGeneratedKeys="true" keyProperty="id">
+  <insert id="insertSelective" parameterType="xd.medicine.entity.bo.SysLog" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
     insert into sys_log
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        id,
-      </if>
       <if test="doctorId != null" >
         doctor_id,
       </if>
@@ -135,9 +138,6 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        #{id,jdbcType=INTEGER},
-      </if>
       <if test="doctorId != null" >
         #{doctorId,jdbcType=INTEGER},
       </if>

@@ -109,24 +109,27 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="xd.medicine.entity.bo.Patient" useGeneratedKeys="true" keyProperty="id">
-    insert into patient (id, name, doctor_id, 
-      phone, registry_date, trustAttr_id, 
-      sense_aware, illness_condition, password, 
-      account, temperature, blood_pressure, 
-      heart_beat, is_in_emergency)
-    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{doctorId,jdbcType=INTEGER}, 
-      #{phone,jdbcType=CHAR}, #{registryDate,jdbcType=DATE}, #{trustattrId,jdbcType=INTEGER}, 
-      #{senseAware,jdbcType=BIT}, #{illnessCondition,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
-      #{account,jdbcType=VARCHAR}, #{temperature,jdbcType=DOUBLE}, #{bloodPressure,jdbcType=DOUBLE}, 
-      #{heartBeat,jdbcType=INTEGER}, #{isInEmergency,jdbcType=BIT})
+  <insert id="insert" parameterType="xd.medicine.entity.bo.Patient" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into patient (name, doctor_id, phone, 
+      registry_date, trustAttr_id, sense_aware, 
+      illness_condition, password, account, 
+      temperature, blood_pressure, heart_beat, 
+      is_in_emergency)
+    values (#{name,jdbcType=VARCHAR}, #{doctorId,jdbcType=INTEGER}, #{phone,jdbcType=CHAR}, 
+      #{registryDate,jdbcType=DATE}, #{trustattrId,jdbcType=INTEGER}, #{senseAware,jdbcType=BIT}, 
+      #{illnessCondition,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{account,jdbcType=VARCHAR}, 
+      #{temperature,jdbcType=DOUBLE}, #{bloodPressure,jdbcType=DOUBLE}, #{heartBeat,jdbcType=INTEGER}, 
+      #{isInEmergency,jdbcType=BIT})
   </insert>
-  <insert id="insertSelective" parameterType="xd.medicine.entity.bo.Patient" useGeneratedKeys="true" keyProperty="id">
+  <insert id="insertSelective" parameterType="xd.medicine.entity.bo.Patient" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
     insert into patient
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        id,
-      </if>
       <if test="name != null" >
         name,
       </if>
@@ -168,9 +171,6 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        #{id,jdbcType=INTEGER},
-      </if>
       <if test="name != null" >
         #{name,jdbcType=VARCHAR},
       </if>

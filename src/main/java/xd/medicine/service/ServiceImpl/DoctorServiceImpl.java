@@ -43,6 +43,11 @@ public class DoctorServiceImpl implements DoctorService{
     public static final int GROUP_LEADER=4;
     public static final int DEAN=5;
 
+    @Autowired
+    private PatientService patientService;
+
+    @Autowired
+    private TrustAttrService trustAttrService;
 
     @Autowired
     private DoctorMapper doctorMapper;
@@ -116,6 +121,19 @@ public class DoctorServiceImpl implements DoctorService{
     }
 
 
+    @Override
+    public List<Doctor> getDoctorsByDepartment(Byte department) {
+        DoctorExample example=new DoctorExample();
+        example.createCriteria().andDepartmentEqualTo(department);
+        return doctorMapper.selectByExample(example);
+    }
 
+    @Override
+    public List<Doctor> getSisDoctorsByPatientId(int patientId){
+        Patient patient = patientService.getPatientById(patientId);
+        TrustAttr trustAttr = trustAttrService.getTrustAttrById(patient.getTrustattrId());
+        List<Doctor> doctorList = getDoctorByDepartment(trustAttr.getDepartment());  //获得满足科室要求的所有医生，即候选主体集合SIS
+        return  doctorList;
+    }
 
 }

@@ -28,7 +28,7 @@ import java.util.List;
  * 6.分页查询医生
  * 7.更新医生信息
  * 8.删除医生
- * todo     可行主体集
+ * 9.查询对应科室的医生以生成可行主体集
  */
 @CrossOrigin(origins = "*",maxAge = 3600)
 @RequestMapping("/doctor")
@@ -168,6 +168,16 @@ public class DoctorController {
         return new FrontResult(200,null,null);
     }
 
+    @RequestMapping(value = "/department",method = RequestMethod.GET)
+    public FrontResult getDoctorByDepartment(String department){
+
+        List<Doctor> doctorByDepartment = doctorService.getDoctorByDepartment(Byte.valueOf(department));
+        if (doctorByDepartment!=null&&doctorByDepartment.size()>0){
+            return new FrontResult(200,doctorByDepartment,null);
+        }else {
+            return new FrontResult(500,null,"该科室没有医生");
+        }
+    }
 
 
 }

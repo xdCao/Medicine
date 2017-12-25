@@ -63,4 +63,11 @@ public class CommentServiceImpl implements CommentService {
     public void deleteSysLog(int sysLogId) {
         sysLogMapper.deleteByPrimaryKey(sysLogId);
     }
+
+    @Override
+    public List<UserLog> getUserLogsByType(Integer doctorId, Integer userType) {
+        UserLogExample example=new UserLogExample();
+        example.createCriteria().andDoctorIdEqualTo(doctorId).andUserTypeEqualTo(userType);
+        return userLogMapper.selectByExample(example);
+    }
 }

@@ -15,6 +15,10 @@ public class UserLog {
 
     private Date evaluateDate;
 
+    private Integer userType;
+
+    private String userName;
+
     public Integer getId() {
         return id;
     }
@@ -61,5 +65,21 @@ public class UserLog {
 
     public void setEvaluateDate(Date evaluateDate) {
         this.evaluateDate = evaluateDate;
+    }
+
+    public Integer getUserType() {
+        return userType;
+    }
+
+    public void setUserType(Integer userType) {
+        this.userType = userType;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName == null ? null : userName.trim();
     }
 }

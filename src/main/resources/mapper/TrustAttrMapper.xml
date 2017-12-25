@@ -99,18 +99,21 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="xd.medicine.entity.bo.TrustAttr" useGeneratedKeys="true" keyProperty="id">
-    insert into trust_attr (id, department, demand_title, 
-      demand_workage, demand_degree)
-    values (#{id,jdbcType=INTEGER}, #{department,jdbcType=TINYINT}, #{demandTitle,jdbcType=TINYINT}, 
-      #{demandWorkage,jdbcType=TINYINT}, #{demandDegree,jdbcType=TINYINT})
+  <insert id="insert" parameterType="xd.medicine.entity.bo.TrustAttr" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into trust_attr (department, demand_title, demand_workage, 
+      demand_degree)
+    values (#{department,jdbcType=TINYINT}, #{demandTitle,jdbcType=TINYINT}, #{demandWorkage,jdbcType=TINYINT}, 
+      #{demandDegree,jdbcType=TINYINT})
   </insert>
-  <insert id="insertSelective" parameterType="xd.medicine.entity.bo.TrustAttr" useGeneratedKeys="true" keyProperty="id">
+  <insert id="insertSelective" parameterType="xd.medicine.entity.bo.TrustAttr" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
     insert into trust_attr
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        id,
-      </if>
       <if test="department != null" >
         department,
       </if>
@@ -125,9 +128,6 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        #{id,jdbcType=INTEGER},
-      </if>
       <if test="department != null" >
         #{department,jdbcType=TINYINT},
       </if>

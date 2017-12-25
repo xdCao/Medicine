@@ -8,6 +8,8 @@
     <result column="evaluate_value" property="evaluateValue" jdbcType="TINYINT" />
     <result column="evaluate_content" property="evaluateContent" jdbcType="VARCHAR" />
     <result column="evaluate_date" property="evaluateDate" jdbcType="DATE" />
+    <result column="user_type" property="userType" jdbcType="INTEGER" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -68,7 +70,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, doctor_id, doctor_name, evaluate_value, evaluate_content, evaluate_date
+    id, doctor_id, doctor_name, evaluate_value, evaluate_content, evaluate_date, user_type, 
+    user_name
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="xd.medicine.entity.bo.UserLogExample" >
     select
@@ -100,20 +103,23 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="xd.medicine.entity.bo.UserLog" useGeneratedKeys="true" keyProperty="id">
-    insert into user_log (id, doctor_id, doctor_name, 
-      evaluate_value, evaluate_content, evaluate_date
-      )
-    values (#{id,jdbcType=INTEGER}, #{doctorId,jdbcType=INTEGER}, #{doctorName,jdbcType=VARCHAR}, 
-      #{evaluateValue,jdbcType=TINYINT}, #{evaluateContent,jdbcType=VARCHAR}, #{evaluateDate,jdbcType=DATE}
-      )
+  <insert id="insert" parameterType="xd.medicine.entity.bo.UserLog" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into user_log (doctor_id, doctor_name, evaluate_value, 
+      evaluate_content, evaluate_date, user_type, 
+      user_name)
+    values (#{doctorId,jdbcType=INTEGER}, #{doctorName,jdbcType=VARCHAR}, #{evaluateValue,jdbcType=TINYINT}, 
+      #{evaluateContent,jdbcType=VARCHAR}, #{evaluateDate,jdbcType=DATE}, #{userType,jdbcType=INTEGER}, 
+      #{userName,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="xd.medicine.entity.bo.UserLog" useGeneratedKeys="true" keyProperty="id">
+  <insert id="insertSelective" parameterType="xd.medicine.entity.bo.UserLog" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
     insert into user_log
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        id,
-      </if>
       <if test="doctorId != null" >
         doctor_id,
       </if>
@@ -129,11 +135,14 @@
       <if test="evaluateDate != null" >
         evaluate_date,
       </if>
+      <if test="userType != null" >
+        user_type,
+      </if>
+      <if test="userName != null" >
+        user_name,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        #{id,jdbcType=INTEGER},
-      </if>
       <if test="doctorId != null" >
         #{doctorId,jdbcType=INTEGER},
       </if>
@@ -148,6 +157,12 @@
       </if>
       <if test="evaluateDate != null" >
         #{evaluateDate,jdbcType=DATE},
+      </if>
+      <if test="userType != null" >
+        #{userType,jdbcType=INTEGER},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -178,6 +193,12 @@
       <if test="record.evaluateDate != null" >
         evaluate_date = #{record.evaluateDate,jdbcType=DATE},
       </if>
+      <if test="record.userType != null" >
+        user_type = #{record.userType,jdbcType=INTEGER},
+      </if>
+      <if test="record.userName != null" >
+        user_name = #{record.userName,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -190,7 +211,9 @@
       doctor_name = #{record.doctorName,jdbcType=VARCHAR},
       evaluate_value = #{record.evaluateValue,jdbcType=TINYINT},
       evaluate_content = #{record.evaluateContent,jdbcType=VARCHAR},
-      evaluate_date = #{record.evaluateDate,jdbcType=DATE}
+      evaluate_date = #{record.evaluateDate,jdbcType=DATE},
+      user_type = #{record.userType,jdbcType=INTEGER},
+      user_name = #{record.userName,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -213,6 +236,12 @@
       <if test="evaluateDate != null" >
         evaluate_date = #{evaluateDate,jdbcType=DATE},
       </if>
+      <if test="userType != null" >
+        user_type = #{userType,jdbcType=INTEGER},
+      </if>
+      <if test="userName != null" >
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -222,7 +251,9 @@
       doctor_name = #{doctorName,jdbcType=VARCHAR},
       evaluate_value = #{evaluateValue,jdbcType=TINYINT},
       evaluate_content = #{evaluateContent,jdbcType=VARCHAR},
-      evaluate_date = #{evaluateDate,jdbcType=DATE}
+      evaluate_date = #{evaluateDate,jdbcType=DATE},
+      user_type = #{userType,jdbcType=INTEGER},
+      user_name = #{userName,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

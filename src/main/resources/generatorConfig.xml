@@ -5,6 +5,7 @@
 
 <generatorConfiguration>
 
+
     <!--
     出现错误：Caused by: java.lang.ClassNotFoundException: com.mysql.jdbc.Driver
     解决办法：将本地的MAVEN仓库中的mysql驱动引入进来
@@ -34,6 +35,7 @@
         <!--指定sql映射文件生成的位置 -->
         <sqlMapGenerator targetPackage="mapper" targetProject="src/main/resources">
             <property name="enableSubPackages" value="true"/>
+         
         </sqlMapGenerator>
         <!-- 指定dao接口生成的位置，mapper接口 -->
         <javaClientGenerator type="XMLMAPPER" targetPackage="xd.medicine.dao.autoMapper" targetProject="src/main/java">
@@ -41,13 +43,27 @@
         </javaClientGenerator>
 
         <!-- table表生成对应的DoaminObject -->
-        <!--<table tableName="doctor" domainObjectName="Doctor"></table>-->
-        <!--<table tableName="others" domainObjectName="Others"></table>-->
-        <!--<table tableName="patient" domainObjectName="Patient"></table>-->
-        <!--<table tableName="trust_attr" domainObjectName="TrustAttr"></table>-->
-        <!--<table tableName="sys_log" domainObjectName="SysLog"></table>-->
-        <!--<table tableName="user_log" domainObjectName="UserLog"></table>-->
-        <!--<table tableName="admin_user" domainObjectName="AdminUser"></table>-->
+        <table tableName="doctor" domainObjectName="Doctor">
+            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+        </table>
+        <table tableName="others" domainObjectName="Others">
+            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+        </table>
+        <table tableName="patient" domainObjectName="Patient">
+            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+        </table>
+        <table tableName="trust_attr" domainObjectName="TrustAttr">
+            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+        </table>
+        <table tableName="sys_log" domainObjectName="SysLog">
+            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+        </table>
+        <table tableName="user_log" domainObjectName="UserLog">
+            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+        </table>
+        <table tableName="admin_user" domainObjectName="AdminUser">
+            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+        </table>
 
 
     </context>
