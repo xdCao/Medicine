@@ -10,15 +10,10 @@ Target Server Type    : MYSQL
 Target Server Version : 50624
 File Encoding         : 65001
 
-Date: 2017-12-24 17:43:27
+Date: 2017-12-25 19:14:38
 */
 
-SET character_set_client =utf8;
-SET character_set_results = utf8;
-SET character_set_connection = utf8;
 SET FOREIGN_KEY_CHECKS=0;
-
-
 
 -- ----------------------------
 -- Table structure for admin_user
@@ -116,6 +111,7 @@ CREATE TABLE `patient` (
   `blood_pressure` double DEFAULT NULL,
   `heart_beat` int(11) DEFAULT NULL,
   `is_in_emergency` tinyint(1) DEFAULT NULL,
+  `emergTime` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `fk_trust_attr` (`trustAttr_id`),
   KEY `fk_doctor` (`doctor_id`),
@@ -126,10 +122,10 @@ CREATE TABLE `patient` (
 -- ----------------------------
 -- Records of patient
 -- ----------------------------
-INSERT INTO `patient` VALUES ('11', '张三', '2', '13338926199', '2017-12-23', '14', '0', '没有特殊病例', '111', '111', '37.5', '100', '80', '0');
-INSERT INTO `patient` VALUES ('13', '赵四', '2', '17765478998', '2017-12-23', '15', '0', 'nothing', '111', '112', '0', '0', '0', '0');
-INSERT INTO `patient` VALUES ('14', '王五', '5', '17765478998', '2017-12-25', '16', '0', 'nothing', '111', '113', '0', '0', '0', '0');
-INSERT INTO `patient` VALUES ('10', '测试MT的病人', '9', '17765478996', '2017-12-20', '13', '0', 'nothing', '111', 'hhh','0', '0', '0', '0');
+INSERT INTO `patient` VALUES ('10', '测试MT的病人', '9', '17765478996', '2017-12-20', '13', '0', 'nothing', '111', 'hhh', '0', '0', '0', '0', null);
+INSERT INTO `patient` VALUES ('11', '张三', '2', '13338926199', '2017-12-23', '14', '0', '没有特殊病例', '111', '111', '37.5', '100', '80', '0', null);
+INSERT INTO `patient` VALUES ('13', '赵四', '2', '17765478998', '2017-12-23', '15', '0', 'nothing', '111', '112', '0', '0', '0', '0', null);
+INSERT INTO `patient` VALUES ('14', '王五', '5', '17765478998', '2017-12-25', '16', '0', 'nothing', '111', '113', '0', '0', '0', '0', null);
 
 -- ----------------------------
 -- Table structure for sys_log
@@ -169,12 +165,12 @@ CREATE TABLE `trust_attr` (
 -- ----------------------------
 -- Records of trust_attr
 -- ----------------------------
-INSERT INTO `trust_attr` VALUES ('14', '4', '3', '2', '1');
-INSERT INTO `trust_attr` VALUES ('15', '1', '2', '3', '3');
-INSERT INTO `trust_attr` VALUES ('16', '1', '2', '3', '3');
 INSERT INTO `trust_attr` VALUES ('11', '1', '2', '3', '3');
 INSERT INTO `trust_attr` VALUES ('12', '1', '2', '3', '3');
 INSERT INTO `trust_attr` VALUES ('13', '3', '2', '3', '3');
+INSERT INTO `trust_attr` VALUES ('14', '4', '3', '2', '1');
+INSERT INTO `trust_attr` VALUES ('15', '1', '2', '3', '3');
+INSERT INTO `trust_attr` VALUES ('16', '1', '2', '3', '3');
 
 -- ----------------------------
 -- Table structure for user_log
