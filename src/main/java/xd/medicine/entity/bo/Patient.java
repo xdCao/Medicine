@@ -31,6 +31,8 @@ public class Patient {
 
     private Boolean isInEmergency;
 
+    private Date emergtime;
+
     public Integer getId() {
         return id;
     }
@@ -141,5 +143,13 @@ public class Patient {
 
     public void setIsInEmergency(Boolean isInEmergency) {
         this.isInEmergency = isInEmergency;
+    }
+
+    public Date getEmergtime() {
+        return emergtime;
+    }
+
+    public void setEmergtime(Date emergtime) {
+        this.emergtime = emergtime;
     }
 }

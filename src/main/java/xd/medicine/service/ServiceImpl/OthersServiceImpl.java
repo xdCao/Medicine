@@ -63,5 +63,10 @@ public class OthersServiceImpl implements OthersService {
         example.createCriteria().andAccountEqualTo(account);
         return othersMapper.selectByExample(example);
     }
+
+    @Override
+    public Integer count() {
+        return othersMapper.countByExample(new OthersExample());
+    }
 }
 

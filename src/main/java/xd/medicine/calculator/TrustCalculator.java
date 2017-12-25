@@ -138,6 +138,7 @@ public class TrustCalculator {
             return -1;
         }
         return rcm<rep?rcm:rep;     //HBT = min(RCM,REP)
+
     }
 
 }

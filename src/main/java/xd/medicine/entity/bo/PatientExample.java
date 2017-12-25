@@ -1021,6 +1021,66 @@ public class PatientExample {
             addCriterion("is_in_emergency not between", value1, value2, "isInEmergency");
             return (Criteria) this;
         }
+
+        public Criteria andEmergtimeIsNull() {
+            addCriterion("emergTime is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andEmergtimeIsNotNull() {
+            addCriterion("emergTime is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andEmergtimeEqualTo(Date value) {
+            addCriterion("emergTime =", value, "emergtime");
+            return (Criteria) this;
+        }
+
+        public Criteria andEmergtimeNotEqualTo(Date value) {
+            addCriterion("emergTime <>", value, "emergtime");
+            return (Criteria) this;
+        }
+
+        public Criteria andEmergtimeGreaterThan(Date value) {
+            addCriterion("emergTime >", value, "emergtime");
+            return (Criteria) this;
+        }
+
+        public Criteria andEmergtimeGreaterThanOrEqualTo(Date value) {
+            addCriterion("emergTime >=", value, "emergtime");
+            return (Criteria) this;
+        }
+
+        public Criteria andEmergtimeLessThan(Date value) {
+            addCriterion("emergTime <", value, "emergtime");
+            return (Criteria) this;
+        }
+
+        public Criteria andEmergtimeLessThanOrEqualTo(Date value) {
+            addCriterion("emergTime <=", value, "emergtime");
+            return (Criteria) this;
+        }
+
+        public Criteria andEmergtimeIn(List<Date> values) {
+            addCriterion("emergTime in", values, "emergtime");
+            return (Criteria) this;
+        }
+
+        public Criteria andEmergtimeNotIn(List<Date> values) {
+            addCriterion("emergTime not in", values, "emergtime");
+            return (Criteria) this;
+        }
+
+        public Criteria andEmergtimeBetween(Date value1, Date value2) {
+            addCriterion("emergTime between", value1, value2, "emergtime");
+            return (Criteria) this;
+        }
+
+        public Criteria andEmergtimeNotBetween(Date value1, Date value2) {
+            addCriterion("emergTime not between", value1, value2, "emergtime");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

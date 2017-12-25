@@ -5,23 +5,29 @@ import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import xd.medicine.entity.bo.Doctor;
 import xd.medicine.entity.bo.Patient;
 import xd.medicine.entity.bo.TrustAttr;
 import xd.medicine.entity.dto.FrontResult;
+import xd.medicine.entity.dto.OutMessage;
 import xd.medicine.entity.dto.PatientWithTrust;
+import xd.medicine.service.DoctorService;
 import xd.medicine.service.PatientService;
 import xd.medicine.service.TrustAttrService;
+import xd.medicine.websocket.SocketSessionRegistry;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 /**
  * created by xdCao on 2017/12/19
+ * okokookookookok
  * 目前完成的接口：
  * 1.计算病人总数
  * 2.病人登录
@@ -47,6 +53,18 @@ public class PatientController {
 
     @Autowired
     private TrustAttrService trustAttrService;
+
+    @Autowired
+    private DoctorService doctorService;
+
+
+    /**session操作类*/
+    @Autowired
+    private SocketSessionRegistry webAgentSessionRegistry;
+
+    /**消息发送工具*/
+    @Autowired
+    private SimpMessagingTemplate template;
 
     @RequestMapping(value = "/count",method = RequestMethod.GET)
     public FrontResult count(){
@@ -147,12 +165,28 @@ public class PatientController {
 
     }
 
+    //todo
+    /*应该在此处发出广播*/
     @RequestMapping(value = "/updateEmerg",method = RequestMethod.POST)
     public FrontResult updateEmergency(Integer patientId,
                                        Double temperature,
                                        Integer heartBeat,
                                        Double bloodPressure){
-        Patient patient = patientService.updateEmergency(patientId, temperature, heartBeat, bloodPressure);
+        patientService.updateEmergency(patientId, temperature, heartBeat, bloodPressure);
+        PatientWithTrust patient=patientService.getPatientById(patientId);
+        if (patient.getPatient().getIsInEmergency()){
+            //向所有可信主体集进行广播
+            //将该病人的时间加到缓存
+            List<Doctor> doctors = doctorService.getDoctorsByDepartment(patient.getTrustAttr().getDepartment());
+            for (Doctor doctor:doctors){
+                String userKey=1+","+doctor.getId();
+                String sessionId = webAgentSessionRegistry.getSessionId(userKey);
+                template.convertAndSendToUser(sessionId,"/subject/info",
+                        new OutMessage();
+            }
+
+
+        }
         return new FrontResult(200,patient,null);
     }
 

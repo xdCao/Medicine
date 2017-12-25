@@ -16,7 +16,7 @@
         <!-- 常见的输出到console,常用于开发环境中,默认是system_err,还有一个system_out -->
         <console name="console" target="system_out">
             <!-- appender级别的日志过滤 -->
-            <!-- <thresholdFilter level="info" onMatch="accept" onMismatch="deny"/> -->
+            <thresholdFilter level="info" onMatch="accept" onMismatch="deny"/>
             <patternLayout pattern="${FORMAT}"/>
         </console>
         <!-- 常用于开发环境,把日志记录到文件中,默认追加 -->

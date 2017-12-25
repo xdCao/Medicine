@@ -16,4 +16,10 @@ public class IndexController {
         return "index";
     }
 
+
+    @RequestMapping(value = "/ws")
+    public String ws(){
+        return "ws";
+    }
+
 }

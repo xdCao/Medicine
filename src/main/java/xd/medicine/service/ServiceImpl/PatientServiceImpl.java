@@ -15,6 +15,7 @@ import xd.medicine.service.PatientService;
 import xd.medicine.service.TrustAttrService;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -121,18 +122,20 @@ public class PatientServiceImpl implements PatientService{
     @Transactional(rollbackFor = Exception.class)
     @Override
     public Patient updateEmergency(Integer patientId, Double temperature, Integer heartBeat, Double bloodPressure) {
-        Patient patient=new Patient();
-        patient.setId(patientId);
+        Patient patient = patientMapper.selectByPrimaryKey(patientId);
         patient.setTemperature(temperature);
         patient.setBloodPressure(bloodPressure);
         patient.setHeartBeat(heartBeat);
         patient.setIsInEmergency(judgeEmergency(temperature,heartBeat,bloodPressure));
+        if (patient.getIsInEmergency()&&patient.getSenseAware()){
+            patient.setEmergtime(new Date());
+        }
         patientMapper.updateByPrimaryKeySelective(patient);
         return patient;
     }
 
 
-    private Boolean judgeEmergency(Double temperature, Integer heartBeat, Double bloodPressure) {
+    public Boolean judgeEmergency(Double temperature, Integer heartBeat, Double bloodPressure) {
         if (temperature<=TEMPERATURE_LIMIT_HIGH&&temperature>=TEMPERATURE_LIMIT_LOW)
             if (heartBeat<=HEARTBEAT_LIMIT_HIGH&&heartBeat>=HEARTBEAT_LIMIT_LOW)
                 if (bloodPressure<=BLOOD_PPRESSURE_LIMIT_HIGH&&bloodPressure>=BLOOD_PRESSURE_LIMIT_LOW)

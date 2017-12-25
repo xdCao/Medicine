@@ -5,12 +5,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import xd.medicine.cache.MapCache;
+import xd.medicine.entity.bo.Others;
 import xd.medicine.entity.bo.SysLog;
+import xd.medicine.entity.dto.AuthRequest;
 import xd.medicine.entity.dto.FrontResult;
 import xd.medicine.entity.dto.PatientWithTrust;
 import xd.medicine.service.AuthService;
+import xd.medicine.service.DoctorService;
+import xd.medicine.service.OthersService;
 import xd.medicine.service.PatientService;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -27,6 +32,12 @@ public class EmergeAuthController {
 
     @Autowired
     private PatientService patientService;
+
+    @Autowired
+    private DoctorService doctorService;
+
+    @Autowired
+    private OthersService othersService;
 
     @Autowired
     private AuthService authService;
@@ -59,17 +70,21 @@ public class EmergeAuthController {
     }
 
 
-
+    /*得用websocket*/
     @RequestMapping(value = "/access",method = RequestMethod.GET)
     public FrontResult access(  Integer userType,
                                 Integer userId,
                                 Integer patientId){
-
+        PatientWithTrust patient = patientService.getPatientById(patientId);
+        Date emergtime = patient.getPatient().getEmergtime();
+        if (System.currentTimeMillis()<emergtime.getTime()){
+            /*此时请求未超时，应该进入缓存*/
+            AuthRequest authRequest=new AuthRequest();
+        }
         /*
          * 更改医生的数据库表，增加emergStart字段，记录病人进入紧急情况的时间，在主体调用access接口时比对时间，
-         * 如果未超时，进入缓存，等到时限将
+         * 如果未超时，进入缓存，等到时限将缓存中的请求取出做计算
          */
-
         if (userType.equals(DOCTOR)){
             //医生的请求处理逻辑，分为可信主体集中和非可信主体集
 

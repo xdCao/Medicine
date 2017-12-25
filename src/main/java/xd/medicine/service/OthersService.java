@@ -25,4 +25,5 @@ public interface OthersService {
     List<Others> getOthersByAccount(String account);
 
 
+    Integer count();
 }
