@@ -140,7 +140,7 @@ CREATE TABLE `sys_log` (
   `patient_id` int(11) unsigned NOT NULL,
   `evaluate_date` date NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of sys_log
@@ -148,6 +148,12 @@ CREATE TABLE `sys_log` (
 INSERT INTO `sys_log` VALUES ('18', '1', '张医生', '90', '诊断准确', '8', '2017-12-06');
 INSERT INTO `sys_log` VALUES ('19', '2', '李医生', '70', '病历书写规范', '9', '2017-12-19');
 INSERT INTO `sys_log` VALUES ('20', '3', '王医生', '60', 'bbbbb', '8', '2017-11-14');
+INSERT INTO `sys_log` VALUES ('21', '10', 'Bob', '94', 'a', '8', '2017-12-13');
+INSERT INTO `sys_log` VALUES ('22', '10', 'Bob', '16', 'a', '8', '2017-12-07');
+INSERT INTO `sys_log` VALUES ('23', '10', 'Bob', '63', 'a', '8', '2017-12-13');
+INSERT INTO `sys_log` VALUES ('24', '10', 'Bob', '87', 'a', '8', '2017-12-13');
+INSERT INTO `sys_log` VALUES ('25', '10', 'Bob', '52', 'a', '8', '2017-12-06');
+INSERT INTO `sys_log` VALUES ('26', '10', 'Bob', '71', 'a', '8', '2017-12-13');
 
 -- ----------------------------
 -- Table structure for trust_attr
@@ -186,7 +192,7 @@ CREATE TABLE `user_log` (
   `user_type` int(1) NOT NULL,
   `user_name` varchar(30) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of user_log
@@ -194,3 +200,8 @@ CREATE TABLE `user_log` (
 INSERT INTO `user_log` VALUES ('14', '1', '张医生', '90', '态度好', '2017-12-06', '1', '张三');
 INSERT INTO `user_log` VALUES ('15', '2', '李医生', '80', '医德高尚', '2017-12-19', '1', '赵四');
 INSERT INTO `user_log` VALUES ('16', '3', '王医生', '50', 'aaaa', '2017-11-14', '1', '王五');
+INSERT INTO `user_log` VALUES ('17', '10', 'Bob', '60', 'bbb', '2017-12-25', '1', 'X');
+INSERT INTO `user_log` VALUES ('18', '10', 'Bob', '70', 'bbb', '2017-12-07', '1', 'X');
+INSERT INTO `user_log` VALUES ('19', '10', 'Bob', '35', 'bbb', '2017-12-15', '1', 'X');
+INSERT INTO `user_log` VALUES ('20', '10', 'Bob', '45', 'bbb', '2017-12-15', '1', 'X');
+INSERT INTO `user_log` VALUES ('21', '10', 'Bob', '90', 'bbb', '2017-12-21', '1', 'X');

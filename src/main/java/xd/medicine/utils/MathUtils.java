@@ -29,7 +29,7 @@ public class MathUtils {
             total--;
         }
         Arrays.sort(results);
-        List<Integer> list = new ArrayList<Integer>(Arrays.asList(results));
+        List<Integer> list = new ArrayList<>(Arrays.asList(results));
         return list;
     }
 
