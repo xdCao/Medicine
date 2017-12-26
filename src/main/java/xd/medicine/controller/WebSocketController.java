@@ -64,16 +64,11 @@ public class WebSocketController {
         AuthRequest authRequest= GsonUtils.jsonToObject(message,AuthRequest.class);
         //这里是用户发起授权请求的地方，在此处将用户信息放入MapCache，在定时任务中会取出缓存进行授权
         if (authRequest.getUserType().equals(1)){
-            Doctor doctor=doctorService.getDoctorById(authRequest.getUserId());
-            mapCache.set(authRequest.getUserType()+","+authRequest.getUserId()+","+authRequest.getPatientId(),doctor);
+            mapCache.put(authRequest.getPatientId(),authRequest.getUserType()+":"+authRequest.getUserId());
         }else if (authRequest.getUserType().equals(2)){
-            Others others=othersService.getOthersById(authRequest.getUserId());
-            mapCache.set(authRequest.getUserType()+","+authRequest.getUserId()+","+authRequest.getPatientId(),others);
+            mapCache.put(authRequest.getPatientId(),authRequest.getUserType()+":"+authRequest.getUserId());
         }
 
-//        String sessionId=webAgentSessionRegistry.getSessionId(authRequest.getUserType()+","+authRequest.getUserId());
-//        template.convertAndSendToUser(sessionId,"/subject/info",
-//                new OutMessage(authRequest.toString()),createHeaders(sessionId));
     }
     private MessageHeaders createHeaders(String sessionId) {
         SimpMessageHeaderAccessor headerAccessor = SimpMessageHeaderAccessor.create(SimpMessageType.MESSAGE);
