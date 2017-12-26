@@ -45,8 +45,8 @@ public class TrustCalculator {
 
 
     /*
-    计算可信度
-    输入一个病人id，返回匹配到的主体集及其匹配可信度、历史行为可信度、总体可信度，暂时仅打印出来
+    *计算可信度
+    *输入一个病人id，返回匹配到的主体集及其匹配可信度、历史行为可信度、总体可信度
      */
     public List<DoctorTrustResult> getTs( int patientId ) {
         float mt,hbt,rcm,rep,trust;
@@ -55,6 +55,9 @@ public class TrustCalculator {
         List<Doctor> doctorList = patientService.getSisDoctorsByPatientId(patientId);  //获得满足科室要求的所有医生，即候选主体集合SIS
         List<DoctorTrustResult> doctorTrustResultList = new ArrayList<>();
         for (Doctor doctor : doctorList) {
+            /*if((!(doctor.getIsin() & doctor.getIsFree()))& avaOnly){
+                continue;
+            }*/
 
             if (patientWithTrust.getPatient().getDoctorId() == doctor.getId()) {
                 /* 如果是主治医生，所有可信度直接为1 */
