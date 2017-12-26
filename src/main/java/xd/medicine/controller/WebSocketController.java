@@ -20,10 +20,7 @@ import xd.medicine.utils.GsonUtils;
 import xd.medicine.websocket.SocketSessionRegistry;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -64,12 +61,24 @@ public class WebSocketController {
         AuthRequest authRequest= GsonUtils.jsonToObject(message,AuthRequest.class);
         //这里是用户发起授权请求的地方，在此处将用户信息放入MapCache，在定时任务中会取出缓存进行授权
         if (authRequest.getUserType().equals(1)){
-            mapCache.put(authRequest.getPatientId(),authRequest.getUserType()+":"+authRequest.getUserId());
+            checkAndPut(authRequest);
         }else if (authRequest.getUserType().equals(2)){
-            mapCache.put(authRequest.getPatientId(),authRequest.getUserType()+":"+authRequest.getUserId());
+            checkAndPut(authRequest);
         }
 
     }
+
+    private void checkAndPut(AuthRequest authRequest) {
+        boolean containsKey = mapCache.containsKey(authRequest.getPatientId());
+        if (containsKey){
+            mapCache.get(authRequest.getPatientId()).add(authRequest.getUserType()+":"+authRequest.getUserId());
+        }else {
+            ArrayList<String> arrayList=new ArrayList<>();
+            arrayList.add(authRequest.getUserType()+":"+authRequest.getUserId());
+            mapCache.put(authRequest.getPatientId(),arrayList);
+        }
+    }
+
     private MessageHeaders createHeaders(String sessionId) {
         SimpMessageHeaderAccessor headerAccessor = SimpMessageHeaderAccessor.create(SimpMessageType.MESSAGE);
         headerAccessor.setSessionId(sessionId);

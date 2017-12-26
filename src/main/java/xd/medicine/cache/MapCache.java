@@ -2,9 +2,7 @@ package xd.medicine.cache;
 /*
     created by xdCao on 2017/10/10
 */
-import javax.jnlp.IntegrationService;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class MapCache {
@@ -13,7 +11,7 @@ public class MapCache {
 
     private static final MapCache instance=new MapCache();
 
-    private ConcurrentHashMap<Integer,String> cachePool;
+    private ConcurrentHashMap<Integer,List<String>> cachePool;
 
     public static MapCache getInstance(){
         return instance;
@@ -28,11 +26,11 @@ public class MapCache {
     }
 
 
-    public void put(Integer integer,String map){
-        cachePool.put(integer,map);
+    public void put(Integer integer,List<String> list){
+        cachePool.put(integer,list);
     }
 
-    public String get(Integer integer){
+    public List<String> get(Integer integer){
         return cachePool.get(integer);
     }
 
