@@ -9,6 +9,8 @@ import org.springframework.messaging.MessageHeaders;
 import org.springframework.messaging.simp.SimpMessageHeaderAccessor;
 import org.springframework.messaging.simp.SimpMessageType;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
+import org.springframework.scheduling.support.CronTrigger;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import xd.medicine.cache.MapCache;
@@ -21,6 +23,7 @@ import xd.medicine.entity.dto.PatientWithTrust;
 import xd.medicine.service.DoctorService;
 import xd.medicine.service.PatientService;
 import xd.medicine.service.TrustAttrService;
+import xd.medicine.tasks.AuthTask;
 import xd.medicine.utils.GsonUtils;
 import xd.medicine.websocket.SocketSessionRegistry;
 
@@ -61,6 +64,9 @@ public class PatientController {
 
     @Autowired
     private DoctorService doctorService;
+
+    @Autowired
+    private ThreadPoolTaskScheduler threadPoolTaskScheduler;
 
     private MapCache mapCache=MapCache.getInstance();
 
@@ -183,7 +189,7 @@ public class PatientController {
         PatientWithTrust patient=patientService.getPatientById(patientId);
         if ((patient.getPatient().getIsInEmergency())&&(patient.getPatient().getSenseAware())){
             //向所有可信主体集进行广播
-            //将该病人的时间加到缓存
+            //此刻开启一分钟的定时任务
             List<Doctor> doctors = doctorService.getDoctorsByDepartment(patient.getTrustAttr().getDepartment());
             for (Doctor doctor:doctors){
                 String userKey=1+","+doctor.getId();
@@ -194,7 +200,10 @@ public class PatientController {
                 }
             }
 
-            mapCache.set(String.valueOf(patientId),System.currentTimeMillis());
+//            mapCache.set(String.valueOf(patientId),System.currentTimeMillis());
+            //此处应开启一个新的定时任务
+            threadPoolTaskScheduler.schedule(new AuthTask(patient,doctors,template,webAgentSessionRegistry),new Date(System.currentTimeMillis()+3600));
+
 
         }
         return new FrontResult(200,patient,null);
