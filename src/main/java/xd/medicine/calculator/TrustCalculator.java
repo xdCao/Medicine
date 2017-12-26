@@ -40,6 +40,7 @@ public class TrustCalculator {
         float mt,hbt,rcm,rep,trust;
         PatientWithTrust patientWithTrust = patientService.getPatientById(patientId);
         List<Doctor> doctorList = patientService.getSisDoctorsByPatientId(patientId);  //获得满足科室要求的所有医生，即候选主体集合SIS
+        List<DoctorTrustResult> doctorTrustResultList = new ArrayList<>();
         for (Doctor doctor : doctorList) {
 
             if (patientWithTrust.getPatient().getDoctorId() == doctor.getId()) {
@@ -63,6 +64,7 @@ public class TrustCalculator {
 
             DoctorTrustResult doctorTrustResult = new DoctorTrustResult(doctor, mt, rcm, rep, hbt, trust);
             System.out.println(doctorTrustResult.toString());
+            doctorTrustResultList.add(doctorTrustResult); //后续使用
         }
     }
 
@@ -92,26 +94,36 @@ public class TrustCalculator {
 
         /* 根据职称、工龄、学位计算MT */
         mt += 1 * wi[0]; //科室已经匹配，科室的匹配值恒为1
-        mt += 0.25 * (doctor.getTitle() & 0xFF) * wi[1];//计算职称的匹配值
-        mt += 0.25 * (doctor.getWorkage() & 0xFF) * wi[2];//计算工作年龄的匹配值
-        mt += (float) 1 / 2 * (doctor.getDegree() & 0xFF) * wi[3];//计算学历信息的匹配值
+        mt += results.get(0) * wi[1];//计算职称的匹配值
+        mt += results.get(1) * wi[2];//计算工作年龄的匹配值
+        mt += results.get(2) * wi[3];//计算学历信息的匹配值
         return mt;
     }
 
-    private List<Float> calDocMtHelper(List<Integer> pTr, List<Integer> dTr) {
+    /*
+    *计算MT的辅助方法，List中按照职称-工龄-学历的顺序存放
+     */
+    public List<Float> calDocMtHelper(List<Integer> pTr, List<Integer> dTr ) {
         List<Float> results= new ArrayList<>();
-        int p = pTr.get(0);
-        int d = dTr.get(0);
-        if(p<=d){
-            System.out.println(THSVALUE + (1-TRUSTU)/ (5 - p)*( d - p ));
-            System.out.println(THSVALUE + (1-TRUSTU)/ (5 - p)*( d - p ));
-            //float f = getRandom( THSVALUE + (1-TRUSTU)/ (5 - p)*( d - p ) , THSVALUE + (1-TRUSTU)/ (5 - p)*( d - p ) );
-        }else{
-            System.out.println(THSVALUE / p * d);
-            System.out.println(THSVALUE / p * (d+1));
-            //float f = getRandom( THSVALUE / p * d , THSVALUE / p * (d+1) );
+
+        int n = 5;
+        for (int i = 0; i < 3 ; i++) {
+            if( i == 2 ) n = 3; //职称和工龄有五种，如果是学历计算，只有三种
+            int p = pTr.get(i);
+            int d = dTr.get(i);
+            float f;
+            if (p <= d) {
+                //System.out.print(THSVALUE + (1-TRUSTU)/ (3 - p)*( d - p )+"--");
+                //System.out.println(THSVALUE + (1-TRUSTU)/ (3 - p)*( d - p +1));
+                f = getRandom(THSVALUE + (1 - TRUSTU) / (n - p) * (d - p), THSVALUE + (1 - TRUSTU) / (n - p) * (d - p + 1));
+            } else {
+                //System.out.print(THSVALUE / p * d + "---");
+                //System.out.println(THSVALUE / p * (d+1));
+                f = getRandom(THSVALUE / p * d , THSVALUE / p * (d + 1));
+            }
+            results.add(f);
         }
-        return null;
+        return results;
     }
 
     /*

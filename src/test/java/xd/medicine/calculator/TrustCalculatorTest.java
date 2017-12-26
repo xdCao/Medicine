@@ -8,6 +8,9 @@ import org.springframework.test.context.junit4.SpringRunner;
 import xd.medicine.entity.bo.TrustAttr;
 import xd.medicine.service.TrustAttrService;
 
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -27,6 +30,19 @@ public class TrustCalculatorTest {
         //int m= trustCalculator.myTest(11);
         //System.out.println(m);
         trustCalculator.calTrust(10);
+        /*List<Integer> p = new ArrayList<>();
+        p.add(3);
+        p.add(4);
+        p.add(0);
+        List<Integer> d = new ArrayList<>();
+        d.add(4);
+        d.add(1);
+        d.add(2);
+
+        List<Float> fs =   trustCalculator.calDocMtHelper(p,d);
+        for(float f : fs){
+            System.out.println(f);
+        }*/
 
     }
 
