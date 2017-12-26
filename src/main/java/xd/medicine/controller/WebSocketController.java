@@ -6,10 +6,7 @@ import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.simp.SimpMessageHeaderAccessor;
 import org.springframework.messaging.simp.SimpMessageType;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import xd.medicine.entity.dto.AuthRequest;
 import xd.medicine.entity.dto.InMessage;
 import xd.medicine.entity.dto.OutMessage;
@@ -26,6 +23,7 @@ import java.util.stream.Collectors;
 /**
  * created by xdCao on 2017/12/25
  */
+@CrossOrigin(origins = "*",maxAge = 3600)
 @RestController
 public class WebSocketController {
 

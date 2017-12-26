@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
+import xd.medicine.cache.MapCache;
 import xd.medicine.entity.bo.Doctor;
 import xd.medicine.entity.bo.Patient;
 import xd.medicine.entity.bo.TrustAttr;
@@ -17,6 +18,7 @@ import xd.medicine.entity.dto.PatientWithTrust;
 import xd.medicine.service.DoctorService;
 import xd.medicine.service.PatientService;
 import xd.medicine.service.TrustAttrService;
+import xd.medicine.utils.GsonUtils;
 import xd.medicine.websocket.SocketSessionRegistry;
 
 import javax.servlet.http.Cookie;
@@ -56,6 +58,8 @@ public class PatientController {
 
     @Autowired
     private DoctorService doctorService;
+
+    private MapCache mapCache=MapCache.getInstance();
 
 
     /**session操作类*/
@@ -174,7 +178,7 @@ public class PatientController {
                                        Double bloodPressure){
         patientService.updateEmergency(patientId, temperature, heartBeat, bloodPressure);
         PatientWithTrust patient=patientService.getPatientById(patientId);
-        if (patient.getPatient().getIsInEmergency()){
+        if ((patient.getPatient().getIsInEmergency())&&(patient.getPatient().getSenseAware())){
             //向所有可信主体集进行广播
             //将该病人的时间加到缓存
             List<Doctor> doctors = doctorService.getDoctorsByDepartment(patient.getTrustAttr().getDepartment());
@@ -182,9 +186,10 @@ public class PatientController {
                 String userKey=1+","+doctor.getId();
                 String sessionId = webAgentSessionRegistry.getSessionId(userKey);
                 template.convertAndSendToUser(sessionId,"/subject/info",
-                        new OutMessage();
+                        new OutMessage(GsonUtils.toJsonString(patient)));
             }
 
+            mapCache.set(String.valueOf(patientId),System.currentTimeMillis());
 
         }
         return new FrontResult(200,patient,null);
