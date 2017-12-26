@@ -17,6 +17,10 @@ public class DoctorTrustResult {
     private Boolean isIn;
     private Boolean ava;
 
+    public DoctorTrustResult() {
+        this.trust=0;
+    }
+
     public DoctorTrustResult(int doctorId, String name, float mt, float rcm, float rep, float hbt, float trust, Boolean isFree, Boolean isIn, Boolean ava) {
         this.doctorId = doctorId;
         this.name = name;

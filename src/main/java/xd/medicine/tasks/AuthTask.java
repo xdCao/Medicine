@@ -30,7 +30,7 @@ public class AuthTask implements Runnable {
     private List<Doctor> doctors;
     private SimpMessagingTemplate template;
     private SocketSessionRegistry registry;
-    private DoctorTrustResult currentDoctor;
+    private DoctorTrustResult currentDoctor=new DoctorTrustResult();
     private TrustCalculator trustCalculator;
 
     private MapCache mapCache=MapCache.getInstance();
@@ -60,15 +60,13 @@ public class AuthTask implements Runnable {
                     String[] split = userKey.split(":");
                     Integer userType = Integer.valueOf(split[0]);
                     Integer userId = Integer.valueOf(split[1]);
-                    if (userType.equals(1) && userId.equals(doctor.getDoctorId())) {
+                    if (userType.equals(1) && userId.equals(doctor.getDoctorId())&&doctor.getTrust()>currentDoctor.getTrust()) {
                         System.out.println("UserType: " + userType + " , UserId: " + userId);
                         System.out.println("缓存中找到对象");
                         authUserKey=userKey;
                         currentDoctor=doctor;
-                        break;
                     }
                 }
-                break;
             }
         }else {
             System.out.println("该病人缓存中为空");

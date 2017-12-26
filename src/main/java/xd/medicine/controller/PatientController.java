@@ -206,7 +206,7 @@ public class PatientController {
 
 //            mapCache.set(String.valueOf(patientId),System.currentTimeMillis());
             //此处应开启一个新的定时任务
-            threadPoolTaskScheduler.schedule(new AuthTask(patient,doctors,template,webAgentSessionRegistry,trustCalculator),new Date(System.currentTimeMillis()+10000));
+            threadPoolTaskScheduler.schedule(new AuthTask(patient,doctors,template,webAgentSessionRegistry,trustCalculator),new Date(System.currentTimeMillis()+20000));
 
 
         }
