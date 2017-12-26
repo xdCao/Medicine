@@ -11,9 +11,7 @@ import xd.medicine.service.CommentService;
 import xd.medicine.service.DoctorService;
 import xd.medicine.service.PatientService;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 import static xd.medicine.calculator.Constants.*;
 import static xd.medicine.utils.MathUtils.*;
@@ -36,9 +34,10 @@ public class TrustCalculator {
     计算可信度
     输入一个病人id，输出匹配到的主体集及其匹配可信度、历史行为可信度、总体可信度，暂时仅打印出来
      */
-    public void calTrust( int patientId ) {
+    public List<DoctorTrustResult> calTrust( int patientId ) {
         float mt,hbt,rcm,rep,trust;
         PatientWithTrust patientWithTrust = patientService.getPatientById(patientId);
+
         List<Doctor> doctorList = patientService.getSisDoctorsByPatientId(patientId);  //获得满足科室要求的所有医生，即候选主体集合SIS
         List<DoctorTrustResult> doctorTrustResultList = new ArrayList<>();
         for (Doctor doctor : doctorList) {
@@ -62,10 +61,19 @@ public class TrustCalculator {
                 trust = mt*TRUSTU + hbt*(1-TRUSTU);
             }
 
-            DoctorTrustResult doctorTrustResult = new DoctorTrustResult(doctor, mt, rcm, rep, hbt, trust);
-            System.out.println(doctorTrustResult.toString());
-            doctorTrustResultList.add(doctorTrustResult); //后续使用
+            boolean ava = doctor.getIsin()&doctor.getIsFree();
+            DoctorTrustResult doctorTrustResult = new DoctorTrustResult(doctor.getId(),doctor.getName(), mt, rcm, rep, hbt, trust, doctor.getIsin() , doctor.getIsFree(), ava);
+            //System.out.println(doctorTrustResult.toString());
+            doctorTrustResultList.add(doctorTrustResult);
+
+            Collections.sort(doctorTrustResultList, new Comparator<DoctorTrustResult>() {
+                @Override
+                public int compare(DoctorTrustResult o1, DoctorTrustResult o2) {
+                    return new Float(o2.getTrust()).compareTo(new Float(o1.getTrust()));
+                }
+            });
         }
+        return doctorTrustResultList;
     }
 
     /*
@@ -151,7 +159,7 @@ public class TrustCalculator {
             boolean flag = true;
             for(int value:valueList){
                 if(Math.abs((float) value/100 - ave) > DIFFERMAX) {
-                    System.out.println("不可信的一次抽样！value="+value+",ave="+ave);
+                   // System.out.println("不可信的一次抽样！value="+value+",ave="+ave);
                     flag = false;
                     break;
                 }

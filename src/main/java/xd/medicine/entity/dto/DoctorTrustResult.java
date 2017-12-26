@@ -6,40 +6,68 @@ import xd.medicine.entity.bo.Doctor;
  * created by liubotao
  */
 public class DoctorTrustResult {
-    private Doctor doctor;
+    private int doctorId;
+    private String name;
     private float mt;
     private float rcm;
     private float rep;
     private float hbt;
     private float trust;
+    private Boolean isFree;
+    private Boolean isIn;
+    private Boolean ava;
 
-    public DoctorTrustResult(Doctor doctor, float mt, float rcm, float rep, float hbt, float trust) {
-        this.doctor = doctor;
+    public DoctorTrustResult(int doctorId, String name, float mt, float rcm, float rep, float hbt, float trust, Boolean isFree, Boolean isIn, Boolean ava) {
+        this.doctorId = doctorId;
+        this.name = name;
         this.mt = mt;
         this.rcm = rcm;
         this.rep = rep;
         this.hbt = hbt;
         this.trust = trust;
+        this.isFree = isFree;
+        this.isIn = isIn;
+        this.ava = ava;
     }
 
-    public Doctor getDoctor() {
-        return doctor;
+    public int getDoctorId() {
+        return doctorId;
+    }
+
+    public void setDoctorId(int doctorId) {
+        this.doctorId = doctorId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public float getMt() {
         return mt;
     }
 
+    public void setMt(float mt) {
+        this.mt = mt;
+    }
+
     public float getRcm() {
         return rcm;
+    }
+
+    public void setRcm(float rcm) {
+        this.rcm = rcm;
     }
 
     public float getRep() {
         return rep;
     }
 
-    public float getTrust() {
-        return trust;
+    public void setRep(float rep) {
+        this.rep = rep;
     }
 
     public float getHbt() {
@@ -50,35 +78,51 @@ public class DoctorTrustResult {
         this.hbt = hbt;
     }
 
-    public void setDoctor(Doctor doctor) {
-        this.doctor = doctor;
-    }
-
-    public void setMt(float mt) {
-        this.mt = mt;
-    }
-
-    public void setRcm(float rcm) {
-        this.rcm = rcm;
-    }
-
-    public void setRep(float rep) {
-        this.rep = rep;
+    public float getTrust() {
+        return trust;
     }
 
     public void setTrust(float trust) {
         this.trust = trust;
     }
 
+    public Boolean getFree() {
+        return isFree;
+    }
+
+    public void setFree(Boolean free) {
+        isFree = free;
+    }
+
+    public Boolean getIn() {
+        return isIn;
+    }
+
+    public void setIn(Boolean in) {
+        isIn = in;
+    }
+
+    public Boolean getAva() {
+        return ava;
+    }
+
+    public void setAva(Boolean ava) {
+        this.ava = ava;
+    }
+
     @Override
     public String toString() {
         return "DoctorTrustResult{" +
-                "doctor=" + doctor.getId() + ":" +doctor.getName() +
+                "doctorId=" + doctorId +
+                ", name='" + name + '\'' +
                 ", mt=" + mt +
                 ", rcm=" + rcm +
                 ", rep=" + rep +
                 ", hbt=" + hbt +
                 ", trust=" + trust +
+                ", isFree=" + isFree +
+                ", isIn=" + isIn +
+                ", ava=" + ava +
                 '}';
     }
 }

@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import xd.medicine.entity.bo.TrustAttr;
+import xd.medicine.entity.dto.DoctorTrustResult;
+import xd.medicine.service.PatientService;
 import xd.medicine.service.TrustAttrService;
 
 import java.awt.*;
@@ -23,13 +25,22 @@ public class TrustCalculatorTest {
 
     @Autowired
     private TrustCalculator trustCalculator;
+    @Autowired
+    private PatientService patientService;
 
     @Test
     public void trustCalculatorTest(){
         //TrustCalculator trustCalculator = new TrustCalculator();
         //int m= trustCalculator.myTest(11);
         //System.out.println(m);
-        trustCalculator.calTrust(10);
+        for(int i = 1 ; i<7 ; i++) {
+            System.out.println("病人id:"+ i + "病人姓名："+ patientService.getPatientById(i).getPatient().getName());
+            System.out.println("可信主体集合：");
+            List<DoctorTrustResult> doctorTrustResultList = trustCalculator.calTrust(i);
+            for(DoctorTrustResult doctorTrustResult : doctorTrustResultList){
+                System.out.println(doctorTrustResult.toString());
+            }
+        }
         /*List<Integer> p = new ArrayList<>();
         p.add(3);
         p.add(4);
