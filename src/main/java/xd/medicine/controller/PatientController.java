@@ -5,6 +5,9 @@ import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.messaging.MessageHeaders;
+import org.springframework.messaging.simp.SimpMessageHeaderAccessor;
+import org.springframework.messaging.simp.SimpMessageType;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
@@ -169,8 +172,8 @@ public class PatientController {
 
     }
 
-    //todo
     /*应该在此处发出广播*/
+    @Transactional(rollbackFor = Exception.class)
     @RequestMapping(value = "/updateEmerg",method = RequestMethod.POST)
     public FrontResult updateEmergency(Integer patientId,
                                        Double temperature,
@@ -185,14 +188,23 @@ public class PatientController {
             for (Doctor doctor:doctors){
                 String userKey=1+","+doctor.getId();
                 String sessionId = webAgentSessionRegistry.getSessionId(userKey);
-                template.convertAndSendToUser(sessionId,"/subject/info",
-                        new OutMessage(GsonUtils.toJsonString(patient)));
+                if (sessionId!=null){
+                    template.convertAndSendToUser(sessionId,"/subject/info",
+                            new OutMessage(GsonUtils.toJsonString(patient)),createHeaders(sessionId));
+                }
             }
 
             mapCache.set(String.valueOf(patientId),System.currentTimeMillis());
 
         }
         return new FrontResult(200,patient,null);
+    }
+
+    private MessageHeaders createHeaders(String sessionId) {
+        SimpMessageHeaderAccessor headerAccessor = SimpMessageHeaderAccessor.create(SimpMessageType.MESSAGE);
+        headerAccessor.setSessionId(sessionId);
+        headerAccessor.setLeaveMutable(true);
+        return headerAccessor.getMessageHeaders();
     }
 
     @RequestMapping(value = "/updateTrust",method = RequestMethod.POST)

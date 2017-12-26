@@ -7,6 +7,7 @@ import org.springframework.messaging.simp.SimpMessageHeaderAccessor;
 import org.springframework.messaging.simp.SimpMessageType;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.web.bind.annotation.*;
+import xd.medicine.cache.MapCache;
 import xd.medicine.entity.dto.AuthRequest;
 import xd.medicine.entity.dto.InMessage;
 import xd.medicine.entity.dto.OutMessage;
@@ -27,6 +28,8 @@ import java.util.stream.Collectors;
 @RestController
 public class WebSocketController {
 
+    private MapCache mapCache=MapCache.getInstance();
+
     /**session操作类*/
     @Autowired
     private SocketSessionRegistry webAgentSessionRegistry;
@@ -44,8 +47,10 @@ public class WebSocketController {
      * @throws Exception
      */
     @MessageMapping("/msg/btgRequest")
-    public void greeting2(String message) throws Exception {
+    public void btgRequest(String message) throws Exception {
         AuthRequest authRequest= GsonUtils.jsonToObject(message,AuthRequest.class);
+        Long time = mapCache.get(String.valueOf(authRequest.getPatientId()));
+        System.out.println("The patient update time:    "+time);
         String sessionId=webAgentSessionRegistry.getSessionId(authRequest.getUserType()+","+authRequest.getUserId());
         template.convertAndSendToUser(sessionId,"/subject/info",
                 new OutMessage(authRequest.toString()),createHeaders(sessionId));
