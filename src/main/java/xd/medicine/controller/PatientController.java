@@ -14,6 +14,7 @@ import org.springframework.scheduling.support.CronTrigger;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import xd.medicine.cache.MapCache;
+import xd.medicine.calculator.TrustCalculator;
 import xd.medicine.entity.bo.Doctor;
 import xd.medicine.entity.bo.Patient;
 import xd.medicine.entity.bo.TrustAttr;
@@ -67,6 +68,9 @@ public class PatientController {
 
     @Autowired
     private ThreadPoolTaskScheduler threadPoolTaskScheduler;
+
+    @Autowired
+    private TrustCalculator trustCalculator;
 
     private MapCache mapCache=MapCache.getInstance();
 
@@ -202,7 +206,7 @@ public class PatientController {
 
 //            mapCache.set(String.valueOf(patientId),System.currentTimeMillis());
             //此处应开启一个新的定时任务
-            threadPoolTaskScheduler.schedule(new AuthTask(patient,doctors,template,webAgentSessionRegistry),new Date(System.currentTimeMillis()+10000));
+            threadPoolTaskScheduler.schedule(new AuthTask(patient,doctors,template,webAgentSessionRegistry,trustCalculator),new Date(System.currentTimeMillis()+10000));
 
 
         }
