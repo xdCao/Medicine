@@ -29,12 +29,26 @@ public class TrustCalculator {
     @Autowired
     private CommentService commentService;
 
+    /*
+     * 输入病人id，获得当前属于available状态的可信主体集
+     */
+    public List<DoctorTrustResult> getAvaTs( int patientId){
+        List<DoctorTrustResult> doctorTrustResultList = getTs(patientId);
+        for(int i = 0; i< doctorTrustResultList.size(); i++){
+            if(!doctorTrustResultList.get(i).getAva()){
+                doctorTrustResultList.remove(i);
+                i--;
+            }
+        }
+        return doctorTrustResultList;
+    }
+
 
     /*
     计算可信度
-    输入一个病人id，输出匹配到的主体集及其匹配可信度、历史行为可信度、总体可信度，暂时仅打印出来
+    输入一个病人id，返回匹配到的主体集及其匹配可信度、历史行为可信度、总体可信度，暂时仅打印出来
      */
-    public List<DoctorTrustResult> calTrust( int patientId ) {
+    public List<DoctorTrustResult> getTs( int patientId ) {
         float mt,hbt,rcm,rep,trust;
         PatientWithTrust patientWithTrust = patientService.getPatientById(patientId);
 

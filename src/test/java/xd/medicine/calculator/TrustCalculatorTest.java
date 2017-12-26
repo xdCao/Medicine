@@ -36,7 +36,7 @@ public class TrustCalculatorTest {
         for(int i = 1 ; i<7 ; i++) {
             System.out.println("病人id:"+ i + "病人姓名："+ patientService.getPatientById(i).getPatient().getName());
             System.out.println("可信主体集合：");
-            List<DoctorTrustResult> doctorTrustResultList = trustCalculator.calTrust(i);
+            List<DoctorTrustResult> doctorTrustResultList = trustCalculator.getAvaTs(i);
             for(DoctorTrustResult doctorTrustResult : doctorTrustResultList){
                 System.out.println(doctorTrustResult.toString());
             }
