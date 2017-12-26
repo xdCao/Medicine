@@ -23,7 +23,7 @@ public class STOMPConnectEventListener implements ApplicationListener<SessionCon
         //login get from browser
         String userType = sha.getNativeHeader("userType").get(0);
         String userId=sha.getNativeHeader("userId").get(0);
-        String userKey=userType+","+userId;
+        String userKey=userType+":"+userId;
         String sessionId = sha.getSessionId();
         System.out.println("agentId:    "+userKey+" ,   sessionId:      "+sessionId);
         webAgentSessionRegistry.registerSessionId(userKey,sessionId);

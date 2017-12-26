@@ -8,9 +8,14 @@ import org.springframework.messaging.simp.SimpMessageType;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.web.bind.annotation.*;
 import xd.medicine.cache.MapCache;
+import xd.medicine.entity.bo.Doctor;
+import xd.medicine.entity.bo.Others;
 import xd.medicine.entity.dto.AuthRequest;
 import xd.medicine.entity.dto.InMessage;
 import xd.medicine.entity.dto.OutMessage;
+import xd.medicine.service.DoctorService;
+import xd.medicine.service.OthersService;
+import xd.medicine.service.PatientService;
 import xd.medicine.utils.GsonUtils;
 import xd.medicine.websocket.SocketSessionRegistry;
 
@@ -38,6 +43,14 @@ public class WebSocketController {
     @Autowired
     private SimpMessagingTemplate template;
 
+    @Autowired
+    private DoctorService doctorService;
+
+    @Autowired
+    private PatientService patientService;
+
+    @Autowired
+    private OthersService othersService;
 
     /**
      * 同样的发送消息   只不过是ws版本  http请求不能访问
@@ -49,11 +62,13 @@ public class WebSocketController {
     @MessageMapping("/msg/btgRequest")
     public void btgRequest(String message) throws Exception {
         AuthRequest authRequest= GsonUtils.jsonToObject(message,AuthRequest.class);
-        Long time = mapCache.get(String.valueOf(authRequest.getPatientId()));
-        System.out.println("The patient update time:    "+time);
-        String sessionId=webAgentSessionRegistry.getSessionId(authRequest.getUserType()+","+authRequest.getUserId());
-        template.convertAndSendToUser(sessionId,"/subject/info",
-                new OutMessage(authRequest.toString()),createHeaders(sessionId));
+        //这里是用户发起授权请求的地方，在此处将用户信息放入MapCache，在定时任务中会取出缓存进行授权
+        if (authRequest.getUserType().equals(1)){
+            mapCache.put(authRequest.getPatientId(),authRequest.getUserType()+":"+authRequest.getUserId());
+        }else if (authRequest.getUserType().equals(2)){
+            mapCache.put(authRequest.getPatientId(),authRequest.getUserType()+":"+authRequest.getUserId());
+        }
+
     }
     private MessageHeaders createHeaders(String sessionId) {
         SimpMessageHeaderAccessor headerAccessor = SimpMessageHeaderAccessor.create(SimpMessageType.MESSAGE);
