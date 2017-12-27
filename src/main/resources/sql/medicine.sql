@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50614
 File Encoding         : 65001
 
-Date: 2017-12-27 17:29:40
+Date: 2017-12-27 21:21:13
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -142,7 +142,7 @@ CREATE TABLE `post_duty` (
   `type` tinyint(4) NOT NULL,
   `choose` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of post_duty
@@ -150,9 +150,11 @@ CREATE TABLE `post_duty` (
 INSERT INTO `post_duty` VALUES ('1', '提交访问主体具体访问过程说明', '5', '7', '1', '2', '1');
 INSERT INTO `post_duty` VALUES ('2', '提交患者信息被合理使用材料说明', '7', '14', '1', '2', '1');
 INSERT INTO `post_duty` VALUES ('3', '诚实接受相关部门的材料审核', '14', '20', '0', '2', '1');
-INSERT INTO `post_duty` VALUES ('4', '按规定接受他人或组织的监督', '7', '14', '0', '2', '1');
+INSERT INTO `post_duty` VALUES ('4', '按规定接受他人或组织的监督', '7', '14', '0', '2', '0');
 INSERT INTO `post_duty` VALUES ('5', '是否遵守相关保密协议', '20', '40', '1', '2', '1');
 INSERT INTO `post_duty` VALUES ('6', '是否承担了一定的责任', '14', '28', '1', '2', '1');
+INSERT INTO `post_duty` VALUES ('16', 'bbb', '8', '16', '1', '2', '1');
+INSERT INTO `post_duty` VALUES ('17', 'bbb', '8', '16', '1', '2', '1');
 
 -- ----------------------------
 -- Table structure for post_duty_log
@@ -160,18 +162,26 @@ INSERT INTO `post_duty` VALUES ('6', '是否承担了一定的责任', '14', '28
 DROP TABLE IF EXISTS `post_duty_log`;
 CREATE TABLE `post_duty_log` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `visit_n` int(11) NOT NULL,
   `fulfill_time` tinyint(4) NOT NULL,
   `state` tinyint(4) NOT NULL,
   `duty_id` int(11) unsigned NOT NULL,
+  `sub_type` tinyint(4) NOT NULL,
+  `sub_id` int(11) NOT NULL,
+  `obj_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_post_duty` (`duty_id`),
   CONSTRAINT `fk_post_duty` FOREIGN KEY (`duty_id`) REFERENCES `post_duty` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of post_duty_log
 -- ----------------------------
+INSERT INTO `post_duty_log` VALUES ('3', '4', '0', '1', '3', '1', '2');
+INSERT INTO `post_duty_log` VALUES ('4', '5', '2', '2', '1', '1', '2');
+INSERT INTO `post_duty_log` VALUES ('5', '5', '2', '1', '1', '56', '2');
+INSERT INTO `post_duty_log` VALUES ('6', '7', '0', '3', '1', '1', '2');
+INSERT INTO `post_duty_log` VALUES ('7', '1', '0', '1', '1', '1', '1');
+INSERT INTO `post_duty_log` VALUES ('8', '1', '0', '1', '1', '1', '1');
 
 -- ----------------------------
 -- Table structure for pro_duty
@@ -184,7 +194,7 @@ CREATE TABLE `pro_duty` (
   `type` tinyint(4) NOT NULL,
   `choose` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of pro_duty
@@ -192,12 +202,13 @@ CREATE TABLE `pro_duty` (
 INSERT INTO `pro_duty` VALUES ('1', '征得近亲的同意说明', '4', '0', '1');
 INSERT INTO `pro_duty` VALUES ('2', '提交访问主体身份的证明材料', '7', '0', '1');
 INSERT INTO `pro_duty` VALUES ('3', '提交主体上级领导的授权说明', '7', '0', '1');
-INSERT INTO `pro_duty` VALUES ('4', '提交访问病人书面申请', '3', '0', '1');
+INSERT INTO `pro_duty` VALUES ('4', '提交访问病人书面申请', '3', '0', '0');
 INSERT INTO `pro_duty` VALUES ('5', '提交患者主治医生或主治医生上级领导的同意说明', '7', '0', '1');
 INSERT INTO `pro_duty` VALUES ('6', '提交其他相关人员的推荐信', '7', '1', '1');
 INSERT INTO `pro_duty` VALUES ('7', '提交相关人员的委托信', '7', '1', '1');
 INSERT INTO `pro_duty` VALUES ('8', '提交诚信档案', '14', '1', '1');
 INSERT INTO `pro_duty` VALUES ('9', '签订保密协议', '3', '0', '1');
+INSERT INTO `pro_duty` VALUES ('11', 'aaa', '8', '0', '1');
 
 -- ----------------------------
 -- Table structure for sys_log

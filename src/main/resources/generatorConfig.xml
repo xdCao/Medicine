@@ -12,6 +12,7 @@
 -->
 
 
+
     <classPathEntry
             location="C:\Users\xdCao\.m2\repository\mysql\mysql-connector-java\5.1.41\mysql-connector-java-5.1.41.jar"/>
 
@@ -27,6 +28,7 @@
         </commentGenerator>
         <!-- 配置数据库连接 -->
 
+
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
                         connectionURL="jdbc:mysql://localhost:3306/medicine"
                         userId="root"
@@ -36,7 +38,8 @@
                         connectionURL="jdbc:mysql://localhost:3306/medicine"
                         userId="root"
                         password="13245"/>
-        -->
+         -->
+
 
         <!-- 指定javaBean生成的位置 -->
         <javaModelGenerator targetPackage="xd.medicine.entity.bo" targetProject="src/main/java">
