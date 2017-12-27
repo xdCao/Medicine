@@ -125,7 +125,7 @@ public class AuthTask implements Runnable {
                                         new OutMessage("你的授权已失效"),createHeaders(sessionId));
                             }
                             String newSessionId=registry.getSessionId(authUserKey);
-                            if (sessionId!=null){
+                            if (newSessionId!=null){
                                 System.out.println(newSessionId);
                                 template.convertAndSendToUser(newSessionId,"/subject/info",
                                         new OutMessage("获得授权哦亲"),createHeaders(newSessionId));
