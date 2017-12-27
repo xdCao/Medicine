@@ -10,8 +10,14 @@
     出现错误：Caused by: java.lang.ClassNotFoundException: com.mysql.jdbc.Driver
     解决办法：将本地的MAVEN仓库中的mysql驱动引入进来
 -->
+
+    <!--
     <classPathEntry
             location="C:\Users\xdCao\.m2\repository\mysql\mysql-connector-java\5.1.41\mysql-connector-java-5.1.41.jar"/>
+    -->
+
+    <classPathEntry
+            location="C:\Users\Administrator.USER-20161114AN\.m2\repository\mysql\mysql-connector-java\5.1.41\mysql-connector-java-5.1.41.jar"/>
 
     <context id="mysqlgenerator" targetRuntime="MyBatis3">
         <!--不生成注释-->
@@ -19,10 +25,16 @@
             <property name="suppressAllComments" value="true"/>
         </commentGenerator>
         <!-- 配置数据库连接 -->
+        <!--
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
                         connectionURL="jdbc:mysql://localhost:3306/medicine"
                         userId="root"
                         password="940620"/>
+        -->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3306/medicine"
+                        userId="root"
+                        password="13245"/>
 
         <!-- 指定javaBean生成的位置 -->
         <javaModelGenerator targetPackage="xd.medicine.entity.bo" targetProject="src/main/java">
@@ -43,6 +55,7 @@
         </javaClientGenerator>
 
         <!-- table表生成对应的DoaminObject -->
+
         <table tableName="doctor" domainObjectName="Doctor">
             <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
         </table>
@@ -64,6 +77,17 @@
         <table tableName="admin_user" domainObjectName="AdminUser">
             <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
         </table>
+
+        <table tableName="pro_duty" domainObjectName="ProDuty">
+            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+        </table>
+        <table tableName="post_duty" domainObjectName="PostDuty">
+            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+        </table>
+        <table tableName="post_duty_log" domainObjectName="PostDutyLog">
+            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+        </table>
+
 
 
     </context>
