@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="xd.medicine.dao.autoMapper.ProDutyMapper" >
+  <resultMap id="BaseResultMap" type="xd.medicine.entity.bo.ProDuty" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="duty_content" property="dutyContent" jdbcType="VARCHAR" />
+    <result column="preset_time" property="presetTime" jdbcType="TINYINT" />
+    <result column="type" property="type" jdbcType="TINYINT" />
+    <result column="choose" property="choose" jdbcType="BIT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, duty_content, preset_time, type, choose
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="xd.medicine.entity.bo.ProDutyExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from pro_duty
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from pro_duty
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from pro_duty
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="xd.medicine.entity.bo.ProDutyExample" >
+    delete from pro_duty
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="xd.medicine.entity.bo.ProDuty" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into pro_duty (duty_content, preset_time, type, 
+      choose)
+    values (#{dutyContent,jdbcType=VARCHAR}, #{presetTime,jdbcType=TINYINT}, #{type,jdbcType=TINYINT}, 
+      #{choose,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="xd.medicine.entity.bo.ProDuty" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into pro_duty
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="dutyContent != null" >
+        duty_content,
+      </if>
+      <if test="presetTime != null" >
+        preset_time,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="choose != null" >
+        choose,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="dutyContent != null" >
+        #{dutyContent,jdbcType=VARCHAR},
+      </if>
+      <if test="presetTime != null" >
+        #{presetTime,jdbcType=TINYINT},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=TINYINT},
+      </if>
+      <if test="choose != null" >
+        #{choose,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="xd.medicine.entity.bo.ProDutyExample" resultType="java.lang.Integer" >
+    select count(*) from pro_duty
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update pro_duty
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.dutyContent != null" >
+        duty_content = #{record.dutyContent,jdbcType=VARCHAR},
+      </if>
+      <if test="record.presetTime != null" >
+        preset_time = #{record.presetTime,jdbcType=TINYINT},
+      </if>
+      <if test="record.type != null" >
+        type = #{record.type,jdbcType=TINYINT},
+      </if>
+      <if test="record.choose != null" >
+        choose = #{record.choose,jdbcType=BIT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update pro_duty
+    set id = #{record.id,jdbcType=INTEGER},
+      duty_content = #{record.dutyContent,jdbcType=VARCHAR},
+      preset_time = #{record.presetTime,jdbcType=TINYINT},
+      type = #{record.type,jdbcType=TINYINT},
+      choose = #{record.choose,jdbcType=BIT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="xd.medicine.entity.bo.ProDuty" >
+    update pro_duty
+    <set >
+      <if test="dutyContent != null" >
+        duty_content = #{dutyContent,jdbcType=VARCHAR},
+      </if>
+      <if test="presetTime != null" >
+        preset_time = #{presetTime,jdbcType=TINYINT},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=TINYINT},
+      </if>
+      <if test="choose != null" >
+        choose = #{choose,jdbcType=BIT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="xd.medicine.entity.bo.ProDuty" >
+    update pro_duty
+    set duty_content = #{dutyContent,jdbcType=VARCHAR},
+      preset_time = #{presetTime,jdbcType=TINYINT},
+      type = #{type,jdbcType=TINYINT},
+      choose = #{choose,jdbcType=BIT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
