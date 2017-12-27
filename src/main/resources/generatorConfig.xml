@@ -12,14 +12,14 @@
 -->
 
 
-
+<!--
     <classPathEntry
             location="C:\Users\xdCao\.m2\repository\mysql\mysql-connector-java\5.1.41\mysql-connector-java-5.1.41.jar"/>
+-->
 
-    <!--
     <classPathEntry
             location="C:\Users\Administrator.USER-20161114AN\.m2\repository\mysql\mysql-connector-java\5.1.41\mysql-connector-java-5.1.41.jar"/>
-    -->
+
 
     <context id="mysqlgenerator" targetRuntime="MyBatis3">
         <!--不生成注释-->
@@ -28,17 +28,17 @@
         </commentGenerator>
         <!-- 配置数据库连接 -->
 
-
+<!--
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
                         connectionURL="jdbc:mysql://localhost:3306/medicine"
                         userId="root"
                         password="940620"/>
-        <!--
+       -->
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
                         connectionURL="jdbc:mysql://localhost:3306/medicine"
                         userId="root"
                         password="13245"/>
-         -->
+
 
 
         <!-- 指定javaBean生成的位置 -->

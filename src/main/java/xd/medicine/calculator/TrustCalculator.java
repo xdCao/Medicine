@@ -31,8 +31,9 @@ public class TrustCalculator {
 
     /*
      * 输入病人id，获得当前属于available状态的可信主体集
+     * mode: 0--紧急情况，1-未知情况
      */
-    public List<DoctorTrustResult> getAvaTs( int patientId){
+    public List<DoctorTrustResult> getAvaTs( int patientId ){
         List<DoctorTrustResult> doctorTrustResultList = getTs(patientId);
         for(int i = 0; i< doctorTrustResultList.size(); i++){
             if(!doctorTrustResultList.get(i).getAva()){
@@ -75,7 +76,7 @@ public class TrustCalculator {
                     continue;
                 }
                 hbt = rcm<rep?rcm:rep;     //HBT = min(RCM,REP)
-                trust = mt*TRUSTU + hbt*(1-TRUSTU);
+                trust = mt*TRUSTU1 + hbt*(1-TRUSTU1);
             }
 
             boolean ava = doctor.getIsin()&doctor.getIsFree();
@@ -140,7 +141,7 @@ public class TrustCalculator {
             if (p <= d) {
                 //System.out.print(THSVALUE + (1-TRUSTU)/ (3 - p)*( d - p )+"--");
                 //System.out.println(THSVALUE + (1-TRUSTU)/ (3 - p)*( d - p +1));
-                f = getRandom(THSVALUE + (1 - TRUSTU) / (n - p) * (d - p), THSVALUE + (1 - TRUSTU) / (n - p) * (d - p + 1));
+                f = getRandom(THSVALUE + (1 - THSVALUE) / (n - p) * (d - p), THSVALUE + (1 - THSVALUE) / (n - p) * (d - p + 1));
             } else {
                 //System.out.print(THSVALUE / p * d + "---");
                 //System.out.println(THSVALUE / p * (d+1));
