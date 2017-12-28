@@ -16,6 +16,7 @@
     <result column="password" property="password" jdbcType="VARCHAR" />
     <result column="account" property="account" jdbcType="VARCHAR" />
     <result column="isIn" property="isin" jdbcType="BIT" />
+    <result column="poob_trust" property="poobTrust" jdbcType="REAL" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -77,7 +78,7 @@
   </sql>
   <sql id="Base_Column_List" >
     id, name, position, office_location, office_phone, registry_date, department, title, 
-    workage, degree, is_free, password, account, isIn
+    workage, degree, is_free, password, account, isIn, poob_trust
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="xd.medicine.entity.bo.DoctorExample" >
     select
@@ -117,12 +118,12 @@
       office_phone, registry_date, department, 
       title, workage, degree, 
       is_free, password, account, 
-      isIn)
+      isIn, poob_trust)
     values (#{name,jdbcType=VARCHAR}, #{position,jdbcType=TINYINT}, #{officeLocation,jdbcType=VARCHAR}, 
       #{officePhone,jdbcType=CHAR}, #{registryDate,jdbcType=DATE}, #{department,jdbcType=TINYINT}, 
       #{title,jdbcType=TINYINT}, #{workage,jdbcType=TINYINT}, #{degree,jdbcType=TINYINT}, 
       #{isFree,jdbcType=BIT}, #{password,jdbcType=VARCHAR}, #{account,jdbcType=VARCHAR}, 
-      #{isin,jdbcType=BIT})
+      #{isin,jdbcType=BIT}, #{poobTrust,jdbcType=REAL})
   </insert>
   <insert id="insertSelective" parameterType="xd.medicine.entity.bo.Doctor" >
     <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
@@ -169,6 +170,9 @@
       <if test="isin != null" >
         isIn,
       </if>
+      <if test="poobTrust != null" >
+        poob_trust,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="name != null" >
@@ -209,6 +213,9 @@
       </if>
       <if test="isin != null" >
         #{isin,jdbcType=BIT},
+      </if>
+      <if test="poobTrust != null" >
+        #{poobTrust,jdbcType=REAL},
       </if>
     </trim>
   </insert>
@@ -263,6 +270,9 @@
       <if test="record.isin != null" >
         isIn = #{record.isin,jdbcType=BIT},
       </if>
+      <if test="record.poobTrust != null" >
+        poob_trust = #{record.poobTrust,jdbcType=REAL},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -283,7 +293,8 @@
       is_free = #{record.isFree,jdbcType=BIT},
       password = #{record.password,jdbcType=VARCHAR},
       account = #{record.account,jdbcType=VARCHAR},
-      isIn = #{record.isin,jdbcType=BIT}
+      isIn = #{record.isin,jdbcType=BIT},
+      poob_trust = #{record.poobTrust,jdbcType=REAL}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -330,6 +341,9 @@
       <if test="isin != null" >
         isIn = #{isin,jdbcType=BIT},
       </if>
+      <if test="poobTrust != null" >
+        poob_trust = #{poobTrust,jdbcType=REAL},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -347,7 +361,8 @@
       is_free = #{isFree,jdbcType=BIT},
       password = #{password,jdbcType=VARCHAR},
       account = #{account,jdbcType=VARCHAR},
-      isIn = #{isin,jdbcType=BIT}
+      isIn = #{isin,jdbcType=BIT},
+      poob_trust = #{poobTrust,jdbcType=REAL}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

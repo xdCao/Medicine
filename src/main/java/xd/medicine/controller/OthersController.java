@@ -72,6 +72,7 @@ public class OthersController {
             others.setAddress(address);
             others.setAge(age);
             others.setIsSendRequest(false);
+            others.setPoobTrust((float)0.5); //poobTrust初始值为0.5，后续由可信模块更新
             othersService.insert(others);
             return new FrontResult(200,others,null);
         } catch (Exception e) {

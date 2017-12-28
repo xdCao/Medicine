@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50614
 File Encoding         : 65001
 
-Date: 2017-12-27 21:21:13
+Date: 2017-12-28 09:58:04
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -50,24 +50,25 @@ CREATE TABLE `doctor` (
   `password` varchar(20) NOT NULL,
   `account` varchar(30) NOT NULL,
   `isIn` tinyint(1) DEFAULT NULL,
+  `poob_trust` float(5,4) NOT NULL DEFAULT '0.5000',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of doctor
 -- ----------------------------
-INSERT INTO `doctor` VALUES ('1', '张医生', '1', '西安电子科技大学', '13476859976', '2017-12-05', '1', '1', '1', '1', '0', '111', '123', '0');
-INSERT INTO `doctor` VALUES ('2', '李医生', '2', '太白南路', '18747657765', '2017-12-18', '2', '2', '2', '2', '0', '111', '233', '0');
-INSERT INTO `doctor` VALUES ('3', '王医生', '3', '科技路', '13390874532', '2017-11-13', '3', '3', '3', '0', '1', '111', '333', '1');
-INSERT INTO `doctor` VALUES ('4', '赵医生', '4', '吉祥路', '14378650098', '2017-01-17', '0', '4', '4', '0', '0', '111', '433', '0');
-INSERT INTO `doctor` VALUES ('5', '曹医生', '4', '西电老科', '13336758765', '2017-12-19', '3', '4', '1', '1', '1', '111', '434', '1');
-INSERT INTO `doctor` VALUES ('6', 'caohao', '1', 'xian', '13337865544', '2017-12-20', '1', '1', '1', '1', '1', '123', '444', '1');
-INSERT INTO `doctor` VALUES ('7', 'Ella', '4', '12', '12', '2017-12-21', '2', '0', '0', '2', '1', '12', '21', '0');
-INSERT INTO `doctor` VALUES ('8', 'Frank', '4', '12', '12', '2017-12-21', '2', '0', '4', '2', '1', '12', '244', '1');
-INSERT INTO `doctor` VALUES ('9', 'Alice', '1', '西安电子科技大学', '13476859976', '2017-12-05', '3', '2', '3', '1', '0', '111', '245', '0');
-INSERT INTO `doctor` VALUES ('10', 'Bob', '2', '太白南路', '18747657765', '2017-12-18', '3', '4', '4', '2', '1', '111', '246', '1');
-INSERT INTO `doctor` VALUES ('11', 'Cindy', '3', '科技路', '13390874532', '2017-11-13', '3', '0', '0', '0', '0', '111', '247', '0');
-INSERT INTO `doctor` VALUES ('12', 'Danny', '4', '吉祥路', '14378650098', '2017-01-17', '0', '3', '4', '1', '0', '111', '248', '1');
+INSERT INTO `doctor` VALUES ('1', '张医生', '1', '西安电子科技大学', '13476859976', '2017-12-05', '1', '1', '1', '1', '0', '111', '123', '0', '0.5000');
+INSERT INTO `doctor` VALUES ('2', '李医生', '2', '太白南路', '18747657765', '2017-12-18', '2', '2', '2', '2', '0', '111', '233', '0', '0.5000');
+INSERT INTO `doctor` VALUES ('3', '王医生', '3', '科技路', '13390874532', '2017-11-13', '3', '3', '3', '0', '1', '111', '333', '1', '0.5000');
+INSERT INTO `doctor` VALUES ('4', '赵医生', '4', '吉祥路', '14378650098', '2017-01-17', '0', '4', '4', '0', '0', '111', '433', '0', '0.5000');
+INSERT INTO `doctor` VALUES ('5', '曹医生', '4', '西电老科', '13336758765', '2017-12-19', '3', '4', '1', '1', '1', '111', '434', '1', '0.5000');
+INSERT INTO `doctor` VALUES ('6', 'caohao', '1', 'xian', '13337865544', '2017-12-20', '1', '1', '1', '1', '1', '123', '444', '1', '0.5000');
+INSERT INTO `doctor` VALUES ('7', 'Ella', '4', '12', '12', '2017-12-21', '2', '0', '0', '2', '1', '12', '21', '0', '0.5000');
+INSERT INTO `doctor` VALUES ('8', 'Frank', '4', '12', '12', '2017-12-21', '2', '0', '4', '2', '1', '12', '244', '1', '0.5000');
+INSERT INTO `doctor` VALUES ('9', 'Alice', '1', '西安电子科技大学', '13476859976', '2017-12-05', '3', '2', '3', '1', '0', '111', '245', '0', '0.5000');
+INSERT INTO `doctor` VALUES ('10', 'Bob', '2', '太白南路', '18747657765', '2017-12-18', '3', '4', '4', '2', '1', '111', '246', '1', '0.5000');
+INSERT INTO `doctor` VALUES ('11', 'Cindy', '3', '科技路', '13390874532', '2017-11-13', '3', '0', '0', '0', '0', '111', '247', '0', '0.5000');
+INSERT INTO `doctor` VALUES ('12', 'Danny', '4', '吉祥路', '14378650098', '2017-01-17', '0', '3', '4', '1', '0', '111', '248', '1', '0.5000');
 
 -- ----------------------------
 -- Table structure for others
@@ -85,6 +86,7 @@ CREATE TABLE `others` (
   `is_send_request` tinyint(1) NOT NULL,
   `password` varchar(20) NOT NULL,
   `account` varchar(30) NOT NULL,
+  `poob_trust` float(5,4) NOT NULL DEFAULT '0.5000',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -138,7 +140,7 @@ CREATE TABLE `post_duty` (
   `duty_content` varchar(255) NOT NULL,
   `preset_time` tinyint(4) NOT NULL,
   `grace_time` tinyint(4) NOT NULL,
-  `emer` float(4,0) NOT NULL,
+  `emer` float(5,4) NOT NULL,
   `type` tinyint(4) NOT NULL,
   `choose` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`)
@@ -147,14 +149,12 @@ CREATE TABLE `post_duty` (
 -- ----------------------------
 -- Records of post_duty
 -- ----------------------------
-INSERT INTO `post_duty` VALUES ('1', '提交访问主体具体访问过程说明', '5', '7', '1', '2', '1');
-INSERT INTO `post_duty` VALUES ('2', '提交患者信息被合理使用材料说明', '7', '14', '1', '2', '1');
-INSERT INTO `post_duty` VALUES ('3', '诚实接受相关部门的材料审核', '14', '20', '0', '2', '1');
-INSERT INTO `post_duty` VALUES ('4', '按规定接受他人或组织的监督', '7', '14', '0', '2', '0');
-INSERT INTO `post_duty` VALUES ('5', '是否遵守相关保密协议', '20', '40', '1', '2', '1');
-INSERT INTO `post_duty` VALUES ('6', '是否承担了一定的责任', '14', '28', '1', '2', '1');
-INSERT INTO `post_duty` VALUES ('16', 'bbb', '8', '16', '1', '2', '1');
-INSERT INTO `post_duty` VALUES ('17', 'bbb', '8', '16', '1', '2', '1');
+INSERT INTO `post_duty` VALUES ('1', '提交访问主体具体访问过程说明', '5', '7', '0.7000', '2', '1');
+INSERT INTO `post_duty` VALUES ('2', '提交患者信息被合理使用材料说明', '7', '14', '0.8000', '2', '1');
+INSERT INTO `post_duty` VALUES ('3', '诚实接受相关部门的材料审核', '14', '20', '0.5000', '2', '1');
+INSERT INTO `post_duty` VALUES ('4', '按规定接受他人或组织的监督', '7', '14', '0.4000', '2', '0');
+INSERT INTO `post_duty` VALUES ('5', '是否遵守相关保密协议', '20', '40', '0.7000', '2', '1');
+INSERT INTO `post_duty` VALUES ('6', '是否承担了一定的责任', '14', '28', '0.6000', '2', '1');
 
 -- ----------------------------
 -- Table structure for post_duty_log
@@ -171,7 +171,7 @@ CREATE TABLE `post_duty_log` (
   PRIMARY KEY (`id`),
   KEY `fk_post_duty` (`duty_id`),
   CONSTRAINT `fk_post_duty` FOREIGN KEY (`duty_id`) REFERENCES `post_duty` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of post_duty_log
@@ -182,6 +182,7 @@ INSERT INTO `post_duty_log` VALUES ('5', '5', '2', '1', '1', '56', '2');
 INSERT INTO `post_duty_log` VALUES ('6', '7', '0', '3', '1', '1', '2');
 INSERT INTO `post_duty_log` VALUES ('7', '1', '0', '1', '1', '1', '1');
 INSERT INTO `post_duty_log` VALUES ('8', '1', '0', '1', '1', '1', '1');
+INSERT INTO `post_duty_log` VALUES ('9', '1', '0', '1', '1', '1', '1');
 
 -- ----------------------------
 -- Table structure for pro_duty

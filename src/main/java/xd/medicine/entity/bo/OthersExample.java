@@ -823,6 +823,66 @@ public class OthersExample {
             addCriterion("account not between", value1, value2, "account");
             return (Criteria) this;
         }
+
+        public Criteria andPoobTrustIsNull() {
+            addCriterion("poob_trust is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPoobTrustIsNotNull() {
+            addCriterion("poob_trust is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPoobTrustEqualTo(Float value) {
+            addCriterion("poob_trust =", value, "poobTrust");
+            return (Criteria) this;
+        }
+
+        public Criteria andPoobTrustNotEqualTo(Float value) {
+            addCriterion("poob_trust <>", value, "poobTrust");
+            return (Criteria) this;
+        }
+
+        public Criteria andPoobTrustGreaterThan(Float value) {
+            addCriterion("poob_trust >", value, "poobTrust");
+            return (Criteria) this;
+        }
+
+        public Criteria andPoobTrustGreaterThanOrEqualTo(Float value) {
+            addCriterion("poob_trust >=", value, "poobTrust");
+            return (Criteria) this;
+        }
+
+        public Criteria andPoobTrustLessThan(Float value) {
+            addCriterion("poob_trust <", value, "poobTrust");
+            return (Criteria) this;
+        }
+
+        public Criteria andPoobTrustLessThanOrEqualTo(Float value) {
+            addCriterion("poob_trust <=", value, "poobTrust");
+            return (Criteria) this;
+        }
+
+        public Criteria andPoobTrustIn(List<Float> values) {
+            addCriterion("poob_trust in", values, "poobTrust");
+            return (Criteria) this;
+        }
+
+        public Criteria andPoobTrustNotIn(List<Float> values) {
+            addCriterion("poob_trust not in", values, "poobTrust");
+            return (Criteria) this;
+        }
+
+        public Criteria andPoobTrustBetween(Float value1, Float value2) {
+            addCriterion("poob_trust between", value1, value2, "poobTrust");
+            return (Criteria) this;
+        }
+
+        public Criteria andPoobTrustNotBetween(Float value1, Float value2) {
+            addCriterion("poob_trust not between", value1, value2, "poobTrust");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

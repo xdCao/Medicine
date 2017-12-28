@@ -5,6 +5,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+import xd.medicine.entity.bo.Doctor;
 import xd.medicine.entity.bo.PostDuty;
 import xd.medicine.entity.bo.PostDutyLog;
 import xd.medicine.entity.bo.ProDuty;
@@ -13,6 +14,7 @@ import xd.medicine.service.PostDutyLogService;
 import xd.medicine.service.PostDutyService;
 import xd.medicine.service.ProDutyService;
 
+import java.util.Date;
 import java.util.List;
 
 import static xd.medicine.utils.MathUtils.getRandom;
@@ -51,6 +53,8 @@ public class DbInsertHelperTest {
             }
         }
     }
+
+
 
 
 }

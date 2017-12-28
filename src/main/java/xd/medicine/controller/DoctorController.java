@@ -126,6 +126,7 @@ public class DoctorController {
         doctor.setIsFree(Boolean.valueOf(isFree));
         doctor.setRegistryDate(new Date());
         doctor.setIsin(false);
+        doctor.setPoobTrust((float)0.5); //poobTrust初始值为0.5，后续由可信模块更新
         doctorService.insertDoctor(doctor);
         return new FrontResult(200,doctor,null);
     }

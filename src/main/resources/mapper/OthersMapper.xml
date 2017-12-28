@@ -13,6 +13,7 @@
     <result column="is_send_request" property="isSendRequest" jdbcType="BIT" />
     <result column="password" property="password" jdbcType="VARCHAR" />
     <result column="account" property="account" jdbcType="VARCHAR" />
+    <result column="poob_trust" property="poobTrust" jdbcType="REAL" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -73,7 +74,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, name, gender, age, job, company, address, phone, is_send_request, password, account
+    id, name, gender, age, job, company, address, phone, is_send_request, password, account, 
+    poob_trust
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="xd.medicine.entity.bo.OthersExample" >
     select
@@ -112,11 +114,11 @@
     insert into others (name, gender, age, 
       job, company, address, 
       phone, is_send_request, password, 
-      account)
+      account, poob_trust)
     values (#{name,jdbcType=VARCHAR}, #{gender,jdbcType=BIT}, #{age,jdbcType=INTEGER}, 
       #{job,jdbcType=TINYINT}, #{company,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
       #{phone,jdbcType=CHAR}, #{isSendRequest,jdbcType=BIT}, #{password,jdbcType=VARCHAR}, 
-      #{account,jdbcType=VARCHAR})
+      #{account,jdbcType=VARCHAR}, #{poobTrust,jdbcType=REAL})
   </insert>
   <insert id="insertSelective" parameterType="xd.medicine.entity.bo.Others" >
     <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
@@ -154,6 +156,9 @@
       <if test="account != null" >
         account,
       </if>
+      <if test="poobTrust != null" >
+        poob_trust,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="name != null" >
@@ -185,6 +190,9 @@
       </if>
       <if test="account != null" >
         #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="poobTrust != null" >
+        #{poobTrust,jdbcType=REAL},
       </if>
     </trim>
   </insert>
@@ -230,6 +238,9 @@
       <if test="record.account != null" >
         account = #{record.account,jdbcType=VARCHAR},
       </if>
+      <if test="record.poobTrust != null" >
+        poob_trust = #{record.poobTrust,jdbcType=REAL},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -247,7 +258,8 @@
       phone = #{record.phone,jdbcType=CHAR},
       is_send_request = #{record.isSendRequest,jdbcType=BIT},
       password = #{record.password,jdbcType=VARCHAR},
-      account = #{record.account,jdbcType=VARCHAR}
+      account = #{record.account,jdbcType=VARCHAR},
+      poob_trust = #{record.poobTrust,jdbcType=REAL}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -285,6 +297,9 @@
       <if test="account != null" >
         account = #{account,jdbcType=VARCHAR},
       </if>
+      <if test="poobTrust != null" >
+        poob_trust = #{poobTrust,jdbcType=REAL},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -299,7 +314,8 @@
       phone = #{phone,jdbcType=CHAR},
       is_send_request = #{isSendRequest,jdbcType=BIT},
       password = #{password,jdbcType=VARCHAR},
-      account = #{account,jdbcType=VARCHAR}
+      account = #{account,jdbcType=VARCHAR},
+      poob_trust = #{poobTrust,jdbcType=REAL}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

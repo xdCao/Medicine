@@ -31,6 +31,8 @@ public class Doctor {
 
     private Boolean isin;
 
+    private Float poobTrust;
+
     public Integer getId() {
         return id;
     }
@@ -141,5 +143,13 @@ public class Doctor {
 
     public void setIsin(Boolean isin) {
         this.isin = isin;
+    }
+
+    public Float getPoobTrust() {
+        return poobTrust;
+    }
+
+    public void setPoobTrust(Float poobTrust) {
+        this.poobTrust = poobTrust;
     }
 }

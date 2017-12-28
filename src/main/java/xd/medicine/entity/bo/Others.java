@@ -23,6 +23,8 @@ public class Others {
 
     private String account;
 
+    private Float poobTrust;
+
     public Integer getId() {
         return id;
     }
@@ -109,5 +111,13 @@ public class Others {
 
     public void setAccount(String account) {
         this.account = account == null ? null : account.trim();
+    }
+
+    public Float getPoobTrust() {
+        return poobTrust;
+    }
+
+    public void setPoobTrust(Float poobTrust) {
+        this.poobTrust = poobTrust;
     }
 }
