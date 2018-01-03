@@ -5,9 +5,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import xd.medicine.cache.MapCache;
-import xd.medicine.entity.bo.Others;
-import xd.medicine.entity.bo.SysLog;
+import xd.medicine.cache.EmergMapCache;
 import xd.medicine.entity.dto.AuthRequest;
 import xd.medicine.entity.dto.FrontResult;
 import xd.medicine.entity.dto.PatientWithTrust;
@@ -22,6 +20,7 @@ import java.util.List;
 /**
  * created by xdCao on 2017/12/25
  */
+@Deprecated
 @CrossOrigin(origins = "*",maxAge = 3600)
 @RestController
 @RequestMapping(value = "/auth/emerg/")
@@ -30,7 +29,7 @@ public class EmergeAuthController {
     public static final int DOCTOR=1;
     public static final int OTHERS=0;
 
-    private MapCache cache=MapCache.getInstance();
+    private EmergMapCache cache= EmergMapCache.getInstance();
 
     @Autowired
     private PatientService patientService;

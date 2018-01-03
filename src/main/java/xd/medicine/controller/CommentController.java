@@ -64,22 +64,34 @@ public class CommentController {
 
     @RequestMapping(value = "/user/doctor",method = RequestMethod.GET)
     public FrontResult getAllUserLogsByDoctor(Integer doctorId){
-        List<UserLog> userLogs = commentService.getAllUserLogsByDoctor(doctorId);
-        if (userLogs!=null&&userLogs.size()>0){
-            return new FrontResult(200,userLogs,null);
-        }else {
-            return new FrontResult(500,null,"该医生暂时还没有评价");
+        List<UserLog> userLogs = null;
+        try {
+            userLogs = commentService.getAllUserLogsByDoctor(doctorId);
+            if (userLogs!=null&&userLogs.size()>0){
+                return new FrontResult(200,userLogs,null);
+            }else {
+                return new FrontResult(500,null,"该医生暂时还没有评价");
+            }
+        } catch (Exception e) {
+            return new FrontResult(500,null,e.getMessage());
         }
+
     }
 
     @RequestMapping(value = "/user/type",method = RequestMethod.GET)
     public FrontResult getCommentsByType(Integer doctorId,Integer userType){
-        List<UserLog> userLogsByType = commentService.getUserLogsByType(doctorId, userType);
-        if (userLogsByType!=null&&userLogsByType.size()>0){
-            return new FrontResult(200,userLogsByType,null);
-        }else {
-            return new FrontResult(500,null,"暂无该类评价");
+        List<UserLog> userLogsByType = null;
+        try {
+            userLogsByType = commentService.getUserLogsByType(doctorId, userType);
+            if (userLogsByType!=null&&userLogsByType.size()>0){
+                return new FrontResult(200,userLogsByType,null);
+            }else {
+                return new FrontResult(500,null,"暂无该类评价");
+            }
+        } catch (Exception e) {
+            return new FrontResult(500,null,e.getMessage());
         }
+
     }
 
 
@@ -119,12 +131,18 @@ public class CommentController {
 
     @RequestMapping(value = "/sys/doctor",method = RequestMethod.GET)
     public FrontResult getSysLogWithDoctor(Integer doctorId){
-        List<SysLog> allSysLogsByDoctor = commentService.getAllSysLogsByDoctor(doctorId);
-        if (allSysLogsByDoctor!=null&&allSysLogsByDoctor.size()>0){
-            return new FrontResult(200,allSysLogsByDoctor,null);
-        }else {
-            return new FrontResult(500,null,"该医生暂时还没有评价");
+        List<SysLog> allSysLogsByDoctor = null;
+        try {
+            allSysLogsByDoctor = commentService.getAllSysLogsByDoctor(doctorId);
+            if (allSysLogsByDoctor!=null&&allSysLogsByDoctor.size()>0){
+                return new FrontResult(200,allSysLogsByDoctor,null);
+            }else {
+                return new FrontResult(500,null,"该医生暂时还没有评价");
+            }
+        } catch (Exception e) {
+            return new FrontResult(500,null,e.getMessage());
         }
+
     }
 
 

@@ -1,27 +1,29 @@
 package xd.medicine.cache;
-/*
-    created by xdCao on 2017/10/10
-*/
+
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
-public class MapCache {
+/**
+ * created by xdCao on 2018/1/3
+ */
+
+public class UnknownMapCache {
 
     private static final int DEFAULT_CACHES=1024;
 
-    private static final MapCache instance=new MapCache();
+    private static final UnknownMapCache instance=new UnknownMapCache();
 
     private ConcurrentHashMap<Integer,List<String>> cachePool;
 
-    public static MapCache getInstance(){
+    public static UnknownMapCache getInstance(){
         return instance;
     }
 
-    public MapCache() {
+    public UnknownMapCache() {
         this(DEFAULT_CACHES);
     }
 
-    public MapCache(int cacheCount) {
+    public UnknownMapCache(int cacheCount) {
         cachePool = new ConcurrentHashMap<>(cacheCount);
     }
 

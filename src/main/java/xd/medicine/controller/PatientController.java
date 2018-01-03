@@ -10,10 +10,9 @@ import org.springframework.messaging.simp.SimpMessageHeaderAccessor;
 import org.springframework.messaging.simp.SimpMessageType;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
-import org.springframework.scheduling.support.CronTrigger;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
-import xd.medicine.cache.MapCache;
+import xd.medicine.cache.EmergMapCache;
 import xd.medicine.calculator.TrustCalculator;
 import xd.medicine.entity.bo.Doctor;
 import xd.medicine.entity.bo.Patient;
@@ -24,13 +23,12 @@ import xd.medicine.entity.dto.PatientWithTrust;
 import xd.medicine.service.DoctorService;
 import xd.medicine.service.PatientService;
 import xd.medicine.service.TrustAttrService;
-import xd.medicine.tasks.AuthTask;
+import xd.medicine.tasks.EmergAuthTask;
 import xd.medicine.utils.GsonUtils;
 import xd.medicine.websocket.SocketSessionRegistry;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -72,7 +70,7 @@ public class PatientController {
     @Autowired
     private TrustCalculator trustCalculator;
 
-    private MapCache mapCache=MapCache.getInstance();
+    private EmergMapCache emergMapCache = EmergMapCache.getInstance();
 
 
     /**session操作类*/
@@ -189,6 +187,7 @@ public class PatientController {
                                        Double temperature,
                                        Integer heartBeat,
                                        Double bloodPressure){
+        LOGGER.info("病人紧急信息发生变更");
         patientService.updateEmergency(patientId, temperature, heartBeat, bloodPressure);
         PatientWithTrust patient=patientService.getPatientById(patientId);
         if ((patient.getPatient().getIsInEmergency())&&(patient.getPatient().getSenseAware())){
@@ -196,19 +195,19 @@ public class PatientController {
             //此刻开启一分钟的定时任务
             List<Doctor> doctors = doctorService.getDoctorsByDepartment(patient.getTrustAttr().getDepartment());
             for (Doctor doctor:doctors){
-                String userKey=1+","+doctor.getId();
+                String userKey=1+":"+doctor.getId();
+
+                LOGGER.info("向可信主体集成员： "+doctor.getId()+" 进行广播");
+
                 String sessionId = webAgentSessionRegistry.getSessionId(userKey);
                 if (sessionId!=null){
                     template.convertAndSendToUser(sessionId,"/subject/info",
                             new OutMessage(GsonUtils.toJsonString(patient)),createHeaders(sessionId));
                 }
             }
-
-//            mapCache.set(String.valueOf(patientId),System.currentTimeMillis());
+//            emergMapCache.set(String.valueOf(patientId),System.currentTimeMillis());
             //此处应开启一个新的定时任务
-            threadPoolTaskScheduler.schedule(new AuthTask(patient,doctors,template,webAgentSessionRegistry,trustCalculator),new Date(System.currentTimeMillis()+20000));
-
-
+            threadPoolTaskScheduler.schedule(new EmergAuthTask(patient,doctors,template,webAgentSessionRegistry,trustCalculator),new Date(System.currentTimeMillis()+20000));
         }
         return new FrontResult(200,patient,null);
     }

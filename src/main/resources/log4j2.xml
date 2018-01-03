@@ -50,14 +50,14 @@
         <logger name="xd.medicine.dao" level="DEBUG" additivity="true">
             <appender-ref ref="service_log"/>
         </logger>
-        <logger name="xd.medicine.controller" level="DEBUG" additivity="false">
-            <appender-ref ref="service_log"/>
+        <logger name="xd.medicine.controller" level="info" additivity="false">
+            <appender-ref ref="console"/>
         </logger>
         <logger name="xd.medicine.service" level="DEBUG" additivity="false">
-            <appender-ref ref="service_log"/>
+            <appender-ref ref="console"/>
         </logger>
         <!-- root logger,一般用于放置所有的appender -->
-        <root level="DEBUG">
+        <root level="info">
             <appender-ref ref="db_log"/>
             <appender-ref ref="console"/>
         </root>

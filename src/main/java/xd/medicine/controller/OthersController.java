@@ -165,4 +165,14 @@ public class OthersController {
         }
     }
 
+    @RequestMapping(value = "/delete",method = RequestMethod.POST)
+    public FrontResult deleteOthers(Integer id){
+        try {
+            othersService.delete(id);
+            return new FrontResult(200,null,null);
+        }catch (Exception e){
+            return new FrontResult(500,null,e.getMessage());
+        }
+    }
+
 }

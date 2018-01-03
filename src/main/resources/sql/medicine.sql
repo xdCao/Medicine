@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : localhost_3306
-Source Server Version : 50614
+Source Server         : xdCao
+Source Server Version : 50624
 Source Host           : localhost:3306
 Source Database       : medicine
 
 Target Server Type    : MYSQL
-Target Server Version : 50614
+Target Server Version : 50624
 File Encoding         : 65001
 
-Date: 2017-12-28 09:58:04
+Date: 2017-12-28 12:05:32
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -771,4 +771,3 @@ INSERT INTO `user_log` VALUES ('259', '12', 'Danny', '85', 'bbb', '2017-12-25', 
 INSERT INTO `user_log` VALUES ('260', '12', 'Danny', '47', 'bbb', '2017-12-25', '1', 'X');
 INSERT INTO `user_log` VALUES ('261', '12', 'Danny', '90', 'bbb', '2017-12-25', '1', 'X');
 INSERT INTO `user_log` VALUES ('262', '12', 'Danny', '60', 'bbb', '2017-12-25', '1', 'X');
-SET FOREIGN_KEY_CHECKS=1;

@@ -49,6 +49,7 @@
     var stompClient = null;
     //传递用户key值
     var userType=1;
+    /*userType为1：医生，2：其他人*/
 
     function setConnected(connected) {
         $("#connect").prop("disabled", connected);
@@ -63,6 +64,7 @@
     }
 
     function connect() {
+        // var socket = new SockJS('http://101.200.59.58:9090/websocket');
         var socket = new SockJS('/websocket');
         stompClient = Stomp.over(socket);
         var userId=parseInt($("#name").val());
@@ -70,7 +72,8 @@
             setConnected(true);
             console.log('Connected: ' + frame);
             stompClient.subscribe('/user/subject/info', function (greeting) {
-                showGreeting(JSON.parse(greeting.body).content);
+                // showGreeting(JSON.parse(greeting.body).content);
+                // console.log("recv data: "+greeting)
             });
         });
     }
@@ -85,6 +88,7 @@
 
     function sendName() {
         var userId=parseInt($("#name").val());
+        // stompClient.send("http://101.200.59.58:9090/medicine/msg/btgRequest", {}, JSON.stringify({'userType':'1','userId':userId,'patientId':'1'}));
         stompClient.send("/medicine/msg/btgRequest", {}, JSON.stringify({'userType':'1','userId':userId,'patientId':'1'}));
     }
 
