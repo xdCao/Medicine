@@ -33,6 +33,18 @@ public class MathUtilTest {
         }
     }
 
+    @Test
+    public void test3(){
+        List<Integer> list = new ArrayList<>();
+        list.add(1);
+        list.add(1);
+        list.add(3);
+        list.add(3);
+        list.add(2);
+        list.add(2);
+        System.out.println(SensitivityCalculator.calSensitivity(list));
+    }
+
 
 
 

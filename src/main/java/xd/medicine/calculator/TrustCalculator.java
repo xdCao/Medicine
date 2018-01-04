@@ -76,7 +76,7 @@ public class TrustCalculator {
                     continue;
                 }
                 hbt = rcm<rep?rcm:rep;     //HBT = min(RCM,REP)
-                trust = mt*TRUSTU1 + hbt*(1-TRUSTU1);
+                trust = mt*TRUST_U1 + hbt*(1-TRUST_U1);
             }
 
             boolean ava = doctor.getIsin()&doctor.getIsFree();
@@ -102,7 +102,7 @@ public class TrustCalculator {
         float[] wi = new float[4];
         /* 计算随机波动的权值wi */
         for (int i = 0; i < 3; i++) {
-            wi[i] = getRandom((float) 0.25 - MTALPHA, (float) 0.25 + MTALPHA);
+            wi[i] = getRandom((float) 0.25 - MT_ALPHA, (float) 0.25 + MT_ALPHA);
         }
         wi[3] = 1 - wi[0] - wi[1] - wi[2];
 
@@ -141,11 +141,11 @@ public class TrustCalculator {
             if (p <= d) {
                 //System.out.print(THSVALUE + (1-TRUSTU)/ (3 - p)*( d - p )+"--");
                 //System.out.println(THSVALUE + (1-TRUSTU)/ (3 - p)*( d - p +1));
-                f = getRandom(THSVALUE + (1 - THSVALUE) / (n - p) * (d - p), THSVALUE + (1 - THSVALUE) / (n - p) * (d - p + 1));
+                f = getRandom(THS_VALUE + (1 - THS_VALUE) / (n - p) * (d - p), THS_VALUE + (1 - THS_VALUE) / (n - p) * (d - p + 1));
             } else {
                 //System.out.print(THSVALUE / p * d + "---");
                 //System.out.println(THSVALUE / p * (d+1));
-                f = getRandom(THSVALUE / p * d , THSVALUE / p * (d + 1));
+                f = getRandom(THS_VALUE / p * d , THS_VALUE / p * (d + 1));
             }
             results.add(f);
         }
@@ -157,26 +157,26 @@ public class TrustCalculator {
     */
     public float calDocRCM(Doctor doctor){
         List<UserLog> userLogList = commentService.getAllUserLogsByDoctor(doctor.getId());
-        if(userLogList.size()< HBTN){
+        if(userLogList.size()< HBT_N){
             System.out.println("ERROR！！用户日志样本数量不足！！!医生id："+ doctor.getId()+"，医生姓名："+doctor.getName());
             return -1;
         }
 
         List<Float> samplingAveValue = new ArrayList<>(); //用来存放每次抽样后计算出来的平均值
-        for(int i=0; i<HBTM; i++){
+        for(int i=0; i<HBT_M; i++){
             int sum = 0;
-            List<Integer> list = sampling(userLogList.size(),HBTN); //进行抽样
+            List<Integer> list = sampling(userLogList.size(),HBT_N); //进行抽样
             List<Integer> valueList = new ArrayList<>(); //存放抽样得到的值
-            for(int j=0 ; j < HBTN; j++){
+            for(int j=0 ; j < HBT_N; j++){
                 int f=(userLogList.get(list.get(j)-1).getEvaluateValue())&0xFF;
                 valueList.add(f);
                 sum+=f;
             }
-            float ave = (float)sum/HBTN/100; //评价值为0-100，计算时以1为最大值进行量化
+            float ave = (float)sum/HBT_N/100; //评价值为0-100，计算时以1为最大值进行量化
             /* 判断本次抽样中是否有超过阈值的不可信评价 */
             boolean flag = true;
             for(int value:valueList){
-                if(Math.abs((float) value/100 - ave) > DIFFERMAX) {
+                if(Math.abs((float) value/100 - ave) > DIFFER_MAX) {
                    // System.out.println("不可信的一次抽样！value="+value+",ave="+ave);
                     flag = false;
                     break;
