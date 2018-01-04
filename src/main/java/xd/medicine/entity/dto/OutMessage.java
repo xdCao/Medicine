@@ -6,9 +6,12 @@ package xd.medicine.entity.dto;
 
 public class OutMessage {
 
+    private int code;
+
     private String msg;
 
-    public OutMessage(String s) {
+    public OutMessage(int code,String s) {
+        this.code=code;
         this.msg=s;
     }
 
@@ -18,6 +21,14 @@ public class OutMessage {
 
     public void setMsg(String msg) {
         this.msg = msg;
+    }
+
+    public int getCode() {
+        return code;
+    }
+
+    public void setCode(int code) {
+        this.code = code;
     }
 }
 

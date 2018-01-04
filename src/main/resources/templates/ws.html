@@ -25,7 +25,8 @@
                     <label for="name">What is your name?</label>
                     <input type="number" id="name" class="form-control" placeholder="Your name here..."/>
                 </div>
-                <button id="send" class="btn btn-default" type="submit">Send</button>
+                <button id="send" class="btn btn-default" type="submit">SendEmerg</button>
+                <button id="sendUnknown" type="submit">SendUnknown</button>
             </form>
         </div>
     </div>
@@ -86,12 +87,16 @@
         console.log("Disconnected");
     }
 
-    function sendName() {
+    function sendEmergBTG() {
         var userId=parseInt($("#name").val());
         // stompClient.send("http://101.200.59.58:9090/medicine/msg/btgRequest", {}, JSON.stringify({'userType':'1','userId':userId,'patientId':'1'}));
         stompClient.send("/medicine/msg/btgRequest", {}, JSON.stringify({'userType':'1','userId':userId,'patientId':'1'}));
     }
 
+    function sendUnknownBTG() {
+        var userId=parseInt($("#name").val());
+        stompClient.send("/medicine/msg/riskRequest",{},JSON.stringify({"userType":'1','userId':userId,'patientId':'1'}));
+    }
 
     function showGreeting(message) {
         $("#greetings").append("<tr><td>" + message + "</td></tr>");
@@ -103,7 +108,8 @@
         });
         $( "#connect" ).click(function() { connect(); });
         $( "#disconnect" ).click(function() { disconnect(); });
-        $( "#send" ).click(function() { sendName(); });
+        $( "#send" ).click(function() { sendEmergBTG(); });
+        $("#sendUnknown").click(function (){sendUnknownBTG();});
     });
 </script>
 </body>

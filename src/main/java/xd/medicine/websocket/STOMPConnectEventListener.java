@@ -28,4 +28,7 @@ public class STOMPConnectEventListener implements ApplicationListener<SessionCon
         System.out.println("agentId:    "+userKey+" ,   sessionId:      "+sessionId);
         webAgentSessionRegistry.registerSessionId(userKey,sessionId);
     }
+
+
+
 }

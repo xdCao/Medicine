@@ -19,7 +19,9 @@ import java.util.List;
 /**
  * created by xdCao on 2017/12/26
  */
-
+/*201:获得授权*/
+/*401:授权失效*/
+/*200:收到病人通知*/
 public class EmergAuthTask implements Runnable {
 
     private static final Logger LOGGER= LoggerFactory.getLogger("------紧急请求授权处理模块：");
@@ -78,7 +80,7 @@ public class EmergAuthTask implements Runnable {
                 if (sessionId!=null){
                     System.out.println(sessionId);
                     template.convertAndSendToUser(sessionId,"/subject/info",
-                            new OutMessage("获得授权哦亲"),createHeaders(sessionId));
+                            new OutMessage(201,"获得授权哦亲"),createHeaders(sessionId));
                 }
             }else {
 
@@ -132,13 +134,13 @@ public class EmergAuthTask implements Runnable {
                             if (sessionId!=null){
                                 System.out.println(sessionId);
                                 template.convertAndSendToUser(sessionId,"/subject/info",
-                                        new OutMessage("你的授权已失效"),createHeaders(sessionId));
+                                        new OutMessage(401,"你的授权已失效"),createHeaders(sessionId));
                             }
                             String newSessionId=registry.getSessionId(authUserKey);
                             if (newSessionId!=null){
                                 System.out.println(newSessionId);
                                 template.convertAndSendToUser(newSessionId,"/subject/info",
-                                        new OutMessage("获得授权哦亲"),createHeaders(newSessionId));
+                                        new OutMessage(201,"获得授权哦亲"),createHeaders(newSessionId));
                             }
                             currentDoctor=doctorTrustResult;
                         }
@@ -165,7 +167,7 @@ public class EmergAuthTask implements Runnable {
             if (sessionId!=null){
                 System.out.println(sessionId);
                 template.convertAndSendToUser(sessionId,"/subject/info",
-                        new OutMessage("获得授权哦亲"),createHeaders(sessionId));
+                        new OutMessage(201,"获得授权哦亲"),createHeaders(sessionId));
             }
         }else {
             LOGGER.error("EmergAuthTask.run error: line: "+97);

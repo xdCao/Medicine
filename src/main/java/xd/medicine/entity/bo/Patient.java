@@ -33,6 +33,8 @@ public class Patient {
 
     private Date emergtime;
 
+    private Integer roleLevel;
+
     public Integer getId() {
         return id;
     }
@@ -151,5 +153,13 @@ public class Patient {
 
     public void setEmergtime(Date emergtime) {
         this.emergtime = emergtime;
+    }
+
+    public Integer getRoleLevel() {
+        return roleLevel;
+    }
+
+    public void setRoleLevel(Integer roleLevel) {
+        this.roleLevel = roleLevel;
     }
 }

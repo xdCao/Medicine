@@ -1081,6 +1081,66 @@ public class PatientExample {
             addCriterion("emergTime not between", value1, value2, "emergtime");
             return (Criteria) this;
         }
+
+        public Criteria andRoleLevelIsNull() {
+            addCriterion("role_level is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRoleLevelIsNotNull() {
+            addCriterion("role_level is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRoleLevelEqualTo(Integer value) {
+            addCriterion("role_level =", value, "roleLevel");
+            return (Criteria) this;
+        }
+
+        public Criteria andRoleLevelNotEqualTo(Integer value) {
+            addCriterion("role_level <>", value, "roleLevel");
+            return (Criteria) this;
+        }
+
+        public Criteria andRoleLevelGreaterThan(Integer value) {
+            addCriterion("role_level >", value, "roleLevel");
+            return (Criteria) this;
+        }
+
+        public Criteria andRoleLevelGreaterThanOrEqualTo(Integer value) {
+            addCriterion("role_level >=", value, "roleLevel");
+            return (Criteria) this;
+        }
+
+        public Criteria andRoleLevelLessThan(Integer value) {
+            addCriterion("role_level <", value, "roleLevel");
+            return (Criteria) this;
+        }
+
+        public Criteria andRoleLevelLessThanOrEqualTo(Integer value) {
+            addCriterion("role_level <=", value, "roleLevel");
+            return (Criteria) this;
+        }
+
+        public Criteria andRoleLevelIn(List<Integer> values) {
+            addCriterion("role_level in", values, "roleLevel");
+            return (Criteria) this;
+        }
+
+        public Criteria andRoleLevelNotIn(List<Integer> values) {
+            addCriterion("role_level not in", values, "roleLevel");
+            return (Criteria) this;
+        }
+
+        public Criteria andRoleLevelBetween(Integer value1, Integer value2) {
+            addCriterion("role_level between", value1, value2, "roleLevel");
+            return (Criteria) this;
+        }
+
+        public Criteria andRoleLevelNotBetween(Integer value1, Integer value2) {
+            addCriterion("role_level not between", value1, value2, "roleLevel");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

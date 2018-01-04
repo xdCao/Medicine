@@ -25,6 +25,10 @@ public class Others {
 
     private Float poobTrust;
 
+    private Boolean isInHos;
+
+    private Boolean isOnWork;
+
     public Integer getId() {
         return id;
     }
@@ -119,5 +123,21 @@ public class Others {
 
     public void setPoobTrust(Float poobTrust) {
         this.poobTrust = poobTrust;
+    }
+
+    public Boolean getIsInHos() {
+        return isInHos;
+    }
+
+    public void setIsInHos(Boolean isInHos) {
+        this.isInHos = isInHos;
+    }
+
+    public Boolean getIsOnWork() {
+        return isOnWork;
+    }
+
+    public void setIsOnWork(Boolean isOnWork) {
+        this.isOnWork = isOnWork;
     }
 }

@@ -10,10 +10,12 @@ import org.springframework.messaging.simp.SimpMessageType;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.web.bind.annotation.*;
 import xd.medicine.cache.EmergMapCache;
+import xd.medicine.entity.bo.ProDuty;
 import xd.medicine.entity.dto.AuthRequest;
 import xd.medicine.service.DoctorService;
 import xd.medicine.service.OthersService;
 import xd.medicine.service.PatientService;
+import xd.medicine.service.ProDutyService;
 import xd.medicine.utils.GsonUtils;
 import xd.medicine.websocket.SocketSessionRegistry;
 
@@ -47,6 +49,9 @@ public class WebSocketController {
     @Autowired
     private OthersService othersService;
 
+    @Autowired
+    private ProDutyService proDutyService;
+
     /**
      * 同样的发送消息   只不过是ws版本  http请求不能访问
      * 根据用户key发送消息
@@ -68,10 +73,14 @@ public class WebSocketController {
 
     }
 
-    @MessageMapping("/msg/riskRequest")
-    public void riskRequest(String message){
-
-    }
+//    @MessageMapping("/msg/riskRequest")
+//    public void riskRequest(String message){
+//        AuthRequest authRequest=GsonUtils.jsonToObject(message,AuthRequest.class);
+//        /*获取事前义务并分配*/
+//        List<ProDuty> allProDuties = proDutyService.getProDutiesByChosen(true);
+//
+//
+//    }
 
     private void checkAndPut(AuthRequest authRequest) {
         boolean containsKey = emergMapCache.containsKey(authRequest.getPatientId());

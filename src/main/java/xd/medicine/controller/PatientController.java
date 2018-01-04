@@ -202,7 +202,7 @@ public class PatientController {
                 String sessionId = webAgentSessionRegistry.getSessionId(userKey);
                 if (sessionId!=null){
                     template.convertAndSendToUser(sessionId,"/subject/info",
-                            new OutMessage(GsonUtils.toJsonString(patient)),createHeaders(sessionId));
+                            new OutMessage(200,GsonUtils.toJsonString(patient)),createHeaders(sessionId));
                 }
             }
 //            emergMapCache.set(String.valueOf(patientId),System.currentTimeMillis());
@@ -284,6 +284,7 @@ public class PatientController {
             patient.setBloodPressure(0.0);
             patient.setHeartBeat(0);
             patient.setIsInEmergency(false);
+            patient.setRoleLevel(0);
             patientService.insertPatient(patient);
             return new FrontResult(200,new PatientWithTrust(patient,trustAttr),null);
         } catch (Exception e) {

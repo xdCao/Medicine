@@ -73,6 +73,8 @@ public class OthersController {
             others.setAge(age);
             others.setIsSendRequest(false);
             others.setPoobTrust((float)0.5); //poobTrust初始值为0.5，后续由可信模块更新
+            others.setIsInHos(false);
+            others.setIsOnWork(false);
             othersService.insert(others);
             return new FrontResult(200,others,null);
         } catch (Exception e) {
@@ -174,5 +176,20 @@ public class OthersController {
             return new FrontResult(500,null,e.getMessage());
         }
     }
+
+    @RequestMapping(value = "/updateSensi",method = RequestMethod.POST)
+    public FrontResult updateSensi(@RequestParam Integer id,@RequestParam Boolean isOnWork,@RequestParam Boolean isInHos){
+        Others others=new Others();
+        others.setId(id);
+        others.setIsInHos(isInHos);
+        others.setIsOnWork(isOnWork);
+        try {
+            othersService.update(others);
+            return new FrontResult(200,others,null);
+        } catch (Exception e) {
+            return new FrontResult(500,null,e.getMessage());
+        }
+    }
+
 
 }

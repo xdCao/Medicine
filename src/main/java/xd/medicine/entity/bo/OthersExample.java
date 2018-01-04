@@ -883,6 +883,126 @@ public class OthersExample {
             addCriterion("poob_trust not between", value1, value2, "poobTrust");
             return (Criteria) this;
         }
+
+        public Criteria andIsInHosIsNull() {
+            addCriterion("is_in_hos is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsInHosIsNotNull() {
+            addCriterion("is_in_hos is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsInHosEqualTo(Boolean value) {
+            addCriterion("is_in_hos =", value, "isInHos");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsInHosNotEqualTo(Boolean value) {
+            addCriterion("is_in_hos <>", value, "isInHos");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsInHosGreaterThan(Boolean value) {
+            addCriterion("is_in_hos >", value, "isInHos");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsInHosGreaterThanOrEqualTo(Boolean value) {
+            addCriterion("is_in_hos >=", value, "isInHos");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsInHosLessThan(Boolean value) {
+            addCriterion("is_in_hos <", value, "isInHos");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsInHosLessThanOrEqualTo(Boolean value) {
+            addCriterion("is_in_hos <=", value, "isInHos");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsInHosIn(List<Boolean> values) {
+            addCriterion("is_in_hos in", values, "isInHos");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsInHosNotIn(List<Boolean> values) {
+            addCriterion("is_in_hos not in", values, "isInHos");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsInHosBetween(Boolean value1, Boolean value2) {
+            addCriterion("is_in_hos between", value1, value2, "isInHos");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsInHosNotBetween(Boolean value1, Boolean value2) {
+            addCriterion("is_in_hos not between", value1, value2, "isInHos");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsOnWorkIsNull() {
+            addCriterion("is_on_work is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsOnWorkIsNotNull() {
+            addCriterion("is_on_work is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsOnWorkEqualTo(Boolean value) {
+            addCriterion("is_on_work =", value, "isOnWork");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsOnWorkNotEqualTo(Boolean value) {
+            addCriterion("is_on_work <>", value, "isOnWork");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsOnWorkGreaterThan(Boolean value) {
+            addCriterion("is_on_work >", value, "isOnWork");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsOnWorkGreaterThanOrEqualTo(Boolean value) {
+            addCriterion("is_on_work >=", value, "isOnWork");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsOnWorkLessThan(Boolean value) {
+            addCriterion("is_on_work <", value, "isOnWork");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsOnWorkLessThanOrEqualTo(Boolean value) {
+            addCriterion("is_on_work <=", value, "isOnWork");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsOnWorkIn(List<Boolean> values) {
+            addCriterion("is_on_work in", values, "isOnWork");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsOnWorkNotIn(List<Boolean> values) {
+            addCriterion("is_on_work not in", values, "isOnWork");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsOnWorkBetween(Boolean value1, Boolean value2) {
+            addCriterion("is_on_work between", value1, value2, "isOnWork");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsOnWorkNotBetween(Boolean value1, Boolean value2) {
+            addCriterion("is_on_work not between", value1, value2, "isOnWork");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {
