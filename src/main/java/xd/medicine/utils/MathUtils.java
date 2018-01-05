@@ -11,6 +11,7 @@ public class MathUtils {
         return min + new Random().nextFloat() * (max - min);
     }
 
+
     /* 抽样辅助函数，从1-total中随机取n个数 */
     public static List<Integer> sampling(int total , int n) {
         if(n>total)

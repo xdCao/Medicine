@@ -5,9 +5,11 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+import xd.medicine.entity.bo.ProDuty;
 import xd.medicine.entity.bo.TrustAttr;
 import xd.medicine.entity.dto.DoctorTrustResult;
 import xd.medicine.service.PatientService;
+import xd.medicine.service.ProDutyService;
 import xd.medicine.service.TrustAttrService;
 
 import java.awt.*;
@@ -27,6 +29,10 @@ public class TrustCalculatorTest {
     private TrustCalculator trustCalculator;
     @Autowired
     private PatientService patientService;
+    @Autowired
+    private ProDutyService proDutyService;
+    @Autowired
+    private AuthHelper authHelper;
 
     @Test
     public void trustCalculatorTest(){
@@ -56,6 +62,19 @@ public class TrustCalculatorTest {
         }*/
 
     }
+
+    @Test
+    public void proDutyTest(){
+        List<ProDuty> proDuties = proDutyService.getProDutiesByChosen(true);
+        List<Integer> list = authHelper.getRandomFulfilledStateList(proDuties);
+        //System.out.println(proDuties.size());
+        for(Integer i : list){
+            System.out.println(i);
+        }
+        System.out.println("lanbda:"+authHelper.calLamda(proDuties,list));
+
+    }
+
 
 
 

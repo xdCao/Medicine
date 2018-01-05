@@ -4,18 +4,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import xd.medicine.entity.bo.Doctor;
 import xd.medicine.entity.bo.Others;
+import xd.medicine.entity.bo.ProDuty;
 import xd.medicine.entity.dto.AuthRequest;
 import xd.medicine.entity.dto.DoctorTrustResult;
 import xd.medicine.entity.dto.PatientWithTrust;
 import xd.medicine.service.DoctorService;
 import xd.medicine.service.OthersService;
 import xd.medicine.service.PatientService;
+import xd.medicine.service.PostDutyLogService;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
-import static xd.medicine.calculator.Constants.OTHER_BS_TRUST;
-import static xd.medicine.calculator.Constants.R_THS;
-import static xd.medicine.calculator.Constants.TRUST_U2;
+import static xd.medicine.calculator.Constants.*;
+import static xd.medicine.utils.MathUtils.getRandom;
 
 /**
  * created by liubotao
@@ -31,8 +34,15 @@ public class AuthHelper {
     private OthersService othersService;
     @Autowired
     private TrustCalculator trustCalculator;
+    @Autowired
+    private PostDutyLogService postDutyLogService;
 
-    public int authCal(List<Integer> sensitivityItems, AuthRequest authRequest){
+    /*
+    * 未知情况下的授权计算
+     */
+    public int authCal(List<Integer> sensitivityItems, AuthRequest authRequest, int lambda){
+        if(lambda<0)
+            return 2; //A级，直接拒绝
         float sensitivity = SensitivityCalculator.calSensitivity(sensitivityItems);
         float unTrust;
         PatientWithTrust patientWithTrust = patientService.getPatientById(authRequest.getPatientId());
@@ -54,8 +64,90 @@ public class AuthHelper {
         }
     }
 
-    public int reAuthCal(float risk , AuthRequest authRequest){
-        return 0;
+    public List<Integer> getRandomFulfilledStateList(List<ProDuty> proDutyList){
+        List<Integer> randomFulfilledStateList = new ArrayList<>();
+        Random random = new Random();
+        for(ProDuty proDuty: proDutyList){
+            float r = random.nextFloat();
+            // 0.9的概率完成，0.2的概率优秀地完成
+            if(proDuty.getType() == 0 ){
+                if(r>0.8) {
+                    randomFulfilledStateList.add(2);
+                }else if(r>0.1){
+                    randomFulfilledStateList.add(1);
+                }else{
+                    System.out.println(r+"==");
+                    randomFulfilledStateList.add(0);
+                }
+            }else{ //0.5的概率完成
+                if(r>0.5){
+                    randomFulfilledStateList.add(1);
+                }else{
+                    randomFulfilledStateList.add(0);
+                }
+            }
+        }
+        return randomFulfilledStateList;
+    }
+
+    /*
+    *根据事前义务的完成情况，计算等级差lambda
+     */
+    public int calLamda(List<ProDuty> proDutyList, List<Integer> fulfilledStateList){
+        /* a,b,c分别是完成的强制性事前义务数，完成且优秀的强制性事前义务数，完成的非强制先验义务数 */
+        int a = 0, b = 0 , c=0;
+        /* m,n分别是本次分配的强制和非强制义务的个数 */
+        int m = 0, n=0;
+        /*统计按时完成的强制义务数和非强制义务数*/
+        if(proDutyList.size()!=fulfilledStateList.size()){
+            System.out.println("Error! 义务完成时间信息不足！");
+        }
+        /* fulfilledStateList中0为violate，1为fulfill.common, 2为fulfill.good */
+        for(int i = 0; i < proDutyList.size(); i++){
+            if(proDutyList.get(i).getType()==0){
+                m++;
+                if(fulfilledStateList.get(i)==2){
+                    a++;
+                    b++;
+                }else if(fulfilledStateList.get(i)==1) {
+                    a++;
+                }
+            }else{
+                n++;
+                if(fulfilledStateList.get(i)==1 || fulfilledStateList.get(i)==2) {
+                    c++;
+                }
+            }
+        }
+
+        int grade;
+        if(a==m && c>0 && b>0){
+            grade = 5;
+        }else if(a==m && b>0){
+            grade = 4;
+        }else if(a==m && c>0){
+            grade = 3;
+        }else if(a==m){
+            grade = 2;
+        }else{
+            grade = 1;
+        }
+        return grade - 2;
+
+    }
+
+    /*
+    *二次评估计算
+     */
+    public int reAuthCal(float risk , AuthRequest authRequest, int lambda){
+        int p = postDutyLogService.countFulfilledPostDutyLogsBySub((byte)authRequest.getUserType().intValue(),authRequest.getUserId());
+        int q = postDutyLogService.countPostDutyLogsBySub((byte)authRequest.getUserType().intValue(),authRequest.getUserId());
+        float prob_award = (float) p/q * R_THS * (lambda * D_AWARD + (lambda==0?0:1));
+        if(risk <= prob_award) {
+            return 0;  //授权
+        }else {
+            return 1;  //拒绝
+        }
     }
 
 }
