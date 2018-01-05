@@ -50,7 +50,7 @@ public class TrustCalculator {
     *输入一个病人id，返回匹配到的主体集及其匹配可信度、历史行为可信度、总体可信度
      */
     public List<DoctorTrustResult> getTs( int patientId ) {
-        float mt,hbt,rcm,rep,trust;
+
         PatientWithTrust patientWithTrust = patientService.getPatientById(patientId);
 
         List<Doctor> doctorList = patientService.getSisDoctorsByPatientId(patientId);  //获得满足科室要求的所有医生，即候选主体集合SIS
@@ -60,39 +60,52 @@ public class TrustCalculator {
                 continue;
             }*/
 
-            if (patientWithTrust.getPatient().getDoctorId() == doctor.getId()) {
-                /* 如果是主治医生，所有可信度直接为1 */
-                mt = 1;
-                hbt = 1;
-                trust = 1;
-                rcm = 1;
-                rep = 1;
-            } else {
-                mt = calDocMt(doctor , patientWithTrust);
-                rcm = calDocRCM(doctor);
-                rep = calDocREP(doctor);
-                if(rcm<0||rcm>1||rep<0||rep>1){
-                    System.out.println("ERROR RCM OR REP!医生id："+ doctor.getId()+"医生姓名："+doctor.getName());
-                    continue;
-                }
-                hbt = rcm<rep?rcm:rep;     //HBT = min(RCM,REP)
-                trust = mt*TRUST_U1 + hbt*(1-TRUST_U1);
-            }
-
-            boolean ava = doctor.getIsin()&doctor.getIsFree();
-            DoctorTrustResult doctorTrustResult = new DoctorTrustResult(doctor.getId(),doctor.getName(), mt, rcm, rep, hbt, trust, doctor.getIsin() , doctor.getIsFree(), ava);
             //System.out.println(doctorTrustResult.toString());
-            doctorTrustResultList.add(doctorTrustResult);
-
-            Collections.sort(doctorTrustResultList, new Comparator<DoctorTrustResult>() {
-                @Override
-                public int compare(DoctorTrustResult o1, DoctorTrustResult o2) {
-                    return new Float(o2.getTrust()).compareTo(new Float(o1.getTrust()));
-                }
-            });
+            DoctorTrustResult doctorTrustResult = calDocBsTrust(patientWithTrust , doctor);
+            if(doctorTrustResult!=null) {
+                doctorTrustResultList.add(doctorTrustResult);
+            }
         }
+
+        Collections.sort(doctorTrustResultList, new Comparator<DoctorTrustResult>() {
+            @Override
+            public int compare(DoctorTrustResult o1, DoctorTrustResult o2) {
+                return new Float(o2.getTrust()).compareTo(new Float(o1.getTrust()));
+            }
+        });
         return doctorTrustResultList;
     }
+
+    /*
+    * 计算单个医生的基本可信度
+     */
+    public DoctorTrustResult calDocBsTrust(PatientWithTrust patientWithTrust, Doctor doctor){
+        float mt,hbt,rcm,rep,trust;
+        if (patientWithTrust.getPatient().getDoctorId() == doctor.getId()) {
+                /* 如果是主治医生，所有可信度直接为1 */
+            mt = 1;
+            hbt = 1;
+            trust = 1;
+            rcm = 1;
+            rep = 1;
+        } else {
+            mt = calDocMt(doctor , patientWithTrust);
+            rcm = calDocRCM(doctor);
+            rep = calDocREP(doctor);
+            if(rcm<0||rcm>1||rep<0||rep>1){
+                System.out.println("ERROR RCM OR REP!医生id："+ doctor.getId()+"医生姓名："+doctor.getName());
+                return null;
+            }
+            hbt = rcm<rep?rcm:rep;     //HBT = min(RCM,REP)
+            trust = mt*TRUST_U1 + hbt*(1-TRUST_U1);
+        }
+
+        boolean ava = doctor.getIsin()&doctor.getIsFree();
+        DoctorTrustResult doctorTrustResult = new DoctorTrustResult(doctor.getId(),doctor.getName(), mt, rcm, rep, hbt, trust, doctor.getIsin() , doctor.getIsFree(), ava);
+        return doctorTrustResult;
+    }
+
+
 
     /*
     *给定一个医生和一个病人，计算MT
