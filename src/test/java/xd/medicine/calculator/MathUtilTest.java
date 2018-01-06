@@ -45,6 +45,14 @@ public class MathUtilTest {
         System.out.println(SensitivityCalculator.calSensitivity(list));
     }
 
+    @Test
+    public void test4(){
+        for(int i =0;i<30;i++){
+            System.out.println(getRandomInt(0,10));
+        }
+
+    }
+
 
 
 

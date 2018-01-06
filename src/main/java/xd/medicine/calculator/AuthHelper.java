@@ -18,7 +18,6 @@ import java.util.List;
 import java.util.Random;
 
 import static xd.medicine.calculator.Constants.*;
-import static xd.medicine.utils.MathUtils.getRandom;
 
 /**
  * created by liubotao
@@ -64,31 +63,6 @@ public class AuthHelper {
         }
     }
 
-    public List<Integer> getRandomFulfilledStateList(List<ProDuty> proDutyList){
-        List<Integer> randomFulfilledStateList = new ArrayList<>();
-        Random random = new Random();
-        for(ProDuty proDuty: proDutyList){
-            float r = random.nextFloat();
-            // 0.9的概率完成，0.2的概率优秀地完成
-            if(proDuty.getType() == 0 ){
-                if(r>0.8) {
-                    randomFulfilledStateList.add(2);
-                }else if(r>0.1){
-                    randomFulfilledStateList.add(1);
-                }else{
-                    System.out.println(r+"==");
-                    randomFulfilledStateList.add(0);
-                }
-            }else{ //0.5的概率完成
-                if(r>0.5){
-                    randomFulfilledStateList.add(1);
-                }else{
-                    randomFulfilledStateList.add(0);
-                }
-            }
-        }
-        return randomFulfilledStateList;
-    }
 
     /*
     *根据事前义务的完成情况，计算等级差lambda

@@ -11,6 +11,7 @@ import xd.medicine.service.DoctorService;
 import xd.medicine.service.PatientService;
 import xd.medicine.service.ServiceImpl.DoctorServiceImpl;
 
+import javax.print.Doc;
 import java.util.*;
 
 import static xd.medicine.calculator.Constants.*;
@@ -28,6 +29,9 @@ public class TrustCalculator {
 
     @Autowired
     private CommentService commentService;
+
+    @Autowired
+    private DoctorService doctorService;
 
     /*
      * 输入病人id，获得当前属于available状态的可信主体集
@@ -115,7 +119,7 @@ public class TrustCalculator {
         float[] wi = new float[4];
         /* 计算随机波动的权值wi */
         for (int i = 0; i < 3; i++) {
-            wi[i] = getRandom((float) 0.25 - MT_ALPHA, (float) 0.25 + MT_ALPHA);
+            wi[i] = getRandomFloat((float) 0.25 - MT_ALPHA, (float) 0.25 + MT_ALPHA);
         }
         wi[3] = 1 - wi[0] - wi[1] - wi[2];
 
@@ -154,11 +158,11 @@ public class TrustCalculator {
             if (p <= d) {
                 //System.out.print(THSVALUE + (1-TRUSTU)/ (3 - p)*( d - p )+"--");
                 //System.out.println(THSVALUE + (1-TRUSTU)/ (3 - p)*( d - p +1));
-                f = getRandom(THS_VALUE + (1 - THS_VALUE) / (n - p) * (d - p), THS_VALUE + (1 - THS_VALUE) / (n - p) * (d - p + 1));
+                f = getRandomFloat(THS_VALUE + (1 - THS_VALUE) / (n - p) * (d - p), THS_VALUE + (1 - THS_VALUE) / (n - p) * (d - p + 1));
             } else {
                 //System.out.print(THSVALUE / p * d + "---");
                 //System.out.println(THSVALUE / p * (d+1));
-                f = getRandom(THS_VALUE / p * d , THS_VALUE / p * (d + 1));
+                f = getRandomFloat(THS_VALUE / p * d , THS_VALUE / p * (d + 1));
             }
             results.add(f);
         }
@@ -248,12 +252,12 @@ public class TrustCalculator {
     }*/
 
 
-    public void updatePoobTrust(float trustOld, List<PostDuty> postDutyList, List<Float> teList, float sensitivity, float probAward, float trust ){
+    public void updatePoobTrust(Doctor doctor, List<PostDuty> postDutyList, List<Integer> teList, float risk, float probAward){
         if(postDutyList.size()!=teList.size()){
             System.out.println("Error!!");
             return ;
         }
-        float poobTp = trust - sensitivity > probAward? trust - sensitivity : probAward;
+        float poobTp = (-risk) > probAward? (-risk) : probAward;
         List<Integer> list1 = new ArrayList<>(); //存放按时完成的义务编号
         List<Integer> list2 = new ArrayList<>(); //存放延期完成的义务编号
         List<Integer> list3 = new ArrayList<>(); //存放违反状态的义务编号
@@ -297,7 +301,11 @@ public class TrustCalculator {
             poobPenaltyViolate /= list3.size();
         }
 
-        float trustNew = trustOld + poobAward - poobPenaltyDelay - poobPenaltyViolate;
+        float poobTrustNew = doctor.getPoobTrust() + poobAward - poobPenaltyDelay - poobPenaltyViolate;
+        if(poobTrustNew>1) poobTrustNew=1;
+        if(poobTrustNew<0) poobTrustNew=0;
+        doctor.setPoobTrust(poobTrustNew);
+        doctorService.updateDoctor(doctor);
     }
 
 }
