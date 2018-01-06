@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import xd.medicine.cache.EmergMapCache;
 import xd.medicine.entity.bo.ProDuty;
 import xd.medicine.entity.dto.AuthRequest;
+import xd.medicine.entity.dto.FrontResult;
 import xd.medicine.service.DoctorService;
 import xd.medicine.service.OthersService;
 import xd.medicine.service.PatientService;
@@ -71,6 +72,20 @@ public class WebSocketController {
             checkAndPut(authRequest);
         }
 
+    }
+
+    @RequestMapping(value = "/msg/leave",method = RequestMethod.POST)
+    public FrontResult leaveSession(Integer userType,
+                                    Integer userId,
+                                    Integer patientId){
+        LOGGER.info("userType: "+userType+" , userId: "+userId+" , patientId: "+patientId);
+        if (emergMapCache.containsKey(patientId)){
+            boolean remove = emergMapCache.get(patientId).remove(userType + ":" + userId);
+            LOGGER.info("移除病人： "+patientId+" 请求队列中的： 医生"+userId+" remove:"+remove);
+        }else {
+            LOGGER.info("缓存中已没有该病人： "+patientId+"的紧急请求");
+        }
+        return new FrontResult(200,null,null);
     }
 
 //    @MessageMapping("/msg/riskRequest")

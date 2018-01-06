@@ -2,10 +2,15 @@ package xd.medicine.cache;
 /*
     created by xdCao on 2017/10/10
 */
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class EmergMapCache {
+
+    private static final Logger LOGGER= LoggerFactory.getLogger(EmergMapCache.class);
 
     private static final int DEFAULT_CACHES=1024;
 
@@ -44,6 +49,7 @@ public class EmergMapCache {
 
     public void remove(Integer key){
         cachePool.remove(key);
+        LOGGER.info("请求缓存中移除： key="+key);
     }
 
 }

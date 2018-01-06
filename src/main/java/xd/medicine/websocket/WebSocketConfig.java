@@ -41,6 +41,9 @@ public class WebSocketConfig extends AbstractWebSocketMessageBrokerConfigurer{
         return new STOMPConnectEventListener();
     }
 
-
+    @Bean
+    public STOMPDisconnectEventListener stompDisconnectEventListener(){
+        return new STOMPDisconnectEventListener();
+    }
 
 }

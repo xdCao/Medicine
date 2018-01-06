@@ -112,9 +112,9 @@ public class EmergAuthTask implements Runnable {
 
         /*这里进入下一阶段，当有新的请求到来且信用等级更高，将当前授权对象取消授权，并转移给新来的*/
 
-        while (true) {
+        LOGGER.info("进入抢占阶段");
 
-            LOGGER.info("进入抢占阶段");
+        while (true) {
 
             boolean containsKey = emergMapCache.containsKey(patientWithTrust.getPatient().getId());
             if (containsKey){
