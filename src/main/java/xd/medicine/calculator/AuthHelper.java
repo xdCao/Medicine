@@ -44,7 +44,7 @@ public class AuthHelper {
         float sensitivity = SensitivityCalculator.calSensitivity(sensitivityItems);
         float unTrust;
         PatientWithTrust patientWithTrust = patientService.getPatientById(authRequest.getPatientId());
-        if(authRequest.getUserType()==0){
+        if(authRequest.getUserType()==1){
             Doctor doctor = doctorService.getDoctorById(authRequest.getUserId());
             DoctorTrustResult doctorTrustResult = trustCalculator.calDocBsTrust(patientWithTrust,doctor);
             unTrust = doctorTrustResult.getTrust() * TRUST_U2 + doctor.getPoobTrust() * (1 - TRUST_U2);
@@ -58,7 +58,7 @@ public class AuthHelper {
 
 
     /*
-    *根据事前义务的完成情况，计算等级差lambda
+    *根据事前义务的完成情况，计算等级grade
      */
     public int calGrade(List<ProDuty> proDutyList, List<Integer> fulfilledStateList){
         /* a,b,c分别是完成的强制性事前义务数，完成且优秀的强制性事前义务数，完成的非强制先验义务数 */

@@ -9,7 +9,7 @@ public class PostDutyLog {
 
     private Integer dutyId;
 
-    private Byte subType;  //主体类型，医生/警察/记者等
+    private Byte subType;  //主体类型，1:医生，2：其他
 
     private Integer subId; //主体id
 
