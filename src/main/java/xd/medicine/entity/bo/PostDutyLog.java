@@ -5,11 +5,11 @@ public class PostDutyLog {
 
     private Byte fulfillTime;
 
-    private Byte state; //0为fulfill，1为delay-fulfill，2为violate
+    private Byte state; //0为violate，1为delay-fulfill，2为fulfill
 
     private Integer dutyId;
 
-    private Byte subType;  //主体类型，医生/警察/记者等
+    private Byte subType;  //主体类型，1:医生，2：其他
 
     private Integer subId; //主体id
 

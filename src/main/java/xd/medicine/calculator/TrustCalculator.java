@@ -11,6 +11,7 @@ import xd.medicine.service.DoctorService;
 import xd.medicine.service.PatientService;
 import xd.medicine.service.ServiceImpl.DoctorServiceImpl;
 
+import javax.print.Doc;
 import java.util.*;
 
 import static xd.medicine.calculator.Constants.*;
@@ -28,6 +29,9 @@ public class TrustCalculator {
 
     @Autowired
     private CommentService commentService;
+
+    @Autowired
+    private DoctorService doctorService;
 
     /*
      * 输入病人id，获得当前属于available状态的可信主体集
@@ -50,7 +54,7 @@ public class TrustCalculator {
     *输入一个病人id，返回匹配到的主体集及其匹配可信度、历史行为可信度、总体可信度
      */
     public List<DoctorTrustResult> getTs( int patientId ) {
-        float mt,hbt,rcm,rep,trust;
+
         PatientWithTrust patientWithTrust = patientService.getPatientById(patientId);
 
         List<Doctor> doctorList = patientService.getSisDoctorsByPatientId(patientId);  //获得满足科室要求的所有医生，即候选主体集合SIS
@@ -60,39 +64,52 @@ public class TrustCalculator {
                 continue;
             }*/
 
-            if (patientWithTrust.getPatient().getDoctorId() == doctor.getId()) {
-                /* 如果是主治医生，所有可信度直接为1 */
-                mt = 1;
-                hbt = 1;
-                trust = 1;
-                rcm = 1;
-                rep = 1;
-            } else {
-                mt = calDocMt(doctor , patientWithTrust);
-                rcm = calDocRCM(doctor);
-                rep = calDocREP(doctor);
-                if(rcm<0||rcm>1||rep<0||rep>1){
-                    System.out.println("ERROR RCM OR REP!医生id："+ doctor.getId()+"医生姓名："+doctor.getName());
-                    continue;
-                }
-                hbt = rcm<rep?rcm:rep;     //HBT = min(RCM,REP)
-                trust = mt*TRUSTU1 + hbt*(1-TRUSTU1);
-            }
-
-            boolean ava = doctor.getIsin()&doctor.getIsFree();
-            DoctorTrustResult doctorTrustResult = new DoctorTrustResult(doctor.getId(),doctor.getName(), mt, rcm, rep, hbt, trust, doctor.getIsin() , doctor.getIsFree(), ava);
             //System.out.println(doctorTrustResult.toString());
-            doctorTrustResultList.add(doctorTrustResult);
-
-            Collections.sort(doctorTrustResultList, new Comparator<DoctorTrustResult>() {
-                @Override
-                public int compare(DoctorTrustResult o1, DoctorTrustResult o2) {
-                    return new Float(o2.getTrust()).compareTo(new Float(o1.getTrust()));
-                }
-            });
+            DoctorTrustResult doctorTrustResult = calDocBsTrust(patientWithTrust , doctor);
+            if(doctorTrustResult!=null) {
+                doctorTrustResultList.add(doctorTrustResult);
+            }
         }
+
+        Collections.sort(doctorTrustResultList, new Comparator<DoctorTrustResult>() {
+            @Override
+            public int compare(DoctorTrustResult o1, DoctorTrustResult o2) {
+                return new Float(o2.getTrust()).compareTo(new Float(o1.getTrust()));
+            }
+        });
         return doctorTrustResultList;
     }
+
+    /*
+    * 计算单个医生的基本可信度
+     */
+    public DoctorTrustResult calDocBsTrust(PatientWithTrust patientWithTrust, Doctor doctor){
+        float mt,hbt,rcm,rep,trust;
+        if (patientWithTrust.getPatient().getDoctorId() == doctor.getId()) {
+                /* 如果是主治医生，所有可信度直接为1 */
+            mt = 1;
+            hbt = 1;
+            trust = 1;
+            rcm = 1;
+            rep = 1;
+        } else {
+            mt = calDocMt(doctor , patientWithTrust);
+            rcm = calDocRCM(doctor);
+            rep = calDocREP(doctor);
+            if(rcm<0||rcm>1||rep<0||rep>1){
+                System.out.println("ERROR RCM OR REP!医生id："+ doctor.getId()+"医生姓名："+doctor.getName());
+                return null;
+            }
+            hbt = rcm<rep?rcm:rep;     //HBT = min(RCM,REP)
+            trust = mt*TRUST_U1 + hbt*(1-TRUST_U1);
+        }
+
+        boolean ava = doctor.getIsin()&doctor.getIsFree();
+        DoctorTrustResult doctorTrustResult = new DoctorTrustResult(doctor.getId(),doctor.getName(), mt, rcm, rep, hbt, trust, doctor.getIsin() , doctor.getIsFree(), ava);
+        return doctorTrustResult;
+    }
+
+
 
     /*
     *给定一个医生和一个病人，计算MT
@@ -102,7 +119,7 @@ public class TrustCalculator {
         float[] wi = new float[4];
         /* 计算随机波动的权值wi */
         for (int i = 0; i < 3; i++) {
-            wi[i] = getRandom((float) 0.25 - MTALPHA, (float) 0.25 + MTALPHA);
+            wi[i] = getRandomFloat((float) 0.25 - MT_ALPHA, (float) 0.25 + MT_ALPHA);
         }
         wi[3] = 1 - wi[0] - wi[1] - wi[2];
 
@@ -141,11 +158,11 @@ public class TrustCalculator {
             if (p <= d) {
                 //System.out.print(THSVALUE + (1-TRUSTU)/ (3 - p)*( d - p )+"--");
                 //System.out.println(THSVALUE + (1-TRUSTU)/ (3 - p)*( d - p +1));
-                f = getRandom(THSVALUE + (1 - THSVALUE) / (n - p) * (d - p), THSVALUE + (1 - THSVALUE) / (n - p) * (d - p + 1));
+                f = getRandomFloat(THS_VALUE + (1 - THS_VALUE) / (n - p) * (d - p), THS_VALUE + (1 - THS_VALUE) / (n - p) * (d - p + 1));
             } else {
                 //System.out.print(THSVALUE / p * d + "---");
                 //System.out.println(THSVALUE / p * (d+1));
-                f = getRandom(THSVALUE / p * d , THSVALUE / p * (d + 1));
+                f = getRandomFloat(THS_VALUE / p * d , THS_VALUE / p * (d + 1));
             }
             results.add(f);
         }
@@ -157,26 +174,26 @@ public class TrustCalculator {
     */
     public float calDocRCM(Doctor doctor){
         List<UserLog> userLogList = commentService.getAllUserLogsByDoctor(doctor.getId());
-        if(userLogList.size()< HBTN){
+        if(userLogList.size()< HBT_N){
             System.out.println("ERROR！！用户日志样本数量不足！！!医生id："+ doctor.getId()+"，医生姓名："+doctor.getName());
             return -1;
         }
 
         List<Float> samplingAveValue = new ArrayList<>(); //用来存放每次抽样后计算出来的平均值
-        for(int i=0; i<HBTM; i++){
+        for(int i=0; i<HBT_M; i++){
             int sum = 0;
-            List<Integer> list = sampling(userLogList.size(),HBTN); //进行抽样
+            List<Integer> list = sampling(userLogList.size(),HBT_N); //进行抽样
             List<Integer> valueList = new ArrayList<>(); //存放抽样得到的值
-            for(int j=0 ; j < HBTN; j++){
+            for(int j=0 ; j < HBT_N; j++){
                 int f=(userLogList.get(list.get(j)-1).getEvaluateValue())&0xFF;
                 valueList.add(f);
                 sum+=f;
             }
-            float ave = (float)sum/HBTN/100; //评价值为0-100，计算时以1为最大值进行量化
+            float ave = (float)sum/HBT_N/100; //评价值为0-100，计算时以1为最大值进行量化
             /* 判断本次抽样中是否有超过阈值的不可信评价 */
             boolean flag = true;
             for(int value:valueList){
-                if(Math.abs((float) value/100 - ave) > DIFFERMAX) {
+                if(Math.abs((float) value/100 - ave) > DIFFER_MAX) {
                    // System.out.println("不可信的一次抽样！value="+value+",ave="+ave);
                     flag = false;
                     break;
@@ -235,12 +252,12 @@ public class TrustCalculator {
     }*/
 
 
-    public void updatePoobTrust(float trustOld, List<PostDuty> postDutyList, List<Float> teList, float sensitivity, float probAward, float trust ){
+    public void updatePoobTrust(Doctor doctor, List<PostDuty> postDutyList, List<Integer> teList, float risk, float probAward){
         if(postDutyList.size()!=teList.size()){
             System.out.println("Error!!");
             return ;
         }
-        float poobTp = trust - sensitivity > probAward? trust - sensitivity : probAward;
+        float poobTp = (-risk) > probAward? (-risk) : probAward;
         List<Integer> list1 = new ArrayList<>(); //存放按时完成的义务编号
         List<Integer> list2 = new ArrayList<>(); //存放延期完成的义务编号
         List<Integer> list3 = new ArrayList<>(); //存放违反状态的义务编号
@@ -284,7 +301,11 @@ public class TrustCalculator {
             poobPenaltyViolate /= list3.size();
         }
 
-        float trustNew = trustOld + poobAward - poobPenaltyDelay - poobPenaltyViolate;
+        float poobTrustNew = doctor.getPoobTrust() + poobAward - poobPenaltyDelay - poobPenaltyViolate;
+        if(poobTrustNew>1) poobTrustNew=1;
+        if(poobTrustNew<0) poobTrustNew=0;
+        doctor.setPoobTrust(poobTrustNew);
+        doctorService.updateDoctor(doctor);
     }
 
 }

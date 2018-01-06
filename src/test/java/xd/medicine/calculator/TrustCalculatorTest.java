@@ -5,9 +5,13 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+import xd.medicine.entity.bo.PostDuty;
+import xd.medicine.entity.bo.ProDuty;
 import xd.medicine.entity.bo.TrustAttr;
 import xd.medicine.entity.dto.DoctorTrustResult;
 import xd.medicine.service.PatientService;
+import xd.medicine.service.PostDutyService;
+import xd.medicine.service.ProDutyService;
 import xd.medicine.service.TrustAttrService;
 
 import java.awt.*;
@@ -27,6 +31,12 @@ public class TrustCalculatorTest {
     private TrustCalculator trustCalculator;
     @Autowired
     private PatientService patientService;
+    @Autowired
+    private ProDutyService proDutyService;
+    @Autowired
+    private AuthHelper authHelper;
+    @Autowired
+    private PostDutyService postDutyService;
 
     @Test
     public void trustCalculatorTest(){
@@ -57,6 +67,36 @@ public class TrustCalculatorTest {
 
     }
 
+    @Test
+    public void proDutyTest(){
+        List<ProDuty> proDuties = proDutyService.getProDutiesByChosen(true);
+
+        for(int i=0;i<30;i++) {
+            List<Integer> list = DutyExecutor.executeProDuties(proDuties);
+            //System.out.println(proDuties.size());
+            //for(Integer i : list){
+            //    System.out.println(i);
+            //}
+            System.out.println("lambda:" + authHelper.calGrade(proDuties, list));
+        }
+
+    }
+
+    @Test
+    public void postDutyTest(){
+        List<PostDuty> postDuties = postDutyService.getPostDutiesByChosen(true);
+
+        List<Integer> list = DutyExecutor.executePostDuties(postDuties);
+        for(int i: list) {
+
+            //System.out.println(proDuties.size());
+            //for(Integer i : list){
+            //    System.out.println(i);
+            //}
+            System.out.println(i);
+        }
+
+    }
 
 
 }

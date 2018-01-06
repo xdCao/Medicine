@@ -7,9 +7,14 @@ import java.util.*;
  * created by liubotao
  */
 public class MathUtils {
-    public static float getRandom(float min , float max){
+    public static float getRandomFloat(float min , float max){
         return min + new Random().nextFloat() * (max - min);
     }
+
+    public static int getRandomInt(int min , int max){
+        return (int) (min + new Random().nextFloat() * (max - min));
+    }
+
 
     /* 抽样辅助函数，从1-total中随机取n个数 */
     public static List<Integer> sampling(int total , int n) {
