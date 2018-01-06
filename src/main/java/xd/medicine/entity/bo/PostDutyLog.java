@@ -5,7 +5,7 @@ public class PostDutyLog {
 
     private Byte fulfillTime;
 
-    private Byte state; //0为fulfill，1为delay-fulfill，2为violate
+    private Byte state; //0为violate，1为delay-fulfill，2为fulfill
 
     private Integer dutyId;
 

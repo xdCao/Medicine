@@ -2,22 +2,18 @@ package xd.medicine.calculator;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import xd.medicine.entity.bo.Doctor;
-import xd.medicine.entity.bo.Others;
-import xd.medicine.entity.bo.ProDuty;
+import xd.medicine.entity.bo.*;
 import xd.medicine.entity.dto.AuthRequest;
 import xd.medicine.entity.dto.DoctorTrustResult;
 import xd.medicine.entity.dto.PatientWithTrust;
-import xd.medicine.service.DoctorService;
-import xd.medicine.service.OthersService;
-import xd.medicine.service.PatientService;
-import xd.medicine.service.PostDutyLogService;
+import xd.medicine.service.*;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 import static xd.medicine.calculator.Constants.*;
+import static xd.medicine.calculator.DutyExecutor.executePostDuties;
 
 /**
  * created by liubotao
@@ -35,12 +31,15 @@ public class AuthHelper {
     private TrustCalculator trustCalculator;
     @Autowired
     private PostDutyLogService postDutyLogService;
+    @Autowired
+    private PostDutyService postDutyService;
 
     /*
     * 未知情况下的授权计算
+    * 返回值是risk
      */
-    public int authCal(List<Integer> sensitivityItems, AuthRequest authRequest, int lambda){
-        if(lambda<0)
+    public float authCal(List<Integer> sensitivityItems, AuthRequest authRequest, int grade){
+        if(grade<2)
             return 2; //A级，直接拒绝
         float sensitivity = SensitivityCalculator.calSensitivity(sensitivityItems);
         float unTrust;
@@ -54,20 +53,14 @@ public class AuthHelper {
             unTrust = OTHER_BS_TRUST * TRUST_U2 + others.getPoobTrust() * (1 - TRUST_U2);
         }
         float risk = sensitivity - unTrust;
-        if(risk <= 0){
-            return 0; //授权
-        }else if(risk <= R_THS){
-            return 1; //二次评估
-        }else{
-            return 2; //拒绝
-        }
+        return risk;
     }
 
 
     /*
     *根据事前义务的完成情况，计算等级差lambda
      */
-    public int calLamda(List<ProDuty> proDutyList, List<Integer> fulfilledStateList){
+    public int calGrade(List<ProDuty> proDutyList, List<Integer> fulfilledStateList){
         /* a,b,c分别是完成的强制性事前义务数，完成且优秀的强制性事前义务数，完成的非强制先验义务数 */
         int a = 0, b = 0 , c=0;
         /* m,n分别是本次分配的强制和非强制义务的个数 */
@@ -106,14 +99,15 @@ public class AuthHelper {
         }else{
             grade = 1;
         }
-        return grade - 2;
+        return grade;
 
     }
 
     /*
     *二次评估计算
      */
-    public int reAuthCal(float risk , AuthRequest authRequest, int lambda){
+    public int reAuthCal(float risk , AuthRequest authRequest, int grade){
+        int lambda = grade - 2;
         int p = postDutyLogService.countFulfilledPostDutyLogsBySub((byte)authRequest.getUserType().intValue(),authRequest.getUserId());
         int q = postDutyLogService.countPostDutyLogsBySub((byte)authRequest.getUserType().intValue(),authRequest.getUserId());
         float prob_award = (float) p/q * R_THS * (lambda * D_AWARD + (lambda==0?0:1));
@@ -121,6 +115,30 @@ public class AuthHelper {
             return 0;  //授权
         }else {
             return 1;  //拒绝
+        }
+    }
+
+    /*
+    *执行事后义务，并更新事后义务的日志
+     */
+    private void updatePostDutyLog(int subType, int subId, Patient patient){
+        List<PostDuty> postDutyList = postDutyService.getPostDutiesByChosen(true);
+        List<Integer> teList = DutyExecutor.executePostDuties(postDutyList);
+        for(int i=0;i<postDutyList.size();i++){
+            PostDutyLog postDutyLog = new PostDutyLog();
+            postDutyLog.setSubType((byte)subType);
+            postDutyLog.setSubId(subId);
+            postDutyLog.setObjId(patient.getId());
+            postDutyLog.setFulfillTime((byte)teList.get(i).intValue());
+            postDutyLog.setDutyId(postDutyList.get(i).getId());
+            if(teList.get(i)<= postDutyList.get(i).getPresetTime()){
+                postDutyLog.setState((byte)2);
+            }else if(teList.get(i)<=postDutyList.get(i).getGraceTime()){
+                postDutyLog.setState((byte)1);
+            }else{
+                postDutyLog.setState((byte)0);
+            }
+            postDutyLogService.insertNewPostDutyLog(postDutyLog);
         }
     }
 
