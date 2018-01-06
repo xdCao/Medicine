@@ -77,7 +77,7 @@ public class TrustCalculatorTest {
             //for(Integer i : list){
             //    System.out.println(i);
             //}
-            System.out.println("lambda:" + authHelper.calLamda(proDuties, list));
+            System.out.println("lambda:" + authHelper.calGrade(proDuties, list));
         }
 
     }
