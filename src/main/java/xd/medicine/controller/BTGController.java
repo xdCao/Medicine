@@ -156,11 +156,11 @@ public class BTGController {
             if (i==0){
                 return new FrontResult(200,dutySensitivity,null);
             }else{
-                return new FrontResult(500,null,"未获得授权");
+                return new FrontResult(500,dutySensitivity,"未获得授权");
             }
         }else {
             /*拒绝*/
-            return new FrontResult(500,null,"未获得授权");
+            return new FrontResult(500,dutySensitivity,"未获得授权");
         }
 
 
