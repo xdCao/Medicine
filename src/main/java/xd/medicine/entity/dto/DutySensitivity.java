@@ -13,6 +13,7 @@ public class DutySensitivity {
     private int calGrade;
     private float sensitivity;
     private float risk;
+    private boolean isTwice;
 
 
     public float getRisk() {
@@ -23,16 +24,25 @@ public class DutySensitivity {
         this.risk = risk;
     }
 
-    public DutySensitivity(List<ProDuty> proDutyList, List<Integer> fullfillStateList, int calGrade, float sensitivity, float risk) {
+    public DutySensitivity(List<ProDuty> proDutyList, List<Integer> fullfillStateList, int calGrade, float sensitivity, float risk, boolean isTwice) {
         this.proDutyList = proDutyList;
         this.fullfillStateList = fullfillStateList;
         this.calGrade = calGrade;
         this.sensitivity = sensitivity;
         this.risk=risk;
+        this.isTwice=isTwice;
     }
 
     public List<ProDuty> getProDutyList() {
         return proDutyList;
+    }
+
+    public boolean isTwice() {
+        return isTwice;
+    }
+
+    public void setTwice(boolean twice) {
+        isTwice = twice;
     }
 
     public void setProDutyList(List<ProDuty> proDutyList) {

@@ -145,7 +145,7 @@ public class BTGController {
         AuthRequest authRequest=new AuthRequest(userType, userId, patientId);
         float risk = authHelper.authCal(sensitivityItems, authRequest, calGrade);
 
-        DutySensitivity dutySensitivity=new DutySensitivity(proDutyList,fullfillStateList,calGrade,sensitivity,risk);
+        DutySensitivity dutySensitivity=new DutySensitivity(proDutyList,fullfillStateList,calGrade,sensitivity,risk,false);
 
         if (risk<=0){
             /*授权*/
@@ -153,6 +153,7 @@ public class BTGController {
         }else if (risk<= Constants.R_THS){
             /*二次评估*/
             int i = authHelper.reAuthCal(risk, authRequest, calGrade);
+            dutySensitivity.setTwice(true);
             if (i==0){
                 return new FrontResult(200,dutySensitivity,null);
             }else{
