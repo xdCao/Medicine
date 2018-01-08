@@ -148,18 +148,20 @@ public class BTGController {
         /*资源敏感值*/
         float sensitivity = SensitivityCalculator.calSensitivity(sensitivityItems);
         AuthRequest authRequest=new AuthRequest(userType, userId, patientId);
-        float risk = authHelper.authCal(sensitivityItems, authRequest, calGrade);
+        /* 整体可信值 */
+        float unTrust = authHelper.calUnTrust(authRequest);
+        float risk = sensitivity - unTrust;
 
-        DutySensitivity dutySensitivity=new DutySensitivity(proDutyList,fulfillStateList,calGrade,sensitivity,risk,0,
+        DutySensitivity dutySensitivity=new DutySensitivity(proDutyList,fulfillStateList,calGrade,sensitivity,unTrust,risk,0,
                 null,null,0, 0 , 0, 0,0);
 
         /* [authFlag的含义] 0:一次授权失败，1：一次授权成功，2：二次授权失败，3：二次授权成功 */
 
-        if (risk<=0){
+        if (risk<=0 && calGrade>1){ //如果是A级，直接拒绝
             /*授权*/
             dutySensitivity.setAuthFlag(1);
             //return new FrontResult(200,dutySensitivity,null);
-        }else if (risk<= Constants.R_THS){
+        }else if (risk<= Constants.R_THS && calGrade>1){
             /*二次评估*/
             int i = authHelper.reAuthCal( authRequest,risk, calGrade);
             if (i==0){

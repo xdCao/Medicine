@@ -14,6 +14,7 @@ public class DutySensitivity {
     private List<Integer> fullfillStateList;
     private int calGrade;
     private float sensitivity;
+    private float unTrust;
     private float risk;
     private int authFlag; // 0:一次授权失败，1：一次授权成功，2：二次授权失败，3：二次授权成功
     private List<PostDuty> postDutyList;
@@ -33,11 +34,12 @@ public class DutySensitivity {
         this.risk = risk;
     }
 
-    public DutySensitivity(List<ProDuty> proDutyList, List<Integer> fullfillStateList, int calGrade, float sensitivity, float risk, int authFlag, List<PostDuty> postDutyList, List<Integer> postDutyFulfilledTimeList, float poobtp, float poobAward, float poobPenaltyDelay, float poobPenaltyViolate, float poobTrustOld) {
+    public DutySensitivity(List<ProDuty> proDutyList, List<Integer> fullfillStateList, int calGrade, float sensitivity, float unTrust, float risk, int authFlag, List<PostDuty> postDutyList, List<Integer> postDutyFulfilledTimeList, float poobtp, float poobAward, float poobPenaltyDelay, float poobPenaltyViolate, float poobTrustOld) {
         this.proDutyList = proDutyList;
         this.fullfillStateList = fullfillStateList;
         this.calGrade = calGrade;
         this.sensitivity = sensitivity;
+        this.unTrust = unTrust;
         this.risk = risk;
         this.authFlag = authFlag;
         this.postDutyList = postDutyList;
@@ -145,5 +147,33 @@ public class DutySensitivity {
 
     public void setAuthFlag(int authFlag) {
         this.authFlag = authFlag;
+    }
+
+    public float getUnTrust() {
+        return unTrust;
+    }
+
+    public void setUnTrust(float unTrust) {
+        this.unTrust = unTrust;
+    }
+
+    @Override
+    public String toString() {
+        return "DutySensitivity{" +
+                "proDutyList=" + proDutyList +
+                ", fullfillStateList=" + fullfillStateList +
+                ", calGrade=" + calGrade +
+                ", sensitivity=" + sensitivity +
+                ", unTrust=" + unTrust +
+                ", risk=" + risk +
+                ", authFlag=" + authFlag +
+                ", postDutyList=" + postDutyList +
+                ", postDutyFulfilledTimeList=" + postDutyFulfilledTimeList +
+                ", poobtp=" + poobtp +
+                ", poobAward=" + poobAward +
+                ", poobPenaltyDelay=" + poobPenaltyDelay +
+                ", poobPenaltyViolate=" + poobPenaltyViolate +
+                ", poobTrustOld=" + poobTrustOld +
+                '}';
     }
 }

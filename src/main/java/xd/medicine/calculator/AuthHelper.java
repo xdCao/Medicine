@@ -39,22 +39,22 @@ public class AuthHelper {
     * 未知情况下的授权计算
     * 返回值是risk
      */
-    public float authCal(List<Integer> sensitivityItems, AuthRequest authRequest, int grade){
-        if(grade<2)
-            return 2; //A级，直接拒绝
-        float sensitivity = SensitivityCalculator.calSensitivity(sensitivityItems);
+    public float calUnTrust( AuthRequest authRequest){
+
+        //float sensitivity = SensitivityCalculator.calSensitivity(sensitivityItems);
         float unTrust;
         PatientWithTrust patientWithTrust = patientService.getPatientById(authRequest.getPatientId());
         if(authRequest.getUserType()==1){
             Doctor doctor = doctorService.getDoctorById(authRequest.getUserId());
             DoctorTrustResult doctorTrustResult = trustCalculator.calDocBsTrust(patientWithTrust,doctor);
             unTrust = doctorTrustResult.getTrust() * TRUST_U2 + doctor.getPoobTrust() * (1 - TRUST_U2);
+
         }else{
             Others others = othersService.getOthersById(authRequest.getUserId());
             unTrust = OTHER_BS_TRUST * TRUST_U2 + others.getPoobTrust() * (1 - TRUST_U2);
         }
-        float risk = sensitivity - unTrust;
-        return risk;
+
+        return unTrust;
     }
 
 
@@ -111,7 +111,12 @@ public class AuthHelper {
         int lambda = grade - 2;
         int p = postDutyLogService.countFulfilledPostDutyLogsBySub((byte)authRequest.getUserType().intValue(),authRequest.getUserId());
         int q = postDutyLogService.countPostDutyLogsBySub((byte)authRequest.getUserType().intValue(),authRequest.getUserId());
-        float probAward = (float) p/q * R_THS * (lambda * D_AWARD + (lambda==0?0:1));
+        float m = (float) p/q;
+        if(q==0){
+            System.out.println("postDutyLog信息不足！");
+            m = (float) 0.8;
+        }
+        float probAward = m * R_THS * (lambda * D_AWARD + (lambda==0?0:1));
         if(risk <= probAward) {
             return 0;  //授权
         }else {
@@ -177,7 +182,12 @@ public class AuthHelper {
         int lambda = grade - 2;
         int p = postDutyLogService.countFulfilledPostDutyLogsBySub((byte)authRequest.getUserType().intValue(),authRequest.getUserId());
         int q = postDutyLogService.countPostDutyLogsBySub((byte)authRequest.getUserType().intValue(),authRequest.getUserId());
-        float probAward = (float) p/q * R_THS * (lambda * D_AWARD + (lambda==0?0:1));
+        float m = (float) p/q;
+        if(q==0){
+            System.out.println("postDutyLog信息不足！");
+            m = (float) 0.8;
+        }
+        float probAward = m * R_THS * (lambda * D_AWARD + (lambda==0?0:1));
         float poobTp = (-risk) > probAward? (-risk) : probAward;
         List<Integer> list1 = new ArrayList<>(); //存放按时完成的义务编号
         List<Integer> list2 = new ArrayList<>(); //存放延期完成的义务编号
