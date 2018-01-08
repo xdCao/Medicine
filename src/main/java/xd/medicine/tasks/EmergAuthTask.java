@@ -80,7 +80,7 @@ public class EmergAuthTask implements Runnable {
                 if (sessionId!=null){
                     System.out.println(sessionId);
                     template.convertAndSendToUser(sessionId,"/subject/info",
-                            new OutMessage(201,"获得授权哦亲"),createHeaders(sessionId));
+                            new OutMessage(201,patientWithTrust.getPatient().getId(),"获得授权哦亲"),createHeaders(sessionId));
                 }
             }else {
 
@@ -134,13 +134,13 @@ public class EmergAuthTask implements Runnable {
                             if (sessionId!=null){
                                 System.out.println(sessionId);
                                 template.convertAndSendToUser(sessionId,"/subject/info",
-                                        new OutMessage(401,"你的授权已失效"),createHeaders(sessionId));
+                                        new OutMessage(401,patientWithTrust.getPatient().getId(),"你的授权已失效"),createHeaders(sessionId));
                             }
                             String newSessionId=registry.getSessionId(authUserKey);
                             if (newSessionId!=null){
                                 System.out.println(newSessionId);
                                 template.convertAndSendToUser(newSessionId,"/subject/info",
-                                        new OutMessage(201,"获得授权哦亲"),createHeaders(newSessionId));
+                                        new OutMessage(201,patientWithTrust.getPatient().getId(),"获得授权哦亲"),createHeaders(newSessionId));
                             }
                             currentDoctor=doctorTrustResult;
                         }
@@ -167,7 +167,7 @@ public class EmergAuthTask implements Runnable {
             if (sessionId!=null){
                 System.out.println(sessionId);
                 template.convertAndSendToUser(sessionId,"/subject/info",
-                        new OutMessage(201,"获得授权哦亲"),createHeaders(sessionId));
+                        new OutMessage(201,patientWithTrust.getPatient().getId(),"获得授权哦亲"),createHeaders(sessionId));
             }
         }else {
             LOGGER.error("EmergAuthTask.run error: line: "+97);

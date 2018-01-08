@@ -8,11 +8,19 @@ public class OutMessage {
 
     private int code;
 
+    private int patientId;
+
     private String msg;
 
     public OutMessage(int code,String s) {
         this.code=code;
         this.msg=s;
+    }
+
+    public OutMessage(int code, int patientId, String msg) {
+        this.code = code;
+        this.patientId = patientId;
+        this.msg = msg;
     }
 
     public String getMsg() {
@@ -29,6 +37,14 @@ public class OutMessage {
 
     public void setCode(int code) {
         this.code = code;
+    }
+
+    public int getPatientId() {
+        return patientId;
+    }
+
+    public void setPatientId(int patientId) {
+        this.patientId = patientId;
     }
 }
 

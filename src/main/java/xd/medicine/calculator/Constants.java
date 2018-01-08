@@ -16,6 +16,6 @@ public final class Constants {
     static final float THS_VALUE = (float)1/2; //计算MT时，当医生的属性满足病人的要求时的阈值
     static final float[] SENSITIVITY_W = { (float)1/10 , (float)1/10 , (float)1/5 , (float)1/5 , (float)1/5 , (float)1/5 }; //敏感度计算中，各项影响因素的权值
     static final float OTHER_BS_TRUST = (float)1/2; //其他类型用户的bsTrust
-    static final float R_THS = (float) 1/2; //风险阈值
+    public static final float R_THS = (float) 1/2; //风险阈值
     static final float D_AWARD = (float) 1/2; //二次评估中，每个等级差的奖励值d
 }
