@@ -37,6 +37,7 @@ public class PostDutyLogServiceImpl implements PostDutyLogService{
         return postDutyLogMapper.countByExample(postDutyLogExample);
     }
 
+
     //重要方法，返回值为论文中的p，表示用户在历史访问中后验义务的有效期内实际完成义务的总个数
     @Override
     public Integer countFulfilledPostDutyLogsBySub(Byte subType, int subId) {

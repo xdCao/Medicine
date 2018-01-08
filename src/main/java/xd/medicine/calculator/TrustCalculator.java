@@ -252,60 +252,6 @@ public class TrustCalculator {
     }*/
 
 
-    public void updatePoobTrust(Doctor doctor, List<PostDuty> postDutyList, List<Integer> teList, float risk, float probAward){
-        if(postDutyList.size()!=teList.size()){
-            System.out.println("Error!!");
-            return ;
-        }
-        float poobTp = (-risk) > probAward? (-risk) : probAward;
-        List<Integer> list1 = new ArrayList<>(); //存放按时完成的义务编号
-        List<Integer> list2 = new ArrayList<>(); //存放延期完成的义务编号
-        List<Integer> list3 = new ArrayList<>(); //存放违反状态的义务编号
-        float alphaSum1 =0 ,alphaSum2 =0 , alphaSum3 =0;
-        for(int i=0;i< postDutyList.size(); i++){
-            if(teList.get(i)<= postDutyList.get(i).getPresetTime()){
-                list1.add(i);
-                alphaSum1 += postDutyList.get(i).getEmer();
-            }else if(teList.get(i)<=postDutyList.get(i).getGraceTime()){
-                list2.add(i);
-                alphaSum2 += postDutyList.get(i).getEmer();
-            }else{
-                list3.add(i);
-                alphaSum3 += postDutyList.get(i).getEmer();
-            }
-        }
-        float poobAward = 0 , poobPenaltyDelay = 0 , poobPenaltyViolate = 0;
-        for(Integer index : list1){
-            poobAward += poobTp * (postDutyList.get(index).getGraceTime() - teList.get(index))
-                    / postDutyList.get(index).getGraceTime() * postDutyList.get(index).getEmer()
-                    / alphaSum1;
-        }
-        if(list1.size()>0) {
-            poobAward /= list1.size();
-        }
 
-        for(Integer index : list2){
-            poobPenaltyDelay += poobTp * (teList.get(index) - postDutyList.get(index).getPresetTime())
-                    / postDutyList.get(index).getGraceTime() * postDutyList.get(index).getEmer()
-                    / alphaSum2;
-        }
-        if(list2.size()>0) {
-            poobPenaltyDelay /= list2.size();
-        }
-
-        for(Integer index : list3){
-            poobPenaltyViolate += poobTp * teList.get(index) / postDutyList.get(index).getGraceTime()
-                    * postDutyList.get(index).getEmer() / alphaSum3;
-        }
-        if(list3.size()>0) {
-            poobPenaltyViolate /= list3.size();
-        }
-
-        float poobTrustNew = doctor.getPoobTrust() + poobAward - poobPenaltyDelay - poobPenaltyViolate;
-        if(poobTrustNew>1) poobTrustNew=1;
-        if(poobTrustNew<0) poobTrustNew=0;
-        doctor.setPoobTrust(poobTrustNew);
-        doctorService.updateDoctor(doctor);
-    }
 
 }
