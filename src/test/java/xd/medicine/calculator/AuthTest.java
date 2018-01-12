@@ -97,7 +97,7 @@ public class AuthTest {
         float risk = sensitivity - unTrust;
 
         DutySensitivity dutySensitivity=new DutySensitivity(proDutyList,fulfillStateList,calGrade,sensitivity,unTrust,risk,0,
-                null,null,0, 0 , 0, 0,0);
+                null,null,0, 0,0 , 0, 0,0);
 
         /* [authFlag的含义] 0:一次授权失败，1：一次授权成功，2：二次授权失败，3：二次授权成功 */
 
@@ -130,6 +130,10 @@ public class AuthTest {
             dutySensitivity.setPoobPenaltyDelay(numList.get(2));
             dutySensitivity.setPoobPenaltyViolate(numList.get(3));
             dutySensitivity.setPoobTrustOld(poobTrustOld);
+            float poobTrustNew = poobTrustOld + numList.get(1) - numList.get(2) - numList.get(3);
+            if(poobTrustNew>1) poobTrustNew = 1;
+            if(poobTrustNew<0) poobTrustNew = 0;
+            dutySensitivity.setPoobTrustNew(poobTrustNew);
             //try{
                 /* 完成状态写入数据库中的日志 */
             //    authHelper.updatePostDutyLog(postDutyList,teList,authRequest);
@@ -144,6 +148,16 @@ public class AuthTest {
         }else {
             System.out.println("502!");
             System.out.println(dutySensitivity.toString());
+        }
+    }
+
+    @Test
+    public void test(){
+        List<PostDuty> postDutyList = postDutyService.getPostDutiesByChosen(true);
+        for(PostDuty postDuty : postDutyList){
+            System.out.println("{");
+
+            System.out.println("},");
         }
     }
 }

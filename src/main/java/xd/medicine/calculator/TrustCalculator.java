@@ -211,13 +211,21 @@ public class TrustCalculator {
 
         /* 已经获得所有抽样值，下面计算HBT */
         float deno = 0; float rcm = 0;
+
         /* 先计算公式中的分母 */
-        for(float i : samplingAveValue){
+        /*for(float i : samplingAveValue){
             deno += 1-i;
         }
         for(float i : samplingAveValue){
             rcm += i* (1-i) / deno;
+        }*/
+
+        /* 改动之后，权值固定 */
+        float w = (float) 1/samplingAveValue.size();
+        for(float i : samplingAveValue){
+            rcm += i * w;
         }
+
         return rcm;
     }
 

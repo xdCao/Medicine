@@ -153,7 +153,7 @@ public class BTGController {
         float risk = sensitivity - unTrust;
 
         DutySensitivity dutySensitivity=new DutySensitivity(proDutyList,fulfillStateList,calGrade,sensitivity,unTrust,risk,0,
-                null,null,0, 0 , 0, 0,0);
+                null,null,0, 0 , 0, 0,0,0);
 
         /* [authFlag的含义] 0:一次授权失败，1：一次授权成功，2：二次授权失败，3：二次授权成功 */
 
@@ -185,6 +185,8 @@ public class BTGController {
             dutySensitivity.setPoobPenaltyDelay(numList.get(2));
             dutySensitivity.setPoobPenaltyViolate(numList.get(3));
             dutySensitivity.setPoobTrustOld(poobTrustOld);
+            float poobTrustNew = poobTrustOld + numList.get(1) - numList.get(2) - numList.get(3);
+            dutySensitivity.setPoobTrustNew(poobTrustNew);
             try{
                 /* 完成状态写入数据库中的日志 */
                 authHelper.updatePostDutyLog(postDutyList,teList,authRequest);

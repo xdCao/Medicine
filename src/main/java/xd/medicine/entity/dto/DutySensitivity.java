@@ -24,6 +24,7 @@ public class DutySensitivity {
     private float poobPenaltyDelay;
     private float poobPenaltyViolate;
     private float poobTrustOld;
+    private float poobTrustNew;
 
 
     public float getRisk() {
@@ -34,7 +35,7 @@ public class DutySensitivity {
         this.risk = risk;
     }
 
-    public DutySensitivity(List<ProDuty> proDutyList, List<Integer> fullfillStateList, int calGrade, float sensitivity, float unTrust, float risk, int authFlag, List<PostDuty> postDutyList, List<Integer> postDutyFulfilledTimeList, float poobtp, float poobAward, float poobPenaltyDelay, float poobPenaltyViolate, float poobTrustOld) {
+    public DutySensitivity(List<ProDuty> proDutyList, List<Integer> fullfillStateList, int calGrade, float sensitivity, float unTrust, float risk, int authFlag, List<PostDuty> postDutyList, List<Integer> postDutyFulfilledTimeList, float poobtp, float poobAward, float poobPenaltyDelay, float poobPenaltyViolate, float poobTrustOld, float poobTrustNew) {
         this.proDutyList = proDutyList;
         this.fullfillStateList = fullfillStateList;
         this.calGrade = calGrade;
@@ -49,6 +50,7 @@ public class DutySensitivity {
         this.poobPenaltyDelay = poobPenaltyDelay;
         this.poobPenaltyViolate = poobPenaltyViolate;
         this.poobTrustOld = poobTrustOld;
+        this.poobTrustNew = poobTrustNew;
     }
 
     public List<ProDuty> getProDutyList() {
@@ -157,6 +159,14 @@ public class DutySensitivity {
         this.unTrust = unTrust;
     }
 
+    public float getPoobTrustNew() {
+        return poobTrustNew;
+    }
+
+    public void setPoobTrustNew(float poobTrustNew) {
+        this.poobTrustNew = poobTrustNew;
+    }
+
     @Override
     public String toString() {
         return "DutySensitivity{" +
@@ -174,6 +184,7 @@ public class DutySensitivity {
                 ", poobPenaltyDelay=" + poobPenaltyDelay +
                 ", poobPenaltyViolate=" + poobPenaltyViolate +
                 ", poobTrustOld=" + poobTrustOld +
+                ", poobTrustNew=" + poobTrustNew +
                 '}';
     }
 }
