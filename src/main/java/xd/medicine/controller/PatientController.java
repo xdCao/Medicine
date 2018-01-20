@@ -195,14 +195,16 @@ public class PatientController {
             //此刻开启一分钟的定时任务
             List<Doctor> doctors = doctorService.getDoctorsByDepartment(patient.getTrustAttr().getDepartment());
             for (Doctor doctor:doctors){
-                String userKey=1+":"+doctor.getId();
+                if (doctor.getIsin()&&doctor.getIsFree()){
+                    String userKey=1+":"+doctor.getId();
 
-                LOGGER.info("向可信主体集成员： "+doctor.getId()+" 进行广播");
+                    LOGGER.info("向可信主体集成员： "+doctor.getId()+" 进行广播");
 
-                String sessionId = webAgentSessionRegistry.getSessionId(userKey);
-                if (sessionId!=null){
-                    template.convertAndSendToUser(sessionId,"/subject/info",
-                            new OutMessage(200,GsonUtils.toJsonString(patient)),createHeaders(sessionId));
+                    String sessionId = webAgentSessionRegistry.getSessionId(userKey);
+                    if (sessionId!=null){
+                        template.convertAndSendToUser(sessionId,"/subject/info",
+                                new OutMessage(200,GsonUtils.toJsonString(patient)),createHeaders(sessionId));
+                    }
                 }
             }
 //            emergMapCache.set(String.valueOf(patientId),System.currentTimeMillis());

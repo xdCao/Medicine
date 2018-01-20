@@ -20,6 +20,7 @@ import java.util.List;
  * created by xdCao on 2017/12/26
  */
 /*201:获得授权*/
+/*400:未能获得授权*/
 /*401:授权失效*/
 /*200:收到病人通知*/
 public class EmergAuthTask implements Runnable {
@@ -82,6 +83,19 @@ public class EmergAuthTask implements Runnable {
                     template.convertAndSendToUser(sessionId,"/subject/info",
                             new OutMessage(201,patientWithTrust.getPatient().getId(),"获得授权哦亲"),createHeaders(sessionId));
                 }
+
+                for (String notAuthUserKeys:userKeys){
+                    if (!notAuthUserKeys.equals(authUserKey)){
+                        LOGGER.info("通知授权失败");
+                        String nSessionId=registry.getSessionId(notAuthUserKeys);
+                        if (nSessionId!=null){
+                            System.out.println(nSessionId+" :未能获得授权");
+                            template.convertAndSendToUser(nSessionId,"/subject/info",
+                                    new OutMessage(400,patientWithTrust.getPatient().getId(),"您未能获得授权"),createHeaders(nSessionId));
+                        }
+                    }
+                }
+
             }else {
 
                 LOGGER.info("该病人缓存中没有可信主体");
@@ -143,6 +157,14 @@ public class EmergAuthTask implements Runnable {
                                         new OutMessage(201,patientWithTrust.getPatient().getId(),"获得授权哦亲"),createHeaders(newSessionId));
                             }
                             currentDoctor=doctorTrustResult;
+                        }else {
+                            LOGGER.info("抢占期获取授权失败");
+                            String nSessionId=registry.getSessionId(userKey);
+                            if (nSessionId!=null){
+                                System.out.println(nSessionId+"在抢占期未能获得授权");
+                                template.convertAndSendToUser(nSessionId,"/subject/info",
+                                        new OutMessage(400,patientWithTrust.getPatient().getId(),"您未能获得授权"),createHeaders(nSessionId));
+                            }
                         }
                     }
                 }

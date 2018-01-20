@@ -101,7 +101,7 @@ public class BTGController {
         return new FrontResult(200,null,null);
     }
 
-    @MessageMapping("/msg/riskRequest")
+    @RequestMapping(value = "/msg/riskRequest",method = RequestMethod.POST)
     public FrontResult riskRequest(Integer userType,
                             Integer userId,
                             Integer patientId,
