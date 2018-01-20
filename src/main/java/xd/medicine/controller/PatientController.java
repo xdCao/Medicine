@@ -53,6 +53,7 @@ import java.util.List;
 @RequestMapping("/patient")
 public class PatientController {
 
+
     private static final Logger LOGGER= LoggerFactory.getLogger(PatientController.class);
 
     @Autowired
@@ -163,7 +164,8 @@ public class PatientController {
                                  @RequestParam Integer doctorId,
                                  @RequestParam String phone,
                                  @RequestParam boolean senseAware,
-                                 @RequestParam String illnessCondition){
+                                 @RequestParam String illnessCondition,
+                                 @RequestParam Integer roleLevel){
         Patient patient= null;
         try {
             patient = new Patient();
@@ -172,6 +174,7 @@ public class PatientController {
             patient.setPhone(phone);
             patient.setSenseAware(senseAware);
             patient.setIllnessCondition(illnessCondition);
+            patient.setRoleLevel(roleLevel);
             patientService.updatePatient(patient);
             return new FrontResult(200,patient,null);
         } catch (Exception e) {
@@ -241,16 +244,17 @@ public class PatientController {
     @Transactional(rollbackFor = Exception.class)
     @RequestMapping(value = "/add",method = RequestMethod.POST)
     public FrontResult addNewPatient(@RequestParam String name,
-                                 @RequestParam String account,
-                                 @RequestParam String password,
-                                 @RequestParam Integer doctorId,
-                                 @RequestParam String phone,
-                                 @RequestParam boolean senseAware,
-                                 @RequestParam String illnessCondition,
-                                 @RequestParam String department,
-                                 @RequestParam String demandTitle,
-                                 @RequestParam String demandWorkage,
-                                 @RequestParam String demandDegree){
+                                     @RequestParam String account,
+                                     @RequestParam String password,
+                                     @RequestParam Integer doctorId,
+                                     @RequestParam String phone,
+                                     @RequestParam boolean senseAware,
+                                     @RequestParam String illnessCondition,
+                                     @RequestParam String department,
+                                     @RequestParam String demandTitle,
+                                     @RequestParam String demandWorkage,
+                                     @RequestParam String demandDegree,
+                                     @RequestParam Integer roleLevel){
 
         Integer countPatientByAccount = patientService.countPatientByAccount(account);
         if (countPatientByAccount>0){
@@ -286,7 +290,7 @@ public class PatientController {
             patient.setBloodPressure(0.0);
             patient.setHeartBeat(0);
             patient.setIsInEmergency(false);
-            patient.setRoleLevel(0);
+            patient.setRoleLevel(roleLevel);
             patientService.insertPatient(patient);
             return new FrontResult(200,new PatientWithTrust(patient,trustAttr),null);
         } catch (Exception e) {
