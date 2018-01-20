@@ -15,21 +15,16 @@ import xd.medicine.calculator.AuthHelper;
 import xd.medicine.calculator.Constants;
 import xd.medicine.calculator.DutyExecutor;
 import xd.medicine.calculator.SensitivityCalculator;
-import xd.medicine.entity.bo.Doctor;
-import xd.medicine.entity.bo.Others;
-import xd.medicine.entity.bo.Patient;
-import xd.medicine.entity.bo.ProDuty;
+import xd.medicine.entity.bo.*;
 import xd.medicine.entity.dto.AuthRequest;
 import xd.medicine.entity.dto.DutySensitivity;
 import xd.medicine.entity.dto.FrontResult;
 import xd.medicine.entity.dto.PatientWithTrust;
-import xd.medicine.service.DoctorService;
-import xd.medicine.service.OthersService;
-import xd.medicine.service.PatientService;
-import xd.medicine.service.ProDutyService;
+import xd.medicine.service.*;
 import xd.medicine.utils.GsonUtils;
 import xd.medicine.websocket.SocketSessionRegistry;
 
+import java.io.IOException;
 import java.util.*;
 
 /**
@@ -65,6 +60,12 @@ public class BTGController {
 
     @Autowired
     private AuthHelper authHelper;
+
+    @Autowired
+    private PostDutyService postDutyService;
+
+    @Autowired
+    private PostDutyLogService postDutyLogService;
 
     /**
      * 同样的发送消息   只不过是ws版本  http请求不能访问
@@ -111,13 +112,15 @@ public class BTGController {
                             ){
         /*获取事前义务并分配*/
         List<ProDuty> proDutyList = proDutyService.getProDutiesByChosen(true);
-        List<Integer> fullfillStateList = DutyExecutor.executeProDuties(proDutyList);
-        int calGrade = authHelper.calGrade(proDutyList, fullfillStateList);
+        List<Integer> fulfillStateList = DutyExecutor.executeProDuties(proDutyList);
+
+        int calGrade = authHelper.calGrade(proDutyList, fulfillStateList);
         /*计算risk*/
         PatientWithTrust patient=patientService.getPatientById(patientId);
         Doctor doctor = null;
         Others others=null;
         List<Integer> sensitivityItems=null;
+        float poobTrustOld;
         if (userType.equals(1)){
             doctor=doctorService.getDoctorById(userId);
             sensitivityItems=new ArrayList<>();
@@ -127,6 +130,7 @@ public class BTGController {
             sensitivityItems.add(content);/*0：基本信息，1：可信信息，2：病情相关信息，3：全部*/
             sensitivityItems.add(patient.getPatient().getRoleLevel());/*0:普通任务，1：公众人物，2：保密人物*/
             sensitivityItems.add(mode);/*0:读，1：写，2：修改*/
+            poobTrustOld = doctor.getPoobTrust();
         }else if(userType.equals(2)){
             others=othersService.getOthersById(userId);
             sensitivityItems=new ArrayList<>();
@@ -136,6 +140,7 @@ public class BTGController {
             sensitivityItems.add(content);
             sensitivityItems.add(patient.getPatient().getRoleLevel());
             sensitivityItems.add(mode);
+            poobTrustOld = others.getPoobTrust();
         }else {
             return new FrontResult(500,null,"用户类型错误");
         }
@@ -143,28 +148,57 @@ public class BTGController {
         /*资源敏感值*/
         float sensitivity = SensitivityCalculator.calSensitivity(sensitivityItems);
         AuthRequest authRequest=new AuthRequest(userType, userId, patientId);
-        float risk = authHelper.authCal(sensitivityItems, authRequest, calGrade);
+        /* 整体可信值 */
+        float unTrust = authHelper.calUnTrust(authRequest);
+        float risk = sensitivity - unTrust;
 
-        DutySensitivity dutySensitivity=new DutySensitivity(proDutyList,fullfillStateList,calGrade,sensitivity,risk,false);
+        DutySensitivity dutySensitivity=new DutySensitivity(proDutyList,fulfillStateList,calGrade,sensitivity,unTrust,risk,0,
+                null,null,0, 0 , 0, 0,0,0);
 
-        if (risk<=0){
+        /* [authFlag的含义] 0:一次授权失败，1：一次授权成功，2：二次授权失败，3：二次授权成功 */
+
+        if (risk<=0 && calGrade>1){ //如果是A级，直接拒绝
             /*授权*/
-            return new FrontResult(200,dutySensitivity,null);
-        }else if (risk<= Constants.R_THS){
+            dutySensitivity.setAuthFlag(1);
+            //return new FrontResult(200,dutySensitivity,null);
+        }else if (risk<= Constants.R_THS && calGrade>1){
             /*二次评估*/
-            int i = authHelper.reAuthCal(risk, authRequest, calGrade);
-            dutySensitivity.setTwice(true);
+            int i = authHelper.reAuthCal( authRequest,risk, calGrade);
             if (i==0){
-                return new FrontResult(200,dutySensitivity,null);
+                dutySensitivity.setAuthFlag(3);
+                //return new FrontResult(200,dutySensitivity,null);
             }else{
-                return new FrontResult(500,dutySensitivity,"未获得授权");
+                dutySensitivity.setAuthFlag(2);
             }
-        }else {
-            /*拒绝*/
-            return new FrontResult(500,dutySensitivity,"未获得授权");
         }
 
-
+        if( dutySensitivity.getAuthFlag()==1|| dutySensitivity.getAuthFlag()==3 ){
+            /* 获取事后义务并分配 */
+            List<PostDuty> postDutyList = postDutyService.getPostDutiesByChosen(true);
+            dutySensitivity.setPostDutyList(postDutyList);
+            List<Integer> teList = DutyExecutor.executePostDuties(postDutyList);
+            dutySensitivity.setPostDutyFulfilledTimeList(teList);
+            /* 计算基于事后义务的信任更新值 */
+            List<Float> numList = authHelper.calNewPoobTrust( postDutyList, teList,authRequest, risk, calGrade);
+            dutySensitivity.setPoobtp(numList.get(0));
+            dutySensitivity.setPoobAward(numList.get(1));
+            dutySensitivity.setPoobPenaltyDelay(numList.get(2));
+            dutySensitivity.setPoobPenaltyViolate(numList.get(3));
+            dutySensitivity.setPoobTrustOld(poobTrustOld);
+            float poobTrustNew = poobTrustOld + numList.get(1) - numList.get(2) - numList.get(3);
+            dutySensitivity.setPoobTrustNew(poobTrustNew);
+            try{
+                /* 完成状态写入数据库中的日志 */
+                authHelper.updatePostDutyLog(postDutyList,teList,authRequest);
+                /* 根据事后义务的完成情况更新数据库中主体的poobTrust */
+                authHelper.updatePoobTrust(authRequest,numList);
+                return new FrontResult(200,dutySensitivity,null);
+            }catch (Exception e){
+                return new FrontResult(500,dutySensitivity,e.getMessage());
+            }
+        }else {
+            return new FrontResult(500,dutySensitivity,"未获得授权");
+        }
     }
 
 
