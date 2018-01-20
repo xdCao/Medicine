@@ -10,10 +10,7 @@ import xd.medicine.entity.bo.Doctor;
 import xd.medicine.entity.bo.Others;
 import xd.medicine.entity.bo.PostDuty;
 import xd.medicine.entity.bo.ProDuty;
-import xd.medicine.entity.dto.AuthRequest;
-import xd.medicine.entity.dto.DutySensitivity;
-import xd.medicine.entity.dto.FrontResult;
-import xd.medicine.entity.dto.PatientWithTrust;
+import xd.medicine.entity.dto.*;
 import xd.medicine.service.*;
 
 import java.util.ArrayList;
@@ -56,9 +53,9 @@ public class AuthTest {
         int mode = 1;
         /*获取事前义务并分配*/
         List<ProDuty> proDutyList = proDutyService.getProDutiesByChosen(true);
-        List<Integer> fulfillStateList = DutyExecutor.executeProDuties(proDutyList);
+        List<FulfilledProDuty> fulfilledProDutyList = DutyExecutor.executeProDuties(proDutyList);
 
-        int calGrade = authHelper.calGrade(proDutyList, fulfillStateList);
+        int calGrade = authHelper.calGrade(fulfilledProDutyList);
         /*计算risk*/
         PatientWithTrust patient=patientService.getPatientById(patientId);
         Doctor doctor = null;
@@ -96,8 +93,8 @@ public class AuthTest {
         float unTrust = authHelper.calUnTrust(authRequest);
         float risk = sensitivity - unTrust;
 
-        DutySensitivity dutySensitivity=new DutySensitivity(proDutyList,fulfillStateList,calGrade,sensitivity,unTrust,risk,0,
-                null,null,0, 0,0 , 0, 0,0);
+        DutySensitivity dutySensitivity=new DutySensitivity(fulfilledProDutyList,calGrade,sensitivity,unTrust,risk,0,
+                null,0, 0,0 , 0, 0,0);
 
         /* [authFlag的含义] 0:一次授权失败，1：一次授权成功，2：二次授权失败，3：二次授权成功 */
 
@@ -120,11 +117,10 @@ public class AuthTest {
         if( dutySensitivity.getAuthFlag()==1|| dutySensitivity.getAuthFlag()==3 ){
             /* 获取事后义务并分配 */
             List<PostDuty> postDutyList = postDutyService.getPostDutiesByChosen(true);
-            dutySensitivity.setPostDutyList(postDutyList);
-            List<Integer> teList = DutyExecutor.executePostDuties(postDutyList);
-            dutySensitivity.setPostDutyFulfilledTimeList(teList);
+            List<FulfilledPostDuty> fulfilledPostDutyList = DutyExecutor.executePostDuties(postDutyList);
+            dutySensitivity.setFulfilledPostDutyList(fulfilledPostDutyList);
             /* 计算基于事后义务的信任更新值 */
-            List<Float> numList = authHelper.calNewPoobTrust( postDutyList, teList,authRequest, risk, calGrade);
+            List<Float> numList = authHelper.calNewPoobTrust( fulfilledPostDutyList,authRequest, risk, calGrade);
             dutySensitivity.setPoobtp(numList.get(0));
             dutySensitivity.setPoobAward(numList.get(1));
             dutySensitivity.setPoobPenaltyDelay(numList.get(2));
@@ -141,6 +137,11 @@ public class AuthTest {
             //    authHelper.updatePoobTrust(authRequest,numList);
                 System.out.println("200!");
                 System.out.println(dutySensitivity.toString());
+            System.out.println(dutySensitivity.getCalGrade());
+            for(int i =0 ; i< dutySensitivity.getFulFilledProdutyList().size();i++) {
+                System.out.print(dutySensitivity.getFulFilledProdutyList().get(i).getState()+"  ");
+            }
+            System.out.println();
             //}catch (Exception e){
            //     System.out.println("501!");
             //    System.out.println(dutySensitivity.toString());
@@ -148,6 +149,11 @@ public class AuthTest {
         }else {
             System.out.println("502!");
             System.out.println(dutySensitivity.toString());
+            System.out.println(dutySensitivity.getCalGrade());
+            for(int i =0 ; i< dutySensitivity.getFulFilledProdutyList().size();i++) {
+                System.out.print(dutySensitivity.getFulFilledProdutyList().get(i).getState()+"  ");
+            }
+            System.out.println();
         }
     }
 

@@ -9,6 +9,8 @@ import xd.medicine.entity.bo.PostDuty;
 import xd.medicine.entity.bo.ProDuty;
 import xd.medicine.entity.bo.TrustAttr;
 import xd.medicine.entity.dto.DoctorTrustResult;
+import xd.medicine.entity.dto.FulfilledPostDuty;
+import xd.medicine.entity.dto.FulfilledProDuty;
 import xd.medicine.service.PatientService;
 import xd.medicine.service.PostDutyService;
 import xd.medicine.service.ProDutyService;
@@ -72,12 +74,12 @@ public class TrustCalculatorTest {
         List<ProDuty> proDuties = proDutyService.getProDutiesByChosen(true);
 
         for(int i=0;i<30;i++) {
-            List<Integer> list = DutyExecutor.executeProDuties(proDuties);
+            List<FulfilledProDuty> list = DutyExecutor.executeProDuties(proDuties);
             //System.out.println(proDuties.size());
             //for(Integer i : list){
             //    System.out.println(i);
             //}
-            System.out.println("lambda:" + authHelper.calGrade(proDuties, list));
+            System.out.println("lambda:" + authHelper.calGrade( list));
         }
 
     }
@@ -86,14 +88,14 @@ public class TrustCalculatorTest {
     public void postDutyTest(){
         List<PostDuty> postDuties = postDutyService.getPostDutiesByChosen(true);
 
-        List<Integer> list = DutyExecutor.executePostDuties(postDuties);
-        for(int i: list) {
+        List<FulfilledPostDuty> list = DutyExecutor.executePostDuties(postDuties);
+        for(FulfilledPostDuty fulfilledPostDuty: list) {
 
             //System.out.println(proDuties.size());
             //for(Integer i : list){
             //    System.out.println(i);
             //}
-            System.out.println(i);
+            System.out.println(fulfilledPostDuty.getFulFilledTime());
         }
 
     }

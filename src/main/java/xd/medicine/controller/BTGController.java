@@ -16,10 +16,7 @@ import xd.medicine.calculator.Constants;
 import xd.medicine.calculator.DutyExecutor;
 import xd.medicine.calculator.SensitivityCalculator;
 import xd.medicine.entity.bo.*;
-import xd.medicine.entity.dto.AuthRequest;
-import xd.medicine.entity.dto.DutySensitivity;
-import xd.medicine.entity.dto.FrontResult;
-import xd.medicine.entity.dto.PatientWithTrust;
+import xd.medicine.entity.dto.*;
 import xd.medicine.service.*;
 import xd.medicine.utils.GsonUtils;
 import xd.medicine.websocket.SocketSessionRegistry;
@@ -112,9 +109,9 @@ public class BTGController {
                             ){
         /*获取事前义务并分配*/
         List<ProDuty> proDutyList = proDutyService.getProDutiesByChosen(true);
-        List<Integer> fulfillStateList = DutyExecutor.executeProDuties(proDutyList);
+        List<FulfilledProDuty> fulfilledProDutyList = DutyExecutor.executeProDuties(proDutyList);
 
-        int calGrade = authHelper.calGrade(proDutyList, fulfillStateList);
+        int calGrade = authHelper.calGrade(fulfilledProDutyList);
         /*计算risk*/
         PatientWithTrust patient=patientService.getPatientById(patientId);
         Doctor doctor = null;
@@ -152,8 +149,8 @@ public class BTGController {
         float unTrust = authHelper.calUnTrust(authRequest);
         float risk = sensitivity - unTrust;
 
-        DutySensitivity dutySensitivity=new DutySensitivity(proDutyList,fulfillStateList,calGrade,sensitivity,unTrust,risk,0,
-                null,null,0, 0 , 0, 0,0,0);
+        DutySensitivity dutySensitivity=new DutySensitivity(fulfilledProDutyList,calGrade,sensitivity,unTrust,risk,0,
+                null,0, 0 , 0, 0,0,0);
 
         /* [authFlag的含义] 0:一次授权失败，1：一次授权成功，2：二次授权失败，3：二次授权成功 */
 
@@ -175,11 +172,10 @@ public class BTGController {
         if( dutySensitivity.getAuthFlag()==1|| dutySensitivity.getAuthFlag()==3 ){
             /* 获取事后义务并分配 */
             List<PostDuty> postDutyList = postDutyService.getPostDutiesByChosen(true);
-            dutySensitivity.setPostDutyList(postDutyList);
-            List<Integer> teList = DutyExecutor.executePostDuties(postDutyList);
-            dutySensitivity.setPostDutyFulfilledTimeList(teList);
+            List<FulfilledPostDuty> fulfilledPostDutyList = DutyExecutor.executePostDuties(postDutyList);
+            dutySensitivity.setFulfilledPostDutyList(fulfilledPostDutyList);
             /* 计算基于事后义务的信任更新值 */
-            List<Float> numList = authHelper.calNewPoobTrust( postDutyList, teList,authRequest, risk, calGrade);
+            List<Float> numList = authHelper.calNewPoobTrust( fulfilledPostDutyList,authRequest, risk, calGrade);
             dutySensitivity.setPoobtp(numList.get(0));
             dutySensitivity.setPoobAward(numList.get(1));
             dutySensitivity.setPoobPenaltyDelay(numList.get(2));
@@ -189,7 +185,7 @@ public class BTGController {
             dutySensitivity.setPoobTrustNew(poobTrustNew);
             try{
                 /* 完成状态写入数据库中的日志 */
-                authHelper.updatePostDutyLog(postDutyList,teList,authRequest);
+                authHelper.updatePostDutyLog(fulfilledPostDutyList,authRequest);
                 /* 根据事后义务的完成情况更新数据库中主体的poobTrust */
                 authHelper.updatePoobTrust(authRequest,numList);
                 return new FrontResult(200,dutySensitivity,null);
