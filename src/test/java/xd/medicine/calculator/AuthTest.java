@@ -44,10 +44,10 @@ public class AuthTest {
     private PostDutyLogService postDutyLogService;
 
     @Test
-    public void riskRequest( ){
+    public void riskRequest() {
         int userType = 1;
         int userId = 1;
-        int patientId =1;
+        int patientId = 1;
         int purpose = 1;
         int content = 1;
         int mode = 1;
@@ -57,113 +57,139 @@ public class AuthTest {
 
         int calGrade = authHelper.calGrade(fulfilledProDutyList);
         /*计算risk*/
-        PatientWithTrust patient=patientService.getPatientById(patientId);
+        PatientWithTrust patient = patientService.getPatientById(patientId);
         Doctor doctor = null;
-        Others others=null;
-        List<Integer> sensitivityItems=null;
+        Others others = null;
+        List<Integer> sensitivityItems = null;
         float poobTrustOld = 0;
-        if (userType==1){
-            doctor=doctorService.getDoctorById(userId);
-            sensitivityItems=new ArrayList<>();
-            sensitivityItems.add(doctor.getIsin()?1:0);
-            sensitivityItems.add(doctor.getIsFree()?1:0);
+        if (userType == 1) {
+            doctor = doctorService.getDoctorById(userId);
+            sensitivityItems = new ArrayList<>();
+            sensitivityItems.add(doctor.getIsin() ? 1 : 0);
+            sensitivityItems.add(doctor.getIsFree() ? 1 : 0);
             sensitivityItems.add(purpose);/*0:治病，1：科研，2：教学，3：其他*/
             sensitivityItems.add(content);/*0：基本信息，1：可信信息，2：病情相关信息，3：全部*/
             sensitivityItems.add(patient.getPatient().getRoleLevel());/*0:普通任务，1：公众人物，2：保密人物*/
             sensitivityItems.add(mode);/*0:读，1：写，2：修改*/
             poobTrustOld = doctor.getPoobTrust();
-        }else if(userType==2){
-            others=othersService.getOthersById(userId);
-            sensitivityItems=new ArrayList<>();
-            sensitivityItems.add(others.getIsInHos()?1:0);
-            sensitivityItems.add(others.getIsOnWork()?1:0);
+        } else if (userType == 2) {
+            others = othersService.getOthersById(userId);
+            sensitivityItems = new ArrayList<>();
+            sensitivityItems.add(others.getIsInHos() ? 1 : 0);
+            sensitivityItems.add(others.getIsOnWork() ? 1 : 0);
             sensitivityItems.add(purpose);
             sensitivityItems.add(content);
             sensitivityItems.add(patient.getPatient().getRoleLevel());
             sensitivityItems.add(mode);
             poobTrustOld = others.getPoobTrust();
-        }else {
+        } else {
             System.out.println("用户类型错误！");
         }
 
         /*资源敏感值*/
         float sensitivity = SensitivityCalculator.calSensitivity(sensitivityItems);
-        AuthRequest authRequest=new AuthRequest(userType, userId, patientId);
+        AuthRequest authRequest = new AuthRequest(userType, userId, patientId);
         /* 整体可信值 */
         float unTrust = authHelper.calUnTrust(authRequest);
         float risk = sensitivity - unTrust;
 
-        DutySensitivity dutySensitivity=new DutySensitivity(fulfilledProDutyList,calGrade,sensitivity,unTrust,risk,0,
-                null,0, 0,0 , 0, 0,0);
+        DutySensitivity dutySensitivity = new DutySensitivity(fulfilledProDutyList, calGrade, sensitivity, unTrust, risk, 0,
+                null, 0, 0, 0, 0, 0, 0);
 
         /* [authFlag的含义] 0:一次授权失败，1：一次授权成功，2：二次授权失败，3：二次授权成功 */
 
-        if (risk<=0 && calGrade>1){ //如果是A级，直接拒绝
+        if (risk <= 0 && calGrade > 1) { //如果是A级，直接拒绝
             /*授权*/
             dutySensitivity.setAuthFlag(1);
             //return new FrontResult(200,dutySensitivity,null);
-        }else if (risk<= Constants.R_THS && calGrade>1){
+        } else if (risk <= Constants.R_THS && calGrade > 1) {
             /*二次评估*/
-            int i = authHelper.reAuthCal( authRequest,risk, calGrade);
-            if (i==0){
+            int i = authHelper.reAuthCal(authRequest, risk, calGrade);
+            if (i == 0) {
                 dutySensitivity.setAuthFlag(3);
                 //return new FrontResult(200,dutySensitivity,null);
-            }else{
+            } else {
                 dutySensitivity.setAuthFlag(2);
             }
         }
 
 
-        if( dutySensitivity.getAuthFlag()==1|| dutySensitivity.getAuthFlag()==3 ){
+        if (dutySensitivity.getAuthFlag() == 1 || dutySensitivity.getAuthFlag() == 3) {
             /* 获取事后义务并分配 */
             List<PostDuty> postDutyList = postDutyService.getPostDutiesByChosen(true);
             List<FulfilledPostDuty> fulfilledPostDutyList = DutyExecutor.executePostDuties(postDutyList);
             dutySensitivity.setFulfilledPostDutyList(fulfilledPostDutyList);
             /* 计算基于事后义务的信任更新值 */
-            List<Float> numList = authHelper.calNewPoobTrust( fulfilledPostDutyList,authRequest, risk, calGrade);
+            List<Float> numList = authHelper.calNewPoobTrust(fulfilledPostDutyList, authRequest, risk, calGrade);
             dutySensitivity.setPoobtp(numList.get(0));
             dutySensitivity.setPoobAward(numList.get(1));
             dutySensitivity.setPoobPenaltyDelay(numList.get(2));
             dutySensitivity.setPoobPenaltyViolate(numList.get(3));
             dutySensitivity.setPoobTrustOld(poobTrustOld);
             float poobTrustNew = poobTrustOld + numList.get(1) - numList.get(2) - numList.get(3);
-            if(poobTrustNew>1) poobTrustNew = 1;
-            if(poobTrustNew<0) poobTrustNew = 0;
+            if (poobTrustNew > 1) poobTrustNew = 1;
+            if (poobTrustNew < 0) poobTrustNew = 0;
             dutySensitivity.setPoobTrustNew(poobTrustNew);
             //try{
                 /* 完成状态写入数据库中的日志 */
             //    authHelper.updatePostDutyLog(postDutyList,teList,authRequest);
                 /* 根据事后义务的完成情况更新数据库中主体的poobTrust */
             //    authHelper.updatePoobTrust(authRequest,numList);
-                System.out.println("200!");
-                System.out.println(dutySensitivity.toString());
+            System.out.println("200!");
+            System.out.println(dutySensitivity.toString());
             System.out.println(dutySensitivity.getCalGrade());
-            for(int i =0 ; i< dutySensitivity.getFulFilledProdutyList().size();i++) {
-                System.out.print(dutySensitivity.getFulFilledProdutyList().get(i).getState()+"  ");
+            for (int i = 0; i < dutySensitivity.getFulFilledProdutyList().size(); i++) {
+                System.out.print(dutySensitivity.getFulFilledProdutyList().get(i).getState() + "  ");
             }
             System.out.println();
             //}catch (Exception e){
-           //     System.out.println("501!");
+            //     System.out.println("501!");
             //    System.out.println(dutySensitivity.toString());
-           // }
-        }else {
+            // }
+        } else if(dutySensitivity.getAuthFlag() == 2 ){
             System.out.println("502!");
             System.out.println(dutySensitivity.toString());
             System.out.println(dutySensitivity.getCalGrade());
-            for(int i =0 ; i< dutySensitivity.getFulFilledProdutyList().size();i++) {
-                System.out.print(dutySensitivity.getFulFilledProdutyList().get(i).getState()+"  ");
+            for (int i = 0; i < dutySensitivity.getFulFilledProdutyList().size(); i++) {
+                System.out.print(dutySensitivity.getFulFilledProdutyList().get(i).getState() + "  ");
+            }
+            System.out.println();
+        } else{
+            System.out.println("503!");
+            System.out.println(dutySensitivity.toString());
+            System.out.println(dutySensitivity.getCalGrade());
+            for (int i = 0; i < dutySensitivity.getFulFilledProdutyList().size(); i++) {
+                System.out.print(dutySensitivity.getFulFilledProdutyList().get(i).getState() + "  ");
             }
             System.out.println();
         }
     }
 
     @Test
-    public void test(){
+    public void test() {
         List<PostDuty> postDutyList = postDutyService.getPostDutiesByChosen(true);
-        for(PostDuty postDuty : postDutyList){
+        for (PostDuty postDuty : postDutyList) {
             System.out.println("{");
 
             System.out.println("},");
+        }
+    }
+
+
+    @Test
+    public void gradeTest() {
+        int userType = 1;
+        int userId = 1;
+        int patientId = 1;
+        int purpose = 1;
+        int content = 1;
+        int mode = 1;
+        /*获取事前义务并分配*/
+        List<ProDuty> proDutyList = proDutyService.getProDutiesByChosen(true);
+        int m = 0;
+        while (m < 100) {
+            System.out.println(authHelper.calGrade(DutyExecutor.executeProDuties(proDutyList)));
+            m++;
         }
     }
 }

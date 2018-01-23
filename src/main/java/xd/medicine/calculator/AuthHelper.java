@@ -169,7 +169,7 @@ public class AuthHelper {
 
     public List<Float> calNewPoobTrust( List<FulfilledPostDuty> fulfilledPostDutyList, AuthRequest authRequest, float risk, int grade){
         List<Float> numList = new ArrayList<>();
-
+        float probAward;
         int lambda = grade - 2;
         int p = postDutyLogService.countFulfilledPostDutyLogsBySub((byte)authRequest.getUserType().intValue(),authRequest.getUserId());
         int q = postDutyLogService.countPostDutyLogsBySub((byte)authRequest.getUserType().intValue(),authRequest.getUserId());
@@ -178,7 +178,11 @@ public class AuthHelper {
             System.out.println("postDutyLog信息不足！");
             m = (float) 0.8;
         }
-        float probAward = m * R_THS * (lambda * D_AWARD + (lambda==0?0:1));
+        if(risk < 0){
+            probAward = 0;
+        }else {
+            probAward = m * R_THS * (lambda * D_AWARD + (lambda == 0 ? 0 : 1));
+        }
         float poobTp = (-risk) > probAward? (-risk) : probAward;
         List<Integer> list1 = new ArrayList<>(); //存放按时完成的义务编号
         List<Integer> list2 = new ArrayList<>(); //存放延期完成的义务编号
