@@ -182,6 +182,8 @@ public class BTGController {
             dutySensitivity.setPoobPenaltyViolate(numList.get(3));
             dutySensitivity.setPoobTrustOld(poobTrustOld);
             float poobTrustNew = poobTrustOld + numList.get(1) - numList.get(2) - numList.get(3);
+            if(poobTrustNew<0) poobTrustNew = 0;
+            if(poobTrustNew>1) poobTrustNew = 1;
             dutySensitivity.setPoobTrustNew(poobTrustNew);
             try{
                 /* 完成状态写入数据库中的日志 */
