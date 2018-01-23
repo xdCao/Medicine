@@ -175,8 +175,8 @@ public class TrustCalculator {
     public float calDocRCM(Doctor doctor){
         List<UserLog> userLogList = commentService.getAllUserLogsByDoctor(doctor.getId());
         if(userLogList.size()< HBT_N){
-            System.out.println("ERROR！！用户日志样本数量不足！！!医生id："+ doctor.getId()+"，医生姓名："+doctor.getName());
-            return -1;
+            System.out.println("用户日志样本数量不足！！!医生id："+ doctor.getId()+"，医生姓名："+doctor.getName());
+            return (float)0.5;   //样本不足时，取默认值0.5
         }
 
         List<Float> samplingAveValue = new ArrayList<>(); //用来存放每次抽样后计算出来的平均值
@@ -206,7 +206,7 @@ public class TrustCalculator {
 
         if(samplingAveValue.size()<1){
             System.out.println("ERROR！！多次抽样样本均不可信！！!医生id："+ doctor.getId()+"，医生姓名："+doctor.getName());
-            return -1;
+            return (float)0.5;   //样本不足时，取默认值0.5
         }
 
         /* 已经获得所有抽样值，下面计算HBT */
@@ -236,8 +236,8 @@ public class TrustCalculator {
     public float calDocREP(Doctor doctor){
         List<SysLog> sysLogList = commentService.getAllSysLogsByDoctor(doctor.getId());
         if(sysLogList.size()==0){
-            System.out.println("ERROR！！系统日志样本数量不足！！!医生id："+ doctor.getId()+"医生姓名："+doctor.getName());
-            return -1;
+            System.out.println("系统日志样本数量不足！！!医生id："+ doctor.getId()+"医生姓名："+doctor.getName());
+            return (float)0.5;   //样本不足时，取默认值0.5
         }
         List<Integer> list = new ArrayList<>();
         for(SysLog sysLog : sysLogList){

@@ -46,7 +46,7 @@ public class AuthTest {
     @Test
     public void riskRequest( ){
         int userType = 1;
-        int userId = 1;
+        int userId = 13;
         int patientId =1;
         int purpose = 1;
         int content = 1;
