@@ -198,7 +198,8 @@ public class PatientController {
             //此刻开启一分钟的定时任务
             List<Doctor> doctors = doctorService.getDoctorsByDepartment(patient.getTrustAttr().getDepartment());
             for (Doctor doctor:doctors){
-                if (doctor.getIsin()&&doctor.getIsFree()){
+//                if (doctor.getIsin()&&doctor.getIsFree()){
+                /*这里注释掉的原因是要求即使不可用的医生也能够收到广播通知*/
                     String userKey=1+":"+doctor.getId();
 
                     LOGGER.info("向可信主体集成员： "+doctor.getId()+" 进行广播");
@@ -207,8 +208,9 @@ public class PatientController {
                     if (sessionId!=null){
                         template.convertAndSendToUser(sessionId,"/subject/info",
                                 new OutMessage(200,GsonUtils.toJsonString(patient)),createHeaders(sessionId));
+                        // todo 这里可能要加上病人可信主体集的信息
                     }
-                }
+//                }
             }
 //            emergMapCache.set(String.valueOf(patientId),System.currentTimeMillis());
             //此处应开启一个新的定时任务
