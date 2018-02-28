@@ -146,6 +146,7 @@ public class EmergAuthTask implements Runnable {
         while (true) {
 
             boolean containsKey = emergMapCache.containsKey(patientWithTrust.getPatient().getId());
+            LOGGER.info("缓存中是否存在对于病人id为"+patientWithTrust.getPatient().getId()+"的请求？"+containsKey);
             if (containsKey){
                 List<String> list = emergMapCache.get(patientWithTrust.getPatient().getId());
                 for (String userKey:list){
@@ -181,14 +182,20 @@ public class EmergAuthTask implements Runnable {
                             currentDoctor=doctorTrustResult;
                         }else {
                             LOGGER.info("抢占期获取授权失败");
-                            String nSessionId=registry.getSessionId(userKey);
-                            if (nSessionId!=null){
-                                LOGGER.info(nSessionId+"在抢占期未能获得授权");
-                                template.convertAndSendToUser(nSessionId,"/subject/info",
-                                        new OutMessage(400,patientWithTrust.getPatient().getId(),"您的信任值不足以获得授权"),createHeaders(nSessionId));
+                            if (emergMapCache.get(patientWithTrust.getPatient().getId()).contains(userKey)){
+                                String nSessionId=registry.getSessionId(userKey);
+                                if (nSessionId!=null){
+                                    LOGGER.info(nSessionId+"在抢占期未能获得授权");
+                                    template.convertAndSendToUser(nSessionId,"/subject/info",
+                                            new OutMessage(400,patientWithTrust.getPatient().getId(),"您的信任值不足以获得授权"),createHeaders(nSessionId));
+                                }
                             }
                         }
+                        // todo 修改多次通知未能授权的bug
+                        boolean remove = emergMapCache.get(patientWithTrust.getPatient().getId()).remove(userType + ":" + userId);
+                        LOGGER.info("移除病人： "+patientWithTrust.getPatient().getId()+" 请求队列中的： 医生"+userId+" remove:"+remove);
                     }
+
                 }
             }
 

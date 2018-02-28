@@ -220,8 +220,10 @@ public class PatientController {
 //                }
             }
 //            emergMapCache.set(String.valueOf(patientId),System.currentTimeMillis());
-            //此处应开启一个新的定时任务
-            threadPoolTaskScheduler.schedule(new EmergAuthTask(patient,doctors,template,webAgentSessionRegistry,trustCalculator),new Date(System.currentTimeMillis()+20000));
+            // todo 此处应开启一个新的定时任务,规定每个病人对应一个线程，当缓存中已经有该病人时，不开启新的线程
+            if (!emergMapCache.containsKey(patientId)){
+                threadPoolTaskScheduler.schedule(new EmergAuthTask(patient,doctors,template,webAgentSessionRegistry,trustCalculator),new Date(System.currentTimeMillis()+20000));
+            }
         }
         return new FrontResult(200,patient,null);
     }
