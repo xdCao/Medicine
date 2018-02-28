@@ -17,6 +17,7 @@ import xd.medicine.calculator.TrustCalculator;
 import xd.medicine.entity.bo.Doctor;
 import xd.medicine.entity.bo.Patient;
 import xd.medicine.entity.bo.TrustAttr;
+import xd.medicine.entity.dto.DoctorTrustResult;
 import xd.medicine.entity.dto.FrontResult;
 import xd.medicine.entity.dto.OutMessage;
 import xd.medicine.entity.dto.PatientWithTrust;
@@ -49,6 +50,7 @@ import java.util.List;
  * 9.更新病人信任信息
  * 10.更新病人紧急信息
  * 11.注册/添加病人
+ * 12.获取病人的可信主体集
  */
 @CrossOrigin(origins = "*",maxAge = 3600)
 @RestController
@@ -309,7 +311,16 @@ public class PatientController {
         }
     }
 
-
+    @RequestMapping(value = "/avaDoctors",method = RequestMethod.GET)
+    public FrontResult getAvaDoctors(@RequestParam Integer patientId){
+//        List<Doctor> sisDoctorsByPatientId = patientService.getSisDoctorsByPatientId(patientId);
+        List<DoctorTrustResult> ts = trustCalculator.getTs(patientId);
+        if (ts!=null&&ts.size()>0){
+            return new FrontResult(200,ts,null);
+        }else {
+            return new FrontResult(500,null,"可信主体集为空");
+        }
+    }
 
 
 
