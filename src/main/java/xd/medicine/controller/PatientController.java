@@ -27,8 +27,10 @@ import xd.medicine.tasks.EmergAuthTask;
 import xd.medicine.utils.GsonUtils;
 import xd.medicine.websocket.SocketSessionRegistry;
 
+import javax.print.Doc;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -205,10 +207,15 @@ public class PatientController {
                     LOGGER.info("向可信主体集成员： "+doctor.getId()+" 进行广播");
 
                     String sessionId = webAgentSessionRegistry.getSessionId(userKey);
-                    if (sessionId!=null){
+                    //为了在广播的时候显示可信主体集医生的名字
+                    List<String> avaDoctors=new ArrayList<>();
+                    List<Doctor> sisDoctorsByPatientId = patientService.getSisDoctorsByPatientId(patientId);
+                    for (Doctor avaDoctor:sisDoctorsByPatientId){
+                        avaDoctors.add(avaDoctor.getName());
+                    }
+                if (sessionId!=null){
                         template.convertAndSendToUser(sessionId,"/subject/info",
-                                new OutMessage(200,GsonUtils.toJsonString(patient)),createHeaders(sessionId));
-                        // todo 这里可能要加上病人可信主体集的信息
+                                new OutMessage(200,patientId,GsonUtils.toJsonString(patient),avaDoctors),createHeaders(sessionId));
                     }
 //                }
             }
@@ -299,6 +306,8 @@ public class PatientController {
             return new FrontResult(500,null,"注册失败");
         }
     }
+
+
 
 
 
