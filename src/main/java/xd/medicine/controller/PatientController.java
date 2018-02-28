@@ -51,6 +51,7 @@ import java.util.List;
  * 10.更新病人紧急信息
  * 11.注册/添加病人
  * 12.获取病人的可信主体集
+ * 13.紧急按钮
  */
 @CrossOrigin(origins = "*",maxAge = 3600)
 @RestController
@@ -196,6 +197,10 @@ public class PatientController {
                                        Double bloodPressure){
         LOGGER.info("病人紧急信息发生变更");
         patientService.updateEmergency(patientId, temperature, heartBeat, bloodPressure);
+        return broadcast(patientId);
+    }
+
+    private FrontResult broadcast(Integer patientId) {
         PatientWithTrust patient=patientService.getPatientById(patientId);
         if ((patient.getPatient().getIsInEmergency())&&(patient.getPatient().getSenseAware())){
             //向所有可信主体集进行广播
@@ -217,12 +222,12 @@ public class PatientController {
                     }
                 if (sessionId!=null){
                         template.convertAndSendToUser(sessionId,"/subject/info",
-                                new OutMessage(200,patientId,GsonUtils.toJsonString(patient),avaDoctors),createHeaders(sessionId));
+                                new OutMessage(200,patientId, GsonUtils.toJsonString(patient),avaDoctors),createHeaders(sessionId));
                     }
 //                }
             }
 //            emergMapCache.set(String.valueOf(patientId),System.currentTimeMillis());
-            // todo 此处应开启一个新的定时任务,规定每个病人对应一个线程，当缓存中已经有该病人时，不开启新的线程
+            // 此处应开启一个新的定时任务,规定每个病人对应一个线程，当缓存中已经有该病人时，不开启新的线程
             if (!emergMapCache.containsKey(patientId)){
                 threadPoolTaskScheduler.schedule(new EmergAuthTask(patient,doctors,template,webAgentSessionRegistry,trustCalculator),new Date(System.currentTimeMillis()+20000));
             }
@@ -320,6 +325,12 @@ public class PatientController {
         }else {
             return new FrontResult(500,null,"可信主体集为空");
         }
+    }
+
+    @RequestMapping(value = "/emergBtn",method = RequestMethod.POST)
+    public FrontResult emergeBtn(@RequestParam Integer patientId){
+        LOGGER.info("触发病人id="+patientId+"的紧急按钮");
+        return broadcast(patientId);
     }
 
 
