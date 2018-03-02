@@ -48,9 +48,20 @@ public class MathUtilTest {
     @Test
     public void test4(){
         for(int i =0;i<30;i++){
-            System.out.println(getRandomInt(0,10));
+        //    System.out.println(getRandomFloat(0,2));
         }
 
+        int cc[] = getRandomArray(1,10,5);
+        for(int j=0;j<cc.length;j++){
+            System.out.println(cc[j]);
+        }
+
+    }
+
+    @Test
+    public void test5(){
+        //for(int i =0 ; i < 10;i++)
+            System.out.println(new Random().nextFloat());
     }
 
 

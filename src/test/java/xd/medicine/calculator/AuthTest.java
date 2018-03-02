@@ -15,6 +15,10 @@ import xd.medicine.service.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
+
+import static xd.medicine.utils.MathUtils.getRandomArray;
+import static xd.medicine.utils.MathUtils.getRandomInt;
 
 /**
  * created by liubotao
@@ -190,6 +194,39 @@ public class AuthTest {
         while (m < 100) {
             System.out.println(authHelper.calGrade(DutyExecutor.executeProDuties(proDutyList)));
             m++;
+        }
+    }
+
+    @Test
+    public void test11(){
+        boolean doPro ;
+        List<ProDuty> allProDutyList = proDutyService.getProDutiesByChosen(true);
+        float r = new Random().nextFloat();
+        if(r<0.3){  //0.3的概率不分配事前义务，0.7的概率分配事前义务
+            doPro = false;
+        }else{
+            doPro = true;
+        }
+        if(doPro){
+            int proNum = getRandomInt( 5, 9 ); //如果分配事前义务，则随机分配5-9个
+            int proDutyIndex[] = getRandomArray( 0 , 8, proNum );
+            List<ProDuty> proDutyList = new ArrayList<>();
+            for(int i=0;i<proNum;i++){
+                ProDuty proDuty = allProDutyList.get(proDutyIndex[i]);
+                r = new Random().nextFloat();
+                if(r < 0.5){  //随机设置是否强制，0为强制，1为不强制
+                    proDuty.setType((byte)0);
+                }else{
+                    proDuty.setType((byte)1);
+                }
+                proDutyList.add(proDuty);
+            }
+            for(ProDuty pd : proDutyList){
+                System.out.println(pd.getDutyContent());
+                System.out.println(pd.getType());
+            }
+        }else{
+            System.out.println("!!!");
         }
     }
 }

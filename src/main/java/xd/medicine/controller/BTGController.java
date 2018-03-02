@@ -19,10 +19,14 @@ import xd.medicine.entity.bo.*;
 import xd.medicine.entity.dto.*;
 import xd.medicine.service.*;
 import xd.medicine.utils.GsonUtils;
+import xd.medicine.utils.MathUtils;
 import xd.medicine.websocket.SocketSessionRegistry;
 
 import java.io.IOException;
 import java.util.*;
+
+import static xd.medicine.utils.MathUtils.getRandomArray;
+import static xd.medicine.utils.MathUtils.getRandomInt;
 
 /**
  * created by xdCao on 2017/12/25
@@ -105,13 +109,38 @@ public class BTGController {
                             Integer patientId,
                             Integer purpose,
                             Integer content,
-                            Integer mode
+                            Integer mode,
+                            Integer time
                             ){
         /*获取事前义务并分配*/
-        List<ProDuty> proDutyList = proDutyService.getProDutiesByChosen(true);
-        List<FulfilledProDuty> fulfilledProDutyList = DutyExecutor.executeProDuties(proDutyList);
+        boolean doPro ;
+        int calGrade = -1;
+        List<FulfilledProDuty> fulfilledProDutyList = null;
+        List<ProDuty> allProDutyList = proDutyService.getProDutiesByChosen(true);
+        float r = new Random().nextFloat();
+        if(r<0.3){  //0.3的概率不分配事前义务，0.7的概率分配事前义务
+            doPro = false;
+        }else{
+            doPro = true;
+        }
+        if(doPro){
+            int proNum = getRandomInt( 5, 9 ); //如果分配事前义务，则随机分配5-9个
+            int proDutyIndex[] = getRandomArray( 0 , 8, proNum );
+            List<ProDuty> proDutyList = new ArrayList<>();
+            for(int i=0;i<proNum;i++){
+                ProDuty proDuty = allProDutyList.get(proDutyIndex[i]);
+                r = new Random().nextFloat();
+                if(r < 0.5){  //随机设置是否强制，0为强制，1为不强制
+                    proDuty.setType((byte)0);
+                }else{
+                    proDuty.setType((byte)1);
+                }
+                proDutyList.add(proDuty);
+            }
+            fulfilledProDutyList = DutyExecutor.executeProDuties(proDutyList);
+            calGrade = authHelper.calGrade(fulfilledProDutyList);
+        }
 
-        int calGrade = authHelper.calGrade(fulfilledProDutyList);
         /*计算risk*/
         PatientWithTrust patient=patientService.getPatientById(patientId);
         Doctor doctor = null;
@@ -122,7 +151,8 @@ public class BTGController {
             doctor=doctorService.getDoctorById(userId);
             sensitivityItems=new ArrayList<>();
             sensitivityItems.add(doctor.getIsin()?1:0);
-            sensitivityItems.add(doctor.getIsFree()?1:0);
+            //sensitivityItems.add(doctor.getIsFree()?1:0);
+            sensitivityItems.add(time);
             sensitivityItems.add(purpose);/*0:治病，1：科研，2：教学，3：其他*/
             sensitivityItems.add(content);/*0：基本信息，1：可信信息，2：病情相关信息，3：全部*/
             sensitivityItems.add(patient.getPatient().getRoleLevel());/*0:普通任务，1：公众人物，2：保密人物*/
@@ -132,7 +162,8 @@ public class BTGController {
             others=othersService.getOthersById(userId);
             sensitivityItems=new ArrayList<>();
             sensitivityItems.add(others.getIsInHos()?1:0);
-            sensitivityItems.add(others.getIsOnWork()?1:0);
+            //sensitivityItems.add(others.getIsOnWork()?1:0);
+            sensitivityItems.add(time);
             sensitivityItems.add(purpose);
             sensitivityItems.add(content);
             sensitivityItems.add(patient.getPatient().getRoleLevel());
@@ -149,16 +180,19 @@ public class BTGController {
         float unTrust = authHelper.calUnTrust(authRequest);
         float risk = sensitivity - unTrust;
 
+
         DutySensitivity dutySensitivity=new DutySensitivity(fulfilledProDutyList,calGrade,sensitivity,unTrust,risk,0,
                 null,0, 0 , 0, 0,0,0);
 
-        /* [authFlag的含义] 0:一次授权失败，1：一次授权成功，2：二次授权失败，3：二次授权成功 */
+        /* [authFlag的含义] -1:grade是A级，0:一次授权失败，1：一次授权成功，2：二次授权失败，3：二次授权成功 */
 
-        if (risk<=0 && calGrade>1){ //如果是A级，直接拒绝
+        if(calGrade == 1) {
+            dutySensitivity.setAuthFlag(-1);
+        }else if (risk<=0){
             /*授权*/
             dutySensitivity.setAuthFlag(1);
             //return new FrontResult(200,dutySensitivity,null);
-        }else if (risk<= Constants.R_THS && calGrade>1){
+        }else if (risk<= Constants.R_THS && calGrade>1){  //grade=1(A级)和grade=-1（没有分配事前义务）都不进入二次授权
             /*二次评估*/
             int i = authHelper.reAuthCal( authRequest,risk, calGrade);
             if (i==0){
@@ -171,7 +205,16 @@ public class BTGController {
 
         if( dutySensitivity.getAuthFlag()==1|| dutySensitivity.getAuthFlag()==3 ){
             /* 获取事后义务并分配 */
-            List<PostDuty> postDutyList = postDutyService.getPostDutiesByChosen(true);
+
+            List<PostDuty> allPostDutyList = postDutyService.getPostDutiesByChosen(true);
+            int postNum = getRandomInt( 5 , 7 ); //随机分配5-7个事后义务
+            int postDutyIndex[] = getRandomArray( 0 , 6, postNum );
+            List<PostDuty> postDutyList = new ArrayList<>();
+            for(int i=0;i<postNum;i++){
+                PostDuty postDuty = allPostDutyList.get(postDutyIndex[i]);
+                postDutyList.add(postDuty);
+            }
+
             List<FulfilledPostDuty> fulfilledPostDutyList = DutyExecutor.executePostDuties(postDutyList);
             dutySensitivity.setFulfilledPostDutyList(fulfilledPostDutyList);
             /* 计算基于事后义务的信任更新值 */

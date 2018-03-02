@@ -32,7 +32,7 @@
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
                         connectionURL="jdbc:mysql://localhost:3306/medicine"
                         userId="root"
-                        password="940620"/>
+                        password="13245"/>
        <!--
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
                         connectionURL="jdbc:mysql://localhost:3306/medicine"

@@ -21,8 +21,18 @@ public class SensitivityCalculator {
         float s[] = new float[6];
         //地点敏感度
         s[0] = sensitivityItems.get(0)==0?getRandomFloat(0,(float)0.5):getRandomFloat((float)0.5,1);
-        //时间敏感度
-        s[1] = sensitivityItems.get(1)==0?getRandomFloat(0,(float)0.5):getRandomFloat((float)0.5,1);
+        //访问时间敏感度
+        //s[1] = sensitivityItems.get(1)==0?getRandomFloat(0,(float)0.5):getRandomFloat((float)0.5,1);
+        if(sensitivityItems.get(1)==0){
+            s[1] = getRandomFloat((float) 0.5,(float) 0.6);
+        }else if(sensitivityItems.get(1)==1){
+            s[1] = getRandomFloat((float) 0.6,(float) 0.7);
+        }else if(sensitivityItems.get(1)==2){
+            s[1] = getRandomFloat((float) 0.7,(float) 0.85);
+        }else{
+            s[1] = getRandomFloat((float) 0.85,1);
+        }
+
 
         //访问目的敏感度
         //float s3 = sensitivityItems.get(1)==0?getRandom((float) 0.3,(float) 0.5):
