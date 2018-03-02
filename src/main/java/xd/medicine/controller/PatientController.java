@@ -17,6 +17,7 @@ import xd.medicine.calculator.TrustCalculator;
 import xd.medicine.entity.bo.Doctor;
 import xd.medicine.entity.bo.Patient;
 import xd.medicine.entity.bo.TrustAttr;
+import xd.medicine.entity.dto.DoctorTrustResult;
 import xd.medicine.entity.dto.FrontResult;
 import xd.medicine.entity.dto.OutMessage;
 import xd.medicine.entity.dto.PatientWithTrust;
@@ -27,8 +28,10 @@ import xd.medicine.tasks.EmergAuthTask;
 import xd.medicine.utils.GsonUtils;
 import xd.medicine.websocket.SocketSessionRegistry;
 
+import javax.print.Doc;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -47,6 +50,8 @@ import java.util.List;
  * 9.更新病人信任信息
  * 10.更新病人紧急信息
  * 11.注册/添加病人
+ * 12.获取病人的可信主体集
+ * 13.紧急按钮
  */
 @CrossOrigin(origins = "*",maxAge = 3600)
 @RestController
@@ -192,27 +197,40 @@ public class PatientController {
                                        Double bloodPressure){
         LOGGER.info("病人紧急信息发生变更");
         patientService.updateEmergency(patientId, temperature, heartBeat, bloodPressure);
+        return broadcast(patientId);
+    }
+
+    private FrontResult broadcast(Integer patientId) {
         PatientWithTrust patient=patientService.getPatientById(patientId);
         if ((patient.getPatient().getIsInEmergency())&&(patient.getPatient().getSenseAware())){
             //向所有可信主体集进行广播
             //此刻开启一分钟的定时任务
             List<Doctor> doctors = doctorService.getDoctorsByDepartment(patient.getTrustAttr().getDepartment());
             for (Doctor doctor:doctors){
-                if (doctor.getIsin()&&doctor.getIsFree()){
+//                if (doctor.getIsin()&&doctor.getIsFree()){
+                /*这里注释掉的原因是要求即使不可用的医生也能够收到广播通知*/
                     String userKey=1+":"+doctor.getId();
 
                     LOGGER.info("向可信主体集成员： "+doctor.getId()+" 进行广播");
 
                     String sessionId = webAgentSessionRegistry.getSessionId(userKey);
-                    if (sessionId!=null){
-                        template.convertAndSendToUser(sessionId,"/subject/info",
-                                new OutMessage(200,GsonUtils.toJsonString(patient)),createHeaders(sessionId));
+                    //为了在广播的时候显示可信主体集医生的名字
+                    List<String> avaDoctors=new ArrayList<>();
+                    List<Doctor> sisDoctorsByPatientId = patientService.getSisDoctorsByPatientId(patientId);
+                    for (Doctor avaDoctor:sisDoctorsByPatientId){
+                        avaDoctors.add(avaDoctor.getName());
                     }
-                }
+                if (sessionId!=null){
+                        template.convertAndSendToUser(sessionId,"/subject/info",
+                                new OutMessage(200,patientId, GsonUtils.toJsonString(patient),avaDoctors),createHeaders(sessionId));
+                    }
+//                }
             }
 //            emergMapCache.set(String.valueOf(patientId),System.currentTimeMillis());
-            //此处应开启一个新的定时任务
-            threadPoolTaskScheduler.schedule(new EmergAuthTask(patient,doctors,template,webAgentSessionRegistry,trustCalculator),new Date(System.currentTimeMillis()+20000));
+            // 此处应开启一个新的定时任务,规定每个病人对应一个线程，当缓存中已经有该病人时，不开启新的线程
+            if (!emergMapCache.containsKey(patientId)){
+                threadPoolTaskScheduler.schedule(new EmergAuthTask(patient,doctors,template,webAgentSessionRegistry,trustCalculator),new Date(System.currentTimeMillis()+20000));
+            }
         }
         return new FrontResult(200,patient,null);
     }
@@ -296,6 +314,23 @@ public class PatientController {
         } catch (Exception e) {
             return new FrontResult(500,null,"注册失败");
         }
+    }
+
+    @RequestMapping(value = "/avaDoctors",method = RequestMethod.GET)
+    public FrontResult getAvaDoctors(@RequestParam Integer patientId){
+//        List<Doctor> sisDoctorsByPatientId = patientService.getSisDoctorsByPatientId(patientId);
+        List<DoctorTrustResult> ts = trustCalculator.getTs(patientId);
+        if (ts!=null&&ts.size()>0){
+            return new FrontResult(200,ts,null);
+        }else {
+            return new FrontResult(500,null,"可信主体集为空");
+        }
+    }
+
+    @RequestMapping(value = "/emergBtn",method = RequestMethod.POST)
+    public FrontResult emergeBtn(@RequestParam Integer patientId){
+        LOGGER.info("触发病人id="+patientId+"的紧急按钮");
+        return broadcast(patientId);
     }
 
 

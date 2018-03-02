@@ -1,5 +1,7 @@
 package xd.medicine.entity.dto;
 
+import java.util.List;
+
 /**
  * created by xdCao on 2017/12/25
  */
@@ -12,6 +14,8 @@ public class OutMessage {
 
     private String msg;
 
+    private List<String> avaDoctors=null;
+
     public OutMessage(int code,String s) {
         this.code=code;
         this.msg=s;
@@ -21,6 +25,13 @@ public class OutMessage {
         this.code = code;
         this.patientId = patientId;
         this.msg = msg;
+    }
+
+    public OutMessage(int code, int patientId, String msg, List<String> avaDoctors) {
+        this.code = code;
+        this.patientId = patientId;
+        this.msg = msg;
+        this.avaDoctors = avaDoctors;
     }
 
     public String getMsg() {
@@ -45,6 +56,14 @@ public class OutMessage {
 
     public void setPatientId(int patientId) {
         this.patientId = patientId;
+    }
+
+    public List<String> getAvaDoctors() {
+        return avaDoctors;
+    }
+
+    public void setAvaDoctors(List<String> avaDoctors) {
+        this.avaDoctors = avaDoctors;
     }
 }
 
