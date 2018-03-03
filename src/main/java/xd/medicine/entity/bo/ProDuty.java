@@ -7,7 +7,7 @@ public class ProDuty {
 
     private Byte presetTime;
 
-    private Byte type; //0为强制，1为附加
+    private Byte type;
 
     private Boolean choose;
 

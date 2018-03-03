@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import xd.medicine.dao.autoMapper.PatientMapper;
 import xd.medicine.entity.bo.*;
+import xd.medicine.entity.dto.PatientForFront;
 import xd.medicine.entity.dto.PatientWithTrust;
 import xd.medicine.service.DoctorService;
 import xd.medicine.service.PatientService;
@@ -78,6 +79,16 @@ public class PatientServiceImpl implements PatientService{
     }
 
     @Override
+    public PageInfo<PatientForFront> getPatientByPage2(int page, int rows, int doctorId) {
+        PageHelper.startPage(page,rows);
+        List<Patient> patients = patientMapper.selectByExample(new PatientExample());
+        List<PatientWithTrust> patientWithTrusts = getPatientWithTrusts(patients);
+        List<PatientForFront> patientForFronts = getPatientForFront(patientWithTrusts,doctorId);
+        PageInfo<PatientForFront> patientPageInfo=new PageInfo<>(patientForFronts);
+        return patientPageInfo;
+    }
+
+    @Override
     public List<PatientWithTrust> getPatientsByDoctor(int doctorId) {
         PatientExample patientExample=new PatientExample();
         patientExample.createCriteria().andDoctorIdEqualTo(doctorId);
@@ -102,6 +113,7 @@ public class PatientServiceImpl implements PatientService{
         return patientWithTrusts;
     }
 
+
     private List<PatientWithTrust> getPatientWithTrusts(List<Patient> patients) {
         List<PatientWithTrust> patientWithTrusts=new ArrayList<>();
         for (Patient patient:patients){
@@ -110,6 +122,17 @@ public class PatientServiceImpl implements PatientService{
             patientWithTrusts.add(patientWithTrust);
         }
         return patientWithTrusts;
+    }
+
+
+    private List<PatientForFront> getPatientForFront(List<PatientWithTrust> patients , int doctorId) {
+        List<PatientForFront> patientForFronts=new ArrayList<>();
+        for (PatientWithTrust patient:patients){
+            boolean isMyPatient = (patient.getPatient().getDoctorId()==doctorId);
+            PatientForFront patientForFront = new PatientForFront(patient, isMyPatient);
+            patientForFronts.add(patientForFront);
+        }
+        return patientForFronts;
     }
 
     @Override

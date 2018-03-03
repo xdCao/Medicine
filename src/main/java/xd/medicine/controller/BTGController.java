@@ -108,7 +108,8 @@ public class BTGController {
                             Integer purpose,
                             Integer content,
                             Integer mode,
-                            Integer time
+                            Integer time,
+                            Integer doPro
                             ){
         /* 如果是主治医生，则不需要执行下面的步骤，直接返回授权 */
         PatientWithTrust patient=patientService.getPatientById(patientId);
@@ -117,20 +118,15 @@ public class BTGController {
                     null,0, 0 , 0, 0,0,0);
             return new FrontResult(200,dutySensitivity,null);
         }
-
+        AuthRequest authRequest=new AuthRequest(userType, userId, patientId);
         /*获取事前义务并分配*/
-        boolean doPro ;
         int calGrade = -1;
         List<FulfilledProDuty> fulfilledProDutyList = null;
         List<ProDuty> allProDutyList = proDutyService.getProDutiesByChosen(true);
         float r = new Random().nextFloat();
         float riskThs = Constants.getrThs();
-        if(r<0.3){  //0.3的概率不分配事前义务，0.7的概率分配事前义务
-            doPro = false;
-        }else{
-            doPro = true;
-        }
-        if(doPro){
+
+        if(doPro.equals(1)){
             int proNum = getRandomInt( 5, 9 ); //如果分配事前义务，则随机分配5-9个
             int proDutyIndex[] = getRandomArray( 0 , 8, proNum );
             List<ProDuty> proDutyList = new ArrayList<>();
@@ -146,6 +142,7 @@ public class BTGController {
             }
             fulfilledProDutyList = DutyExecutor.executeProDuties(proDutyList);
             calGrade = authHelper.calGrade(fulfilledProDutyList);
+            authHelper.updateProDutyLog(fulfilledProDutyList,authRequest);
         }
 
         /*计算risk*/
@@ -182,7 +179,7 @@ public class BTGController {
 
         /*资源敏感值*/
         float sensitivity = SensitivityCalculator.calSensitivity(sensitivityItems);
-        AuthRequest authRequest=new AuthRequest(userType, userId, patientId);
+
         /* 整体可信值 */
         float unTrust = authHelper.calUnTrust(authRequest);
         float risk = sensitivity - unTrust;

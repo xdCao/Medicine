@@ -50,7 +50,7 @@ public class AuthTest {
     @Test
     public void riskRequest() {
         int userType = 1;
-        int userId = 1;
+        int userId = 9;
         int patientId = 1;
         int purpose = 1;
         int content = 1;
@@ -64,6 +64,8 @@ public class AuthTest {
                     null,0, 0 , 0, 0,0,0);
             System.out.println("主治医生\n");
         }
+
+        AuthRequest authRequest=new AuthRequest(userType, userId, patientId);
 
         /*获取事前义务并分配*/
         boolean doPro ;
@@ -93,6 +95,7 @@ public class AuthTest {
             }
             fulfilledProDutyList = DutyExecutor.executeProDuties(proDutyList);
             calGrade = authHelper.calGrade(fulfilledProDutyList);
+            authHelper.updateProDutyLog(fulfilledProDutyList,authRequest);
         }
 
         /*计算risk*/
@@ -131,7 +134,7 @@ public class AuthTest {
 
         /*资源敏感值*/
         float sensitivity = SensitivityCalculator.calSensitivity(sensitivityItems);
-        AuthRequest authRequest=new AuthRequest(userType, userId, patientId);
+
         /* 整体可信值 */
         float unTrust = authHelper.calUnTrust(authRequest);
         float risk = sensitivity - unTrust;

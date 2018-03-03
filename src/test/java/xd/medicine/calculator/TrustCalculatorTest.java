@@ -5,15 +5,13 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-import xd.medicine.entity.bo.PostDuty;
-import xd.medicine.entity.bo.ProDuty;
-import xd.medicine.entity.bo.TrustAttr;
-import xd.medicine.entity.dto.DoctorTrustResult;
-import xd.medicine.entity.dto.FulfilledPostDuty;
-import xd.medicine.entity.dto.FulfilledProDuty;
+import xd.medicine.dao.autoMapper.PatientMapper;
+import xd.medicine.entity.bo.*;
+import xd.medicine.entity.dto.*;
 import xd.medicine.service.PatientService;
 import xd.medicine.service.PostDutyService;
 import xd.medicine.service.ProDutyService;
+import xd.medicine.service.ServiceImpl.PatientServiceImpl;
 import xd.medicine.service.TrustAttrService;
 
 import java.awt.*;
@@ -39,6 +37,8 @@ public class TrustCalculatorTest {
     private AuthHelper authHelper;
     @Autowired
     private PostDutyService postDutyService;
+    @Autowired
+    private PatientMapper patientMapper;
 
     @Test
     public void trustCalculatorTest(){
@@ -48,7 +48,7 @@ public class TrustCalculatorTest {
         for(int i = 1 ; i<7 ; i++) {
             System.out.println("病人id:"+ i + "病人姓名："+ patientService.getPatientById(i).getPatient().getName());
             System.out.println("可信主体集合：");
-            List<DoctorTrustResult> doctorTrustResultList = trustCalculator.getAvaTs(i);
+            List<DoctorTrustResult> doctorTrustResultList = trustCalculator.getTs(i);
             for(DoctorTrustResult doctorTrustResult : doctorTrustResultList){
                 System.out.println(doctorTrustResult.toString());
             }
@@ -99,6 +99,16 @@ public class TrustCalculatorTest {
         }
 
     }
+
+
+
+    @Test
+    public void postDutyTest222(){
+        List<PostDuty> postDuties = postDutyService.getPostDutiesByChosen(true);
+
+    }
+
+
 
 
 }

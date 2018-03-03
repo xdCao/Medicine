@@ -17,10 +17,7 @@ import xd.medicine.calculator.TrustCalculator;
 import xd.medicine.entity.bo.Doctor;
 import xd.medicine.entity.bo.Patient;
 import xd.medicine.entity.bo.TrustAttr;
-import xd.medicine.entity.dto.DoctorTrustResult;
-import xd.medicine.entity.dto.FrontResult;
-import xd.medicine.entity.dto.OutMessage;
-import xd.medicine.entity.dto.PatientWithTrust;
+import xd.medicine.entity.dto.*;
 import xd.medicine.service.DoctorService;
 import xd.medicine.service.PatientService;
 import xd.medicine.service.TrustAttrService;
@@ -136,6 +133,15 @@ public class PatientController {
         PageInfo<PatientWithTrust> patientByPage = patientService.getPatientByPage(page, rows);
         return new FrontResult(200,patientByPage,null);
     }
+
+
+    @RequestMapping(value = "/page2",method = RequestMethod.GET)
+    public FrontResult getPatientsByPage2(@RequestParam int page,@RequestParam int rows,@RequestParam int doctorId){
+        PageInfo<PatientForFront> patientByPage = patientService.getPatientByPage2(page, rows, doctorId);
+
+        return new FrontResult(200,patientByPage,null);
+    }
+
 
     @RequestMapping(value = "/doctor",method = RequestMethod.GET)
     public FrontResult getPatientByDoctor(@RequestParam int doctorId){

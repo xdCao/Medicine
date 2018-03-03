@@ -21,17 +21,18 @@ import static xd.medicine.calculator.DutyExecutor.executePostDuties;
 @Component
 public class AuthHelper {
     @Autowired
-    private PatientService patientService;
-    @Autowired
-    private DoctorService doctorService;
-    @Autowired
-    private OthersService othersService;
-    @Autowired
     private TrustCalculator trustCalculator;
     @Autowired
     private PostDutyLogService postDutyLogService;
     @Autowired
-    private PostDutyService postDutyService;
+    private DoctorService doctorService;
+    @Autowired
+    private PatientService patientService;
+    @Autowired
+    private OthersService othersService;
+    @Autowired
+    private ProDutyLogService proDutyLogService;
+
 
     /*
     * 未知情况下的授权计算
@@ -143,6 +144,28 @@ public class AuthHelper {
             postDutyLogService.insertNewPostDutyLog(postDutyLog);
         }
     }
+
+
+    /*
+    *根据完成情况更新事前义务的日志
+     */
+    public void updateProDutyLog(List<FulfilledProDuty> fulfilledProDutyList , AuthRequest authRequest){
+        int subType = authRequest.getUserId();
+        int subId = authRequest.getUserId();
+        int patientId = authRequest.getPatientId();
+        for(int i=0;i<fulfilledProDutyList.size();i++){
+            ProDutyLog proDutyLog = new ProDutyLog();
+            proDutyLog.setSubType((byte)subType);
+            proDutyLog.setSubId(subId);
+            proDutyLog.setObjId(patientId);
+            proDutyLog.setDutyId(fulfilledProDutyList.get(i).getProDuty().getId());
+            proDutyLog.setState((byte)fulfilledProDutyList.get(i).getState());
+            proDutyLogService.insertNewProDutyLog(proDutyLog);
+        }
+    }
+
+
+
 
     public void updatePoobTrust(AuthRequest authRequest, List<Float> numList){
         float poobAward = numList.get(1);

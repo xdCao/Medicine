@@ -3,8 +3,11 @@ package xd.medicine.service;
 import com.github.pagehelper.PageInfo;
 import xd.medicine.entity.bo.Doctor;
 import xd.medicine.entity.bo.Patient;
+import xd.medicine.entity.bo.TrustAttr;
+import xd.medicine.entity.dto.PatientForFront;
 import xd.medicine.entity.dto.PatientWithTrust;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -32,6 +35,8 @@ public interface PatientService {
 
     PageInfo<PatientWithTrust> getPatientByPage(int page, int rows);
 
+    PageInfo<PatientForFront> getPatientByPage2(int page, int rows, int doctorId);
+
     List<PatientWithTrust> getPatientsByDoctor(int doctorId);
 
     Integer countPatientByAccount(String account);
@@ -45,5 +50,6 @@ public interface PatientService {
     List<Doctor> getSisDoctorsByPatientId(int patientId);
 
     List<PatientWithTrust> sensePatientInEmergency();
+
 
 }
