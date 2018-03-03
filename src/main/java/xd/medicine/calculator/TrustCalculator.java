@@ -105,7 +105,20 @@ public class TrustCalculator {
         }
 
         boolean ava = doctor.getIsin()&doctor.getIsFree();
-        DoctorTrustResult doctorTrustResult = new DoctorTrustResult(doctor.getId(),doctor.getName(), mt, rcm, rep, hbt, trust, doctor.getIsin() , doctor.getIsFree(), ava);
+        int grade;
+        if(trust==1){
+            grade = 1;
+        }else if(trust>=Constants.getBeta1()){
+            grade = 2;
+        }else if(trust>=Constants.getBeta2()){
+            grade = 3;
+        }else if(trust>0){
+            grade = 4;
+        }else{
+            grade = 5;
+        }
+
+        DoctorTrustResult doctorTrustResult = new DoctorTrustResult(doctor.getId(),doctor.getName(), mt, rcm, rep, hbt, trust, doctor.getIsin() , doctor.getIsFree(), ava,grade);
         return doctorTrustResult;
     }
 

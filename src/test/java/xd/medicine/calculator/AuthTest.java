@@ -55,90 +55,136 @@ public class AuthTest {
         int purpose = 1;
         int content = 1;
         int mode = 1;
-        /*获取事前义务并分配*/
-        List<ProDuty> proDutyList = proDutyService.getProDutiesByChosen(true);
-        List<FulfilledProDuty> fulfilledProDutyList = DutyExecutor.executeProDuties(proDutyList);
+        int time = 1;
 
-        int calGrade = authHelper.calGrade(fulfilledProDutyList);
+        /* 如果是主治医生，则不需要执行下面的步骤，直接返回授权 */
+        PatientWithTrust patient=patientService.getPatientById(patientId);
+        if( userType==1 && patient.getPatient().getDoctorId() == userId ){
+            DutySensitivity dutySensitivity=new DutySensitivity(null, 0 ,0,0,0,4,
+                    null,0, 0 , 0, 0,0,0);
+            System.out.println("主治医生\n");
+        }
+
+        /*获取事前义务并分配*/
+        boolean doPro ;
+        int calGrade = -1;
+        List<FulfilledProDuty> fulfilledProDutyList = null;
+        List<ProDuty> allProDutyList = proDutyService.getProDutiesByChosen(true);
+        float r = new Random().nextFloat();
+        float riskThs = Constants.getrThs();
+        if(r<0.3){  //0.3的概率不分配事前义务，0.7的概率分配事前义务
+            doPro = false;
+        }else{
+            doPro = true;
+        }
+        if(doPro){
+            int proNum = getRandomInt( 5, 9 ); //如果分配事前义务，则随机分配5-9个
+            int proDutyIndex[] = getRandomArray( 0 , 8, proNum );
+            List<ProDuty> proDutyList = new ArrayList<>();
+            for(int i=0;i<proNum;i++){
+                ProDuty proDuty = allProDutyList.get(proDutyIndex[i]);
+                r = new Random().nextFloat();
+                if(r < 0.5){  //随机设置是否强制，0为强制，1为不强制
+                    proDuty.setType((byte)0);
+                }else{
+                    proDuty.setType((byte)1);
+                }
+                proDutyList.add(proDuty);
+            }
+            fulfilledProDutyList = DutyExecutor.executeProDuties(proDutyList);
+            calGrade = authHelper.calGrade(fulfilledProDutyList);
+        }
+
         /*计算risk*/
-        PatientWithTrust patient = patientService.getPatientById(patientId);
+
         Doctor doctor = null;
-        Others others = null;
-        List<Integer> sensitivityItems = null;
-        float poobTrustOld = 0;
-        if (userType == 1) {
-            doctor = doctorService.getDoctorById(userId);
-            sensitivityItems = new ArrayList<>();
-            sensitivityItems.add(doctor.getIsin() ? 1 : 0);
-            sensitivityItems.add(doctor.getIsFree() ? 1 : 0);
+        Others others=null;
+        List<Integer> sensitivityItems=null;
+        float poobTrustOld;
+        if (userType==1){
+            doctor=doctorService.getDoctorById(userId);
+            sensitivityItems=new ArrayList<>();
+            sensitivityItems.add(doctor.getIsin()?1:0);
+            //sensitivityItems.add(doctor.getIsFree()?1:0);
+            sensitivityItems.add(time);
             sensitivityItems.add(purpose);/*0:治病，1：科研，2：教学，3：其他*/
             sensitivityItems.add(content);/*0：基本信息，1：可信信息，2：病情相关信息，3：全部*/
             sensitivityItems.add(patient.getPatient().getRoleLevel());/*0:普通任务，1：公众人物，2：保密人物*/
             sensitivityItems.add(mode);/*0:读，1：写，2：修改*/
             poobTrustOld = doctor.getPoobTrust();
-        } else if (userType == 2) {
-            others = othersService.getOthersById(userId);
-            sensitivityItems = new ArrayList<>();
-            sensitivityItems.add(others.getIsInHos() ? 1 : 0);
-            sensitivityItems.add(others.getIsOnWork() ? 1 : 0);
+        }else if(userType==1){
+            others=othersService.getOthersById(userId);
+            sensitivityItems=new ArrayList<>();
+            sensitivityItems.add(others.getIsInHos()?1:0);
+            //sensitivityItems.add(others.getIsOnWork()?1:0);
+            sensitivityItems.add(time);
             sensitivityItems.add(purpose);
             sensitivityItems.add(content);
             sensitivityItems.add(patient.getPatient().getRoleLevel());
             sensitivityItems.add(mode);
             poobTrustOld = others.getPoobTrust();
-        } else {
-            System.out.println("用户类型错误！");
+        }else {
+
+            System.out.println("用户类型错误");
+            return;
         }
 
         /*资源敏感值*/
         float sensitivity = SensitivityCalculator.calSensitivity(sensitivityItems);
-        AuthRequest authRequest = new AuthRequest(userType, userId, patientId);
+        AuthRequest authRequest=new AuthRequest(userType, userId, patientId);
         /* 整体可信值 */
         float unTrust = authHelper.calUnTrust(authRequest);
         float risk = sensitivity - unTrust;
 
-        DutySensitivity dutySensitivity = new DutySensitivity(fulfilledProDutyList, calGrade, sensitivity, unTrust, risk, 0,
-                null, 0, 0, 0, 0, 0, 0);
 
-        /* [authFlag的含义] 0:一次授权失败，1：一次授权成功，2：二次授权失败，3：二次授权成功 */
+        DutySensitivity dutySensitivity=new DutySensitivity(fulfilledProDutyList,calGrade,sensitivity,unTrust,risk,0,
+                null,0, 0 , 0, 0,0,0);
 
-        if (risk <= 0 && calGrade > 1) { //如果是A级，直接拒绝
+        /* [authFlag的含义] -1:grade是A级，0:一次授权失败，1：一次授权成功，2：二次授权失败，3：二次授权成功,4：是主治医生，无需授权 */
+
+        if(calGrade == 1) {
+            dutySensitivity.setAuthFlag(-1);
+        }else if (risk<=0){
             /*授权*/
             dutySensitivity.setAuthFlag(1);
             //return new FrontResult(200,dutySensitivity,null);
-        } else if (risk <= Constants.R_THS && calGrade > 1) {
+        }else if (risk<= riskThs && calGrade>1){  //grade=1(A级)和grade=-1（没有分配事前义务）都不进入二次授权
             /*二次评估*/
-            int i = authHelper.reAuthCal(authRequest, risk, calGrade);
-            if (i == 0) {
+            int i = authHelper.reAuthCal( authRequest,risk, calGrade , riskThs);
+            if (i==0){
                 dutySensitivity.setAuthFlag(3);
                 //return new FrontResult(200,dutySensitivity,null);
-            } else {
+            }else{
                 dutySensitivity.setAuthFlag(2);
             }
         }
 
 
-        if (dutySensitivity.getAuthFlag() == 1 || dutySensitivity.getAuthFlag() == 3) {
+        if( dutySensitivity.getAuthFlag()==1|| dutySensitivity.getAuthFlag()==3 ){
             /* 获取事后义务并分配 */
-            List<PostDuty> postDutyList = postDutyService.getPostDutiesByChosen(true);
+
+            List<PostDuty> allPostDutyList = postDutyService.getPostDutiesByChosen(true);
+            int postNum = getRandomInt( 5 , 7 ); //随机分配5-7个事后义务
+            int postDutyIndex[] = getRandomArray( 0 , 6, postNum );
+            List<PostDuty> postDutyList = new ArrayList<>();
+            for(int i=0;i<postNum;i++){
+                PostDuty postDuty = allPostDutyList.get(postDutyIndex[i]);
+                postDutyList.add(postDuty);
+            }
+
             List<FulfilledPostDuty> fulfilledPostDutyList = DutyExecutor.executePostDuties(postDutyList);
             dutySensitivity.setFulfilledPostDutyList(fulfilledPostDutyList);
             /* 计算基于事后义务的信任更新值 */
-            List<Float> numList = authHelper.calNewPoobTrust(fulfilledPostDutyList, authRequest, risk, calGrade);
+            List<Float> numList = authHelper.calNewPoobTrust( fulfilledPostDutyList,authRequest, risk, calGrade , riskThs);
             dutySensitivity.setPoobtp(numList.get(0));
             dutySensitivity.setPoobAward(numList.get(1));
             dutySensitivity.setPoobPenaltyDelay(numList.get(2));
             dutySensitivity.setPoobPenaltyViolate(numList.get(3));
             dutySensitivity.setPoobTrustOld(poobTrustOld);
             float poobTrustNew = poobTrustOld + numList.get(1) - numList.get(2) - numList.get(3);
-            if (poobTrustNew > 1) poobTrustNew = 1;
-            if (poobTrustNew < 0) poobTrustNew = 0;
+            if(poobTrustNew<0) poobTrustNew = 0;
+            if(poobTrustNew>1) poobTrustNew = 1;
             dutySensitivity.setPoobTrustNew(poobTrustNew);
-            //try{
-                /* 完成状态写入数据库中的日志 */
-            //    authHelper.updatePostDutyLog(postDutyList,teList,authRequest);
-                /* 根据事后义务的完成情况更新数据库中主体的poobTrust */
-            //    authHelper.updatePoobTrust(authRequest,numList);
             System.out.println("200!");
             System.out.println(dutySensitivity.toString());
             System.out.println(dutySensitivity.getCalGrade());
@@ -146,10 +192,6 @@ public class AuthTest {
                 System.out.print(dutySensitivity.getFulFilledProdutyList().get(i).getState() + "  ");
             }
             System.out.println();
-            //}catch (Exception e){
-            //     System.out.println("501!");
-            //    System.out.println(dutySensitivity.toString());
-            // }
         } else if(dutySensitivity.getAuthFlag() == 2 ){
             System.out.println("502!");
             System.out.println(dutySensitivity.toString());

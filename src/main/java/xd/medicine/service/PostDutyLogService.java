@@ -18,4 +18,6 @@ public interface PostDutyLogService {
     Integer countPostDutyLogsBySub(Byte subType , int subId );
 
     Integer countFulfilledPostDutyLogsBySub(Byte subType , int subId );
+
+    List<PostDutyLog> getPostDutyLogsBySub(Byte subType, int subId);
 }

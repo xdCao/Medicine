@@ -1003,6 +1003,66 @@ public class OthersExample {
             addCriterion("is_on_work not between", value1, value2, "isOnWork");
             return (Criteria) this;
         }
+
+        public Criteria andBsTrustIsNull() {
+            addCriterion("bs_trust is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andBsTrustIsNotNull() {
+            addCriterion("bs_trust is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andBsTrustEqualTo(Float value) {
+            addCriterion("bs_trust =", value, "bsTrust");
+            return (Criteria) this;
+        }
+
+        public Criteria andBsTrustNotEqualTo(Float value) {
+            addCriterion("bs_trust <>", value, "bsTrust");
+            return (Criteria) this;
+        }
+
+        public Criteria andBsTrustGreaterThan(Float value) {
+            addCriterion("bs_trust >", value, "bsTrust");
+            return (Criteria) this;
+        }
+
+        public Criteria andBsTrustGreaterThanOrEqualTo(Float value) {
+            addCriterion("bs_trust >=", value, "bsTrust");
+            return (Criteria) this;
+        }
+
+        public Criteria andBsTrustLessThan(Float value) {
+            addCriterion("bs_trust <", value, "bsTrust");
+            return (Criteria) this;
+        }
+
+        public Criteria andBsTrustLessThanOrEqualTo(Float value) {
+            addCriterion("bs_trust <=", value, "bsTrust");
+            return (Criteria) this;
+        }
+
+        public Criteria andBsTrustIn(List<Float> values) {
+            addCriterion("bs_trust in", values, "bsTrust");
+            return (Criteria) this;
+        }
+
+        public Criteria andBsTrustNotIn(List<Float> values) {
+            addCriterion("bs_trust not in", values, "bsTrust");
+            return (Criteria) this;
+        }
+
+        public Criteria andBsTrustBetween(Float value1, Float value2) {
+            addCriterion("bs_trust between", value1, value2, "bsTrust");
+            return (Criteria) this;
+        }
+
+        public Criteria andBsTrustNotBetween(Float value1, Float value2) {
+            addCriterion("bs_trust not between", value1, value2, "bsTrust");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

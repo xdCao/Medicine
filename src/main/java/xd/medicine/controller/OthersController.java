@@ -75,6 +75,7 @@ public class OthersController {
             others.setPoobTrust((float)0.5); //poobTrust初始值为0.5，后续由可信模块更新
             others.setIsInHos(false);
             others.setIsOnWork(false);
+            others.setBsTrust((float)0.5); //bsTrust初始值为0.5，后续由管理员修改
             othersService.insert(others);
             return new FrontResult(200,others,null);
         } catch (Exception e) {

@@ -16,12 +16,13 @@ public class DoctorTrustResult {
     private Boolean isFree;
     private Boolean isIn;
     private Boolean ava;
+    private int grade;
 
     public DoctorTrustResult() {
         this.trust=0;
     }
 
-    public DoctorTrustResult(int doctorId, String name, float mt, float rcm, float rep, float hbt, float trust, Boolean isFree, Boolean isIn, Boolean ava) {
+    public DoctorTrustResult(int doctorId, String name, float mt, float rcm, float rep, float hbt, float trust, Boolean isFree, Boolean isIn, Boolean ava, int grade) {
         this.doctorId = doctorId;
         this.name = name;
         this.mt = mt;
@@ -32,6 +33,7 @@ public class DoctorTrustResult {
         this.isFree = isFree;
         this.isIn = isIn;
         this.ava = ava;
+        this.grade = grade;
     }
 
     public int getDoctorId() {
@@ -114,6 +116,14 @@ public class DoctorTrustResult {
         this.ava = ava;
     }
 
+    public int getGrade() {
+        return grade;
+    }
+
+    public void setGrade(int grade) {
+        this.grade = grade;
+    }
+
     @Override
     public String toString() {
         return "DoctorTrustResult{" +
@@ -127,6 +137,7 @@ public class DoctorTrustResult {
                 ", isFree=" + isFree +
                 ", isIn=" + isIn +
                 ", ava=" + ava +
+                ", grade=" + grade +
                 '}';
     }
 }

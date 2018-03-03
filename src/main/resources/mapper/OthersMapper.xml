@@ -1,41 +1,42 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="xd.medicine.dao.autoMapper.OthersMapper" >
-  <resultMap id="BaseResultMap" type="xd.medicine.entity.bo.Others" >
-    <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="name" property="name" jdbcType="VARCHAR" />
-    <result column="gender" property="gender" jdbcType="BIT" />
-    <result column="age" property="age" jdbcType="INTEGER" />
-    <result column="job" property="job" jdbcType="TINYINT" />
-    <result column="company" property="company" jdbcType="VARCHAR" />
-    <result column="address" property="address" jdbcType="VARCHAR" />
-    <result column="phone" property="phone" jdbcType="CHAR" />
-    <result column="is_send_request" property="isSendRequest" jdbcType="BIT" />
-    <result column="password" property="password" jdbcType="VARCHAR" />
-    <result column="account" property="account" jdbcType="VARCHAR" />
-    <result column="poob_trust" property="poobTrust" jdbcType="REAL" />
-    <result column="is_in_hos" property="isInHos" jdbcType="BIT" />
-    <result column="is_on_work" property="isOnWork" jdbcType="BIT" />
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xd.medicine.dao.autoMapper.OthersMapper">
+  <resultMap id="BaseResultMap" type="xd.medicine.entity.bo.Others">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="gender" jdbcType="BIT" property="gender" />
+    <result column="age" jdbcType="INTEGER" property="age" />
+    <result column="job" jdbcType="TINYINT" property="job" />
+    <result column="company" jdbcType="VARCHAR" property="company" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="phone" jdbcType="CHAR" property="phone" />
+    <result column="is_send_request" jdbcType="BIT" property="isSendRequest" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="account" jdbcType="VARCHAR" property="account" />
+    <result column="poob_trust" jdbcType="REAL" property="poobTrust" />
+    <result column="is_in_hos" jdbcType="BIT" property="isInHos" />
+    <result column="is_on_work" jdbcType="BIT" property="isOnWork" />
+    <result column="bs_trust" jdbcType="REAL" property="bsTrust" />
   </resultMap>
-  <sql id="Example_Where_Clause" >
-    <where >
-      <foreach collection="oredCriteria" item="criteria" separator="or" >
-        <if test="criteria.valid" >
-          <trim prefix="(" suffix=")" prefixOverrides="and" >
-            <foreach collection="criteria.criteria" item="criterion" >
-              <choose >
-                <when test="criterion.noValue" >
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
                   and ${criterion.condition}
                 </when>
-                <when test="criterion.singleValue" >
+                <when test="criterion.singleValue">
                   and ${criterion.condition} #{criterion.value}
                 </when>
-                <when test="criterion.betweenValue" >
+                <when test="criterion.betweenValue">
                   and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
                 </when>
-                <when test="criterion.listValue" >
+                <when test="criterion.listValue">
                   and ${criterion.condition}
-                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
                     #{listItem}
                   </foreach>
                 </when>
@@ -46,25 +47,25 @@
       </foreach>
     </where>
   </sql>
-  <sql id="Update_By_Example_Where_Clause" >
-    <where >
-      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
-        <if test="criteria.valid" >
-          <trim prefix="(" suffix=")" prefixOverrides="and" >
-            <foreach collection="criteria.criteria" item="criterion" >
-              <choose >
-                <when test="criterion.noValue" >
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
                   and ${criterion.condition}
                 </when>
-                <when test="criterion.singleValue" >
+                <when test="criterion.singleValue">
                   and ${criterion.condition} #{criterion.value}
                 </when>
-                <when test="criterion.betweenValue" >
+                <when test="criterion.betweenValue">
                   and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
                 </when>
-                <when test="criterion.listValue" >
+                <when test="criterion.listValue">
                   and ${criterion.condition}
-                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
                     #{listItem}
                   </foreach>
                 </when>
@@ -75,42 +76,405 @@
       </foreach>
     </where>
   </sql>
-  <sql id="Base_Column_List" >
+  <sql id="Base_Column_List">
     id, name, gender, age, job, company, address, phone, is_send_request, password, account, 
-    poob_trust, is_in_hos, is_on_work
+    poob_trust, is_in_hos, is_on_work, bs_trust
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="xd.medicine.entity.bo.OthersExample" >
+  <select id="selectByExample" parameterType="xd.medicine.entity.bo.OthersExample" resultMap="BaseResultMap">
     select
-    <if test="distinct" >
+    <if test="distinct">
       distinct
     </if>
     <include refid="Base_Column_List" />
     from others
-    <if test="_parameter != null" >
+    <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
-    <if test="orderByClause != null" >
+    <if test="orderByClause != null">
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from others
     where id = #{id,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from others
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="xd.medicine.entity.bo.OthersExample" >
+  <delete id="deleteByExample" parameterType="xd.medicine.entity.bo.OthersExample">
     delete from others
-    <if test="_parameter != null" >
+    <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="xd.medicine.entity.bo.Others" >
-    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+  <insert id="insert" parameterType="xd.medicine.entity.bo.Others">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into others (name, gender, age, 
+      job, company, address, 
+      phone, is_send_request, password, 
+      account, poob_trust, is_in_hos, 
+      is_on_work, bs_trust)
+    values (#{name,jdbcType=VARCHAR}, #{gender,jdbcType=BIT}, #{age,jdbcType=INTEGER}, 
+      #{job,jdbcType=TINYINT}, #{company,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
+      #{phone,jdbcType=CHAR}, #{isSendRequest,jdbcType=BIT}, #{password,jdbcType=VARCHAR}, 
+      #{account,jdbcType=VARCHAR}, #{poobTrust,jdbcType=REAL}, #{isInHos,jdbcType=BIT}, 
+      #{isOnWork,jdbcType=BIT}, #{bsTrust,jdbcType=REAL})
+  </insert>
+  <insert id="insertSelective" parameterType="xd.medicine.entity.bo.Others">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into others
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        name,
+      </if>
+      <if test="gender != null">
+        gender,
+      </if>
+      <if test="age != null">
+        age,
+      </if>
+      <if test="job != null">
+        job,
+      </if>
+      <if test="company != null">
+        company,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="isSendRequest != null">
+        is_send_request,
+      </if>
+      <if test="password != null">
+        password,
+      </if>
+      <if test="account != null">
+        account,
+      </if>
+      <if test="poobTrust != null">
+        poob_trust,
+      </if>
+      <if test="isInHos != null">
+        is_in_hos,
+      </if>
+      <if test="isOnWork != null">
+        is_on_work,
+      </if>
+      <if test="bsTrust != null">
+        bs_trust,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null">
+        #{gender,jdbcType=BIT},
+      </if>
+      <if test="age != null">
+        #{age,jdbcType=INTEGER},
+      </if>
+      <if test="job != null">
+        #{job,jdbcType=TINYINT},
+      </if>
+      <if test="company != null">
+        #{company,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=CHAR},
+      </if>
+      <if test="isSendRequest != null">
+        #{isSendRequest,jdbcType=BIT},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="account != null">
+        #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="poobTrust != null">
+        #{poobTrust,jdbcType=REAL},
+      </if>
+      <if test="isInHos != null">
+        #{isInHos,jdbcType=BIT},
+      </if>
+      <if test="isOnWork != null">
+        #{isOnWork,jdbcType=BIT},
+      </if>
+      <if test="bsTrust != null">
+        #{bsTrust,jdbcType=REAL},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="xd.medicine.entity.bo.OthersExample" resultType="java.lang.Integer">
+    select count(*) from others
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update others
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.name != null">
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gender != null">
+        gender = #{record.gender,jdbcType=BIT},
+      </if>
+      <if test="record.age != null">
+        age = #{record.age,jdbcType=INTEGER},
+      </if>
+      <if test="record.job != null">
+        job = #{record.job,jdbcType=TINYINT},
+      </if>
+      <if test="record.company != null">
+        company = #{record.company,jdbcType=VARCHAR},
+      </if>
+      <if test="record.address != null">
+        address = #{record.address,jdbcType=VARCHAR},
+      </if>
+      <if test="record.phone != null">
+        phone = #{record.phone,jdbcType=CHAR},
+      </if>
+      <if test="record.isSendRequest != null">
+        is_send_request = #{record.isSendRequest,jdbcType=BIT},
+      </if>
+      <if test="record.password != null">
+        password = #{record.password,jdbcType=VARCHAR},
+      </if>
+      <if test="record.account != null">
+        account = #{record.account,jdbcType=VARCHAR},
+      </if>
+      <if test="record.poobTrust != null">
+        poob_trust = #{record.poobTrust,jdbcType=REAL},
+      </if>
+      <if test="record.isInHos != null">
+        is_in_hos = #{record.isInHos,jdbcType=BIT},
+      </if>
+      <if test="record.isOnWork != null">
+        is_on_work = #{record.isOnWork,jdbcType=BIT},
+      </if>
+      <if test="record.bsTrust != null">
+        bs_trust = #{record.bsTrust,jdbcType=REAL},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update others
+    set id = #{record.id,jdbcType=INTEGER},
+      name = #{record.name,jdbcType=VARCHAR},
+      gender = #{record.gender,jdbcType=BIT},
+      age = #{record.age,jdbcType=INTEGER},
+      job = #{record.job,jdbcType=TINYINT},
+      company = #{record.company,jdbcType=VARCHAR},
+      address = #{record.address,jdbcType=VARCHAR},
+      phone = #{record.phone,jdbcType=CHAR},
+      is_send_request = #{record.isSendRequest,jdbcType=BIT},
+      password = #{record.password,jdbcType=VARCHAR},
+      account = #{record.account,jdbcType=VARCHAR},
+      poob_trust = #{record.poobTrust,jdbcType=REAL},
+      is_in_hos = #{record.isInHos,jdbcType=BIT},
+      is_on_work = #{record.isOnWork,jdbcType=BIT},
+      bs_trust = #{record.bsTrust,jdbcType=REAL}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="xd.medicine.entity.bo.Others">
+    update others
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null">
+        gender = #{gender,jdbcType=BIT},
+      </if>
+      <if test="age != null">
+        age = #{age,jdbcType=INTEGER},
+      </if>
+      <if test="job != null">
+        job = #{job,jdbcType=TINYINT},
+      </if>
+      <if test="company != null">
+        company = #{company,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=CHAR},
+      </if>
+      <if test="isSendRequest != null">
+        is_send_request = #{isSendRequest,jdbcType=BIT},
+      </if>
+      <if test="password != null">
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="account != null">
+        account = #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="poobTrust != null">
+        poob_trust = #{poobTrust,jdbcType=REAL},
+      </if>
+      <if test="isInHos != null">
+        is_in_hos = #{isInHos,jdbcType=BIT},
+      </if>
+      <if test="isOnWork != null">
+        is_on_work = #{isOnWork,jdbcType=BIT},
+      </if>
+      <if test="bsTrust != null">
+        bs_trust = #{bsTrust,jdbcType=REAL},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="xd.medicine.entity.bo.Others">
+    update others
+    set name = #{name,jdbcType=VARCHAR},
+      gender = #{gender,jdbcType=BIT},
+      age = #{age,jdbcType=INTEGER},
+      job = #{job,jdbcType=TINYINT},
+      company = #{company,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=CHAR},
+      is_send_request = #{isSendRequest,jdbcType=BIT},
+      password = #{password,jdbcType=VARCHAR},
+      account = #{account,jdbcType=VARCHAR},
+      poob_trust = #{poobTrust,jdbcType=REAL},
+      is_in_hos = #{isInHos,jdbcType=BIT},
+      is_on_work = #{isOnWork,jdbcType=BIT},
+      bs_trust = #{bsTrust,jdbcType=REAL}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="xd.medicine.entity.bo.Others">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="gender" jdbcType="BIT" property="gender" />
+    <result column="age" jdbcType="INTEGER" property="age" />
+    <result column="job" jdbcType="TINYINT" property="job" />
+    <result column="company" jdbcType="VARCHAR" property="company" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="phone" jdbcType="CHAR" property="phone" />
+    <result column="is_send_request" jdbcType="BIT" property="isSendRequest" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="account" jdbcType="VARCHAR" property="account" />
+    <result column="poob_trust" jdbcType="REAL" property="poobTrust" />
+    <result column="is_in_hos" jdbcType="BIT" property="isInHos" />
+    <result column="is_on_work" jdbcType="BIT" property="isOnWork" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, name, gender, age, job, company, address, phone, is_send_request, password, account, 
+    poob_trust, is_in_hos, is_on_work
+  </sql>
+  <select id="selectByExample" parameterType="xd.medicine.entity.bo.OthersExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from others
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from others
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from others
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="xd.medicine.entity.bo.OthersExample">
+    delete from others
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="xd.medicine.entity.bo.Others">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
       SELECT LAST_INSERT_ID()
     </selectKey>
     insert into others (name, gender, age, 
@@ -124,151 +488,151 @@
       #{account,jdbcType=VARCHAR}, #{poobTrust,jdbcType=REAL}, #{isInHos,jdbcType=BIT}, 
       #{isOnWork,jdbcType=BIT})
   </insert>
-  <insert id="insertSelective" parameterType="xd.medicine.entity.bo.Others" >
-    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+  <insert id="insertSelective" parameterType="xd.medicine.entity.bo.Others">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
       SELECT LAST_INSERT_ID()
     </selectKey>
     insert into others
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="name != null" >
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="name != null">
         name,
       </if>
-      <if test="gender != null" >
+      <if test="gender != null">
         gender,
       </if>
-      <if test="age != null" >
+      <if test="age != null">
         age,
       </if>
-      <if test="job != null" >
+      <if test="job != null">
         job,
       </if>
-      <if test="company != null" >
+      <if test="company != null">
         company,
       </if>
-      <if test="address != null" >
+      <if test="address != null">
         address,
       </if>
-      <if test="phone != null" >
+      <if test="phone != null">
         phone,
       </if>
-      <if test="isSendRequest != null" >
+      <if test="isSendRequest != null">
         is_send_request,
       </if>
-      <if test="password != null" >
+      <if test="password != null">
         password,
       </if>
-      <if test="account != null" >
+      <if test="account != null">
         account,
       </if>
-      <if test="poobTrust != null" >
+      <if test="poobTrust != null">
         poob_trust,
       </if>
-      <if test="isInHos != null" >
+      <if test="isInHos != null">
         is_in_hos,
       </if>
-      <if test="isOnWork != null" >
+      <if test="isOnWork != null">
         is_on_work,
       </if>
     </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="name != null" >
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="name != null">
         #{name,jdbcType=VARCHAR},
       </if>
-      <if test="gender != null" >
+      <if test="gender != null">
         #{gender,jdbcType=BIT},
       </if>
-      <if test="age != null" >
+      <if test="age != null">
         #{age,jdbcType=INTEGER},
       </if>
-      <if test="job != null" >
+      <if test="job != null">
         #{job,jdbcType=TINYINT},
       </if>
-      <if test="company != null" >
+      <if test="company != null">
         #{company,jdbcType=VARCHAR},
       </if>
-      <if test="address != null" >
+      <if test="address != null">
         #{address,jdbcType=VARCHAR},
       </if>
-      <if test="phone != null" >
+      <if test="phone != null">
         #{phone,jdbcType=CHAR},
       </if>
-      <if test="isSendRequest != null" >
+      <if test="isSendRequest != null">
         #{isSendRequest,jdbcType=BIT},
       </if>
-      <if test="password != null" >
+      <if test="password != null">
         #{password,jdbcType=VARCHAR},
       </if>
-      <if test="account != null" >
+      <if test="account != null">
         #{account,jdbcType=VARCHAR},
       </if>
-      <if test="poobTrust != null" >
+      <if test="poobTrust != null">
         #{poobTrust,jdbcType=REAL},
       </if>
-      <if test="isInHos != null" >
+      <if test="isInHos != null">
         #{isInHos,jdbcType=BIT},
       </if>
-      <if test="isOnWork != null" >
+      <if test="isOnWork != null">
         #{isOnWork,jdbcType=BIT},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="xd.medicine.entity.bo.OthersExample" resultType="java.lang.Integer" >
+  <select id="countByExample" parameterType="xd.medicine.entity.bo.OthersExample" resultType="java.lang.Integer">
     select count(*) from others
-    <if test="_parameter != null" >
+    <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
-  <update id="updateByExampleSelective" parameterType="map" >
+  <update id="updateByExampleSelective" parameterType="map">
     update others
-    <set >
-      <if test="record.id != null" >
+    <set>
+      <if test="record.id != null">
         id = #{record.id,jdbcType=INTEGER},
       </if>
-      <if test="record.name != null" >
+      <if test="record.name != null">
         name = #{record.name,jdbcType=VARCHAR},
       </if>
-      <if test="record.gender != null" >
+      <if test="record.gender != null">
         gender = #{record.gender,jdbcType=BIT},
       </if>
-      <if test="record.age != null" >
+      <if test="record.age != null">
         age = #{record.age,jdbcType=INTEGER},
       </if>
-      <if test="record.job != null" >
+      <if test="record.job != null">
         job = #{record.job,jdbcType=TINYINT},
       </if>
-      <if test="record.company != null" >
+      <if test="record.company != null">
         company = #{record.company,jdbcType=VARCHAR},
       </if>
-      <if test="record.address != null" >
+      <if test="record.address != null">
         address = #{record.address,jdbcType=VARCHAR},
       </if>
-      <if test="record.phone != null" >
+      <if test="record.phone != null">
         phone = #{record.phone,jdbcType=CHAR},
       </if>
-      <if test="record.isSendRequest != null" >
+      <if test="record.isSendRequest != null">
         is_send_request = #{record.isSendRequest,jdbcType=BIT},
       </if>
-      <if test="record.password != null" >
+      <if test="record.password != null">
         password = #{record.password,jdbcType=VARCHAR},
       </if>
-      <if test="record.account != null" >
+      <if test="record.account != null">
         account = #{record.account,jdbcType=VARCHAR},
       </if>
-      <if test="record.poobTrust != null" >
+      <if test="record.poobTrust != null">
         poob_trust = #{record.poobTrust,jdbcType=REAL},
       </if>
-      <if test="record.isInHos != null" >
+      <if test="record.isInHos != null">
         is_in_hos = #{record.isInHos,jdbcType=BIT},
       </if>
-      <if test="record.isOnWork != null" >
+      <if test="record.isOnWork != null">
         is_on_work = #{record.isOnWork,jdbcType=BIT},
       </if>
     </set>
-    <if test="_parameter != null" >
+    <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByExample" parameterType="map" >
+  <update id="updateByExample" parameterType="map">
     update others
     set id = #{record.id,jdbcType=INTEGER},
       name = #{record.name,jdbcType=VARCHAR},
@@ -284,56 +648,56 @@
       poob_trust = #{record.poobTrust,jdbcType=REAL},
       is_in_hos = #{record.isInHos,jdbcType=BIT},
       is_on_work = #{record.isOnWork,jdbcType=BIT}
-    <if test="_parameter != null" >
+    <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="xd.medicine.entity.bo.Others" >
+  <update id="updateByPrimaryKeySelective" parameterType="xd.medicine.entity.bo.Others">
     update others
-    <set >
-      <if test="name != null" >
+    <set>
+      <if test="name != null">
         name = #{name,jdbcType=VARCHAR},
       </if>
-      <if test="gender != null" >
+      <if test="gender != null">
         gender = #{gender,jdbcType=BIT},
       </if>
-      <if test="age != null" >
+      <if test="age != null">
         age = #{age,jdbcType=INTEGER},
       </if>
-      <if test="job != null" >
+      <if test="job != null">
         job = #{job,jdbcType=TINYINT},
       </if>
-      <if test="company != null" >
+      <if test="company != null">
         company = #{company,jdbcType=VARCHAR},
       </if>
-      <if test="address != null" >
+      <if test="address != null">
         address = #{address,jdbcType=VARCHAR},
       </if>
-      <if test="phone != null" >
+      <if test="phone != null">
         phone = #{phone,jdbcType=CHAR},
       </if>
-      <if test="isSendRequest != null" >
+      <if test="isSendRequest != null">
         is_send_request = #{isSendRequest,jdbcType=BIT},
       </if>
-      <if test="password != null" >
+      <if test="password != null">
         password = #{password,jdbcType=VARCHAR},
       </if>
-      <if test="account != null" >
+      <if test="account != null">
         account = #{account,jdbcType=VARCHAR},
       </if>
-      <if test="poobTrust != null" >
+      <if test="poobTrust != null">
         poob_trust = #{poobTrust,jdbcType=REAL},
       </if>
-      <if test="isInHos != null" >
+      <if test="isInHos != null">
         is_in_hos = #{isInHos,jdbcType=BIT},
       </if>
-      <if test="isOnWork != null" >
+      <if test="isOnWork != null">
         is_on_work = #{isOnWork,jdbcType=BIT},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="xd.medicine.entity.bo.Others" >
+  <update id="updateByPrimaryKey" parameterType="xd.medicine.entity.bo.Others">
     update others
     set name = #{name,jdbcType=VARCHAR},
       gender = #{gender,jdbcType=BIT},

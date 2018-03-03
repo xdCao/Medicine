@@ -12,14 +12,13 @@
 -->
 
 
-
-    <classPathEntry
-            location="C:\Users\xdCao\.m2\repository\mysql\mysql-connector-java\5.1.41\mysql-connector-java-5.1.41.jar"/>
-
 <!--
     <classPathEntry
-            location="C:\Users\Administrator.USER-20161114AN\.m2\repository\mysql\mysql-connector-java\5.1.41\mysql-connector-java-5.1.41.jar"/>
+            location="C:\Users\xdCao\.m2\repository\mysql\mysql-connector-java\5.1.41\mysql-connector-java-5.1.41.jar"/>
 -->
+
+    <classPathEntry
+            location="C:\Users\Administrator.USER-20161114AN\.m2\repository\mysql\mysql-connector-java\5.1.41\mysql-connector-java-5.1.41.jar"/>
 
     <context id="mysqlgenerator" targetRuntime="MyBatis3">
         <!--不生成注释-->
@@ -28,17 +27,17 @@
         </commentGenerator>
         <!-- 配置数据库连接 -->
 
+<!--
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3306/medicine"
+                        userId="root"
+                        password="940620"/>
+-->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3306/medicine"
+                        userId="root"
+                        password="13245"/>
 
-        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://localhost:3306/medicine"
-                        userId="root"
-                        password="13245"/>
-       <!--
-        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://localhost:3306/medicine"
-                        userId="root"
-                        password="13245"/>
-                        -->
 
 
 
@@ -65,12 +64,16 @@
         <!--<table tableName="doctor" domainObjectName="Doctor">-->
             <!--<generatedKey column="id" sqlStatement="Mysql" identity="true"/>-->
         <!--</table>-->
+        <!--
         <table tableName="others" domainObjectName="Others">
             <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
         </table>
+        -->
+        <!--
         <table tableName="patient" domainObjectName="Patient">
             <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
         </table>
+        -->
         <!--<table tableName="trust_attr" domainObjectName="TrustAttr">-->
             <!--<generatedKey column="id" sqlStatement="Mysql" identity="true"/>-->
         <!--</table>-->
@@ -93,7 +96,9 @@
         <!--<table tableName="post_duty_log" domainObjectName="PostDutyLog">-->
             <!--<generatedKey column="id" sqlStatement="Mysql" identity="true"/>-->
         <!--</table>-->
-
+        <table tableName="pro_duty_log" domainObjectName="ProDutyLog">
+            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+        </table>
 
 
     </context>

@@ -8,6 +8,8 @@ import xd.medicine.entity.bo.PostDutyLog;
 import xd.medicine.entity.bo.PostDutyLogExample;
 import xd.medicine.service.PostDutyLogService;
 
+import java.util.List;
+
 /**
  * created by liubotao
  */
@@ -44,5 +46,12 @@ public class PostDutyLogServiceImpl implements PostDutyLogService{
         PostDutyLogExample postDutyLogExample = new PostDutyLogExample();
         postDutyLogExample.createCriteria().andSubTypeEqualTo(subType).andSubIdEqualTo(subId).andStateEqualTo((byte)0);
         return postDutyLogMapper.countByExample(postDutyLogExample);
+    }
+
+    @Override
+    public List<PostDutyLog> getPostDutyLogsBySub(Byte subType, int subId) {
+        PostDutyLogExample postDutyLogExample = new PostDutyLogExample();
+        postDutyLogExample.createCriteria().andSubTypeEqualTo(subType).andSubIdEqualTo(subId);
+        return postDutyLogMapper.selectByExample(postDutyLogExample);
     }
 }

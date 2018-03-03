@@ -8,10 +8,12 @@ import xd.medicine.entity.bo.PostDuty;
 public class FulfilledPostDuty {
     private PostDuty postDuty;
     private int fulFilledTime;
+    private int state;
 
-    public FulfilledPostDuty(PostDuty postDuty, int fulFilledTime) {
+    public FulfilledPostDuty(PostDuty postDuty, int fulFilledTime , int state) {
         this.postDuty = postDuty;
         this.fulFilledTime = fulFilledTime;
+        this.state = state;
     }
 
     public PostDuty getPostDuty() {
@@ -29,4 +31,13 @@ public class FulfilledPostDuty {
     public void setFulFilledTime(int fulFilledTime) {
         this.fulFilledTime = fulFilledTime;
     }
+
+    public int getState(){
+        return state;
+    }
+
+    public void setState(int state){
+        this.state = state;
+    }
+
 }

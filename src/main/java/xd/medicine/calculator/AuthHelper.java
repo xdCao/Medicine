@@ -49,7 +49,7 @@ public class AuthHelper {
 
         }else{
             Others others = othersService.getOthersById(authRequest.getUserId());
-            unTrust = OTHER_BS_TRUST * TRUST_U2 + others.getPoobTrust() * (1 - TRUST_U2);
+            unTrust = others.getBsTrust() * TRUST_U2 + others.getPoobTrust() * (1 - TRUST_U2);
         }
 
         return unTrust;
@@ -102,7 +102,7 @@ public class AuthHelper {
     /*
     *二次评估计算
      */
-    public int reAuthCal( AuthRequest authRequest,float risk , int grade){
+    public int reAuthCal( AuthRequest authRequest,float risk , int grade, float riskThs){
         int lambda = grade - 2;
         int p = postDutyLogService.countFulfilledPostDutyLogsBySub((byte)authRequest.getUserType().intValue(),authRequest.getUserId());
         int q = postDutyLogService.countPostDutyLogsBySub((byte)authRequest.getUserType().intValue(),authRequest.getUserId());
@@ -111,7 +111,7 @@ public class AuthHelper {
             System.out.println("postDutyLog信息不足！");
             m = (float) 0.8;
         }
-        float probAward = m * R_THS * (lambda * D_AWARD + (lambda==0?0:1));
+        float probAward = m * riskThs * (lambda * D_AWARD + (lambda==0?0:1));
         if(risk <= probAward) {
             return 0;  //授权
         }else {
@@ -167,7 +167,7 @@ public class AuthHelper {
 
 
 
-    public List<Float> calNewPoobTrust( List<FulfilledPostDuty> fulfilledPostDutyList, AuthRequest authRequest, float risk, int grade){
+    public List<Float> calNewPoobTrust( List<FulfilledPostDuty> fulfilledPostDutyList, AuthRequest authRequest, float risk, int grade , float riskThs){
         List<Float> numList = new ArrayList<>();
         float probAward;
         int lambda = grade - 2;
@@ -181,7 +181,7 @@ public class AuthHelper {
         if(risk < 0){
             probAward = 0;
         }else {
-            probAward = m * R_THS * (lambda * D_AWARD + (lambda == 0 ? 0 : 1));
+            probAward = m * riskThs * (lambda * D_AWARD + (lambda == 0 ? 0 : 1));
         }
         float poobTp = (-risk) > probAward? (-risk) : probAward;
         List<Integer> list1 = new ArrayList<>(); //存放按时完成的义务编号

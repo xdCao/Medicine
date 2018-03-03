@@ -5,10 +5,12 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import xd.medicine.calculator.Constants;
 import xd.medicine.entity.bo.AdminUser;
 import xd.medicine.entity.dto.FrontResult;
 import xd.medicine.service.AdminService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -38,6 +40,28 @@ public class AdminController {
         }catch (Exception e){
             return new FrontResult(500,null,"登陆失败");
         }
+    }
+
+    @RequestMapping(value = "/paras/check",method = RequestMethod.GET)
+    public FrontResult getParas(){
+        List<Float> list = new ArrayList<>();
+        list.add(Constants.getrThs());
+        list.add(Constants.getBeta1());
+        list.add(Constants.getBeta2());
+        return new FrontResult(200,list,null);
+    }
+
+
+    @RequestMapping(value = "/paras/update",method = RequestMethod.POST)
+    public FrontResult updateDoctor(float rThs, float beta1, float beta2){
+        Constants.setrThs(rThs);
+        Constants.setBeta1(beta1);
+        Constants.setBeta2(beta2);
+        List<Float> list = new ArrayList<>();
+        list.add(rThs);
+        list.add(beta1);
+        list.add(beta2);
+        return new FrontResult(200,list,null);
     }
 
 }

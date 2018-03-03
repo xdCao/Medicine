@@ -55,14 +55,18 @@ public class DutyExecutor {
         List<FulfilledPostDuty> fulfilledPostDutyList = new ArrayList<>();
         int t;
         for(PostDuty postDuty : postDutyList){
-            FulfilledPostDuty fulfilledPostDuty = new FulfilledPostDuty(postDuty,9999);
+            //state:0为violate，1为delay-fulfill，2为fulfill
+            FulfilledPostDuty fulfilledPostDuty = new FulfilledPostDuty(postDuty,9999,-1);
             float r = new Random().nextFloat();
             if(r>0.75){ //0.25的概率超过宽限时间
                 t = getRandomInt(postDuty.getGraceTime()+1,postDuty.getGraceTime()+10);
+                fulfilledPostDuty.setState(0);
             }else if(r>0.5){ //0.25的概率在规定时间和宽限时间之间
                 t = getRandomInt(postDuty.getPresetTime()+1,postDuty.getGraceTime());
+                fulfilledPostDuty.setState(1);
             }else{ //0.5的概率按时完成
                 t = getRandomInt(1,postDuty.getPresetTime());
+                fulfilledPostDuty.setState(2);
             }
             fulfilledPostDuty.setFulFilledTime(t);
             fulfilledPostDutyList.add(fulfilledPostDuty);

@@ -29,6 +29,8 @@ public class Others {
 
     private Boolean isOnWork;
 
+    private Float bsTrust;
+
     public Integer getId() {
         return id;
     }
@@ -139,5 +141,13 @@ public class Others {
 
     public void setIsOnWork(Boolean isOnWork) {
         this.isOnWork = isOnWork;
+    }
+
+    public Float getBsTrust() {
+        return bsTrust;
+    }
+
+    public void setBsTrust(Float bsTrust) {
+        this.bsTrust = bsTrust;
     }
 }
