@@ -36,7 +36,7 @@ public class DutyLogController {
 
     @RequestMapping(value = "/pro",method = RequestMethod.GET)
     public FrontResult getProDutyLogsBySub(Integer subType , Integer subId){
-        List<ProDutyLog> proDutyLogList = null;
+        List<ProDutyLog> proDutyLogList ;
         try {
             proDutyLogList = proDutyLogService.getProDutyLogsBySub((byte)subType.intValue(),subId);
             if (proDutyLogList!=null&&proDutyLogList.size()>0){
@@ -44,9 +44,13 @@ public class DutyLogController {
                 for(ProDutyLog proDutyLog : proDutyLogList){
                     String dutyContent = proDutyService.getProDutyById(proDutyLog.getDutyId()).getDutyContent();
                     String patientName = patientService.getPatientById(proDutyLog.getObjId()).getPatient().getName();
+                    int state = proDutyLog.getState();
                     int type = proDutyLog.getState()>2?1:0;
+                    if(state>2){
+                        state = state - 3;
+                    }
                     DutyLogForFront dutyLogForFront = new DutyLogForFront(proDutyLog.getObjId(),patientName,
-                            dutyContent,  type,0, proDutyLog.getState());
+                            dutyContent,  type,0, state);
                     dutyLogForFrontList.add(dutyLogForFront);
                 }
 
@@ -64,7 +68,7 @@ public class DutyLogController {
 
     @RequestMapping(value = "/post",method = RequestMethod.GET)
     public FrontResult getPostDutyLogsBySub(Integer subType , Integer subId){
-        List<PostDutyLog> postDutyLogList = null;
+        List<PostDutyLog> postDutyLogList ;
         try {
             postDutyLogList = postDutyLogService.getPostDutyLogsBySub((byte)subType.intValue(),subId);
             if (postDutyLogList!=null&&postDutyLogList.size()>0){
