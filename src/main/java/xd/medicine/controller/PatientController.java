@@ -234,6 +234,7 @@ public class PatientController {
             }
 //            emergMapCache.set(String.valueOf(patientId),System.currentTimeMillis());
             // 此处应开启一个新的定时任务,规定每个病人对应一个线程，当缓存中已经有该病人时，不开启新的线程
+            // todo 现在存在的问题：如何动态地终止线程
             if (!emergMapCache.containsKey(patientId)){
                 threadPoolTaskScheduler.schedule(new EmergAuthTask(patient,doctors,template,webAgentSessionRegistry,trustCalculator),new Date(System.currentTimeMillis()+20000));
             }
@@ -326,6 +327,10 @@ public class PatientController {
     public FrontResult getAvaDoctors(@RequestParam Integer patientId){
 //        List<Doctor> sisDoctorsByPatientId = patientService.getSisDoctorsByPatientId(patientId);
         List<DoctorTrustResult> ts = trustCalculator.getTs(patientId);
+        LOGGER.info("patientId: "+patientId);
+        LOGGER.info("avaTs: "+ts);
+        System.out.println("patientId: "+patientId);
+        System.out.println("avaTs: "+ts);
         if (ts!=null&&ts.size()>0){
             return new FrontResult(200,ts,null);
         }else {

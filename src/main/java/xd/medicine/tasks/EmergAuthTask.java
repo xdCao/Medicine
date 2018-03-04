@@ -135,7 +135,7 @@ public class EmergAuthTask implements Runnable {
 
         /*把之前的缓存清除掉，留给后面准备抢占的用户使用*/
         if (emergMapCache.containsKey(patientWithTrust.getPatient().getId())){
-            emergMapCache.remove(patientWithTrust.getPatient().getId());
+            emergMapCache.get(patientWithTrust.getPatient().getId()).clear();
         }
 
 
@@ -249,7 +249,8 @@ public class EmergAuthTask implements Runnable {
                         break;
                     }
                 }
-                emergMapCache.remove(patientWithTrust.getPatient().getId());
+                //  这里的remove是错误的，不应该直接移除键值对，应该只清楚医生的list
+                emergMapCache.get(patientWithTrust.getPatient().getId()).clear();
             }
 
             try {
