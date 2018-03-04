@@ -53,7 +53,7 @@ public class AdminController {
 
 
     @RequestMapping(value = "/paras/update",method = RequestMethod.POST)
-    public FrontResult updateDoctor(float rThs, float beta1, float beta2){
+    public FrontResult updateParas(float rThs, float beta1, float beta2){
         Constants.setrThs(rThs);
         Constants.setBeta1(beta1);
         Constants.setBeta2(beta2);

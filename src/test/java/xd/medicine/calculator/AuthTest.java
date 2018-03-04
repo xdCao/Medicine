@@ -50,21 +50,14 @@ public class AuthTest {
     @Test
     public void riskRequest() {
         int userType = 1;
-        int userId = 9;
+        int userId = 2;
         int patientId = 1;
         int purpose = 1;
         int content = 1;
         int mode = 1;
         int time = 1;
 
-        /* 如果是主治医生，则不需要执行下面的步骤，直接返回授权 */
         PatientWithTrust patient=patientService.getPatientById(patientId);
-        if( userType==1 && patient.getPatient().getDoctorId() == userId ){
-            DutySensitivity dutySensitivity=new DutySensitivity(null, 0 ,0,0,0,4,
-                    null,0, 0 , 0, 0,0,0);
-            System.out.println("主治医生\n");
-        }
-
         AuthRequest authRequest=new AuthRequest(userType, userId, patientId);
 
         /*获取事前义务并分配*/
@@ -141,7 +134,8 @@ public class AuthTest {
 
 
         DutySensitivity dutySensitivity=new DutySensitivity(fulfilledProDutyList,calGrade,sensitivity,unTrust,risk,0,
-                null,0, 0 , 0, 0,0,0);
+                null,0, 0 , 0, 0,0,
+                0,Constants.getrThs(),0);
 
         /* [authFlag的含义] -1:grade是A级，0:一次授权失败，1：一次授权成功，2：二次授权失败，3：二次授权成功,4：是主治医生，无需授权 */
 
@@ -153,8 +147,10 @@ public class AuthTest {
             //return new FrontResult(200,dutySensitivity,null);
         }else if (risk<= riskThs && calGrade>1){  //grade=1(A级)和grade=-1（没有分配事前义务）都不进入二次授权
             /*二次评估*/
-            int i = authHelper.reAuthCal( authRequest,risk, calGrade , riskThs);
-            if (i==0){
+            float probAward = authHelper.reAuthCal( authRequest, calGrade , riskThs);
+            dutySensitivity.setProbAward(probAward);
+            if (risk < probAward){
+
                 dutySensitivity.setAuthFlag(3);
                 //return new FrontResult(200,dutySensitivity,null);
             }else{

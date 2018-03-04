@@ -136,7 +136,7 @@ public class PatientController {
 
 
     @RequestMapping(value = "/page2",method = RequestMethod.GET)
-    public FrontResult getPatientsByPage2(@RequestParam int page,@RequestParam int rows,@RequestParam int doctorId){
+    public FrontResult getPatientsByPage2(Integer page,Integer rows, Integer doctorId){
         PageInfo<PatientForFront> patientByPage = patientService.getPatientByPage2(page, rows, doctorId);
 
         return new FrontResult(200,patientByPage,null);

@@ -112,18 +112,22 @@ public class BTGController {
                             Integer doPro
                             ){
         /* 如果是主治医生，则不需要执行下面的步骤，直接返回授权 */
-        PatientWithTrust patient=patientService.getPatientById(patientId);
+        /*
+
         if( userType.equals(1) && patient.getPatient().getDoctorId() == userId.intValue() ){
             DutySensitivity dutySensitivity=new DutySensitivity(null, 0 ,0,0,0,4,
-                    null,0, 0 , 0, 0,0,0);
+                    null,0, 0 , 0, 0,0,
+                    0,Constants.getrThs(),0);
             return new FrontResult(200,dutySensitivity,null);
         }
+        */
+        PatientWithTrust patient=patientService.getPatientById(patientId);
         AuthRequest authRequest=new AuthRequest(userType, userId, patientId);
         /*获取事前义务并分配*/
         int calGrade = -1;
         List<FulfilledProDuty> fulfilledProDutyList = null;
         List<ProDuty> allProDutyList = proDutyService.getProDutiesByChosen(true);
-        float r = new Random().nextFloat();
+
         float riskThs = Constants.getrThs();
 
         if(doPro.equals(1)){
@@ -132,7 +136,7 @@ public class BTGController {
             List<ProDuty> proDutyList = new ArrayList<>();
             for(int i=0;i<proNum;i++){
                 ProDuty proDuty = allProDutyList.get(proDutyIndex[i]);
-                r = new Random().nextFloat();
+                float r = new Random().nextFloat();
                 if(r < 0.5){  //随机设置是否强制，0为强制，1为不强制
                     proDuty.setType((byte)0);
                 }else{
@@ -184,26 +188,26 @@ public class BTGController {
         float unTrust = authHelper.calUnTrust(authRequest);
         float risk = sensitivity - unTrust;
 
-
         DutySensitivity dutySensitivity=new DutySensitivity(fulfilledProDutyList,calGrade,sensitivity,unTrust,risk,0,
-                null,0, 0 , 0, 0,0,0);
+                null,0, 0 , 0, 0,
+                0,0,Constants.getrThs(),0);
 
-        /* [authFlag的含义] -1:grade是A级，0:一次授权失败，1：一次授权成功，2：二次授权失败，3：二次授权成功,4：是主治医生，无需授权 */
-
+        /* [authFlag的含义] -1:grade是A级，0:一次授权失败，1：一次授权成功，2：二次授权失败，3：二次授权成功 */
         if(calGrade == 1) {
-            dutySensitivity.setAuthFlag(-1);
+            dutySensitivity.setAuthFlag(5);
         }else if (risk<=0){
             /*授权*/
             dutySensitivity.setAuthFlag(1);
             //return new FrontResult(200,dutySensitivity,null);
         }else if (risk<= riskThs && calGrade>1){  //grade=1(A级)和grade=-1（没有分配事前义务）都不进入二次授权
             /*二次评估*/
-            int i = authHelper.reAuthCal( authRequest,risk, calGrade , riskThs);
-            if (i==0){
-                dutySensitivity.setAuthFlag(3);
-                //return new FrontResult(200,dutySensitivity,null);
-            }else{
-                dutySensitivity.setAuthFlag(2);
+            float probAward = authHelper.reAuthCal( authRequest,calGrade , riskThs);
+            dutySensitivity.setProbAward(probAward);
+
+            if(risk <= probAward) {
+                dutySensitivity.setAuthFlag(3); //授权
+            }else {
+                dutySensitivity.setAuthFlag(2);  //拒绝
             }
         }
 

@@ -23,8 +23,13 @@ public class DutySensitivity {
     private float poobPenaltyViolate;
     private float poobTrustOld;
     private float poobTrustNew;
+    private float riskThs;
+    private float probAward;
 
-    public DutySensitivity(List<FulfilledProDuty> fulFilledProdutyList, int calGrade, float sensitivity, float unTrust, float risk, int authFlag, List<FulfilledPostDuty> fulfilledPostDutyList, float poobtp, float poobAward, float poobPenaltyDelay, float poobPenaltyViolate, float poobTrustOld, float poobTrustNew) {
+    public DutySensitivity(List<FulfilledProDuty> fulFilledProdutyList, int calGrade, float sensitivity, float unTrust,
+                           float risk, int authFlag, List<FulfilledPostDuty> fulfilledPostDutyList, float poobtp,
+                           float poobAward, float poobPenaltyDelay, float poobPenaltyViolate, float poobTrustOld,
+                           float poobTrustNew,float riskThs, float probAward) {
         this.fulFilledProdutyList = fulFilledProdutyList;
         this.calGrade = calGrade;
         this.sensitivity = sensitivity;
@@ -38,6 +43,8 @@ public class DutySensitivity {
         this.poobPenaltyViolate = poobPenaltyViolate;
         this.poobTrustOld = poobTrustOld;
         this.poobTrustNew = poobTrustNew;
+        this.riskThs = riskThs;
+        this.probAward = probAward;
     }
 
     @Override
@@ -56,6 +63,8 @@ public class DutySensitivity {
                 ", poobPenaltyViolate=" + poobPenaltyViolate +
                 ", poobTrustOld=" + poobTrustOld +
                 ", poobTrustNew=" + poobTrustNew +
+                ", riskThs=" + riskThs +
+                ", probAward=" + probAward +
                 '}';
     }
 
@@ -161,5 +170,21 @@ public class DutySensitivity {
 
     public void setPoobTrustNew(float poobTrustNew) {
         this.poobTrustNew = poobTrustNew;
+    }
+
+    public float getRiskThs() {
+        return riskThs;
+    }
+
+    public void setRiskThs(float riskThs) {
+        this.riskThs = riskThs;
+    }
+
+    public float getProbAward() {
+        return probAward;
+    }
+
+    public void setProbAward(float probAward) {
+        this.probAward = probAward;
     }
 }

@@ -92,7 +92,8 @@ public class OthersController {
                                     String job,
                                     String company,
                                     String address,
-                                    String phone){
+                                    String phone,
+                                    float bsTrust){
         Others others=new Others();
         others.setId(id);
         others.setName(name);
@@ -102,6 +103,7 @@ public class OthersController {
         others.setCompany(company);
         others.setAddress(address);
         others.setAge(age);
+        others.setBsTrust(bsTrust);
 //        others.setIsSendRequest(isSendRequest);
         try {
             othersService.update(others);

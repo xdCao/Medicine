@@ -30,6 +30,8 @@ public class DutyLogController {
     private ProDutyService proDutyService;
     @Autowired
     private PostDutyService postDutyService;
+    @Autowired
+    private PatientService patientService;
 
 
     @RequestMapping(value = "/pro",method = RequestMethod.GET)
@@ -41,8 +43,10 @@ public class DutyLogController {
                 List<DutyLogForFront> dutyLogForFrontList = new ArrayList<>();
                 for(ProDutyLog proDutyLog : proDutyLogList){
                     String dutyContent = proDutyService.getProDutyById(proDutyLog.getDutyId()).getDutyContent();
-                    DutyLogForFront dutyLogForFront = new DutyLogForFront(proDutyLog.getObjId(),
-                            dutyContent, 0, proDutyLog.getState());
+                    String patientName = patientService.getPatientById(proDutyLog.getObjId()).getPatient().getName();
+                    int type = proDutyLog.getState()>2?1:0;
+                    DutyLogForFront dutyLogForFront = new DutyLogForFront(proDutyLog.getObjId(),patientName,
+                            dutyContent,  type,0, proDutyLog.getState());
                     dutyLogForFrontList.add(dutyLogForFront);
                 }
 
@@ -67,8 +71,9 @@ public class DutyLogController {
                 List<DutyLogForFront> dutyLogForFrontList = new ArrayList<>();
                 for(PostDutyLog postDutyLog : postDutyLogList){
                     String dutyContent = postDutyService.getPostDutyById(postDutyLog.getDutyId()).getDutyContent();
-                    DutyLogForFront dutyLogForFront = new DutyLogForFront(postDutyLog.getObjId(),
-                            dutyContent, postDutyLog.getFulfillTime(), postDutyLog.getState());
+                    String patientName = patientService.getPatientById(postDutyLog.getObjId()).getPatient().getName();
+                    DutyLogForFront dutyLogForFront = new DutyLogForFront(postDutyLog.getObjId(),patientName,
+                            dutyContent, 0, postDutyLog.getFulfillTime(), postDutyLog.getState());
                     dutyLogForFrontList.add(dutyLogForFront);
                 }
 

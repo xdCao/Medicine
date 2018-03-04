@@ -37,8 +37,7 @@ public class TrustCalculatorTest {
     private AuthHelper authHelper;
     @Autowired
     private PostDutyService postDutyService;
-    @Autowired
-    private PatientMapper patientMapper;
+
 
     @Test
     public void trustCalculatorTest(){

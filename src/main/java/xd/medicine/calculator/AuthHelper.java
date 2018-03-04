@@ -103,7 +103,7 @@ public class AuthHelper {
     /*
     *二次评估计算
      */
-    public int reAuthCal( AuthRequest authRequest,float risk , int grade, float riskThs){
+    public float reAuthCal( AuthRequest authRequest, int grade, float riskThs){
         int lambda = grade - 2;
         int p = postDutyLogService.countFulfilledPostDutyLogsBySub((byte)authRequest.getUserType().intValue(),authRequest.getUserId());
         int q = postDutyLogService.countPostDutyLogsBySub((byte)authRequest.getUserType().intValue(),authRequest.getUserId());
@@ -113,11 +113,7 @@ public class AuthHelper {
             m = (float) 0.8;
         }
         float probAward = m * riskThs * (lambda * D_AWARD + (lambda==0?0:1));
-        if(risk <= probAward) {
-            return 0;  //授权
-        }else {
-            return 1;  //拒绝
-        }
+        return probAward;
     }
 
     /*
@@ -159,7 +155,13 @@ public class AuthHelper {
             proDutyLog.setSubId(subId);
             proDutyLog.setObjId(patientId);
             proDutyLog.setDutyId(fulfilledProDutyList.get(i).getProDuty().getId());
-            proDutyLog.setState((byte)fulfilledProDutyList.get(i).getState());
+            //完成状态为0:violate，1：fulfill.common，2：fulfill.good
+            // 在存入produtylog数据库时，0,1,2表示该义务被执行时是强制类型，3,4,5表示该义务被执行时是附加类型
+            //并且有3:violate，4：fulfill.common，5：fulfill.good
+            int state = fulfilledProDutyList.get(i).getState();
+            int type = fulfilledProDutyList.get(i).getProDuty().getType()==0?0:3;
+            state  =  state + type;
+            proDutyLog.setState((byte)state);
             proDutyLogService.insertNewProDutyLog(proDutyLog);
         }
     }
