@@ -120,7 +120,7 @@ public class AuthHelper {
     *根据完成情况更新事后义务的日志
      */
     public void updatePostDutyLog(List<FulfilledPostDuty> fulfilledPostDutyList , AuthRequest authRequest){
-        int subType = authRequest.getUserId();
+        int subType = authRequest.getUserType();
         int subId = authRequest.getUserId();
         int patientId = authRequest.getPatientId();
         for(int i=0;i<fulfilledPostDutyList.size();i++){
@@ -146,7 +146,7 @@ public class AuthHelper {
     *根据完成情况更新事前义务的日志
      */
     public void updateProDutyLog(List<FulfilledProDuty> fulfilledProDutyList , AuthRequest authRequest){
-        int subType = authRequest.getUserId();
+        int subType = authRequest.getUserType();
         int subId = authRequest.getUserId();
         int patientId = authRequest.getPatientId();
         for(int i=0;i<fulfilledProDutyList.size();i++){

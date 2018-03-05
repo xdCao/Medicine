@@ -6,10 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.test.context.junit4.SpringRunner;
-import xd.medicine.entity.bo.Doctor;
-import xd.medicine.entity.bo.Others;
-import xd.medicine.entity.bo.PostDuty;
-import xd.medicine.entity.bo.ProDuty;
+import xd.medicine.entity.bo.*;
 import xd.medicine.entity.dto.*;
 import xd.medicine.service.*;
 
@@ -45,12 +42,12 @@ public class AuthTest {
     private PostDutyService postDutyService;
 
     @Autowired
-    private PostDutyLogService postDutyLogService;
+    private ProDutyLogService proDutyLogService;
 
     @Test
     public void riskRequest() {
-        int userType = 1;
-        int userId = 2;
+        int userType = 2;
+        int userId = 1;
         int patientId = 1;
         int purpose = 1;
         int content = 1;
@@ -88,6 +85,7 @@ public class AuthTest {
             }
             fulfilledProDutyList = DutyExecutor.executeProDuties(proDutyList);
             calGrade = authHelper.calGrade(fulfilledProDutyList);
+            System.out.println(fulfilledProDutyList.size()+"!!");
             authHelper.updateProDutyLog(fulfilledProDutyList,authRequest);
         }
 
@@ -108,7 +106,7 @@ public class AuthTest {
             sensitivityItems.add(patient.getPatient().getRoleLevel());/*0:普通任务，1：公众人物，2：保密人物*/
             sensitivityItems.add(mode);/*0:读，1：写，2：修改*/
             poobTrustOld = doctor.getPoobTrust();
-        }else if(userType==1){
+        }else if(userType==2){
             others=othersService.getOthersById(userId);
             sensitivityItems=new ArrayList<>();
             sensitivityItems.add(others.getIsInHos()?1:0);
@@ -184,6 +182,14 @@ public class AuthTest {
             if(poobTrustNew<0) poobTrustNew = 0;
             if(poobTrustNew>1) poobTrustNew = 1;
             dutySensitivity.setPoobTrustNew(poobTrustNew);
+
+
+
+            /* 完成状态写入数据库中的日志 */
+            authHelper.updatePostDutyLog(fulfilledPostDutyList,authRequest);
+                /* 根据事后义务的完成情况更新数据库中主体的poobTrust */
+            authHelper.updatePoobTrust(authRequest,numList);
+
             System.out.println("200!");
             System.out.println(dutySensitivity.toString());
             System.out.println(dutySensitivity.getCalGrade());
@@ -268,6 +274,41 @@ public class AuthTest {
             }
         }else{
             System.out.println("!!!");
+        }
+    }
+
+
+    @Test
+    public void getProdutylogTest(){
+        int subType = 2; int subId = 1;
+        List<ProDutyLog> proDutyLogList ;
+        try {
+            proDutyLogList = proDutyLogService.getProDutyLogsBySub((byte)subType,subId);
+            if (proDutyLogList!=null&&proDutyLogList.size()>0){
+                List<DutyLogForFront> dutyLogForFrontList = new ArrayList<>();
+                for(ProDutyLog proDutyLog : proDutyLogList){
+                    String dutyContent = proDutyService.getProDutyById(proDutyLog.getDutyId()).getDutyContent();
+                    String patientName = patientService.getPatientById(proDutyLog.getObjId()).getPatient().getName();
+                    int state = proDutyLog.getState();
+                    int type = proDutyLog.getState()>2?1:0;
+                    if(state>2){
+                        state = state - 3;
+                    }
+                    DutyLogForFront dutyLogForFront = new DutyLogForFront(proDutyLog.getObjId(),patientName,
+                            dutyContent,  type,0, state);
+                    dutyLogForFrontList.add(dutyLogForFront);
+                }
+                for(DutyLogForFront dutyLogForFront :dutyLogForFrontList){
+                    System.out.println(dutyLogForFront.getType());
+                    System.out.println(dutyLogForFront.getState());
+                    System.out.println("--");
+                }
+
+            }else {
+                System.out.println("!!");
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
     }
 }
