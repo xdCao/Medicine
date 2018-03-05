@@ -31,6 +31,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ScheduledFuture;
 
 /**
  * created by xdCao on 2017/12/19
@@ -74,6 +76,8 @@ public class PatientController {
     private TrustCalculator trustCalculator;
 
     private EmergMapCache emergMapCache = EmergMapCache.getInstance();
+
+    private ConcurrentHashMap<Integer,ScheduledFuture<?>> scheduledFutureMap=new ConcurrentHashMap<>();
 
 
     /**session操作类*/
@@ -235,9 +239,22 @@ public class PatientController {
 //            emergMapCache.set(String.valueOf(patientId),System.currentTimeMillis());
             // 此处应开启一个新的定时任务,规定每个病人对应一个线程，当缓存中已经有该病人时，不开启新的线程
             // todo 现在存在的问题：如何动态地终止线程
-            if (!emergMapCache.containsKey(patientId)){
-                threadPoolTaskScheduler.schedule(new EmergAuthTask(patient,doctors,template,webAgentSessionRegistry,trustCalculator),new Date(System.currentTimeMillis()+20000));
-            }
+
+            threadPoolTaskScheduler.shutdown();
+            threadPoolTaskScheduler.setPoolSize(1);
+            threadPoolTaskScheduler.initialize();
+            threadPoolTaskScheduler.schedule(new EmergAuthTask(patient, doctors, template, webAgentSessionRegistry, trustCalculator), new Date(System.currentTimeMillis() + 20000));
+
+//            if (!emergMapCache.containsKey(patientId)){
+//                scheduledFutureMap.put(patientId,threadPoolTaskScheduler.schedule(new EmergAuthTask(patient, doctors, template, webAgentSessionRegistry, trustCalculator), new Date(System.currentTimeMillis() + 20000)));
+//            }else {
+//                LOGGER.info("检查一下flag");
+//                if (scheduledFutureMap.get(patientId)!=null){
+//                    LOGGER.info("是否停止了上一个线程？ "+scheduledFutureMap.get(patientId).cancel(true));
+//                    scheduledFutureMap.remove(patientId);
+//                }
+//                scheduledFutureMap.put(patientId,threadPoolTaskScheduler.schedule(new EmergAuthTask(patient, doctors, template, webAgentSessionRegistry, trustCalculator), new Date(System.currentTimeMillis() + 20000)));
+//            }
         }
         return new FrontResult(200,patient,null);
     }

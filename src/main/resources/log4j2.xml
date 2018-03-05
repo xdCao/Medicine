@@ -47,13 +47,13 @@
 
         <!-- 对包进行更详细的配置 -->
          <!--additivity表示是否追加,防止重复,因为root已经接收过一次了-->
-        <logger name="xd.medicine.dao" level="DEBUG" additivity="true">
+        <logger name="xd.medicine.dao" level="INFO" additivity="true">
             <appender-ref ref="service_log"/>
         </logger>
-        <logger name="xd.medicine.controller" level="info" additivity="false">
+        <logger name="xd.medicine.controller" level="INFO" additivity="true">
             <appender-ref ref="console"/>
         </logger>
-        <logger name="xd.medicine.service" level="DEBUG" additivity="false">
+        <logger name="xd.medicine.service" level="INFO" additivity="true">
             <appender-ref ref="console"/>
         </logger>
         <!-- root logger,一般用于放置所有的appender -->
