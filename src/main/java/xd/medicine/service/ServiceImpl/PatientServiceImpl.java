@@ -11,9 +11,7 @@ import xd.medicine.dao.autoMapper.PatientMapper;
 import xd.medicine.entity.bo.*;
 import xd.medicine.entity.dto.PatientForFront;
 import xd.medicine.entity.dto.PatientWithTrust;
-import xd.medicine.service.DoctorService;
-import xd.medicine.service.PatientService;
-import xd.medicine.service.TrustAttrService;
+import xd.medicine.service.*;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -34,6 +32,10 @@ public class PatientServiceImpl implements PatientService{
     private DoctorService doctorService;
     @Autowired
     private TrustAttrService trustAttrService;
+    @Autowired
+    private ProDutyLogService proDutyLogService;
+    @Autowired
+    private PostDutyLogService postDutyLogService;
 
     @Transactional(rollbackFor = Exception.class)
     @Override
@@ -44,6 +46,8 @@ public class PatientServiceImpl implements PatientService{
     @Transactional(rollbackFor = Exception.class)
     @Override
     public int deletePatient(int id) {
+        proDutyLogService.deleteProDutyLogByPatient(id);
+        postDutyLogService.deletePostDutyLogByPatient(id);
         return patientMapper.deleteByPrimaryKey(id);
     }
 

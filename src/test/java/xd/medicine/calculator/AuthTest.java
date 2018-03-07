@@ -1,5 +1,6 @@
 package xd.medicine.calculator;
 
+import com.github.pagehelper.PageInfo;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -310,5 +311,33 @@ public class AuthTest {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    @Test
+    public void getProLog2(){
+        int subType =1;
+        int subId =1;
+        int page = 5;
+        int rows = 5;
+        try {
+            PageInfo<DutyLogForFront> dutyLogForFrontPageInfo = proDutyLogService.getProDutyLogsByPage((byte)subType, subId, page, rows);
+            if (dutyLogForFrontPageInfo != null) {
+                List<DutyLogForFront> list = dutyLogForFrontPageInfo.getList();
+                for(DutyLogForFront dutyLogForFront : list){
+                    System.out.println(dutyLogForFront.toString());
+                }
+            } else {
+                System.out.println("该用户暂时还没有事前义务日志记录");
+            }
+        }catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    @Test
+    public void getDoc(){
+        PageInfo<AvaDoctor> doctorsByPage = doctorService.getDoctorsByPage(4, 10);
+        System.out.println(doctorsByPage.getList().size());
+
     }
 }

@@ -68,4 +68,16 @@ public class DutyLogForFront {
     public void setState(int state) {
         this.state = state;
     }
+
+    @Override
+    public String toString() {
+        return "DutyLogForFront{" +
+                "objId=" + objId +
+                ", objName='" + objName + '\'' +
+                ", dutyContent='" + dutyContent + '\'' +
+                ", type=" + type +
+                ", fulfilledTime=" + fulfilledTime +
+                ", state=" + state +
+                '}';
+    }
 }
