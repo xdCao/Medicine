@@ -54,7 +54,7 @@ public class PostDutyLogServiceImpl implements PostDutyLogService{
     @Override
     public Integer countFulfilledPostDutyLogsBySub(Byte subType, int subId) {
         PostDutyLogExample postDutyLogExample = new PostDutyLogExample();
-        postDutyLogExample.createCriteria().andSubTypeEqualTo(subType).andSubIdEqualTo(subId).andStateEqualTo((byte)0);
+        postDutyLogExample.createCriteria().andSubTypeEqualTo(subType).andSubIdEqualTo(subId).andStateEqualTo((byte)2);
         return postDutyLogMapper.countByExample(postDutyLogExample);
     }
 
