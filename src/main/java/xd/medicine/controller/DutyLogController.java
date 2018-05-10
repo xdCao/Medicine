@@ -1,6 +1,7 @@
 package xd.medicine.controller;
 
-import com.github.pagehelper.PageInfo;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -8,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import xd.medicine.entity.bo.PostDutyLog;
 import xd.medicine.entity.bo.ProDutyLog;
-import xd.medicine.entity.dto.AvaDoctor;
 import xd.medicine.entity.dto.DutyLogForFront;
 import xd.medicine.entity.dto.FrontResult;
 import xd.medicine.service.*;
@@ -24,6 +24,9 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "/dutylog")
 public class DutyLogController {
+
+    private static Logger LOGGER= LoggerFactory.getLogger(DutyLogController.class);
+
     @Autowired
     private ProDutyLogService proDutyLogService;
     @Autowired
@@ -56,11 +59,14 @@ public class DutyLogController {
                     dutyLogForFrontList.add(dutyLogForFront);
                 }
 
+                LOGGER.info("返回日志数据： "+proDutyLogList.size()+"条");
                 return new FrontResult(200,dutyLogForFrontList,null);
             }else {
                 return new FrontResult(500,null,"该用户暂时还没有事前义务日志记录");
             }
         } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("-------------------------------------------------------"+e.getMessage());
             return new FrontResult(500,null,e.getMessage());
         }
 
@@ -83,42 +89,13 @@ public class DutyLogController {
                     dutyLogForFrontList.add(dutyLogForFront);
                 }
 
+
+
                 return new FrontResult(200,dutyLogForFrontList,null);
             }else {
                 return new FrontResult(500,null,"该用户暂时还没有事后义务日志记录");
             }
         } catch (Exception e) {
-            return new FrontResult(500,null,e.getMessage());
-        }
-
-    }
-
-
-    @RequestMapping(value = "/pro/page",method = RequestMethod.GET)
-    public FrontResult getProDutyLogsByPage(Integer subType , Integer subId , Integer page , Integer rows){
-        try {
-            PageInfo<DutyLogForFront> dutyLogForFrontPageInfo = proDutyLogService.getProDutyLogsByPage((byte) subType.intValue(), subId, page, rows);
-            if (dutyLogForFrontPageInfo != null) {
-                return new FrontResult(200, dutyLogForFrontPageInfo, null);
-            } else {
-                return new FrontResult(500, null, "该用户暂时还没有事前义务日志记录");
-            }
-        }catch (Exception e) {
-            return new FrontResult(500,null,e.getMessage());
-        }
-
-    }
-
-    @RequestMapping(value = "/post/page",method = RequestMethod.GET)
-    public FrontResult getPostDutyLogsByPage(Integer subType , Integer subId , Integer page , Integer rows){
-        try {
-            PageInfo<DutyLogForFront> dutyLogForFrontPageInfo = postDutyLogService.getPostDutyLogsByPage((byte) subType.intValue(), subId, page, rows);
-            if (dutyLogForFrontPageInfo != null) {
-                return new FrontResult(200, dutyLogForFrontPageInfo, null);
-            } else {
-                return new FrontResult(500, null, "该用户暂时还没有事后义务日志记录");
-            }
-        }catch (Exception e) {
             return new FrontResult(500,null,e.getMessage());
         }
 
