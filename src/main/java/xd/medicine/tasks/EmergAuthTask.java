@@ -147,11 +147,11 @@ public class EmergAuthTask implements Runnable {
 
         while (true) {
 
-            if (Thread.currentThread().isInterrupted()){
-                LOGGER.info("线程被中断！！！");
-                Thread.currentThread().stop();
-                return;
-            }
+//            if (Thread.currentThread().isInterrupted()){
+//                LOGGER.info("线程被中断！！！");
+//                Thread.currentThread().stop();
+//                return;
+//            }
 
             boolean containsKey = emergMapCache.containsKey(patientWithTrust.getPatient().getId());
 //            LOGGER.info("缓存中是否存在对于病人id为"+patientWithTrust.getPatient().getId()+"的请求？"+containsKey);
@@ -236,10 +236,10 @@ public class EmergAuthTask implements Runnable {
     private String authorizeKeyByRob(String authUserKey, List<DoctorTrustResult> avaTs) {
         boolean flag=true;
         while (flag){
-            if (Thread.currentThread().isInterrupted()){
-                LOGGER.info("线程被中断！！！");
-                Thread.currentThread().stop();
-            }
+//            if (Thread.currentThread().isInterrupted()){
+//                LOGGER.info("线程被中断！！！");
+//                Thread.currentThread().stop();
+//            }
             /*检查缓存中是否有用户到达，如果到达直接授权并跳出循环，进入抢占阶段*/
             if (emergMapCache.containsKey(patientWithTrust.getPatient().getId())){
                 List<String> list = emergMapCache.get(patientWithTrust.getPatient().getId());
