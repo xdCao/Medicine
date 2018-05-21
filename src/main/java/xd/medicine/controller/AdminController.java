@@ -1,14 +1,13 @@
 package xd.medicine.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import xd.medicine.calculator.Constants;
 import xd.medicine.entity.bo.AdminUser;
+import xd.medicine.entity.bo.ProDutyLog;
 import xd.medicine.entity.dto.FrontResult;
 import xd.medicine.service.AdminService;
+import xd.medicine.service.ProDutyLogService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +22,9 @@ public class AdminController {
 
     @Autowired
     private AdminService adminService;
+
+    @Autowired
+    private ProDutyLogService proDutyLogService;
 
     @RequestMapping(value = "/login",method = RequestMethod.GET)
     public FrontResult login(String account, String password){
@@ -62,6 +64,19 @@ public class AdminController {
         list.add(beta1);
         list.add(beta2);
         return new FrontResult(200,list,null);
+    }
+
+    @RequestMapping(value = "/test",method = RequestMethod.POST)
+    public void insert(){
+        for (int i = 0; i < 10000; i++) {
+            ProDutyLog proDutyLog=new ProDutyLog();
+            proDutyLog.setDutyId(1);
+            proDutyLog.setObjId(1);
+            proDutyLog.setState((byte) 1);
+            proDutyLog.setSubId(1);
+            proDutyLog.setSubType((byte) 1);
+            proDutyLogService.insertNewProDutyLog(proDutyLog);
+        }
     }
 
 }

@@ -15,6 +15,7 @@ import xd.medicine.entity.dto.PatientWithTrust;
 import xd.medicine.websocket.SocketSessionRegistry;
 
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * created by xdCao on 2017/12/26
@@ -24,6 +25,7 @@ import java.util.List;
 /*401:授权失效*/
 /*200:收到病人通知*/
 public class EmergAuthTask implements Runnable {
+
 
     private static final Logger LOGGER= LoggerFactory.getLogger("------紧急请求授权处理模块：");
 
@@ -147,6 +149,7 @@ public class EmergAuthTask implements Runnable {
 
             if (Thread.currentThread().isInterrupted()){
                 LOGGER.info("线程被中断！！！");
+                Thread.currentThread().stop();
                 return;
             }
 
@@ -159,7 +162,7 @@ public class EmergAuthTask implements Runnable {
                         String[] split = userKey.split(":");
                         Integer userType = Integer.valueOf(split[0]);
                         Integer userId = Integer.valueOf(split[1]);
-                        if (userType.equals(1) && userId.equals(doctorTrustResult.getDoctorId())&&doctorTrustResult.getTrust()>=currentDoctor.getTrust()) {
+                        if (userType.equals(1) && userId.equals(doctorTrustResult.getDoctorId())&&doctorTrustResult.getGrade()>currentDoctor.getGrade()) {
 
                             LOGGER.info("缓存命中对象 ,UserType: " + userType + " , UserId: " + userId);
 

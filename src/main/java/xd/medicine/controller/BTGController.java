@@ -21,6 +21,7 @@ import xd.medicine.utils.GsonUtils;
 import xd.medicine.websocket.SocketSessionRegistry;
 
 import java.util.*;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import static xd.medicine.utils.MathUtils.getRandomArray;
 import static xd.medicine.utils.MathUtils.getRandomFloat;
@@ -265,7 +266,7 @@ public class BTGController {
         if (containsKey){
             emergMapCache.get(authRequest.getPatientId()).add(authRequest.getUserType()+":"+authRequest.getUserId());
         }else {
-            ArrayList<String> arrayList=new ArrayList<>();
+            List<String> arrayList=new ArrayList<>();
             arrayList.add(authRequest.getUserType()+":"+authRequest.getUserId());
             emergMapCache.put(authRequest.getPatientId(),arrayList);
         }
