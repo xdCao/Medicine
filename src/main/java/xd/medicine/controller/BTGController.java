@@ -131,8 +131,12 @@ public class BTGController {
         float riskThs = Constants.getrThs();
 
         if(doPro.equals(1)){
-            int proNum = getRandomInt( 5, 9 ); //如果分配事前义务，则随机分配5-9个
-            int proDutyIndex[] = getRandomArray( 0 , 8, proNum );
+            int maxDuty = 9;
+            if(allProDutyList.size()<9){
+                maxDuty = allProDutyList.size();
+            }
+            int proNum = getRandomInt( 5, maxDuty ); //如果分配事前义务，则随机分配5-9个
+            int proDutyIndex[] = getRandomArray( 0 , maxDuty-1, proNum );
             List<ProDuty> proDutyList = new ArrayList<>();
             for(int i=0;i<proNum;i++){
                 ProDuty proDuty = allProDutyList.get(proDutyIndex[i]);
@@ -215,8 +219,12 @@ public class BTGController {
             /* 获取事后义务并分配 */
 
             List<PostDuty> allPostDutyList = postDutyService.getPostDutiesByChosen(true);
-            int postNum = getRandomInt( 5 , 7 ); //随机分配5-7个事后义务
-            int postDutyIndex[] = getRandomArray( 0 , 6, postNum );
+            int maxPostDuty = 7;
+            if(allPostDutyList.size()<7){
+                maxPostDuty = allPostDutyList.size();
+            }
+            int postNum = getRandomInt( 5 , maxPostDuty ); //随机分配5-7个事后义务
+            int postDutyIndex[] = getRandomArray( 0 , maxPostDuty-1 , postNum );
             List<PostDuty> postDutyList = new ArrayList<>();
             for(int i=0;i<postNum;i++){
                 PostDuty postDuty = allPostDutyList.get(postDutyIndex[i]);

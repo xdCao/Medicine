@@ -1,16 +1,17 @@
 package xd.medicine.controller;
 
 import com.github.pagehelper.PageInfo;
+import javafx.geometry.Pos;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import xd.medicine.entity.bo.PostDutyLog;
-import xd.medicine.entity.bo.ProDutyLog;
+import xd.medicine.entity.bo.*;
 import xd.medicine.entity.dto.AvaDoctor;
 import xd.medicine.entity.dto.DutyLogForFront;
 import xd.medicine.entity.dto.FrontResult;
+import xd.medicine.entity.dto.PatientWithTrust;
 import xd.medicine.service.*;
 
 import java.util.ArrayList;
@@ -44,16 +45,20 @@ public class DutyLogController {
             if (proDutyLogList!=null&&proDutyLogList.size()>0){
                 List<DutyLogForFront> dutyLogForFrontList = new ArrayList<>();
                 for(ProDutyLog proDutyLog : proDutyLogList){
-                    String dutyContent = proDutyService.getProDutyById(proDutyLog.getDutyId()).getDutyContent();
-                    String patientName = patientService.getPatientById(proDutyLog.getObjId()).getPatient().getName();
-                    int state = proDutyLog.getState();
-                    int type = proDutyLog.getState()>2?1:0;
-                    if(state>2){
-                        state = state - 3;
+                    ProDuty proDuty = proDutyService.getProDutyById(proDutyLog.getDutyId());
+                    PatientWithTrust patient = patientService.getPatientById(proDutyLog.getObjId());
+                    if(proDuty!=null&&patient!=null) {
+                        String dutyContent = proDuty.getDutyContent();
+                        String patientName = patient.getPatient().getName();
+                        int state = proDutyLog.getState();
+                        int type = proDutyLog.getState() > 2 ? 1 : 0;
+                        if (state > 2) {
+                            state = state - 3;
+                        }
+                        DutyLogForFront dutyLogForFront = new DutyLogForFront(proDutyLog.getObjId(), patientName,
+                                dutyContent, type, 0, state);
+                        dutyLogForFrontList.add(dutyLogForFront);
                     }
-                    DutyLogForFront dutyLogForFront = new DutyLogForFront(proDutyLog.getObjId(),patientName,
-                            dutyContent,  type,0, state);
-                    dutyLogForFrontList.add(dutyLogForFront);
                 }
 
                 return new FrontResult(200,dutyLogForFrontList,null);
@@ -76,11 +81,15 @@ public class DutyLogController {
             if (postDutyLogList!=null&&postDutyLogList.size()>0){
                 List<DutyLogForFront> dutyLogForFrontList = new ArrayList<>();
                 for(PostDutyLog postDutyLog : postDutyLogList){
-                    String dutyContent = postDutyService.getPostDutyById(postDutyLog.getDutyId()).getDutyContent();
-                    String patientName = patientService.getPatientById(postDutyLog.getObjId()).getPatient().getName();
-                    DutyLogForFront dutyLogForFront = new DutyLogForFront(postDutyLog.getObjId(),patientName,
-                            dutyContent, 0, postDutyLog.getFulfillTime(), postDutyLog.getState());
-                    dutyLogForFrontList.add(dutyLogForFront);
+                    PostDuty postDuty = postDutyService.getPostDutyById(postDutyLog.getDutyId());
+                    PatientWithTrust patientWithTrust = patientService.getPatientById(postDutyLog.getObjId());
+                    if(postDuty!=null&&patientWithTrust!=null) {
+                        String dutyContent = postDuty.getDutyContent();
+                        String patientName = patientWithTrust.getPatient().getName();
+                        DutyLogForFront dutyLogForFront = new DutyLogForFront(postDutyLog.getObjId(), patientName,
+                                dutyContent, 0, postDutyLog.getFulfillTime(), postDutyLog.getState());
+                        dutyLogForFrontList.add(dutyLogForFront);
+                    }
                 }
 
                 return new FrontResult(200,dutyLogForFrontList,null);
