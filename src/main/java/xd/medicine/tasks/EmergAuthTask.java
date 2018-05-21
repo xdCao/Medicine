@@ -80,7 +80,7 @@ public class EmergAuthTask implements Runnable {
 
                 String sessionId=registry.getSessionId(authUserKey);
                 if (sessionId!=null){
-                    LOGGER.info("sessionId" + sessionId + "获得授权");
+                    LOGGER.info("sessionId" + authUserKey + "获得授权");
                     template.convertAndSendToUser(sessionId,"/subject/info",
                             new OutMessage(201,patientWithTrust.getPatient().getId(),"在一阶段获得授权，可信值最高"),createHeaders(sessionId));
                 }
@@ -92,7 +92,7 @@ public class EmergAuthTask implements Runnable {
                             LOGGER.info("通知授权失败");
                             String nSessionId=registry.getSessionId(notAuthUserKeys);
                             if (nSessionId!=null){
-                                LOGGER.info(nSessionId+" :未能获得授权");
+                                LOGGER.info(notAuthUserKeys+" :未能获得授权");
                                 template.convertAndSendToUser(nSessionId,"/subject/info",
                                         new OutMessage(400,patientWithTrust.getPatient().getId(),"主治医生获得授权，紧急访问结束"),createHeaders(nSessionId));
                             }
@@ -106,7 +106,7 @@ public class EmergAuthTask implements Runnable {
                             LOGGER.info("通知授权失败");
                             String nSessionId=registry.getSessionId(notAuthUserKeys);
                             if (nSessionId!=null){
-                                LOGGER.info(nSessionId+" :未能获得授权");
+                                LOGGER.info(notAuthUserKeys+" :未能获得授权");
                                 template.convertAndSendToUser(nSessionId,"/subject/info",
                                         new OutMessage(400,patientWithTrust.getPatient().getId(),"一阶段您未能获得授权，可信值不足"),createHeaders(nSessionId));
                             }
@@ -162,7 +162,7 @@ public class EmergAuthTask implements Runnable {
                         String[] split = userKey.split(":");
                         Integer userType = Integer.valueOf(split[0]);
                         Integer userId = Integer.valueOf(split[1]);
-                        if (userType.equals(1) && userId.equals(doctorTrustResult.getDoctorId())&&doctorTrustResult.getGrade()>currentDoctor.getGrade()) {
+                        if (userType.equals(1) && userId.equals(doctorTrustResult.getDoctorId())&&doctorTrustResult.getGrade()<currentDoctor.getGrade()) {
 
                             LOGGER.info("缓存命中对象 ,UserType: " + userType + " , UserId: " + userId);
 
@@ -183,7 +183,7 @@ public class EmergAuthTask implements Runnable {
                             }
                             String newSessionId=registry.getSessionId(authUserKey);
                             if (newSessionId!=null){
-                                LOGGER.info("向sessionId="+newSessionId+"的用户发出授权通知");
+                                LOGGER.info("向sessionId="+authUserKey+"的用户发出授权通知");
                                 template.convertAndSendToUser(newSessionId,"/subject/info",
                                         new OutMessage(201,patientWithTrust.getPatient().getId(),"由于您具有更高的信任值，获得授权"),createHeaders(newSessionId));
                             }
@@ -193,7 +193,7 @@ public class EmergAuthTask implements Runnable {
                             if (emergMapCache.get(patientWithTrust.getPatient().getId()).contains(userKey)){
                                 String nSessionId=registry.getSessionId(userKey);
                                 if (nSessionId!=null){
-                                    LOGGER.info(nSessionId+"在抢占期未能获得授权");
+                                    LOGGER.info(userKey+"在抢占期未能获得授权");
                                     template.convertAndSendToUser(nSessionId,"/subject/info",
                                             new OutMessage(400,patientWithTrust.getPatient().getId(),"您的信任值不足以获得授权"),createHeaders(nSessionId));
                                 }

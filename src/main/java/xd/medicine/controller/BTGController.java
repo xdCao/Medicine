@@ -92,12 +92,21 @@ public class BTGController {
     public FrontResult leaveSession(Integer userType,
                                     Integer userId,
                                     Integer patientId){
-        LOGGER.info("userType: "+userType+" , userId: "+userId+" , patientId: "+patientId);
-        if (emergMapCache.containsKey(patientId)){
-            boolean remove = emergMapCache.get(patientId).remove(userType + ":" + userId);
-            LOGGER.info("移除病人： "+patientId+" 请求队列中的： 医生"+userId+" remove:"+remove);
+//        LOGGER.info("userType: "+userType+" , userId: "+userId+" , patientId: "+patientId);
+//        if (emergMapCache.containsKey(patientId)){
+//            boolean remove = emergMapCache.get(patientId).remove(userType + ":" + userId);
+//            LOGGER.info("移除病人： "+patientId+" 请求队列中的： 医生"+userId+" remove:"+remove);
+//        }else {
+//            LOGGER.info("缓存中已没有该病人： "+patientId+"的紧急请求");
+//        }
+//        return new FrontResult(200,null,null);
+
+        LOGGER.info("userType: "+userType+" , userId: "+patientId+" , patientId: "+userId);
+        if (emergMapCache.containsKey(userId)){
+            boolean remove = emergMapCache.get(userId).remove(userType + ":" + patientId);
+            LOGGER.info("移除病人： "+userId+" 请求队列中的： 医生"+patientId+" remove:"+remove);
         }else {
-            LOGGER.info("缓存中已没有该病人： "+patientId+"的紧急请求");
+            LOGGER.info("缓存中已没有该病人： "+userId+"的紧急请求");
         }
         return new FrontResult(200,null,null);
     }
