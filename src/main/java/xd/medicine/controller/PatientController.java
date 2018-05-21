@@ -32,6 +32,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.ScheduledFuture;
 
 /**
@@ -216,6 +217,7 @@ public class PatientController {
             //向所有可信主体集进行广播
             //此刻开启一分钟的定时任务
             List<Doctor> doctors = doctorService.getDoctorsByDepartment(patient.getTrustAttr().getDepartment());
+
             for (Doctor doctor:doctors){
 //                if (doctor.getIsin()&&doctor.getIsFree()){
                 /*这里注释掉的原因是要求即使不可用的医生也能够收到广播通知*/

@@ -15,6 +15,7 @@ import xd.medicine.entity.dto.PatientWithTrust;
 import xd.medicine.websocket.SocketSessionRegistry;
 
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * created by xdCao on 2017/12/26
